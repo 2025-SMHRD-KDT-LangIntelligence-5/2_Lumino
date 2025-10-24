@@ -1,4 +1,4 @@
 package com.smhrd.boot.controller;
 
-public class asdfvsdf {
+public class                                                           asdfvsdf {
 }
