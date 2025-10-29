@@ -22,6 +22,6 @@ public class ViewController {
         List<Movie> list = service.getMovieList();
         model.addAttribute("movieList", list);
         //Thymeleaf(.html) : templates 경로를 resources/templates 설정해줌
-        return "account-notifications";
+        return "";
     }
 }

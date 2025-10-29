@@ -1,4 +1,4 @@
 package com.smhrd.boot.service;
 
-public class MyService {
+public class MypageService {
 }
