@@ -1,9 +1,10 @@
 package com.smhrd.boot.repository;
 
+import com.smhrd.boot.entity.Login;
 import com.smhrd.boot.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LoginRepository extends JpaRepository<Movie, Long> {
+public interface LoginRepository extends JpaRepository<Login, Integer> {
 }
