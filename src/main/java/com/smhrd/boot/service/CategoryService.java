@@ -1,4 +1,12 @@
 package com.smhrd.boot.service;
 
+import com.smhrd.boot.repository.CategoryRepository;
+import com.smhrd.boot.repository.CommunityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class CategoryService {
+    @Autowired
+    private CategoryRepository categoryrepo;
 }

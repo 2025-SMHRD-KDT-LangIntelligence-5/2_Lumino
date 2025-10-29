@@ -1,12 +1,11 @@
 package com.smhrd.boot.service;
 
-import com.smhrd.boot.repository.MainRepository;
-import com.smhrd.boot.repository.MypageRepository;
+import com.smhrd.boot.repository.WorkspaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MainService {
+public class WorkspaceService {
     @Autowired
-    private MainRepository mainrepo;
+    private WorkspaceRepository workspacerepo;
 }
