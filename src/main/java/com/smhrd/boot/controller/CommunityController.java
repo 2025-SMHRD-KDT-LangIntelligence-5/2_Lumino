@@ -11,4 +11,9 @@ public class CommunityController {
     public String community(CommunityPage community) {
         return "account-notifications"; // templates 폴더의 account-notifications.html을 찾음
     }
+
+    @GetMapping("/auth-login-social")
+    public String community1(CommunityPage community) {
+        return "auth-login-social"; // templates 폴더의 account-notifications.html을 찾음
+    }
 }
