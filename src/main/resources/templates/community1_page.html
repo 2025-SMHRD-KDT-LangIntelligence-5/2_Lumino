@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Users List - SB Admin Pro</title>
+        <title>Posts Admin - SB Admin Pro</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/static/css/styles.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
@@ -278,8 +278,8 @@
                                             </a>
                                             <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
                                                 <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-social.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-social.html">Register</a>
+                                                    <a class="nav-link" href="login_page.html">Login</a>
+                                                    <a class="nav-link" href="signup_page.html">Register</a>
                                                     <a class="nav-link" href="auth-password-social.html">Forgot Password</a>
                                                 </nav>
                                             </div>
@@ -322,7 +322,7 @@
                                     <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
                                         <nav class="sidenav-menu-nested nav">
                                             <a class="nav-link" href="knowledge-base-home-1.html">Home 1</a>
-                                            <a class="nav-link" href="knowledge-base-home-2.html">Home 2</a>
+                                            <a class="nav-link" href="category_page.html">Home 2</a>
                                             <a class="nav-link" href="knowledge-base-category.html">Category</a>
                                             <a class="nav-link" href="knowledge-base-article.html">Article</a>
                                         </nav>
@@ -338,7 +338,7 @@
                                             <a class="nav-link" href="user-management-edit-user.html">Edit User</a>
                                             <a class="nav-link" href="user-management-add-user.html">Add User</a>
                                             <a class="nav-link" href="user-management-groups-list.html">Groups List</a>
-                                            <a class="nav-link" href="user-management-org-details.html">Organization Details</a>
+                                            <a class="nav-link" href="compare1_page.html">Organization Details</a>
                                         </nav>
                                     </div>
                                     <!-- Nested Sidenav Accordion (Apps -> Posts Management)-->
@@ -364,7 +364,7 @@
                             </a>
                             <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="multi-tenant-select.html">Multi-Tenant Registration</a>
+                                    <a class="nav-link" href="compare2_page.html">Multi-Tenant Registration</a>
                                     <a class="nav-link" href="wizard.html">Wizard</a>
                                 </nav>
                             </div>
@@ -505,18 +505,14 @@
                                 <div class="row align-items-center justify-content-between pt-3">
                                     <div class="col-auto mb-3">
                                         <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="user"></i></div>
-                                            Users List
+                                            <div class="page-header-icon"><i data-feather="list"></i></div>
+                                            Posts Admin
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
-                                        <a class="btn btn-sm btn-light text-primary" href="user-management-groups-list.html">
-                                            <i class="me-1" data-feather="users"></i>
-                                            Manage Groups
-                                        </a>
-                                        <a class="btn btn-sm btn-light text-primary" href="user-management-add-user.html">
-                                            <i class="me-1" data-feather="user-plus"></i>
-                                            Add New User
+                                        <a class="btn btn-sm btn-light text-primary" href="blog-management-create-post.html">
+                                            <i class="me-1" data-feather="plus"></i>
+                                            Create New Post
                                         </a>
                                     </div>
                                 </div>
@@ -530,369 +526,90 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>User</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Groups</th>
-                                            <th>Joined Date</th>
+                                            <th>Post Title</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Author</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>User</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Groups</th>
-                                            <th>Joined Date</th>
+                                            <th>Post Title</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Author</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></div>
-                                                    Tiger Nixon
-                                                </div>
-                                            </td>
-                                            <td>tiger@email.com</td>
-                                            <td>Administrator</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-blue-soft text-blue">Developers</span>
-                                                <span class="badge bg-red-soft text-red">Marketing</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                                <span class="badge bg-yellow-soft text-yellow">Customer</span>
-                                            </td>
+                                            <td>Boots on the Ground, Inclusive Thought Provoking Ideas</td>
                                             <td>20 Jun 2021</td>
+                                            <td><div class="badge bg-gray-200 text-dark">Draft</div></td>
+                                            <td>Valerie Luna</td>
                                             <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Invest In Social Impact</td>
+                                            <td>19 Jun 2021</td>
+                                            <td><div class="badge bg-yellow-soft text-yellow">Awaiting Approval</div></td>
+                                            <td>Aariz Fischer</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-2.png" /></div>
-                                                    Garrett Winters
-                                                </div>
-                                            </td>
-                                            <td>gwinterse@email.com</td>
-                                            <td>Administrator</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-blue-soft text-blue">Developers</span>
-                                                <span class="badge bg-red-soft text-red">Marketing</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                                <span class="badge bg-yellow-soft text-yellow">Customer</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Save the World, Social Entrepreneur</td>
+                                            <td>18 Jun 2021</td>
+                                            <td><div class="badge bg-green-soft text-green">Published</div></td>
+                                            <td>Alicia Allen</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-3.png" /></div>
-                                                    Ashton Cox
-                                                </div>
-                                            </td>
-                                            <td>ashtonc@email.com</td>
-                                            <td>Registered</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-red-soft text-red">Marketing</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Design Thinking Benefits Corporation Thought Leadership</td>
+                                            <td>17 Jun 2021</td>
+                                            <td><div class="badge bg-green-soft text-green">Published</div></td>
+                                            <td>Mahesh Kumar</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-4.png" /></div>
-                                                    Cedric Kelly
-                                                </div>
-                                            </td>
-                                            <td>cedrickel@email.com</td>
-                                            <td>Registered</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Collaborative Consumption, Human-Centered Technology Thought Leader Systems</td>
+                                            <td>16 Jun 2021</td>
+                                            <td><div class="badge bg-green-soft text-green">Published</div></td>
+                                            <td>William Cole</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-5.png" /></div>
-                                                    Airi Satou
-                                                </div>
-                                            </td>
-                                            <td>asatou@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Co-create, Empower - Moving the Needle on Investor Interests</td>
+                                            <td>14 Jun 2021</td>
+                                            <td><div class="badge bg-green-soft text-green">Published</div></td>
+                                            <td>Valerie Luna</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-6.png" /></div>
-                                                    Brielle Williamson
-                                                </div>
-                                            </td>
-                                            <td>bwilliamson@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Inclusive Shared Units of Analysis</td>
+                                            <td>13 Jun 2021</td>
+                                            <td><div class="badge bg-green-soft text-green">Published</div></td>
+                                            <td>Amy Love</td>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></div>
-                                                    Herrod Chandler
-                                                </div>
-                                            </td>
-                                            <td>harrodc@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-green-soft text-green">Sales</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-2.png" /></div>
-                                                    Rhona Davidson
-                                                </div>
-                                            </td>
-                                            <td>rhonadavidson@email.com</td>
-                                            <td>Registered</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-3.png" /></div>
-                                                    Colleen Hurst
-                                                </div>
-                                            </td>
-                                            <td>churst@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-blue-soft text-blue">Developers</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-4.png" /></div>
-                                                    Sonya Frost
-                                                </div>
-                                            </td>
-                                            <td>sfrost@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-5.png" /></div>
-                                                    Jena Gaines
-                                                </div>
-                                            </td>
-                                            <td>jenagaines@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-6.png" /></div>
-                                                    Quinn Flynn
-                                                </div>
-                                            </td>
-                                            <td>qflynn@email.com</td>
-                                            <td>Registered</td>
-                                            <td>
-                                                <span class="badge bg-green-soft text-green">Sales</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></div>
-                                                    Charde Marshall
-                                                </div>
-                                            </td>
-                                            <td>chardmarsh@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-green-soft text-green">Sales</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-2.png" /></div>
-                                                    Haley Kennedy
-                                                </div>
-                                            </td>
-                                            <td>hkennedy@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-3.png" /></div>
-                                                    Tatyana Fitzpatrick
-                                                </div>
-                                            </td>
-                                            <td>tatfitz@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-4.png" /></div>
-                                                    Michael Silva
-                                                </div>
-                                            </td>
-                                            <td>michaelsilva@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-blue-soft text-blue">Developers</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-5.png" /></div>
-                                                    Paul Byrd
-                                                </div>
-                                            </td>
-                                            <td>pbyrd@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-6.png" /></div>
-                                                    Gloria Little
-                                                </div>
-                                            </td>
-                                            <td>glorialittle@email.com</td>
-                                            <td>Registered</td>
-                                            <td>
-                                                <span class="badge bg-blue-soft text-blue">Developers</span>
-                                                <span class="badge bg-purple-soft text-purple">Managers</span>
-                                            </td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></div>
-                                                    Bradley Greer
-                                                </div>
-                                            </td>
-                                            <td>bgreer@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-yellow-soft text-yellow">Customer</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="assets/img/illustrations/profiles/profile-2.png" /></div>
-                                                    Dai Rios
-                                                </div>
-                                            </td>
-                                            <td>drios@email.com</td>
-                                            <td>Registered</td>
-                                            <td><span class="badge bg-blue-soft text-blue">Developers</span></td>
-                                            <td>20 Jun 2021</td>
-                                            <td>
-                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="user-management-edit-user.html"><i data-feather="edit"></i></a>
+                                                <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="blog-management-edit-post.html"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-datatable btn-icon btn-transparent-dark" href="#!"><i data-feather="trash-2"></i></a>
                                             </td>
                                         </tr>

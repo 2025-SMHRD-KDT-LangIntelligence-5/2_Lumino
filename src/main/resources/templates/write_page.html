@@ -6,8 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Edit User - SB Admin Pro</title>
-        <link href="/css/styles.css" rel="stylesheet" />
+        <title>Create Post - SB Admin Pro</title>
+        <link href="/static/css/styles.css" rel="stylesheet" />
+        <link href="https://unpkg.com/easymde/dist/easymde.min.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
@@ -248,7 +249,7 @@
                                             <a class="nav-link" href="account-profile.html">Profile</a>
                                             <a class="nav-link" href="account-billing.html">Billing</a>
                                             <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="account-notifications.html">Notifications</a>
+                                            <a class="nav-link" href="community2_page.html">Notifications</a>
                                         </nav>
                                     </div>
                                     <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
@@ -277,8 +278,8 @@
                                             </a>
                                             <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
                                                 <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-social.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-social.html">Register</a>
+                                                    <a class="nav-link" href="login_page.html">Login</a>
+                                                    <a class="nav-link" href="signup_page.html">Register</a>
                                                     <a class="nav-link" href="auth-password-social.html">Forgot Password</a>
                                                 </nav>
                                             </div>
@@ -321,7 +322,7 @@
                                     <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
                                         <nav class="sidenav-menu-nested nav">
                                             <a class="nav-link" href="knowledge-base-home-1.html">Home 1</a>
-                                            <a class="nav-link" href="knowledge-base-home-2.html">Home 2</a>
+                                            <a class="nav-link" href="category_page.html">Home 2</a>
                                             <a class="nav-link" href="knowledge-base-category.html">Category</a>
                                             <a class="nav-link" href="knowledge-base-article.html">Article</a>
                                         </nav>
@@ -337,7 +338,7 @@
                                             <a class="nav-link" href="user-management-edit-user.html">Edit User</a>
                                             <a class="nav-link" href="user-management-add-user.html">Add User</a>
                                             <a class="nav-link" href="user-management-groups-list.html">Groups List</a>
-                                            <a class="nav-link" href="user-management-org-details.html">Organization Details</a>
+                                            <a class="nav-link" href="compare1_page.html">Organization Details</a>
                                         </nav>
                                     </div>
                                     <!-- Nested Sidenav Accordion (Apps -> Posts Management)-->
@@ -350,7 +351,7 @@
                                             <a class="nav-link" href="blog-management-posts-list.html">Posts List</a>
                                             <a class="nav-link" href="blog-management-create-post.html">Create Post</a>
                                             <a class="nav-link" href="blog-management-edit-post.html">Edit Post</a>
-                                            <a class="nav-link" href="blog-management-posts-admin.html">Posts Admin</a>
+                                            <a class="nav-link" href="community1_page.html">Posts Admin</a>
                                         </nav>
                                     </div>
                                 </nav>
@@ -363,7 +364,7 @@
                             </a>
                             <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="multi-tenant-select.html">Multi-Tenant Registration</a>
+                                    <a class="nav-link" href="compare2_page.html">Multi-Tenant Registration</a>
                                     <a class="nav-link" href="wizard.html">Wizard</a>
                                 </nav>
                             </div>
@@ -499,19 +500,19 @@
             <div id="layoutSidenav_content">
                 <main>
                     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-                        <div class="container-xl px-4">
+                        <div class="container-fluid px-4">
                             <div class="page-header-content">
                                 <div class="row align-items-center justify-content-between pt-3">
                                     <div class="col-auto mb-3">
                                         <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="user"></i></div>
-                                            Edit User
+                                            <div class="page-header-icon"><i data-feather="file-plus"></i></div>
+                                            Create Post
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
-                                        <a class="btn btn-sm btn-light text-primary" href="user-management-list.html">
+                                        <a class="btn btn-sm btn-light text-primary" href="blog-management-posts-list.html">
                                             <i class="me-1" data-feather="arrow-left"></i>
-                                            Back to Users List
+                                            Back to All Posts
                                         </a>
                                     </div>
                                 </div>
@@ -519,84 +520,42 @@
                         </div>
                     </header>
                     <!-- Main page content-->
-                    <div class="container-xl px-4 mt-4">
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <!-- Profile picture card-->
-                                <div class="card mb-4 mb-xl-0">
-                                    <div class="card-header">Profile Picture</div>
-                                    <div class="card-body text-center">
-                                        <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="" />
-                                        <!-- Profile picture help block-->
-                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                                        <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    <div class="container-fluid px-4">
+                        <div class="row gx-4">
+                            <div class="col-lg-8">
+                                <div class="card mb-4">
+                                    <div class="card-header">Post Title</div>
+                                    <div class="card-body"><input class="form-control" id="postTitleInput" type="text" placeholder="Enter your post title..." /></div>
+                                </div>
+                                <div class="card card-header-actions mb-4">
+                                    <div class="card-header">
+                                        Post Preview
+                                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="The post preview text shows below the post title, and is the post summary on blog pages."></i>
+                                    </div>
+                                    <div class="card-body"><textarea class="lh-base form-control" type="text" placeholder="Enter your post preview text..." rows="4"></textarea></div>
+                                </div>
+                                <div class="card card-header-actions mb-4 mb-lg-0">
+                                    <div class="card-header">
+                                        Post Content
+                                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="Markdown is supported within the post content editor."></i>
+                                    </div>
+                                    <div class="card-body">
+                                        <textarea id="postEditor">
+## Post Subheading
+This is the content for your post.</textarea
+                                        >
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-8">
-                                <!-- Account details card-->
-                                <div class="card mb-4">
-                                    <div class="card-header">Account Details</div>
+                            <div class="col-lg-4">
+                                <div class="card card-header-actions">
+                                    <div class="card-header">
+                                        Publish
+                                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="After submitting, your post will be published once it is approved by a moderator."></i>
+                                    </div>
                                     <div class="card-body">
-                                        <form>
-                                            <!-- Form Row-->
-                                            <div class="row gx-3 mb-3">
-                                                <!-- Form Group (first name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie" />
-                                                </div>
-                                                <!-- Form Group (last name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna" />
-                                                </div>
-                                            </div>
-                                            <!-- Form Group (email address)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
-                                            </div>
-                                            <!-- Form Group (Group Selection Checkboxes)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1">Group(s)</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupSales" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupSales">Sales</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupDevs" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupDevs">Developers</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupMarketing" type="checkbox" value="" />
-                                                    <label class="form-check-label" for="groupMarketing">Marketing</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupManagers" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupManagers">Managers</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupCustomer" type="checkbox" value="" />
-                                                    <label class="form-check-label" for="groupCustomer">Customer</label>
-                                                </div>
-                                            </div>
-                                            <!-- Form Group (Roles)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1">Role</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected disabled>Select a role:</option>
-                                                    <option value="administrator" selected>Administrator</option>
-                                                    <option value="registered">Registered</option>
-                                                    <option value="edtior">Editor</option>
-                                                    <option value="guest">Guest</option>
-                                                </select>
-                                            </div>
-                                            <!-- Submit button-->
-                                            <button class="btn btn-primary" type="button">Save changes</button>
-                                        </form>
+                                        <div class="d-grid mb-3"><button class="fw-500 btn btn-primary-soft text-primary">Save as Draft</button></div>
+                                        <div class="d-grid"><button class="fw-500 btn btn-primary">Submit for Approval</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -619,5 +578,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
+        <script src="js/markdown.js"></script>
     </body>
 </html>
