@@ -11,4 +11,6 @@ public class WorkspaceController {
     public String workspace_page() {
         return "workspace_page"; // templates 폴더의 account-notifications.html을 찾음
     }
+
+
 }

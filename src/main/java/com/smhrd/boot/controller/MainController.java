@@ -12,11 +12,5 @@ public class MainController {
         return "main_page"; // templates 폴더의 account-notifications.html을 찾음
     }
 
-    // 카테고리 페이지 매핑
-    @GetMapping("/category_page")
-    public String category_page() {
-        return "category_page"; // templates 폴더의 account-notifications.html을 찾음
-    }
-
 
 }
