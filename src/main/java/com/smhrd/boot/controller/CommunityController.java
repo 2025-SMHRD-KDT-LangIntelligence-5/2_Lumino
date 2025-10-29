@@ -13,7 +13,7 @@ public class CommunityController {
     }
 
     @GetMapping("/auth-login-social")
-    public String community1(CommunityPage community) {
+    public String community1() {
         return "auth-login-social"; // templates 폴더의 account-notifications.html을 찾음
     }
 }
