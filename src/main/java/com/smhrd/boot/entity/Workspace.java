@@ -1,9 +1,6 @@
 package com.smhrd.boot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SecondaryTable;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +15,6 @@ import lombok.Setter;
 //@OneToMany
 
 public class Workspace {
-
+    @Id // 기본키
+    private Integer workspace_id;
 }
