@@ -1,4 +1,4 @@
 package com.smhrd.boot.entity;
 
-public class JoinPage {
+public class My {
 }

@@ -1,4 +1,4 @@
 package com.smhrd.boot.entity;
 
-public class CategoryPage {
+public class Login {
 }
