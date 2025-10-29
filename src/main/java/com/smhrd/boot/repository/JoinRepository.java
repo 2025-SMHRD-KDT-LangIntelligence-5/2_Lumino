@@ -1,4 +1,9 @@
 package com.smhrd.boot.repository;
 
-public interface JoinRepository {
+import com.smhrd.boot.entity.Movie;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface JoinRepository extends JpaRepository<Movie, Long> {
 }
