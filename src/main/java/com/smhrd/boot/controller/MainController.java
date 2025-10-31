@@ -27,5 +27,10 @@ public class MainController {
         return "main2_page"; // templates 폴더의 account-notifications.html을 찾음
     }
 
+    // 메인테스트 페이지 매핑
+    @GetMapping("/main_page_test")
+    public String main_page_test() {
+        return "main_page_test"; // templates 폴더의 account-notifications.html을 찾음
+    }
 
 }
