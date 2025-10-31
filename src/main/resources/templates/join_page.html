@@ -12,16 +12,31 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        <style>
+
+            .service_logo {
+            margin-top: 50px;
+	        display: flex;
+            justify-content: center;
+            }
+
+            .card my-5{
+            background-color: #red;
+            }
+
+        </style>
     </head>
-    <body class="bg-primary">
+
+    <body>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container-xl px-4">
+                        <div class="service_logo">
+                            <a href="/main_page"><img src="/assets/img/RightServiceLogo.png" alt="service_logo"></a>
+                        </div>
                         <div class="row justify-content-center">
-                            <div class="go_main">
-                            <a class="service_logo" img="" href="/category_page"></a>
-                            </div>
+
                             <div class="col-xl-8 col-lg-9">
                                 <!-- Social registration form-->
                                 <div class="card my-5">
@@ -96,7 +111,7 @@
                                     <div class="card-body px-5 py-4">
                                         <div class="small text-center">
                                             Have an account?
-                                            <a href="login_page.html">Sign in!</a>
+                                            <a href="/login_page">Login</a>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +124,7 @@
                 <footer class="footer-admin mt-auto footer-dark">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small">Copyright &copy; Your Website 2025</div>
                             <div class="col-md-6 text-md-end small">
                                 <a href="#!">Privacy Policy</a>
                                 &middot;

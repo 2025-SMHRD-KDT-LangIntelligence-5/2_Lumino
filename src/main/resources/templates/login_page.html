@@ -12,18 +12,34 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        <style>
+
+            .service_logo {
+            margin-top: 50px;
+	        display: flex;
+            justify-content: center;
+            }
+
+            .card my-5{
+            background-color: #red;
+            }
+
+        </style>
     </head>
-    <body class="bg-primary">
+    <body>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container-xl px-4">
+                        <div class="service_logo">
+                            <a href="/main_page"><img src="/assets/img/RightServiceLogo.png" alt="service_logo"></a>
+                        </div>
                         <div class="row justify-content-center">
                             <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
                                 <!-- Social login form-->
                                 <div class="card my-5">
                                     <div class="card-body p-5 text-center">
-                                        <div class="h3 fw-light mb-3">Sign In</div>
+                                        <div class="h3 fw-light mb-3">Login</div>
                                         <!-- Social login links-->
                                         <a class="btn btn-icon btn-facebook mx-1" href="#!"><i class="fab fa-facebook-f fa-fw fa-sm"></i></a>
                                         <a class="btn btn-icon btn-github mx-1" href="#!"><i class="fab fa-github fa-fw fa-sm"></i></a>
@@ -60,7 +76,7 @@
                                     <div class="card-body px-5 py-4">
                                         <div class="small text-center">
                                             New user?
-                                            <a href="join_page.html">Create an account!</a>
+                                            <a href="/join_page">Create an account!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +89,7 @@
                 <footer class="footer-admin mt-auto footer-dark">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small">Copyright &copy; Your Website 2025</div>
                             <div class="col-md-6 text-md-end small">
                                 <a href="#!">Privacy Policy</a>
                                 &middot;
