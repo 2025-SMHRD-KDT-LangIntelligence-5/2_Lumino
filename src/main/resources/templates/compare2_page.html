@@ -12,70 +12,128 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        <style>
+
+        </style>
     </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container-xl px-4">
-                        <div class="row justify-content-center">
-                            <!-- Create Organization-->
-                            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11 mt-4">
-                                <div class="card text-center h-100">
-                                    <div class="card-body px-5 pt-5 d-flex flex-column">
-                                        <div>
-                                            <div class="h3 text-primary">Create</div>
-                                            <p class="text-muted mb-4">Create an organization and invite new members</p>
-                                        </div>
-                                        <div class="icons-org-create align-items-center mx-auto mt-auto">
-                                            <i class="icon-users" data-feather="users"></i>
-                                            <i class="icon-plus fas fa-plus"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer bg-transparent px-5 py-4">
-                                        <div class="small text-center"><a class="btn btn-block btn-primary" href="multi-tenant-create.html">Create new organization</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Join Organization-->
-                            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11 mt-4">
-                                <div class="card text-center h-100">
-                                    <div class="card-body px-5 pt-5 d-flex flex-column align-items-between">
-                                        <div>
-                                            <div class="h3 text-secondary">Join</div>
-                                            <p class="text-muted mb-4">Enter an access code or request access to an existing organization</p>
-                                        </div>
-                                        <div class="icons-org-join align-items-center mx-auto">
-                                            <i class="icon-user" data-feather="user"></i>
-                                            <i class="icon-arrow fas fa-long-arrow-alt-right"></i>
-                                            <i class="icon-users" data-feather="users"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer bg-transparent px-5 py-4">
-                                        <div class="small text-center"><a class="btn btn-block btn-secondary" href="multi-tenant-join.html">Join an organization</a></div>
-                                    </div>
-                                </div>
-                            </div>
+    <body>
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+            <div class="container-xl px-4">
+                <a class="navbar-brand" href="/main_page">
+                    <img src="/assets/img/RightServiceLogo.png" alt="RightServiceLogo" class="logo-light"/>
+                    <img src="/assets/img/DarkServiceLogo.png" alt="DarkServiceLogo" class="logo-dark"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="topNav">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/category_page">카테고리 / 커뮤니티</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                        <li class="nav-item me-lg-3"><a class="nav-link" href="/my_page">MyPage / Profile</a></li>
+                        <li class="nav-item me-lg-3"><a class="nav-link" href="/login_page">로그인/회원가입</a></li>
+                        <li class="nav-item">
+                            <button class="nav-link theme-toggle-btn" id="themeToggle" title="라이트/다크 모드 전환">
+                                <i class="fas fa-sun sun-icon"></i>
+                                <i class="fas fa-moon moon-icon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <div class="container-xl px-4 py-4">
+                <!-- Top compare header with images and VS -->
+                <div class="row align-items-center text-center mb-4">
+                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                        <div class="product-box bg-light">AI 1번</div>
+                    </div>
+                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                        <div class="vs-badge">VS</div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="product-box bg-light">AI 2번</div>
+                    </div>
+                </div>
+
+                <!-- Spec compare table -->
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle mb-0">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>AI 1번</th>
+                                        <th class="spec-label text-center">항목</th>
+                                        <th>AI 2번</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">앱 이름</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">카테고리</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">가격</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">핵심 기능</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">MCP 지원 여부</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="spec-cell"></td>
+                                        <th class="text-muted spec-label text-center">웹 / 앱</th>
+                                        <td class="spec-cell"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </main>
+                </div>
+
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="footer-admin mt-auto footer-dark">
-                    <div class="container-xl px-4">
-                        <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
-                            <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
+        </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script>
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Load saved theme from localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        </script>
     </body>
 </html>
