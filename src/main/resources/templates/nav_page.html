@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Knowledge Base - SB Admin Pro</title>
-    <link href="/css/styles.css" rel="stylesheet" />
-    <link href="/css/main.css" rel="stylesheet" />
-
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Organization Details - SB Admin Pro</title>
+    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/css/compare.css" rel="stylesheet"/>
+    <link href="assets/img/favicon.png" rel="icon" type="image/x-icon"/>
+    <script crossorigin="anonymous" data-search-pseudo-elements
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
 </head>
 <body class="nav-fixed">
-<nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+<nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white"
+     id="sidenavAccordion">
     <!-- Sidenav Toggle Button-->
-    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
+    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i
+            data-feather="menu"></i></button>
     <!-- Navbar Brand-->
     <!-- * * Tip * * You can use text or an image for your navbar brand.-->
     <!-- * * * * * * When using an image, we recommend the SVG format.-->
@@ -27,7 +31,7 @@
     <!-- * * Note: * * Visible only on and above the lg breakpoint-->
     <form class="form-inline me-auto d-none d-lg-block me-3">
         <div class="input-group input-group-joined input-group-solid">
-            <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
+            <input aria-label="Search" class="form-control pe-0" placeholder="Search" type="search"/>
             <div class="input-group-text"><i data-feather="search"></i></div>
         </div>
     </form>
@@ -35,11 +39,13 @@
     <ul class="navbar-nav align-items-center ms-auto">
         <!-- Documentation Dropdown-->
         <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+               href="javascript:void(0);" id="navbarDropdownDocs" role="button">
                 <div class="fw-500">Documentation</div>
                 <i class="fas fa-chevron-right dropdown-arrow"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
+            <div aria-labelledby="navbarDropdownDocs"
+                 class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up">
                 <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
                     <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="book"></i></div>
                     <div>
@@ -48,7 +54,8 @@
                     </div>
                 </a>
                 <div class="dropdown-divider m-0"></div>
-                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components"
+                   target="_blank">
                     <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="code"></i></div>
                     <div>
                         <div class="small text-gray-500">Components</div>
@@ -56,7 +63,8 @@
                     </div>
                 </a>
                 <div class="dropdown-divider m-0"></div>
-                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
+                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog"
+                   target="_blank">
                     <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
                     <div>
                         <div class="small text-gray-500">Changelog</div>
@@ -68,12 +76,15 @@
         <!-- Navbar Search Dropdown-->
         <!-- * * Note: * * Visible only below the lg breakpoint-->
         <li class="nav-item dropdown no-caret me-3 d-lg-none">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="search"></i></a>
+            <a aria-expanded="false" aria-haspopup="true" class="btn btn-icon btn-transparent-dark dropdown-toggle" data-bs-toggle="dropdown"
+               href="#" id="searchDropdown" role="button"><i data-feather="search"></i></a>
             <!-- Dropdown - Search-->
-            <div class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
+            <div aria-labelledby="searchDropdown"
+                 class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up">
                 <form class="form-inline me-auto w-100">
                     <div class="input-group input-group-joined input-group-solid">
-                        <input class="form-control pe-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                        <input aria-describedby="basic-addon2" aria-label="Search" class="form-control pe-0" placeholder="Search for..."
+                               type="text"/>
                         <div class="input-group-text"><i data-feather="search"></i></div>
                     </div>
                 </form>
@@ -81,8 +92,11 @@
         </li>
         <!-- Alerts Dropdown-->
         <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="bell"></i></a>
-            <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownAlerts">
+            <a aria-expanded="false" aria-haspopup="true"
+               class="btn btn-icon btn-transparent-dark dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" id="navbarDropdownAlerts"
+               role="button"><i data-feather="bell"></i></a>
+            <div aria-labelledby="navbarDropdownAlerts"
+                 class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up">
                 <h6 class="dropdown-header dropdown-notifications-header">
                     <i class="me-2" data-feather="bell"></i>
                     Alerts Center
@@ -92,7 +106,9 @@
                     <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
                     <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">December 29, 2021</div>
-                        <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing serious, but it requires your attention.</div>
+                        <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing
+                            serious, but it requires your attention.
+                        </div>
                     </div>
                 </a>
                 <!-- Example Alert 2-->
@@ -100,15 +116,20 @@
                     <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
                     <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">December 22, 2021</div>
-                        <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to view!</div>
+                        <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here
+                            to view!
+                        </div>
                     </div>
                 </a>
                 <!-- Example Alert 3-->
                 <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i>
+                    </div>
                     <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">December 8, 2021</div>
-                        <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting down.</div>
+                        <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting
+                            down.
+                        </div>
                     </div>
                 </a>
                 <!-- Example Alert 4-->
@@ -116,7 +137,9 @@
                     <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
                     <div class="dropdown-notifications-item-content">
                         <div class="dropdown-notifications-item-content-details">December 2, 2021</div>
-                        <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access to the organization.</div>
+                        <div class="dropdown-notifications-item-content-text">New user request. Woody has requested
+                            access to the organization.
+                        </div>
                     </div>
                 </a>
                 <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
@@ -124,41 +147,68 @@
         </li>
         <!-- Messages Dropdown-->
         <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
-            <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
+            <a aria-expanded="false" aria-haspopup="true"
+               class="btn btn-icon btn-transparent-dark dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" id="navbarDropdownMessages"
+               role="button"><i data-feather="mail"></i></a>
+            <div aria-labelledby="navbarDropdownMessages"
+                 class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up">
                 <h6 class="dropdown-header dropdown-notifications-header">
                     <i class="me-2" data-feather="mail"></i>
                     Message Center
                 </h6>
                 <!-- Example Message 1  -->
                 <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="/assets/img/illustrations/profiles/profile-2.png" />
+                    <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-2.png"/>
                     <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
                         <div class="dropdown-notifications-item-content-details">Thomas Wilcox · 58m</div>
                     </div>
                 </a>
                 <!-- Example Message 2-->
                 <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="/assets/img/illustrations/profiles/profile-3.png" />
+                    <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-3.png"/>
                     <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
                         <div class="dropdown-notifications-item-content-details">Emily Fowler · 2d</div>
                     </div>
                 </a>
                 <!-- Example Message 3-->
                 <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="/assets/img/illustrations/profiles/profile-4.png" />
+                    <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-4.png"/>
                     <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
                         <div class="dropdown-notifications-item-content-details">Marshall Rosencrantz · 3d</div>
                     </div>
                 </a>
                 <!-- Example Message 4-->
                 <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="/assets/img/illustrations/profiles/profile-5.png" />
+                    <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-5.png"/>
                     <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </div>
                         <div class="dropdown-notifications-item-content-details">Colby Newton · 3d</div>
                     </div>
                 </a>
@@ -168,10 +218,13 @@
         </li>
         <!-- User Dropdown-->
         <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></a>
-            <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+            <a aria-expanded="false" aria-haspopup="true"
+               class="btn btn-icon btn-transparent-dark dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" id="navbarDropdownUserImage"
+               role="button"><img class="img-fluid" src="assets/img/illustrations/profiles/profile-1.png"/></a>
+            <div aria-labelledby="navbarDropdownUserImage"
+                 class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up">
                 <h6 class="dropdown-header d-flex align-items-center">
-                    <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
+                    <img class="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png"/>
                     <div class="dropdown-user-details">
                         <div class="dropdown-user-details-name">Valerie Luna</div>
                         <div class="dropdown-user-details-email">vluna@aol.com</div>
@@ -215,57 +268,69 @@
                     <!-- Sidenav Menu Heading (Core)-->
                     <div class="sidenav-menu-heading">Core</div>
                     <!-- Sidenav Accordion (Dashboard)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                    <a aria-controls="collapseDashboards" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseDashboards" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="activity"></i></div>
                         Dashboards
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseDashboards">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                            <a class="nav-link" href="main1_page.html">
+                            <a class="nav-link"
+                               href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/main1_page.html">
                                 Default
                                 <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
                             </a>
-                            <a class="nav-link" href="main2_page.html">Multipurpose</a>
+                            <a class="nav-link"
+                               href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/main2_page.html">Multipurpose</a>
                             <a class="nav-link" href="dashboard-3.html">Affiliate</a>
                         </nav>
                     </div>
                     <!-- Sidenav Heading (Custom)-->
                     <div class="sidenav-menu-heading">Custom</div>
                     <!-- Sidenav Accordion (Pages)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <a aria-controls="collapsePages" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapsePages" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="grid"></i></div>
                         Pages
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapsePages">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                             <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                            <a aria-controls="pagesCollapseAccount" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#pagesCollapseAccount" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Account
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavPagesMenu" id="pagesCollapseAccount">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="account-profile.html">Profile</a>
                                     <a class="nav-link" href="account-billing.html">Billing</a>
                                     <a class="nav-link" href="account-security.html">Security</a>
-                                    <a class="nav-link" href="community2_page.html">Notifications</a>
+                                    <a class="nav-link"
+                                       href="/community2_page.html">Notifications</a>
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <a aria-controls="pagesCollapseAuth" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#pagesCollapseAuth" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Authentication
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavPagesMenu" id="pagesCollapseAuth">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
                                     <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
+                                    <a aria-controls="pagesCollapseAuthBasic" aria-expanded="false" class="nav-link collapsed"
+                                       data-bs-target="#pagesCollapseAuthBasic" data-bs-toggle="collapse"
+                                       href="javascript:void(0);">
                                         Basic
                                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
-                                    <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
+                                    <div class="collapse" data-bs-parent="#accordionSidenavPagesAuth"
+                                         id="pagesCollapseAuthBasic">
                                         <nav class="sidenav-menu-nested nav">
                                             <a class="nav-link" href="auth-login-basic.html">Login</a>
                                             <a class="nav-link" href="auth-register-basic.html">Register</a>
@@ -273,25 +338,32 @@
                                         </nav>
                                     </div>
                                     <!-- Nested Sidenav Accordion (Pages -> Authentication -> Social)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
+                                    <a aria-controls="pagesCollapseAuthSocial" aria-expanded="false" class="nav-link collapsed"
+                                       data-bs-target="#pagesCollapseAuthSocial" data-bs-toggle="collapse"
+                                       href="javascript:void(0);">
                                         Social
                                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
-                                    <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
+                                    <div class="collapse" data-bs-parent="#accordionSidenavPagesAuth"
+                                         id="pagesCollapseAuthSocial">
                                         <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login_page.html">Login</a>
-                                            <a class="nav-link" href="join_page.html">Register</a>
+                                            <a class="nav-link"
+                                               href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/login_page.html">Login</a>
+                                            <a class="nav-link"
+                                               href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/join_page.html">Register</a>
                                             <a class="nav-link" href="auth-password-social.html">Forgot Password</a>
                                         </nav>
                                     </div>
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Pages -> Error)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                            <a aria-controls="pagesCollapseError" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#pagesCollapseError" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Error
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavPagesMenu" id="pagesCollapseError">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="error-400.html">400 Error</a>
                                     <a class="nav-link" href="error-401.html">401 Error</a>
@@ -308,83 +380,112 @@
                         </nav>
                     </div>
                     <!-- Sidenav Accordion (Applications)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
+                    <a aria-controls="collapseApps" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseApps" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="globe"></i></div>
                         Applications
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseApps">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
                             <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseKnowledgeBase" aria-expanded="false" aria-controls="appsCollapseKnowledgeBase">
+                            <a aria-controls="appsCollapseKnowledgeBase" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#appsCollapseKnowledgeBase" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Knowledge Base
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavAppsMenu"
+                                 id="appsCollapseKnowledgeBase">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="knowledge-base-home-1.html">Home 1</a>
-                                    <a class="nav-link" href="category_page.html">Home 2</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/category_page.html">Home
+                                        2</a>
                                     <a class="nav-link" href="knowledge-base-category.html">Category</a>
                                     <a class="nav-link" href="knowledge-base-article.html">Article</a>
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Apps -> User Management)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseUserManagement" aria-expanded="false" aria-controls="appsCollapseUserManagement">
+                            <a aria-controls="appsCollapseUserManagement" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#appsCollapseUserManagement" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 User Management
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="appsCollapseUserManagement" data-bs-parent="#accordionSidenavAppsMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavAppsMenu"
+                                 id="appsCollapseUserManagement">
                                 <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="workspace_page.html">Users List</a>
-                                    <a class="nav-link" href="my_page.html">Edit User</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/workspace_page.html">Users
+                                        List</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/my_page.html">Edit
+                                        User</a>
                                     <a class="nav-link" href="user-management-add-user.html">Add User</a>
                                     <a class="nav-link" href="user-management-groups-list.html">Groups List</a>
                                     <a class="nav-link" href="nav_page.html">Organization Details</a>
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Apps -> Posts Management)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapsePostsManagement" aria-expanded="false" aria-controls="appsCollapsePostsManagement">
+                            <a aria-controls="appsCollapsePostsManagement" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#appsCollapsePostsManagement" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Posts Management
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="appsCollapsePostsManagement" data-bs-parent="#accordionSidenavAppsMenu">
+                            <div class="collapse" data-bs-parent="#accordionSidenavAppsMenu"
+                                 id="appsCollapsePostsManagement">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="blog-management-posts-list.html">Posts List</a>
-                                    <a class="nav-link" href="write_page.html">Create Post</a>
-                                    <a class="nav-link" href="edit_page.html">Edit Post</a>
-                                    <a class="nav-link" href="community1_page.html">Posts Admin</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/write_page.html">Create
+                                        Post</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/edit_page.html">Edit
+                                        Post</a>
+                                    <a class="nav-link"
+                                       href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/community1_page.html">Posts
+                                        Admin</a>
                                 </nav>
                             </div>
                         </nav>
                     </div>
                     <!-- Sidenav Accordion (Flows)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
+                    <a aria-controls="collapseFlows" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseFlows" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="repeat"></i></div>
                         Flows
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseFlows">
                         <nav class="sidenav-menu-nested nav">
-                            <a class="nav-link" href="compare_page.html">Multi-Tenant Registration</a>
+                            <a class="nav-link"
+                               href="../../../../../../실전프로젝트/boot/boot/boot/src/main/resources/templates/compare2_page.html">Multi-Tenant
+                                Registration</a>
                             <a class="nav-link" href="wizard.html">Wizard</a>
                         </nav>
                     </div>
                     <!-- Sidenav Heading (UI Toolkit)-->
                     <div class="sidenav-menu-heading">UI Toolkit</div>
                     <!-- Sidenav Accordion (Layout)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a aria-controls="collapseLayouts" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseLayouts" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="layout"></i></div>
                         Layout
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseLayouts" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseLayouts">
                         <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
                             <!-- Nested Sidenav Accordion (Layout -> Navigation)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutSidenavVariations" aria-expanded="false" aria-controls="collapseLayoutSidenavVariations">
+                            <a aria-controls="collapseLayoutSidenavVariations" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#collapseLayoutSidenavVariations" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Navigation
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayoutSidenavVariations" data-bs-parent="#accordionSidenavLayout">
+                            <div class="collapse" data-bs-parent="#accordionSidenavLayout"
+                                 id="collapseLayoutSidenavVariations">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-static.html">Static Sidenav</a>
                                     <a class="nav-link" href="layout-dark.html">Dark Sidenav</a>
@@ -392,22 +493,28 @@
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Layout -> Container Options)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutContainers" aria-expanded="false" aria-controls="collapseLayoutContainers">
+                            <a aria-controls="collapseLayoutContainers" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#collapseLayoutContainers" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Container Options
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayoutContainers" data-bs-parent="#accordionSidenavLayout">
+                            <div class="collapse" data-bs-parent="#accordionSidenavLayout"
+                                 id="collapseLayoutContainers">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-boxed.html">Boxed Layout</a>
                                     <a class="nav-link" href="layout-fluid.html">Fluid Layout</a>
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Layout -> Page Headers)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsPageHeaders" aria-expanded="false" aria-controls="collapseLayoutsPageHeaders">
+                            <a aria-controls="collapseLayoutsPageHeaders" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#collapseLayoutsPageHeaders" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Page Headers
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayoutsPageHeaders" data-bs-parent="#accordionSidenavLayout">
+                            <div class="collapse" data-bs-parent="#accordionSidenavLayout"
+                                 id="collapseLayoutsPageHeaders">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="header-simplified.html">Simplified</a>
                                     <a class="nav-link" href="header-compact.html">Compact</a>
@@ -417,11 +524,14 @@
                                 </nav>
                             </div>
                             <!-- Nested Sidenav Accordion (Layout -> Starter Layouts)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsStarterTemplates" aria-expanded="false" aria-controls="collapseLayoutsStarterTemplates">
+                            <a aria-controls="collapseLayoutsStarterTemplates" aria-expanded="false" class="nav-link collapsed"
+                               data-bs-target="#collapseLayoutsStarterTemplates" data-bs-toggle="collapse"
+                               href="javascript:void(0);">
                                 Starter Layouts
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayoutsStarterTemplates" data-bs-parent="#accordionSidenavLayout">
+                            <div class="collapse" data-bs-parent="#accordionSidenavLayout"
+                                 id="collapseLayoutsStarterTemplates">
                                 <nav class="sidenav-menu-nested nav">
                                     <a class="nav-link" href="starter-default.html">Default</a>
                                     <a class="nav-link" href="starter-minimal.html">Minimal</a>
@@ -430,12 +540,13 @@
                         </nav>
                     </div>
                     <!-- Sidenav Accordion (Components)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
+                    <a aria-controls="collapseComponents" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseComponents" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="package"></i></div>
                         Components
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseComponents" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseComponents">
                         <nav class="sidenav-menu-nested nav">
                             <a class="nav-link" href="alerts.html">Alerts</a>
                             <a class="nav-link" href="avatars.html">Avatars</a>
@@ -460,12 +571,13 @@
                         </nav>
                     </div>
                     <!-- Sidenav Accordion (Utilities)-->
-                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                    <a aria-controls="collapseUtilities" aria-expanded="false" class="nav-link collapsed"
+                       data-bs-target="#collapseUtilities" data-bs-toggle="collapse" href="javascript:void(0);">
                         <div class="nav-link-icon"><i data-feather="tool"></i></div>
                         Utilities
                         <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
+                    <div class="collapse" data-bs-parent="#accordionSidenav" id="collapseUtilities">
                         <nav class="sidenav-menu-nested nav">
                             <a class="nav-link" href="animations.html">Animations</a>
                             <a class="nav-link" href="background.html">Background</a>
@@ -500,108 +612,9 @@
     </div>
     <div id="layoutSidenav_content">
         <main>
-            <header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">
-                <div class="container-xl px-4">
-                    <div class="page-header-content pt-4" style="min-height: 20vh; display: flex; flex-direction: column; justify-content: flex-start;">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-auto mt-4">
-                                <h1 class="page-header-title">
-                                    <div class="page-header-icon"><i data-feather="life-buoy"></i></div>
-                                    Knowledge Base
-                                </h1>
-                                <div class="page-header-subtitle">What are you looking for? Our knowledge base is here to help.</div>
-                            </div>
-                        </div>
-                        <!-- Logo area -->
-                        <div class="d-flex align-items-center justify-content-center" style="min-height: 180px; margin-top: 0.5rem; margin-bottom: 0.5rem;">
-                            <img src="/assets/img/RightServiceLogo.png" alt="Logo" style="max-height: 360px; width: auto;" />
-                        </div>
-                        <div class="page-header-search" style="min-height: 15vh; display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">
-                            <div class="input-group input-group-joined" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
-                                <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
-                                <span class="input-group-text" style="border: none;"><i data-feather="search"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            <!-- Main page content-->
-            <div class="container-xl px-4">
-                <h4 class="mb-0 mt-2 text-center">Workspace Zone</h4>
-                <hr class="mt-2 mb-4" />
-                <div class="row justify-content-center">
-                    <!-- Left: AI Tools Icon Grid with Workspace Selector -->
-                    <div class="col-lg-8 mb-4 mx-auto">
-                        <div class="card h-100">
-                            <div class="card-header d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
-                                    <div>
-                                        <h5 class="mb-0">AI Tools</h5>
-                                        <div class="small text-muted">Select workspace and manage AI tool icons</div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                    <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width: 160px;">
-                                        <option value="workspace-marketing.html">Marketing</option>
-                                        <option value="workspace-engineering.html" selected>Engineering</option>
-                                        <option value="workspace-design.html">Design</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="cpu"></i>
-                                                <div>Model Runner</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="message-circle"></i>
-                                                <div>Chat Assistant</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="image"></i>
-                                                <div>Image Gen</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="mic"></i>
-                                                <div>Speech</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- Add AI Tool Tile -->
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="plus"></i>
-                                                <div>Add Tool</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- More icons can be added dynamically -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right column removed after merging selector into AI Tools card -->
-                </div>
 
-            </div>
+
+
         </main>
         <footer class="footer-admin mt-auto footer-light">
             <div class="container-xl px-4">
@@ -617,7 +630,8 @@
         </footer>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/scripts.js"></script>
 </body>
 </html>

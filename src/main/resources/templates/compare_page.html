@@ -1,209 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Create or Join Organization - SB Admin Pro</title>
-        <link href="/css/styles.css" rel="stylesheet" />
-        <link href="/css/compare.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-        <style>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Create or Join Organization - SB Admin Pro</title>
+    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/css/compare.css" rel="stylesheet"/>
+    <link href="assets/img/favicon.png" rel="icon" type="image/x-icon"/>
+    <script crossorigin="anonymous" data-search-pseudo-elements
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+    <style>
 
-            .table thead th {
-              height: 3.5rem;
-            }
+.py-4 {
+margin-top: 50px;
+}
 
-            .py-4 {
-            margin-top: 50px;
-            }
+.align-items-stretch{
+margin-top: 50px;
+}
 
-            .align-items-stretch{
-            margin-top: 50px;
-            }
-
-            /* 새로운 테이블 구조에 맞춘 스타일 (수정 및 추가) */
+/* 새로운 테이블 구조에 맞춘 스타일 (수정 및 추가) */
 .spec-row td {
-  height: 7rem; /* 기존 spec-label 높이와 맞춥니다 */
-  vertical-align: middle;
-  text-align: center; /* 👈 이 부분을 추가하여 텍스트를 가운데 정렬합니다 */
+height: 7rem; /* 기존 spec-label 높이와 맞춥니다 */
+vertical-align: middle;
+text-align: center; /* 👈 이 부분을 추가하여 텍스트를 가운데 정렬합니다 */
 }
 
 /* 중앙 레이블 항목 스타일 */
 .spec-label-item {
-  width: 100%;
-  height: 7rem; /* 행 높이와 동일하게 설정 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #6c757d;
-  /* 테두리 스타일을 테이블과 일치하도록 조정합니다. */
-  border: 1px solid #dee2e6; /* 기본 테두리를 추가합니다. */
-  padding: 0 10px;
+width: 100%;
+height: 7rem; /* 행 높이와 동일하게 설정 */
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+color: #6c757d;
+/* 테두리 스타일을 테이블과 일치하도록 조정합니다. */
+border: 1px solid #dee2e6; /* 기본 테두리를 추가합니다. */
+padding: 0 10px;
 }
 
 /* 테이블의 행 수와 정확히 일치하도록 상단 테두리 제거 */
 /* 첫 번째 항목의 상단 테두리는 유지해야 합니다. */
 .spec-label-item:not(:first-child) {
-    border-top: none;
+border-top: none;
 }
 
 /* 다크 모드 스타일 업데이트 */
 body.dark-mode .spec-label-item {
-    color: #c084fc;
-    border-color: #8b5cf6 !important;
+color: #c084fc;
+border-color: #8b5cf6 !important;
 }
 
 /* 테이블의 높이를 100%로 설정하기 위한 기본 스타일 */
 .h-100 {
-    height: 100% !important;
+height: 100% !important;
 }
 
-        </style>
-    </head>
-    <body>
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-            <div class="container-xl px-4">
-                <a class="navbar-brand" href="/main_page">
-                    <img src="/assets/img/RightServiceLogo.png" alt="RightServiceLogo" class="logo-light"/>
-                    <img src="/assets/img/DarkServiceLogo.png" alt="DarkServiceLogo" class="logo-dark"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="topNav">
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/category_page">카테고리 / 커뮤니티</a></li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                        <li class="nav-item me-lg-3"><a class="nav-link" href="/my_page">MyPage / Profile</a></li>
-                        <li class="nav-item me-lg-3"><a class="nav-link" href="/login_page">로그인/회원가입</a></li>
-                        <li class="nav-item">
-                            <button class="nav-link theme-toggle-btn" id="themeToggle" title="라이트/다크 모드 전환">
-                                <i class="fas fa-sun sun-icon"></i>
-                                <i class="fas fa-moon moon-icon"></i>
-                            </button>
-                        </li>
-                    </ul>
+        .neg-margin-x {
+margin-left: -15px !important;
+margin-right: -15px !important;
+}
+
+
+/* 기존 spec-label-item 스타일 수정 (테두리 제거 및 높이/정렬 유지) */
+.spec-label-item {
+width: 100%;
+height: 7rem;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+color: #6c757d;
+/* 아래 세 줄을 모두 주석 처리하거나 삭제하여 테두리를 제거합니다 */
+border: none;
+/* border: 1px solid #dee2e6; */
+padding: 0 10px;
+}
+
+/* 기존 spec-label-item 스타일에서 테두리 관련 코드를 모두 제거합니다. */
+/* 중앙 레이블이 텍스트만 보이게 됩니다. */
+.spec-label-item:not(:first-child) {
+border-top: none; /* 이 코드도 이제 필요 없습니다. */
+}
+
+.spec-label-item:last-child {
+border-bottom: none; /* 이 코드도 이제 필요 없습니다. */
+}
+
+/* 다크 모드 스타일 업데이트 (테두리 제거 반영) */
+body.dark-mode .spec-label-item {
+color: #c084fc;
+border: none !important; /* 다크 모드에서도 테두리 제거 */
+}
+
+/* 중앙 비교 항목 레이블 정렬 보정 */
+
+/* 테이블 헤더의 높이(3.5rem)만큼 첫 번째 항목을 아래로 내립니다. */
+.spec-label-item:first-child {
+    margin-top: 3.5rem; /* 테이블 헤더 (.table thead th)의 높이(3.5rem)와 일치 */
+}
+
+    </style>
+</head>
+<body>
+<!-- Top Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    <div class="container-xl px-4">
+        <a class="navbar-brand" href="/main_page">
+            <img alt="RightServiceLogo" class="logo-light" src="/assets/img/RightServiceLogo.png"/>
+            <img alt="DarkServiceLogo" class="logo-dark" src="/assets/img/DarkServiceLogo.png"/>
+        </a>
+        <button aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#topNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="topNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/category_page">카테고리 / 커뮤니티</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                <li class="nav-item me-lg-3"><a class="nav-link" href="/my_page">MyPage / Profile</a></li>
+                <li class="nav-item me-lg-3"><a class="nav-link" href="/login_page">로그인/회원가입</a></li>
+                <li class="nav-item">
+                    <button class="nav-link theme-toggle-btn" id="themeToggle" title="라이트/다크 모드 전환">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container-xl px-4 py-4">
+        <!-- Top compare header with images and VS -->
+        <div class="row align-items-center text-center mb-4">
+            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
+                <div class="product-box bg-light">AI 1번</div>
+            </div>
+            <div class="col-12 col-lg-2 mb-4 mb-lg-0">
+                <div class="vs-badge">VS</div>
+            </div>
+            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
+                <div class="product-box bg-light me-5">AI 2번</div>
+            </div>
+        </div>
+
+        <div class="row align-items-stretch" style="min-height: 400px;">
+            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                <div class="card h-100">
+                    <div class="card-body p-0">
+                        <div class="table-responsive h-100">
+                            <table class="table table-bordered align-middle mb-0 h-100">
+                                <thead class="table-light text-center">
+                                <tr>
+                                    <th>AI 1번 스펙</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 1-1</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 1-2</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 1-3</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 1-4</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
 
-        <main>
-            <div class="container-xl px-4 py-4">
-                <!-- Top compare header with images and VS -->
-                <div class="row align-items-center text-center mb-4">
-                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-                        <div class="product-box bg-light">AI 1번</div>
-                    </div>
-                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-                        <div class="vs-badge">VS</div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="product-box bg-light">AI 2번</div>
-                    </div>
+            <div class="col-12 col-lg-2 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0 position-relative neg-margin-x">
+                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
+                    <div class="spec-label-item">앱 이름</div>
+                    <div class="spec-label-item">가격</div>
+                    <div class="spec-label-item">핵심 기능</div>
+                    <div class="spec-label-item">웹 / 앱</div>
                 </div>
+            </div>
 
-                <div class="row align-items-stretch" style="min-height: 400px;">
-                    <div class="col-12 col-lg-5 mb-4 mb-lg-0">
-                        <div class="card h-100">
-                            <div class="card-body p-0">
-                                <div class="table-responsive h-100">
-                                    <table class="table table-bordered align-middle mb-0 h-100">
-                                        <thead class="table-light text-center">
-                                        <tr>
-                                            <th>AI 1번 스펙</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 1-1</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 1-2</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 1-3</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 1-4</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-2 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0">
-                        <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
-                            <div class="spec-label-item">앱 이름</div>
-                            <div class="spec-label-item">가격</div>
-                            <div class="spec-label-item">핵심 기능</div>
-                            <div class="spec-label-item">웹 / 앱</div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-5">
-                        <div class="card h-100">
-                            <div class="card-body p-0">
-                                <div class="table-responsive h-100">
-                                    <table class="table table-bordered align-middle mb-0 h-100">
-                                        <thead class="table-light text-center">
-                                        <tr>
-                                            <th>AI 2번 스펙</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 2-1</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 2-2</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 2-3</td>
-                                        </tr>
-                                        <tr class="spec-row">
-                                            <td class="spec-cell">데이터 2-4</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+            <div class="col-12 col-lg-5">
+                <div class="card h-100">
+                    <div class="card-body p-0">
+                        <div class="table-responsive h-100">
+                            <table class="table table-bordered align-middle mb-0 h-100">
+                                <thead class="table-light text-center">
+                                <tr>
+                                    <th>AI 2번 스펙</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 2-1</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 2-2</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 2-3</td>
+                                </tr>
+                                <tr class="spec-row">
+                                    <td class="spec-cell">데이터 2-4</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-        </main>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script>
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('themeToggle');
-            const body = document.body;
+            </div>
+        </div>
+</main>
+<script crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>
+<script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
 
-            // Load saved theme from localStorage
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-mode');
-            }
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
 
-            // Toggle theme on button click
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        </script>
-    </body>
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
+</body>
 </html>
