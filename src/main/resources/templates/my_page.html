@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -521,83 +521,65 @@
                     </header>
                     <!-- Main page content-->
                     <div class="container-xl px-4 mt-4">
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <!-- Profile picture card-->
-                                <div class="card mb-4 mb-xl-0">
-                                    <div class="card-header">Profile Picture</div>
-                                    <div class="card-body text-center">
-                                        <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="" />
-                                        <!-- Profile picture help block-->
-                                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                                        <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                        <div class="row mb-4">
+                            <div class="col-xl-12 d-flex align-items-center" style="gap: 2rem;">
+                                <!-- Profile picture with edit icon-->
+                                <div class="position-relative" style="margin-left: 2rem;">
+                                    <img class="img-account-profile rounded-circle" src="assets/img/illustrations/profiles/profile-1.png" alt="" style="height: 12rem; width: 12rem; object-fit: cover;" />
+                                    <!-- Edit icon overlay-->
+                                    <div class="position-absolute" style="bottom: 0; right: 0; background-color: #0061f2; border-radius: 50%; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid white;">
+                                        <i data-feather="edit-2" style="width: 1.2rem; height: 1.2rem; color: white;"></i>
+                                    </div>
+                                </div>
+                                <!-- Nickname display-->
+                                <div class="flex-grow-1 d-flex align-items-center" style="gap: 0.75rem; max-width: 400px;">
+                                    <div>
+                                        <label class="small mb-1" for="displayNickname">Nickname</label>
+                                        <div class="fs-5 fw-bold" id="displayNickname" th:text="${user?.nickname ?: 'User'}">User</div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button class="btn btn-sm btn-transparent-dark" type="button" style="padding: 0.25rem;">
+                                            <i data-feather="edit-2" style="width: 1rem; height: 1rem;"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-8">
-                                <!-- Account details card-->
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- Workspace card-->
                                 <div class="card mb-4">
-                                    <div class="card-header">Account Details</div>
-                                    <div class="card-body">
-                                        <form>
-                                            <!-- Form Row-->
-                                            <div class="row gx-3 mb-3">
-                                                <!-- Form Group (first name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie" />
-                                                </div>
-                                                <!-- Form Group (last name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna" />
-                                                </div>
+                                    <div class="card-body p-4">
+                                        <!-- Workspace name-->
+                                        <h5 class="mb-4" th:text="${workspace?.name ?: 'My Workspace'}">My Workspace</h5>
+                                        <!-- AI Tools grid-->
+                                        <div class="d-flex flex-wrap align-items-center" style="gap: 1rem;">
+                                            <!-- AI Tool items (th:each로 반복)-->
+                                            <div th:each="tool : ${workspace?.tools}" class="position-relative">
+                                                <a th:href="${tool.url}" class="text-decoration-none">
+                                                    <div class="bg-white border rounded-3 p-3 d-flex flex-column align-items-center justify-content-center" 
+                                                         style="width: 100px; height: 100px; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); transition: transform 0.2s;"
+                                                         onmouseover="this.style.transform='scale(1.05)'" 
+                                                         onmouseout="this.style.transform='scale(1)'">
+                                                        <img th:src="${tool.imageUrl}" 
+                                                             th:alt="${tool.name}" 
+                                                             class="mb-2" 
+                                                             style="width: 60px; height: 60px; object-fit: contain;" />
+                                                        <span class="small text-center" th:text="${tool.name}">Tool Name</span>
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <!-- Form Group (email address)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com" />
+                                            <!-- Add tool button (always at the right end)-->
+                                            <div class="position-relative" style="margin-left: auto;">
+                                                <button class="btn btn-outline-primary border-2 d-flex flex-column align-items-center justify-content-center" 
+                                                        type="button" 
+                                                        style="width: 100px; height: 100px; border-radius: 0.5rem;"
+                                                        onclick="addTool()">
+                                                    <i data-feather="plus" style="width: 2rem; height: 2rem; margin-bottom: 0.5rem;"></i>
+                                                    <span class="small">Add Tool</span>
+                                                </button>
                                             </div>
-                                            <!-- Form Group (Group Selection Checkboxes)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1">Group(s)</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupSales" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupSales">Sales</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupDevs" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupDevs">Developers</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupMarketing" type="checkbox" value="" />
-                                                    <label class="form-check-label" for="groupMarketing">Marketing</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupManagers" type="checkbox" value="" checked />
-                                                    <label class="form-check-label" for="groupManagers">Managers</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="groupCustomer" type="checkbox" value="" />
-                                                    <label class="form-check-label" for="groupCustomer">Customer</label>
-                                                </div>
-                                            </div>
-                                            <!-- Form Group (Roles)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1">Role</label>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected disabled>Select a role:</option>
-                                                    <option value="administrator" selected>Administrator</option>
-                                                    <option value="registered">Registered</option>
-                                                    <option value="edtior">Editor</option>
-                                                    <option value="guest">Guest</option>
-                                                </select>
-                                            </div>
-                                            <!-- Submit button-->
-                                            <button class="btn btn-primary" type="button">Save changes</button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -620,5 +602,16 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <script>
+            // Feather icons 초기화
+            feather.replace();
+            
+            // Tool 추가 함수
+            function addTool() {
+                // TODO: 모달 또는 팝업을 통해 새 AI 도구 추가 기능 구현
+                alert('AI 도구 추가 기능을 구현해주세요.');
+                // 예시: window.location.href = '/workspace/add-tool';
+            }
+        </script>
     </body>
 </html>
