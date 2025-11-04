@@ -14,7 +14,7 @@ public class CompareController {
     public String compare_page() {
         return "compare_page"; // templates 폴더의 account-notifications.html을 찾음
     }
-    // AI비교 페이지 매핑
+    // AI비교 네비게이션 페이지 매핑
     @GetMapping("/nav_page")
     public String nav_page() {
         return "nav_page"; // templates 폴더의 account-notifications.html을 찾음

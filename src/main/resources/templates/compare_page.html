@@ -100,6 +100,13 @@ color: #c084fc;
 border: none !important; /* 다크 모드에서도 테두리 제거 */
 }
 
+/* 중앙 비교 항목 레이블 정렬 보정 */
+
+/* 테이블 헤더의 높이(3.5rem)만큼 첫 번째 항목을 아래로 내립니다. */
+.spec-label-item:first-child {
+    margin-top: 3.5rem; /* 테이블 헤더 (.table thead th)의 높이(3.5rem)와 일치 */
+}
+
     </style>
 </head>
 <body>
@@ -142,8 +149,8 @@ border: none !important; /* 다크 모드에서도 테두리 제거 */
             <div class="col-12 col-lg-2 mb-4 mb-lg-0">
                 <div class="vs-badge">VS</div>
             </div>
-            <div class="col-12 col-lg-3 mx-auto">
-                <div class="product-box bg-light">AI 2번</div>
+            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
+                <div class="product-box bg-light me-5">AI 2번</div>
             </div>
         </div>
 
