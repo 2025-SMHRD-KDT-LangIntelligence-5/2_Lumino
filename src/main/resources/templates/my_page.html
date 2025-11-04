@@ -21,7 +21,9 @@
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
+            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">
+                <img src="assets/img/RightServiceLogo.png" alt="A-VERSE" style="height: 32px; width: auto; display: block;" />
+            </a>
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the lg breakpoint-->
             <form class="form-inline me-auto d-none d-lg-block me-3">
@@ -40,7 +42,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
                         <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="book"></i></div>
+                            <div class="icon-stack bg-secondary-soft text-secondary me-4"><i data-feather="book"></i></div>
                             <div>
                                 <div class="small text-gray-500">Documentation</div>
                                 Usage instructions and reference
@@ -48,7 +50,7 @@
                         </a>
                         <div class="dropdown-divider m-0"></div>
                         <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="code"></i></div>
+                            <div class="icon-stack bg-secondary-soft text-secondary me-4"><i data-feather="code"></i></div>
                             <div>
                                 <div class="small text-gray-500">Components</div>
                                 Code snippets and reference
@@ -56,7 +58,7 @@
                         </a>
                         <div class="dropdown-divider m-0"></div>
                         <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
+                            <div class="icon-stack bg-secondary-soft text-secondary me-4"><i data-feather="file-text"></i></div>
                             <div>
                                 <div class="small text-gray-500">Changelog</div>
                                 Updates and changes
@@ -223,7 +225,7 @@
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                     <a class="nav-link" href="main1_page.html">
                                         Default
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
+                                        <span class="badge bg-secondary-soft text-secondary ms-auto">Updated</span>
                                     </a>
                                     <a class="nav-link" href="main2_page.html">Multipurpose</a>
                                     <a class="nav-link" href="dashboard-3.html">Affiliate</a>
@@ -442,12 +444,12 @@
                                     <a class="nav-link" href="buttons.html">Buttons</a>
                                     <a class="nav-link" href="cards.html">
                                         Cards
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
+                                        <span class="badge bg-secondary-soft text-secondary ms-auto">Updated</span>
                                     </a>
                                     <a class="nav-link" href="dropdowns.html">Dropdowns</a>
                                     <a class="nav-link" href="forms.html">
                                         Forms
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
+                                        <span class="badge bg-secondary-soft text-secondary ms-auto">Updated</span>
                                     </a>
                                     <a class="nav-link" href="modals.html">Modals</a>
                                     <a class="nav-link" href="navigation.html">Navigation</a>
@@ -510,7 +512,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
-                                        <a class="btn btn-sm btn-light text-primary" href="workspace_page.html">
+                                        <a class="btn btn-sm btn-light text-secondary" href="workspace_page.html">
                                             <i class="me-1" data-feather="arrow-left"></i>
                                             Back to Users List
                                         </a>
@@ -525,11 +527,15 @@
                             <div class="col-lg-8 d-flex align-items-center" style="gap: 2rem;">
                                 <!-- Profile picture with edit icon-->
                                 <div class="position-relative">
-                                    <img class="img-account-profile rounded-circle" src="assets/img/illustrations/profiles/profile-1.png" alt="" style="height: 12rem; width: 12rem; object-fit: cover;" />
+                                    <img id="profileImage" class="img-account-profile rounded-circle" src="assets/img/illustrations/profiles/profile-1.png" alt="" style="height: 12rem; width: 12rem; object-fit: cover;" />
+                                    <!-- hidden file input -->
+                                    <input id="profileImageInput" type="file" accept="image/*" style="display: none;" />
                                     <!-- Edit icon overlay-->
-                                    <div class="position-absolute" style="bottom: 0; right: 0; background-color: #0061f2; border-radius: 50%; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid white;">
+                                    <button type="button" class="position-absolute bg-secondary" 
+                                            style="bottom: 0; right: 0; border-radius: 50%; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid white;"
+                                            onclick="openProfileImagePicker()">
                                         <i data-feather="edit-2" style="width: 1.2rem; height: 1.2rem; color: white;"></i>
-                                    </div>
+                                    </button>
                                 </div>
                                 <!-- Nickname display-->
                                 <div class="flex-grow-1 d-flex align-items-center" style="gap: 0.75rem; max-width: 400px;">
@@ -550,9 +556,6 @@
                             <div class="col-lg-8">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h5 class="mb-0">저장 워크스페이스</h5>
-                                    <button class="btn btn-sm btn-transparent-dark" type="button" onclick="deleteAllWorkspaces()" title="워크스페이스 삭제">
-                                        <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
-                                    </button>
                                 </div>
                                 <hr class="my-0" />
                             </div>
@@ -566,7 +569,7 @@
                                 <div class="card h-100">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                             <div>
                                                 <h5 class="mb-0">Engineering</h5>
                                                 <div class="small text-muted">Select workspace and manage AI tool icons</div>
@@ -588,7 +591,7 @@
                                         <div class="row g-3">
                                             <!-- AI Tool items -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-model-runner.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="cpu"></i>
                                                         <div>Model Runner</div>
@@ -596,7 +599,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-chat-assistant.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="message-circle"></i>
                                                         <div>Chat Assistant</div>
@@ -604,7 +607,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-image-gen.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="image"></i>
                                                         <div>Image Gen</div>
@@ -613,7 +616,7 @@
                                             </div>
                                             <!-- Add AI Tool Tile -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="#" onclick="event.preventDefault(); showAddToolModal(1); return false;">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="#" onclick="event.preventDefault(); showAddToolModal(1); return false;">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
@@ -633,7 +636,7 @@
                                 <div class="card h-100">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                             <div>
                                                 <h5 class="mb-0">Marketing</h5>
                                                 <div class="small text-muted">Select workspace and manage AI tool icons</div>
@@ -655,7 +658,7 @@
                                         <div class="row g-3">
                                             <!-- AI Tool items -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-speech.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="mic"></i>
                                                         <div>Speech</div>
@@ -663,7 +666,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-chat-assistant.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="message-circle"></i>
                                                         <div>Chat Assistant</div>
@@ -672,7 +675,7 @@
                                             </div>
                                             <!-- Add AI Tool Tile -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="#" onclick="event.preventDefault(); showAddToolModal(2); return false;">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="#" onclick="event.preventDefault(); showAddToolModal(2); return false;">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
@@ -692,7 +695,7 @@
                                 <div class="card h-100">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center">
-                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                             <div>
                                                 <h5 class="mb-0" th:text="${workspace.name}">AI Tools</h5>
                                                 <div class="small text-muted">Select workspace and manage AI tool icons</div>
@@ -716,7 +719,7 @@
                                     <div class="card-body">
                                         <div class="row g-3">
                                             <div th:each="tool : ${workspace.tools}" class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" th:href="${tool.url}">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" th:href="${tool.url}">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <img th:if="${tool.imageUrl}" th:src="${tool.imageUrl}" th:alt="${tool.name}" class="mb-2" style="width: 48px; height: 48px; object-fit: contain;" />
                                                         <i th:unless="${tool.imageUrl}" th:data-feather="${tool.icon ?: 'cpu'}" class="mb-2"></i>
@@ -725,7 +728,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="#" th:onclick="'event.preventDefault(); showAddToolModal(' + ${workspace.id} + '); return false;'">
+                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="#" th:onclick="'event.preventDefault(); showAddToolModal(' + ${workspace.id} + '); return false;'">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
@@ -773,7 +776,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                                        <button type="submit" class="btn btn-primary">완료</button>
+                                        <button type="submit" class="btn btn-secondary">완료</button>
                                     </div>
                                 </form>
                             </div>
@@ -800,6 +803,40 @@
             // Feather icons 초기화
             feather.replace();
             
+            // 프로필 이미지 변경: 파일 선택 열기
+            function openProfileImagePicker() {
+                const input = document.getElementById('profileImageInput');
+                if (!input) return;
+                input.click();
+                input.onchange = handleProfileImageSelected;
+            }
+
+            // 파일 선택 후 미리보기 및 업로드
+            function handleProfileImageSelected(event) {
+                const file = event.target.files && event.target.files[0];
+                if (!file) return;
+
+                // 미리보기
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('profileImage');
+                    if (img) img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+
+                // 업로드 (선택: API 경로는 필요 시 변경)
+                const formData = new FormData();
+                formData.append('profileImage', file);
+                fetch('/api/user/profile-image', { method: 'POST', body: formData })
+                    .then(res => {
+                        if (!res.ok) throw new Error('프로필 이미지 업로드 실패');
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('이미지 업로드 중 오류가 발생했습니다.');
+                    });
+            }
+
             // 워크스페이스 삭제 함수
             function deleteWorkspace(workspaceId) {
                 if (confirm('이 워크스페이스를 삭제하시겠습니까?')) {
@@ -824,29 +861,7 @@
                 }
             }
             
-            // 모든 워크스페이스 삭제 함수
-            function deleteAllWorkspaces() {
-                if (confirm('모든 워크스페이스를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-                    // AJAX로 모든 워크스페이스 삭제
-                    fetch('/api/workspace/all', {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            location.reload(); // 페이지 새로고침
-                        } else {
-                            alert('워크스페이스 삭제에 실패했습니다.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('워크스페이스 삭제 중 오류가 발생했습니다.');
-                    });
-                }
-            }
+            // 모든 워크스페이스 삭제 기능은 UI에서 제거됨
             
             // Add Tool 모달 표시 함수
             function showAddToolModal(workspaceId) {
