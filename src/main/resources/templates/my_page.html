@@ -545,44 +545,57 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <!-- Workspace card-->
-                                <div class="card mb-4">
-                                    <div class="card-body p-4">
-                                        <!-- Workspace name-->
-                                        <h5 class="mb-4" th:text="${workspace?.name ?: 'My Workspace'}">My Workspace</h5>
-                                        <!-- AI Tools grid-->
-                                        <div class="d-flex flex-wrap align-items-center" style="gap: 1rem;">
+                        <div class="row justify-content-center">
+                            <!-- Left: AI Tools Icon Grid with Workspace Selector -->
+                            <div class="col-lg-8 mb-4 mx-auto">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div>
+                                                <h5 class="mb-0">AI Tools</h5>
+                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width: 160px;">
+                                                <option th:each="ws : ${workspaces}" 
+                                                        th:value="${ws.id}" 
+                                                        th:text="${ws.name}"
+                                                        th:selected="${ws.id == currentWorkspaceId}">
+                                                    Workspace
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-3">
                                             <!-- AI Tool items (th:each로 반복)-->
-                                            <div th:each="tool : ${workspace?.tools}" class="position-relative">
-                                                <a th:href="${tool.url}" class="text-decoration-none">
-                                                    <div class="bg-white border rounded-3 p-3 d-flex flex-column align-items-center justify-content-center" 
-                                                         style="width: 100px; height: 100px; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); transition: transform 0.2s;"
-                                                         onmouseover="this.style.transform='scale(1.05)'" 
-                                                         onmouseout="this.style.transform='scale(1)'">
-                                                        <img th:src="${tool.imageUrl}" 
-                                                             th:alt="${tool.name}" 
-                                                             class="mb-2" 
-                                                             style="width: 60px; height: 60px; object-fit: contain;" />
-                                                        <span class="small text-center" th:text="${tool.name}">Tool Name</span>
+                                            <div th:each="tool : ${workspace?.tools}" class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" th:href="${tool.url}">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <img th:if="${tool.imageUrl}" th:src="${tool.imageUrl}" th:alt="${tool.name}" class="mb-2" style="width: 48px; height: 48px; object-fit: contain;" />
+                                                        <i th:unless="${tool.imageUrl}" th:data-feather="${tool.icon ?: 'cpu'}" class="mb-2"></i>
+                                                        <div th:text="${tool.name}">Tool Name</div>
                                                     </div>
                                                 </a>
                                             </div>
-                                            <!-- Add tool button (always at the right end)-->
-                                            <div class="position-relative" style="margin-left: auto;">
-                                                <button class="btn btn-outline-primary border-2 d-flex flex-column align-items-center justify-content-center" 
-                                                        type="button" 
-                                                        style="width: 100px; height: 100px; border-radius: 0.5rem;"
-                                                        onclick="addTool()">
-                                                    <i data-feather="plus" style="width: 2rem; height: 2rem; margin-bottom: 0.5rem;"></i>
-                                                    <span class="small">Add Tool</span>
-                                                </button>
+                                            <!-- Add AI Tool Tile -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" th:href="@{/workspace/add-tool}" onclick="return addTool();">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
                                             </div>
+                                            <!-- More icons can be added dynamically -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Right column removed after merging selector into AI Tools card -->
                         </div>
                     </div>
                 </main>
@@ -606,11 +619,26 @@
             // Feather icons 초기화
             feather.replace();
             
+            // Workspace 선택 변경 이벤트
+            document.addEventListener('DOMContentLoaded', function() {
+                const workspaceSelect = document.getElementById('workspace-select-inline');
+                if (workspaceSelect) {
+                    workspaceSelect.addEventListener('change', function() {
+                        const selectedWorkspaceId = this.value;
+                        // Workspace 변경 시 페이지 리로드 또는 AJAX로 도구 목록 업데이트
+                        window.location.href = '/my-page?workspaceId=' + selectedWorkspaceId;
+                        // 또는 AJAX 호출:
+                        // fetch('/api/workspace/' + selectedWorkspaceId + '/tools')
+                        //     .then(response => response.json())
+                        //     .then(data => updateTools(data));
+                    });
+                }
+            });
+            
             // Tool 추가 함수
             function addTool() {
-                // TODO: 모달 또는 팝업을 통해 새 AI 도구 추가 기능 구현
-                alert('AI 도구 추가 기능을 구현해주세요.');
-                // 예시: window.location.href = '/workspace/add-tool';
+                // 링크로 이동하므로 기본 동작 사용
+                return true;
             }
         </script>
     </body>
