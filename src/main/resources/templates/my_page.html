@@ -521,10 +521,10 @@
                     </header>
                     <!-- Main page content-->
                     <div class="container-xl px-4 mt-4">
-                        <div class="row mb-4">
-                            <div class="col-xl-12 d-flex align-items-center" style="gap: 2rem;">
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-lg-8 d-flex align-items-center" style="gap: 2rem;">
                                 <!-- Profile picture with edit icon-->
-                                <div class="position-relative" style="margin-left: 2rem;">
+                                <div class="position-relative">
                                     <img class="img-account-profile rounded-circle" src="assets/img/illustrations/profiles/profile-1.png" alt="" style="height: 12rem; width: 12rem; object-fit: cover;" />
                                     <!-- Edit icon overlay-->
                                     <div class="position-absolute" style="bottom: 0; right: 0; background-color: #0061f2; border-radius: 50%; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid white;">
@@ -545,7 +545,22 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- 저장 워크스페이스 섹션 -->
                         <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <h5 class="mb-0">저장 워크스페이스</h5>
+                                    <button class="btn btn-sm btn-transparent-dark" type="button" onclick="deleteAllWorkspaces()" title="워크스페이스 삭제">
+                                        <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                    </button>
+                                </div>
+                                <hr class="my-0" />
+                            </div>
+                        </div>
+                        
+                        <!-- 워크스페이스 목록 (DB에서 가져온 워크스페이스들이 자동으로 표시됨) -->
+                        <!-- 임시 예시 워크스페이스 1 -->
+                        <div class="row justify-content-center mb-4">
                             <!-- Left: AI Tools Icon Grid with Workspace Selector -->
                             <div class="col-lg-8 mb-4 mx-auto">
                                 <div class="card h-100">
@@ -553,17 +568,146 @@
                                         <div class="d-flex align-items-center">
                                             <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
                                             <div>
-                                                <h5 class="mb-0">AI Tools</h5>
+                                                <h5 class="mb-0">Engineering</h5>
                                                 <div class="small text-muted">Select workspace and manage AI tool icons</div>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width: 160px;">
-                                                <option th:each="ws : ${workspaces}" 
+                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" onclick="deleteWorkspace(1)" title="워크스페이스 삭제">
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                            </button>
+                                            <label class="small text-muted me-2" for="workspace-select-1">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-1" style="min-width: 160px;">
+                                                <option value="1">Marketing</option>
+                                                <option value="2" selected>Engineering</option>
+                                                <option value="3">Design</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-3">
+                                            <!-- AI Tool items -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="cpu"></i>
+                                                        <div>Model Runner</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="message-circle"></i>
+                                                        <div>Chat Assistant</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="image"></i>
+                                                        <div>Image Gen</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <!-- Add AI Tool Tile -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="#" onclick="event.preventDefault(); showAddToolModal(1); return false;">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 임시 예시 워크스페이스 2 -->
+                        <div class="row justify-content-center mb-4">
+                            <!-- Left: AI Tools Icon Grid with Workspace Selector -->
+                            <div class="col-lg-8 mb-4 mx-auto">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div>
+                                                <h5 class="mb-0">Marketing</h5>
+                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" onclick="deleteWorkspace(2)" title="워크스페이스 삭제">
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                            </button>
+                                            <label class="small text-muted me-2" for="workspace-select-2">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-2" style="min-width: 160px;">
+                                                <option value="1" selected>Marketing</option>
+                                                <option value="2">Engineering</option>
+                                                <option value="3">Design</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-3">
+                                            <!-- AI Tool items -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="mic"></i>
+                                                        <div>Speech</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="message-circle"></i>
+                                                        <div>Chat Assistant</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <!-- Add AI Tool Tile -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="#" onclick="event.preventDefault(); showAddToolModal(2); return false;">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 실제 DB 데이터(주석 처리됨 - 나중에 활성화!) -->
+                        <!--
+                        <div th:each="workspace : ${workspaces}" class="row justify-content-center mb-4">
+                            <div class="col-lg-8 mb-4 mx-auto">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-stack bg-primary-soft text-primary me-3"><i data-feather="cpu"></i></div>
+                                            <div>
+                                                <h5 class="mb-0" th:text="${workspace.name}">AI Tools</h5>
+                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" th:onclick="'deleteWorkspace(' + ${workspace.id} + ')'" title="워크스페이스 삭제">
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                            </button>
+                                            <label class="small text-muted me-2" th:id="'workspace-select-label-' + ${workspace.id}">Workspace</label>
+                                            <select class="form-select form-select-sm" th:id="'workspace-select-' + ${workspace.id}" style="min-width: 160px;">
+                                                <option th:each="ws : ${allWorkspaces}" 
                                                         th:value="${ws.id}" 
                                                         th:text="${ws.name}"
-                                                        th:selected="${ws.id == currentWorkspaceId}">
+                                                        th:selected="${ws.id == workspace.id}">
                                                     Workspace
                                                 </option>
                                             </select>
@@ -571,8 +715,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row g-3">
-                                            <!-- AI Tool items (th:each로 반복)-->
-                                            <div th:each="tool : ${workspace?.tools}" class="col-4 col-md-3 col-xl-2">
+                                            <div th:each="tool : ${workspace.tools}" class="col-4 col-md-3 col-xl-2">
                                                 <a class="card lift lift-sm text-center h-100" th:href="${tool.url}">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <img th:if="${tool.imageUrl}" th:src="${tool.imageUrl}" th:alt="${tool.name}" class="mb-2" style="width: 48px; height: 48px; object-fit: contain;" />
@@ -581,21 +724,59 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                            <!-- Add AI Tool Tile -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" th:href="@{/workspace/add-tool}" onclick="return addTool();">
+                                                <a class="card lift lift-sm text-center h-100" href="#" th:onclick="'event.preventDefault(); showAddToolModal(' + ${workspace.id} + '); return false;'">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
                                                     </div>
                                                 </a>
                                             </div>
-                                            <!-- More icons can be added dynamically -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Right column removed after merging selector into AI Tools card -->
+                        </div>
+                        -->
+                    </div>
+                    
+                    <!-- Add Tool Modal -->
+                    <div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="addToolModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addToolModalLabel">AI 도구 추가</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form id="addToolForm" onsubmit="return submitAddTool(event);">
+                                    <div class="modal-body">
+                                        <input type="hidden" id="modalWorkspaceId" name="workspaceId" />
+                                        <div class="mb-3">
+                                            <label for="toolName" class="form-label">도구 이름</label>
+                                            <input type="text" class="form-control" id="toolName" name="toolName" required placeholder="예: ChatGPT, DALL-E" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="toolUrl" class="form-label">도구 URL</label>
+                                            <input type="url" class="form-control" id="toolUrl" name="toolUrl" required placeholder="https://example.com" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="toolImageFile" class="form-label">도구 로고 이미지</label>
+                                            <input type="file" class="form-control" id="toolImageFile" name="toolImageFile" accept="image/*" />
+                                            <div class="form-text">AI 도구의 로고 이미지를 업로드하세요. (선택사항)</div>
+                                        </div>
+                                        <div id="imagePreview" class="mb-3" style="display: none;">
+                                            <label class="form-label">이미지 미리보기</label>
+                                            <div>
+                                                <img id="previewImg" src="" alt="Preview" style="max-width: 100px; max-height: 100px; border-radius: 0.5rem; border: 1px solid #dee2e6;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                        <button type="submit" class="btn btn-primary">완료</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </main>
@@ -619,26 +800,122 @@
             // Feather icons 초기화
             feather.replace();
             
-            // Workspace 선택 변경 이벤트
-            document.addEventListener('DOMContentLoaded', function() {
-                const workspaceSelect = document.getElementById('workspace-select-inline');
-                if (workspaceSelect) {
-                    workspaceSelect.addEventListener('change', function() {
-                        const selectedWorkspaceId = this.value;
-                        // Workspace 변경 시 페이지 리로드 또는 AJAX로 도구 목록 업데이트
-                        window.location.href = '/my-page?workspaceId=' + selectedWorkspaceId;
-                        // 또는 AJAX 호출:
-                        // fetch('/api/workspace/' + selectedWorkspaceId + '/tools')
-                        //     .then(response => response.json())
-                        //     .then(data => updateTools(data));
+            // 워크스페이스 삭제 함수
+            function deleteWorkspace(workspaceId) {
+                if (confirm('이 워크스페이스를 삭제하시겠습니까?')) {
+                    // AJAX로 워크스페이스 삭제
+                    fetch('/api/workspace/' + workspaceId, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload(); // 페이지 새로고침
+                        } else {
+                            alert('워크스페이스 삭제에 실패했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('워크스페이스 삭제 중 오류가 발생했습니다.');
                     });
                 }
-            });
+            }
             
-            // Tool 추가 함수
-            function addTool() {
-                // 링크로 이동하므로 기본 동작 사용
-                return true;
+            // 모든 워크스페이스 삭제 함수
+            function deleteAllWorkspaces() {
+                if (confirm('모든 워크스페이스를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+                    // AJAX로 모든 워크스페이스 삭제
+                    fetch('/api/workspace/all', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload(); // 페이지 새로고침
+                        } else {
+                            alert('워크스페이스 삭제에 실패했습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('워크스페이스 삭제 중 오류가 발생했습니다.');
+                    });
+                }
+            }
+            
+            // Add Tool 모달 표시 함수
+            function showAddToolModal(workspaceId) {
+                document.getElementById('modalWorkspaceId').value = workspaceId;
+                document.getElementById('addToolForm').reset();
+                document.getElementById('imagePreview').style.display = 'none';
+                
+                const modal = new bootstrap.Modal(document.getElementById('addToolModal'));
+                modal.show();
+                
+                // 이미지 미리보기 이벤트 리스너
+                const fileInput = document.getElementById('toolImageFile');
+                fileInput.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            document.getElementById('previewImg').src = event.target.result;
+                            document.getElementById('imagePreview').style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        document.getElementById('imagePreview').style.display = 'none';
+                    }
+                };
+            }
+            
+            // Add Tool 폼 제출 함수
+            function submitAddTool(event) {
+                event.preventDefault();
+                
+                const workspaceId = document.getElementById('modalWorkspaceId').value;
+                const toolName = document.getElementById('toolName').value;
+                const toolUrl = document.getElementById('toolUrl').value;
+                const toolImageFile = document.getElementById('toolImageFile').files[0];
+                
+                // FormData 생성
+                const formData = new FormData();
+                formData.append('workspaceId', workspaceId);
+                formData.append('toolName', toolName);
+                formData.append('toolUrl', toolUrl);
+                if (toolImageFile) {
+                    formData.append('toolImageFile', toolImageFile);
+                }
+                
+                // AJAX로 도구 추가
+                fetch('/api/workspace/add-tool', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // 모달 닫기
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('addToolModal'));
+                        modal.hide();
+                        // 페이지 새로고침
+                        location.reload();
+                    } else {
+                        return response.json().then(data => {
+                            throw new Error(data.message || '도구 추가에 실패했습니다.');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(error.message || '도구 추가 중 오류가 발생했습니다.');
+                });
+                
+                return false;
             }
         </script>
     </body>
