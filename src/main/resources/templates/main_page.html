@@ -14,23 +14,32 @@
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
+
+    <!-- 네비게이션 상단바 -->
     <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
+             style="background-color: #f4efff;" id="sidenavAccordion">
+
             <!-- Sidenav Toggle Button-->
             <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
             <!-- Navbar Brand-->
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
+
+            <!-- 네비게이션 상단 로고 -->
+            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html"
+               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                      font-weight: 700;
+                      letter-spacing: 1px;">A-VERSE</a>
+
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the lg breakpoint-->
-            <form class="form-inline me-auto d-none d-lg-block me-3">
-                <div class="input-group input-group-joined input-group-solid">
-                    <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
-                    <div class="input-group-text"><i data-feather="search"></i></div>
-                </div>
-            </form>
+
+            <!-- 여기서 form 전체가 사라졌음 -->
+
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- Documentation Dropdown-->
@@ -122,7 +131,8 @@
                         <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
                     </div>
                 </li>
-                <!-- Messages Dropdown-->
+
+                <!-- 네비게이션 상단바 메세지로고 부분-->
                 <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
                     <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
@@ -130,6 +140,7 @@
                             <i class="me-2" data-feather="mail"></i>
                             Message Center
                         </h6>
+
                         <!-- Example Message 1  -->
                         <a class="dropdown-item dropdown-notifications-item" href="#!">
                             <img class="dropdown-notifications-item-img" src="/assets/img/illustrations/profiles/profile-2.png" />
@@ -498,25 +509,27 @@
                     </div>
                 </nav>
             </div>
+
             <div id="layoutSidenav_content">
+
                 <main>
-                    <header class="page-header page-header-dark bg-gradient-primary-to-secondary mb-4">
+
+                    <!-- 윗쪽 박스 -->
+                    <header class="page-header page-header-dark mb-4"
+                            style="background: linear-gradient(140deg, #f4efff 0%, #e4d8ff 25%, #d8e4ff 60%, #c9cbff 100%);">
                         <div class="container-xl px-4">
-                    <div class="page-header-content pt-4" style="min-height: 45vh; display: flex; flex-direction: column; justify-content: flex-start;">
+
+                    <!-- 윗쪽 박스 크기 조절-->
+                    <div class="page-header-content pt-4" style="min-height: 10vh; display: flex; flex-direction: column; justify-content: flex-start;">
+
+                        <!-- 로고 박스 -->
                                 <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mt-4">
-                                        <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="life-buoy"></i></div>
-                                            Knowledge Base
-                                        </h1>
-                                        <div class="page-header-subtitle">What are you looking for? Our knowledge base is here to help.</div>
+                                    <div class="d-flex align-items-center justify-content-center" style="min-height: 220px; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                                        <img src="/assets/img/RightServiceLogo.png" alt="Logo" style="max-height: 360px; width: auto;" />
                                     </div>
                                 </div>
-                        <!-- Logo area -->
-                                <div class="d-flex align-items-center justify-content-center" style="min-height: 220px; margin-top: 0.5rem; margin-bottom: 0.5rem;">
-                                    <img src="/assets/img/RightServiceLogo.png" alt="Logo" style="max-height: 360px; width: auto;" />
-                                    </div>
-                        <div class="page-header-search" style="min-height: 38vh; display: flex; align-items: center; justify-content: center; margin-top: 1.5rem;">
+                        <!-- 검색창 -->
+                        <div class="page-header-search" style="min-height: 5vh; display: flex; align-items: center; justify-content: center; margin-top: 1.5rem;">
                             <div class="input-group input-group-joined" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
                                 <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
                                 <span class="input-group-text" style="border: none;"><i data-feather="search"></i></span>
