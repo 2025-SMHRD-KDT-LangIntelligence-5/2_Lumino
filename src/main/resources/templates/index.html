@@ -1,33 +1,57 @@
 <!DOCTYPE html>
+
+<!--문서 기본 언어가 영어임-->
 <html lang="en">
+
     <head>
+        <!--문서의 문자 인코딩을 UTF-8-->
         <meta charset="utf-8" />
+
+        <!--Internet Explorer 구버전 호환 설정-->
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!--반응형 웹 설정 => width=device-width(장치의 실제 화면 너비 기준으로 렌더링)
+                            initial-scale=1(페이지 초기 확대축소 1배)
+                            shrink-to-fit=no(일부 브라우저의 자동 축소 비활성화)-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!--페이지의 설명(검색엔진이나 SNS 미리보기에서 보이는 문장)-->
         <meta name="description" content="" />
+
+        <!--작성자(author) 정보-->
         <meta name="author" content="" />
-        <title>Knowledge Base - SB Admin Pro</title>
+
+        <!--브라우저 탭 제목-->
+        <title>A-VERSE</title>
+
+        <!--외부 css파일 불러오기-->
         <link href="/css/styles.css" rel="stylesheet" />
+
+        <!--커스텀 css => 커스텀 스타일 바꿀 때 여기에 써야 반영이 잘 됨.-->
         <link href="/css/main.css" rel="stylesheet" />
 
+        <!-- ***브라우저 탭 옆의 파비콘 이미지 지정-->
         <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+        <!--Font Awesome 6.1.1 아이콘 스크립트 불러오기-->
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <!--Feather Icons 라이브러리-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
 
-    <!-- 네비게이션 상단바 -->
+    <!-- 상단 네비게이션이 스크롤해도 고정(fixed) 되게 하는 클래스 -->
     <body class="nav-fixed">
+
+        <!-- 내비게이션(메뉴) 영역을 의미하는 태그 -->
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
              style="background-color: #f4efff;" id="sidenavAccordion">
 
-            <!-- Sidenav Toggle Button-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-            <!-- Navbar Brand-->
-            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
-            <!-- * * * * * * When using an image, we recommend the SVG format.-->
-            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
+            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
+                <i data-feather="menu"></i>
+            </button>
 
-            <!-- 네비게이션 상단 로고 -->
+            <!-- 네비게이션 상단 좌측 로고 -->
             <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html"
                style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
                       -webkit-background-clip: text;
@@ -35,13 +59,18 @@
                       font-weight: 700;
                       letter-spacing: 1px;">A-VERSE</a>
 
-            <!-- 여기서 form 전체가 사라졌음 -->
-
-            <!-- Navbar Items-->
+            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
             <ul class="navbar-nav align-items-center ms-auto">
 
-                <!-- Documentation Dropdown-->
+                <!-- 문서 드롭다운 메뉴
+                        nav-item → 네비게이션 항목
+                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
+                        no-caret → 기본 ▼ 화살표 숨김.
+                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
+                        me-3 → 오른쪽 여백 추가-->
                 <li class="nav-item dropdown no-caret d-none d-md-block me-3">
+
+
                     <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="fw-500">Documentation</div>

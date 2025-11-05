@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
     // 메인 페이지 매핑
-    @GetMapping("/main_page")
-    public String main_page() {
-        return "main_page"; // templates 폴더의 account-notifications.html을 찾음
+    @GetMapping("/index")
+    public String index() {
+        return "index"; // templates 폴더의 account-notifications.html을 찾음
     }
 
     // 메인1 페이지 매핑
@@ -26,11 +26,3 @@ public class MainController {
     public String main2_page() {
         return "main2_page"; // templates 폴더의 account-notifications.html을 찾음
     }
-
-    // 메인테스트 페이지 매핑
-    @GetMapping("/main_page_test")
-    public String main_page_test() {
-        return "main_page_test"; // templates 폴더의 account-notifications.html을 찾음
-    }
-
-}
