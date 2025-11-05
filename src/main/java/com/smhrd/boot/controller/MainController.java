@@ -26,3 +26,4 @@ public class MainController {
     public String main2_page() {
         return "main2_page"; // templates 폴더의 account-notifications.html을 찾음
     }
+}
