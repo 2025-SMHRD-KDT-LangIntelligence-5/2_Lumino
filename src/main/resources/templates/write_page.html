@@ -507,7 +507,7 @@
                                     <div class="col-auto mb-3">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="file-plus"></i></div>
-                                            Create Post
+                                            커뮤니티 게시물 작성하기
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
@@ -525,38 +525,87 @@
                         <div class="row gx-4">
                             <div class="col-lg-8">
                                 <div class="card mb-4">
-                                    <div class="card-header">Post Title</div>
-                                    <div class="card-body"><input class="form-control" id="postTitleInput" type="text" placeholder="Enter your post title..." /></div>
-                                </div>
-                                <div class="card card-header-actions mb-4">
-                                    <div class="card-header">
-                                        Post Preview
-                                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="The post preview text shows below the post title, and is the post summary on blog pages."></i>
-                                    </div>
-                                    <div class="card-body"><textarea class="lh-base form-control" type="text" placeholder="Enter your post preview text..." rows="4"></textarea></div>
+                                    <div class="card-header">제목</div>
+                                    <div class="card-body"><input class="form-control" id="postTitleInput" type="text" placeholder="제목을 작성해주세요." /></div>
                                 </div>
                                 <div class="card card-header-actions mb-4 mb-lg-0">
                                     <div class="card-header">
-                                        Post Content
+                                        내용
                                         <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="Markdown is supported within the post content editor."></i>
                                     </div>
                                     <div class="card-body">
-                                        <textarea id="postEditor">
-## Post Subheading
-This is the content for your post.</textarea
-                                        >
+    <textarea id="postEditor">
+## WorkSpace를 추천하는 글을 작성해주세요.
+이곳은 당신의 WorkSpace를 설명하는 공간입니다.
+    </textarea>
+                                    </div>
+                                </div>
+                                <!-- Workspace Load Section -->
+                                <div class="card mb-4 mb-lg-0">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h5 class="mb-0">My Workspace</h5>
+                                            <div class="small text-muted">추천글에 넣을 WorkSpace 불러오기</div>
+                                        </div>
+                                        <button class="btn btn-sm btn-secondary" type="button" id="loadWorkspaceBtn">
+                                            <i class="me-1" data-feather="folder-plus"></i>
+                                            불러오기
+                                        </button>
+                                    </div>
+                                    <div class="card-body" id="workspaceDisplayArea" style="display: none;">
+                                        <div class="d-flex align-items-center justify-content-between mb-3">
+                                            <label class="small text-muted me-2" for="workspace-select-write">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-write" style="min-width: 160px;">
+                                                <option value="workspace-marketing.html">Marketing</option>
+                                                <option value="workspace-engineering.html" selected>Engineering</option>
+                                                <option value="workspace-design.html">Design</option>
+                                            </select>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="cpu"></i>
+                                                        <div>Model Runner</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-chat-assistant.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="message-circle"></i>
+                                                        <div>Chat Assistant</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-image-gen.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="image"></i>
+                                                        <div>Image Gen</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-speech.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                        <i class="mb-2" data-feather="mic"></i>
+                                                        <div>Speech</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="card card-header-actions">
                                     <div class="card-header">
-                                        Publish
+                                        제출
                                         <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="After submitting, your post will be published once it is approved by a moderator."></i>
                                     </div>
                                     <div class="card-body">
-                                        <div class="d-grid mb-3"><button class="fw-500 btn btn-primary-soft text-primary">Save as Draft</button></div>
-                                        <div class="d-grid"><button class="fw-500 btn btn-primary">Submit for Approval</button></div>
+                                        <div class="d-grid"><button class="fw-500 btn btn-primary">보내기</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -581,5 +630,26 @@ This is the content for your post.</textarea
         <script src="js/scripts.js"></script>
         <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
         <script src="js/markdown.js"></script>
+        <script>
+            // Workspace Load Button Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const loadWorkspaceBtn = document.getElementById('loadWorkspaceBtn');
+                const workspaceDisplayArea = document.getElementById('workspaceDisplayArea');
+                
+                if (loadWorkspaceBtn && workspaceDisplayArea) {
+                    loadWorkspaceBtn.addEventListener('click', function() {
+                        if (workspaceDisplayArea.style.display === 'none') {
+                            workspaceDisplayArea.style.display = 'block';
+                            // Reinitialize feather icons for the newly displayed content
+                            if (typeof feather !== 'undefined') {
+                                feather.replace();
+                            }
+                        } else {
+                            workspaceDisplayArea.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
