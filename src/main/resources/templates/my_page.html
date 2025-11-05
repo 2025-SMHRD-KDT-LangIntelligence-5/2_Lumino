@@ -251,7 +251,7 @@
                                             <a class="nav-link" href="account-profile.html">Profile</a>
                                             <a class="nav-link" href="account-billing.html">Billing</a>
                                             <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="community2_page.html">Notifications</a>
+                                            <a class="nav-link" href="community_page.html">Notifications</a>
                                         </nav>
                                     </div>
                                     <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
@@ -353,7 +353,7 @@
                                             <a class="nav-link" href="blog-management-posts-list.html">Posts List</a>
                                             <a class="nav-link" href="write_page.html">Create Post</a>
                                             <a class="nav-link" href="edit_page.html">Edit Post</a>
-                                            <a class="nav-link" href="community1_page.html">Posts Admin</a>
+                                            <a class="nav-link" href="community_page.html">Posts Admin</a>
                                         </nav>
                                     </div>
                                 </nav>
@@ -576,15 +576,9 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" onclick="deleteWorkspace(1)" title="워크스페이스 삭제">
+                                            <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(1)" title="워크스페이스 삭제">
                                                 <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
                                             </button>
-                                            <label class="small text-muted me-2" for="workspace-select-1">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-1" style="min-width: 160px;">
-                                                <option value="1">Marketing</option>
-                                                <option value="2" selected>Engineering</option>
-                                                <option value="3">Design</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -643,15 +637,9 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" onclick="deleteWorkspace(2)" title="워크스페이스 삭제">
+                                            <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(2)" title="워크스페이스 삭제">
                                                 <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
                                             </button>
-                                            <label class="small text-muted me-2" for="workspace-select-2">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-2" style="min-width: 160px;">
-                                                <option value="1" selected>Marketing</option>
-                                                <option value="2">Engineering</option>
-                                                <option value="3">Design</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -702,18 +690,9 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn btn-sm btn-transparent-danger me-2" type="button" th:onclick="'deleteWorkspace(' + ${workspace.id} + ')'" title="워크스페이스 삭제">
+                                            <button class="btn btn-sm btn-transparent-danger" type="button" th:onclick="'deleteWorkspace(' + ${workspace.id} + ')'" title="워크스페이스 삭제">
                                                 <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
                                             </button>
-                                            <label class="small text-muted me-2" th:id="'workspace-select-label-' + ${workspace.id}">Workspace</label>
-                                            <select class="form-select form-select-sm" th:id="'workspace-select-' + ${workspace.id}" style="min-width: 160px;">
-                                                <option th:each="ws : ${allWorkspaces}" 
-                                                        th:value="${ws.id}" 
-                                                        th:text="${ws.name}"
-                                                        th:selected="${ws.id == workspace.id}">
-                                                    Workspace
-                                                </option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="card-body">
