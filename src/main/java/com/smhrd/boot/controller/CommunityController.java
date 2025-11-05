@@ -9,17 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller // 데이터(결과)를 반환하는 컨트롤러
 public class CommunityController {
 
-    // 커뮤니티1 페이지 매핑
-    @GetMapping("/community1_page")
-    public String community1_page() {
-        return "community1_page"; // templates 폴더의 account-notifications.html을 찾음
+    // 커뮤니티 페이지 매핑
+    @GetMapping("/community_page")
+    public String community_page() {
+        return "community_page"; // templates 폴더의 account-notifications.html을 찾음
     }
 
-    // 커뮤니티2 페이지 매핑
-    @GetMapping("/community2_page")
-    public String community2_page() {
-        return "community2_page"; // templates 폴더의 account-notifications.html을 찾음
-    }
 
     // 글쓰기 작성 페이지 매핑
     @GetMapping("/write_page")
