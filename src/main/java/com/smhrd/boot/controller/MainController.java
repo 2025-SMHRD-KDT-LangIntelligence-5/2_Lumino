@@ -12,7 +12,7 @@ public class MainController {
     // 메인 페이지 매핑
     @GetMapping("/index")
     public String index() {
-        return "index"; // templates 폴더의 account-notifications.html을 찾음
+        return "index"; // templates 폴더의 index을 찾음
     }
 
     // 메인1 페이지 매핑
