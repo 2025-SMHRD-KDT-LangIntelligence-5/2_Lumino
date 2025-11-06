@@ -501,20 +501,20 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                    <header class="page-header page-header-compact page-header-light border-bottom bg-white" style="margin-bottom: 2.5rem;">
                         <div class="container-xl px-4">
                             <div class="page-header-content">
                                 <div class="row align-items-center justify-content-between pt-3">
                                     <div class="col-auto mb-3">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="user"></i></div>
-                                            Edit User
+                                            회원정보 수정
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
                                         <a class="btn btn-sm btn-light text-secondary" href="workspace_page.html">
                                             <i class="me-1" data-feather="arrow-left"></i>
-                                            Back to Users List
+                                            메인화면으로 돌아가기
                                         </a>
                                     </div>
                                 </div>
@@ -522,8 +522,8 @@
                         </div>
                     </header>
                     <!-- Main page content-->
-                    <div class="container-xl px-4 mt-4">
-                        <div class="row justify-content-center mb-4">
+                    <div class="container-xl px-4" style="margin-top: 2.5rem;">
+                        <div class="row justify-content-center mb-5">
                             <div class="col-lg-8 d-flex align-items-center" style="gap: 2rem;">
                                 <!-- Profile picture with edit icon-->
                                 <div class="position-relative">
@@ -540,7 +540,7 @@
                                 <!-- Nickname display-->
                                 <div class="flex-grow-1 d-flex align-items-center" style="gap: 0.75rem; max-width: 400px;">
                                     <div>
-                                        <label class="small mb-1" for="displayNickname">Nickname</label>
+                                        <label class="small mb-1" for="displayNickname">닉네임</label>
                                         <div class="fs-5 fw-bold" id="displayNickname" th:text="${user?.nickname ?: 'User'}">User</div>
                                     </div>
                                     <div class="mt-4">
@@ -551,6 +551,14 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- 구분선 -->
+                        <div class="row justify-content-center" style="margin-bottom: 1rem;">
+                            <div class="col-lg-8">
+                                <hr class="my-0" />
+                            </div>
+                        </div>
+                        
                         <!-- 저장 워크스페이스 섹션 -->
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -563,7 +571,7 @@
                         
                         <!-- 워크스페이스 목록 (DB에서 가져온 워크스페이스들이 자동으로 표시됨) -->
                         <!-- 임시 예시 워크스페이스 1 -->
-                        <div class="row justify-content-center mb-4">
+                        <div class="row justify-content-center mb-5">
                             <!-- Left: AI Tools Icon Grid with Workspace Selector -->
                             <div class="col-lg-8 mb-4 mx-auto">
                                 <div class="card h-100">
@@ -577,7 +585,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(1)" title="워크스페이스 삭제">
-                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem; color: #e61919;"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -624,7 +632,7 @@
                         </div>
                         
                         <!-- 임시 예시 워크스페이스 2 -->
-                        <div class="row justify-content-center mb-4">
+                        <div class="row justify-content-center mb-5">
                             <!-- Left: AI Tools Icon Grid with Workspace Selector -->
                             <div class="col-lg-8 mb-4 mx-auto">
                                 <div class="card h-100">
@@ -638,7 +646,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(2)" title="워크스페이스 삭제">
-                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem; color: #e61919;"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -691,7 +699,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <button class="btn btn-sm btn-transparent-danger" type="button" th:onclick="'deleteWorkspace(' + ${workspace.id} + ')'" title="워크스페이스 삭제">
-                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem;"></i>
+                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem; color: #e61919;"></i>
                                             </button>
                                         </div>
                                     </div>
