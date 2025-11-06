@@ -522,15 +522,15 @@
                     </header>
                     <!-- Main page content-->
                     <div class="container-fluid px-4">
-                        <div class="row gx-4">
+                        <div class="row gx-4 justify-content-center">
                             <div class="col-lg-8">
                                 <div class="card mb-4">
-                                    <div class="card-header text-secondary">글 제목</div>
+                                    <div class="card-header text-secondary" style="font-size: calc(1rem + 10px);">제목</div>
                                     <div class="card-body"><input class="form-control" id="postTitleInput" type="text" placeholder="수정할 제목을 작성해주세요."  /></div>
                                 </div>
                                 <div class="card card-header-actions mb-4 mb-lg-0">
-                                    <div class="card-header text-secondary">
-                                        글 내용
+                                    <div class="card-header text-secondary" style="font-size: calc(1rem + 10px);">
+                                        내용
                                         <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="Markdown is supported within the post content editor."></i>
                                     </div>
                                     <div class="card-body">
@@ -547,7 +547,7 @@
                                         <div>
                                             <h5 class="mb-0">My Workspace</h5>
                                             <div class="small text-muted">추천글에 넣을 WorkSpace 다시 불러오기</div>
-                                        </div>
+                            </div>
                                         <button class="btn btn-sm btn-secondary" type="button" id="loadWorkspaceBtn">
                                             <i class="me-1" data-feather="folder-plus"></i>
                                             불러오기
@@ -599,15 +599,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="card card-header-actions">
-                                    <div class="card-header text-secondary">
-                                        제출
-                                        <i class="text-muted" data-feather="info" data-bs-toggle="tooltip" data-bs-placement="left" title="Your updates will be live once a moderator approves the changes."></i>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-grid"><button class="fw-500 btn btn-secondary">수정하기</button></div>
-                                    </div>
+                        </div>
+                        <!-- Submit Button Section - Footer 위에 위치, 중앙정렬 -->
+                        <div class="row justify-content-center mt-4 mb-4">
+                            <div class="col-lg-8">
+                                <div class="text-center" style="max-width: 250px; margin: 0 auto;">
+                                    <button class="fw-500 btn btn-secondary">수정하기</button>
                                 </div>
                             </div>
                         </div>
@@ -616,11 +613,10 @@
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small"></div>
                             <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
+                                <a href="#!"></a>
+                                <a href="#!"></a>
                             </div>
                         </div>
                     </div>
