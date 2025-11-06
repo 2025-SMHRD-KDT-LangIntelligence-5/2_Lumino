@@ -1,6 +1,10 @@
 
             @charset "UTF-8";
 
+            body {
+            background: linear-gradient(140deg, #f4efff 0%, #e4d8ff 25%, #d8e4ff 60%, #c9cbff 100%);
+            }
+
             .service-logo {
             margin-top: 50px;
 	        display: flex;

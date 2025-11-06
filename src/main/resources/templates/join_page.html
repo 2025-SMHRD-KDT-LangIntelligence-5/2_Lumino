@@ -14,52 +14,55 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         <style>
 
-
-            .service-logo {
-            margin-top: 50px;
-	        display: flex;
-            justify-content: center;
+            .card-body{
+            background-color : #F2F6FC;
             }
 
-            .btn-facebook {
-            background-color: #0061F2;
-            border-color: #0061F2;
-            }
+.service-logo {
+margin-top: 50px;
+display: flex;
+justify-content: center;
+}
 
-            .btn-facebook:hover {
-            background-color: #92BCF9;
-            border-color: #92BCF9;
-            }
+.btn-facebook {
+background-color: #0061F2;
+border-color: #0061F2;
+}
 
-            .btn-github {
-            background-color: #212832;
-            border-color: #212832;
-            }
+.btn-facebook:hover {
+background-color: #92BCF9;
+border-color: #92BCF9;
+}
 
-            .btn-github:hover {
-            background-color: #A0A3A8;
-            border-color: #A0A3A8;
-            }
+.btn-github {
+background-color: #212832;
+border-color: #212832;
+}
 
-            .btn-x {
-            background-color: #212832;
-            border-color: #212832;
-            }
+.btn-github:hover {
+background-color: #A0A3A8;
+border-color: #A0A3A8;
+}
 
-            .btn-x:hover {
-            background-color: #A0A3A8;
-            border-color: #A0A3A8;
-            }
+.btn-x {
+background-color: #212832;
+border-color: #212832;
+}
 
-            .btn-google {
-            background-color: #009259;
-            border-color: #009259;
-            }
+.btn-x:hover {
+background-color: #A0A3A8;
+border-color: #A0A3A8;
+}
 
-            .btn-google:hover {
-            background-color: #92DBBF;
-            border-color: #92DBBF;
-            }
+.btn-google {
+background-color: #009259;
+border-color: #009259;
+}
+
+.btn-google:hover {
+background-color: #92DBBF;
+border-color: #92DBBF;
+}
 
         </style>
     </head>
@@ -75,7 +78,6 @@
                         <div class="row justify-content-center">
                             <div class="col-xl-8 col-lg-9">
                                 <!-- Social registration form-->
-                                <div class="card my-5">
                                     <div class="card-body p-5 text-center">
                                         <div class="h3 fw-light mb-3">계정 만들기</div>
                                         <!-- Social registration links-->
@@ -89,35 +91,28 @@
                                         <!-- Login form-->
                                         <form>
                                             <!-- Form Row-->
-                                            <div class="row gx-3">
+                                            <div class="row gx-3 mb-3">
+
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (이름)-->
-                                                    <div class="mb-3">
-                                                        <label class="text-gray-600 small" for="firstNameExample">이름</label>
-                                                        <input class="form-control form-control-solid" type="text" placeholder="" aria-label="First Name" aria-describedby="firstNameExample" />
-                                                    </div>
+                                                    <label class="small mb-1" for="inputName">이름</label>
+                                                    <input class="form-control" id="inputName" type="text" placeholder="이름" aria-label="Name" aria-describedby="nameExample" />
                                                 </div>
+
                                                 <div class="col-md-6">
-                                            <!-- Form Group (email address)-->
-                                            <div class="mb-3">
-                                                <label class="text-gray-600 small" for="emailExample">이메일 주소</label>
-                                                <input class="form-control form-control-solid" type="text" placeholder="" aria-label="Email Address" aria-describedby="emailExample" />
+                                                    <label class="small mb-1" for="inputEmailAddress">이메일 주소</label>
+                                                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="이메일 주소" aria-label="Email" aria-describedby="emailExample" />
+                                                </div>
                                             </div>
-                                            <!-- Form Row-->
-                                            <div class="row gx-3">
+
+                                            <div class="row gx-3 mb-3">
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (choose password)-->
-                                                    <div class="mb-3">
-                                                        <label class="text-gray-600 small" for="passwordExample">비밀번호</label>
-                                                        <input class="form-control form-control-solid" type="password" placeholder="" aria-label="Password" aria-describedby="passwordExample" />
-                                                    </div>
+                                                    <label class="small mb-1" for="inputPassword">비밀번호</label>
+                                                    <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호" aria-label="Password" aria-describedby="passwordExample" />
                                                 </div>
+
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (confirm password)-->
-                                                    <div class="mb-3">
-                                                        <label class="text-gray-600 small" for="confirmPasswordExample">비밀번호 확인</label>
-                                                        <input class="form-control form-control-solid" type="password" placeholder="" aria-label="Confirm Password" aria-describedby="confirmPasswordExample" />
-                                                    </div>
+                                                    <label class="small mb-1" for="inputConfirmPassword">비밀번호 확인</label>
+                                                    <input class="form-control" id="inputConfirmPassword" type="password" placeholder="비밀번호 확인" aria-label="Confirm Password" aria-describedby="confirmPasswordExample" />
                                                 </div>
                                             </div>
                                             <!-- 계정생성 버튼 -->
