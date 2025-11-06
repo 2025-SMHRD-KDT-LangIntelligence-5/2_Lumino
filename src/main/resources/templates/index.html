@@ -144,7 +144,7 @@
 
 
         <!-- ***브라우저 탭 옆의 파비콘 이미지 지정-->
-        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/LogoNotBG.png" />
 
         <!--Font Awesome 6.1.1 아이콘 스크립트 불러오기-->
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -514,8 +514,30 @@
                 </main>
             </div>
         </div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+
+        <script>
+            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
+             document.addEventListener('DOMContentLoaded', function () {
+               [
+                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
+                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
+               ].forEach(([panelSel, triggerSel]) => {
+                 const panel   = document.querySelector(panelSel);
+                 const trigger = document.querySelector(triggerSel);
+                 if (panel){
+                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
+                   panel.style.height = 'auto';
+                 }
+                 if (trigger){
+                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
+                   trigger.setAttribute('aria-expanded','true');
+                 }
+               });
+             });
+        </script>
 
     </body>
 </html>
