@@ -1,254 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-    <title>Create or Join Organization - SB Admin Pro</title>
-    <link href="/css/styles.css" rel="stylesheet"/>
-    <link href="/css/compare.css" rel="stylesheet"/>
-    <link href="assets/img/favicon.png" rel="icon" type="image/x-icon"/>
-    <script crossorigin="anonymous" data-search-pseudo-elements
-            defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
-    <script crossorigin="anonymous"
-            src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
-    <style>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>AI 비교 - A-VERSE</title>
+        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/compare.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
-.py-4 {
-margin-top: 50px;
-}
+        <style>
+            /* === A-VERSE 테마 토글 버튼 (우주 보라빛 스타일) === */
+            #themeToggle {
+              all: unset;                                   /* 기본 버튼 스타일 초기화 */
+              width: 4rem;                                  /* 기존보다 조금 크게 */
+              height: 4rem;
+              border-radius: 50%;
+              cursor: pointer;
+              display: flex !important;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              overflow: hidden;
 
-.align-items-stretch{
-margin-top: 50px;
-}
+              /* 보라-블루 오로라 그라데이션 */
+              background: linear-gradient(135deg, #b39aff 0%, #8ca6ff 50%, #b7e8ff 100%);
+              box-shadow:
+                0 0 20px rgba(160, 140, 255, 0.3),
+                inset 0 0 10px rgba(255, 255, 255, 0.15);
+              backdrop-filter: blur(6px);
+              -webkit-backdrop-filter: blur(6px);
+              transition: all 0.3s ease;
+            }
 
-/* 새로운 테이블 구조에 맞춘 스타일 (수정 및 추가) */
-.spec-row td {
-height: 7rem; /* 기존 spec-label 높이와 맞춥니다 */
-vertical-align: middle;
-text-align: center; /* 👈 이 부분을 추가하여 텍스트를 가운데 정렬합니다 */
-}
+            #themeToggle:hover {
+              transform: scale(1.1);
+              box-shadow:
+                0 0 28px rgba(180, 160, 255, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
 
-/* 중앙 레이블 항목 스타일 */
-.spec-label-item {
-width: 100%;
-height: 7rem; /* 행 높이와 동일하게 설정 */
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: bold;
-color: #6c757d;
-/* 테두리 스타일을 테이블과 일치하도록 조정합니다. */
-border: 1px solid #dee2e6; /* 기본 테두리를 추가합니다. */
-padding: 0 10px;
-}
+            /* === Feather 아이콘 공통 (크게 + 색상 통일) === */
+            #themeToggle i[data-feather] {
+              width: 2rem;
+              height: 2rem;
+              line-height: 0;
+            }
 
-/* 테이블의 행 수와 정확히 일치하도록 상단 테두리 제거 */
-/* 첫 번째 항목의 상단 테두리는 유지해야 합니다. */
-.spec-label-item:not(:first-child) {
-border-top: none;
-}
+            #themeToggle svg {
+              width: 2rem;
+              height: 2rem;
+              stroke: #ffffff;                             /* 흰색 아이콘 */
+              stroke-width: 1.6;
+              filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+              transition: all 0.3s ease;
+            }
 
-/* 다크 모드 스타일 업데이트 */
-body.dark-mode .spec-label-item {
-color: #c084fc;
-border-color: #8b5cf6 !important;
-}
+            #themeToggle:hover svg {
+              stroke: #e9e1ff;                             /* 살짝 더 밝은 흰빛 */
+              filter: drop-shadow(0 0 10px rgba(183, 169, 255, 0.9));
+            }
 
-/* 테이블의 높이를 100%로 설정하기 위한 기본 스타일 */
-.h-100 {
-height: 100% !important;
-}
+            /* === 사이드바 하단 배경과 자연스럽게 이어지도록 === */
+            .sidenav-footer {
+              background: linear-gradient(180deg,
+                rgba(14, 14, 20, 0.95) 0%,
+                rgba(24, 24, 32, 0.98) 100%);
+              border-top: 1px solid rgba(255, 255, 255, 0.05);
+              padding: 1.5rem 0;
+            }
+            /* 1) 사이드바 푸터 배경을 투명으로 (검정 사각형 제거) */
+                .sidenav-footer{
+                  background: transparent !important;
+                  border-top: none !important;
+                  padding: 1.25rem 0; /* 여백만 유지 */
+                }
+                .sidenav-footer-content{
+                  background: transparent !important;
+                }
 
-        .neg-margin-x {
-margin-left: -15px !important;
-margin-right: -15px !important;
-}
+                /* 2) 혹시 테마/기본 CSS가 더 강하게 덮으면, 부모 경로까지 지정 */
+                #layoutSidenav_nav .sidenav .sidenav-footer{
+                  background: transparent !important;
+                  border-top: none !important;
+                }
+
+                /* 3) 토글 버튼: 아이콘만, 더 크게 (직전 코드 유지 + 크기만 살짝 키움) */
+                #themeToggle{
+                  all: unset;
+                  width: 4.25rem;   /* 4rem → 4.25rem로 살짝 키움 */
+                  height: 4.25rem;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  display: flex !important;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  overflow: hidden;
+
+                  /* 오로라 보라빛 그라데이션 */
+                  background: linear-gradient(135deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                  box-shadow:
+                    0 0 20px rgba(160,140,255,.30),
+                    inset 0 0 10px rgba(255,255,255,.15);
+                  backdrop-filter: blur(6px);
+                  -webkit-backdrop-filter: blur(6px);
+                  transition: all .3s ease;
+                }
+                #themeToggle:hover{
+                  transform: scale(1.1);
+                  box-shadow:
+                    0 0 28px rgba(180,160,255,.55),
+                    inset 0 0 10px rgba(255,255,255,.20);
+                }
+
+                /* Feather 아이콘 크게 + 테두리/배경 없음 */
+                #themeToggle i[data-feather]{ width: 2.2rem; height: 2.2rem; line-height: 0; }
+                #themeToggle svg{ width: 2.2rem; height: 2.2rem; stroke: #fff; stroke-width: 1.6; fill: none; }
+                #themeToggle:hover svg{ stroke: #efeaff; }
+
+            /* === Compare Page Specific Styles === */
+            .py-4 {
+                margin-top: 50px;
+            }
+
+            .align-items-stretch{
+                margin-top: 50px;
+            }
+
+            /* 새로운 테이블 구조에 맞춘 스타일 (수정 및 추가) */
+            .spec-row td {
+                height: 7rem; /* 기존 spec-label 높이와 맞춥니다 */
+                vertical-align: middle;
+                text-align: center; /* 👈 이 부분을 추가하여 텍스트를 가운데 정렬합니다 */
+            }
+
+            /* 중앙 레이블 항목 스타일 */
+            .spec-label-item {
+                width: 100%;
+                height: 7rem; /* 행 높이와 동일하게 설정 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: #6c757d;
+                /* 테두리 스타일을 테이블과 일치하도록 조정합니다. */
+                border: 1px solid #dee2e6; /* 기본 테두리를 추가합니다. */
+                padding: 0 10px;
+            }
+
+            /* 테이블의 행 수와 정확히 일치하도록 상단 테두리 제거 */
+            /* 첫 번째 항목의 상단 테두리는 유지해야 합니다. */
+            .spec-label-item:not(:first-child) {
+                border-top: none;
+            }
+
+            /* 다크 모드 스타일 업데이트 */
+            body.dark-mode .spec-label-item {
+                color: #c084fc;
+                border-color: #8b5cf6 !important;
+            }
+
+            /* 테이블의 높이를 100%로 설정하기 위한 기본 스타일 */
+            .h-100 {
+                height: 100% !important;
+            }
+
+            .neg-margin-x {
+                margin-left: -15px !important;
+                margin-right: -15px !important;
+            }
 
 
-/* 기존 spec-label-item 스타일 수정 (테두리 제거 및 높이/정렬 유지) */
-.spec-label-item {
-width: 100%;
-height: 7rem;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: bold;
-color: #6c757d;
-/* 아래 세 줄을 모두 주석 처리하거나 삭제하여 테두리를 제거합니다 */
-border: none;
-/* border: 1px solid #dee2e6; */
-padding: 0 10px;
-}
+            /* 기존 spec-label-item 스타일 수정 (테두리 제거 및 높이/정렬 유지) */
+            .spec-label-item {
+                width: 100%;
+                height: 7rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: #6c757d;
+                /* 아래 세 줄을 모두 주석 처리하거나 삭제하여 테두리를 제거합니다 */
+                border: none;
+                /* border: 1px solid #dee2e6; */
+                padding: 0 10px;
+            }
 
-/* 기존 spec-label-item 스타일에서 테두리 관련 코드를 모두 제거합니다. */
-/* 중앙 레이블이 텍스트만 보이게 됩니다. */
-.spec-label-item:not(:first-child) {
-border-top: none; /* 이 코드도 이제 필요 없습니다. */
-}
+            /* 기존 spec-label-item 스타일에서 테두리 관련 코드를 모두 제거합니다. */
+            /* 중앙 레이블이 텍스트만 보이게 됩니다. */
+            .spec-label-item:not(:first-child) {
+                border-top: none; /* 이 코드도 이제 필요 없습니다. */
+            }
 
-.spec-label-item:last-child {
-border-bottom: none; /* 이 코드도 이제 필요 없습니다. */
-}
+            .spec-label-item:last-child {
+                border-bottom: none; /* 이 코드도 이제 필요 없습니다. */
+            }
 
-/* 다크 모드 스타일 업데이트 (테두리 제거 반영) */
-body.dark-mode .spec-label-item {
-color: #c084fc;
-border: none !important; /* 다크 모드에서도 테두리 제거 */
-}
+            /* 다크 모드 스타일 업데이트 (테두리 제거 반영) */
+            body.dark-mode .spec-label-item {
+                color: #c084fc;
+                border: none !important; /* 다크 모드에서도 테두리 제거 */
+            }
 
-/* 중앙 비교 항목 레이블 정렬 보정 */
+            /* 중앙 비교 항목 레이블 정렬 보정 */
 
-/* 테이블 헤더의 높이(3.5rem)만큼 첫 번째 항목을 아래로 내립니다. */
-.spec-label-item:first-child {
-    margin-top: 3.5rem; /* 테이블 헤더 (.table thead th)의 높이(3.5rem)와 일치 */
-}
+            /* 테이블 헤더의 높이(3.5rem)만큼 첫 번째 항목을 아래로 내립니다. */
+            .spec-label-item:first-child {
+                margin-top: 3.5rem; /* 테이블 헤더 (.table thead th)의 높이(3.5rem)와 일치 */
+            }
 
-    </style>
-</head>
-<body>
-<!-- Top Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-    <div class="container-xl px-4">
-        <a class="navbar-brand" href="/main_page">
-            <img alt="RightServiceLogo" class="logo-light" src="/assets/img/RightServiceLogo.png"/>
-            <img alt="DarkServiceLogo" class="logo-dark" src="/assets/img/DarkServiceLogo.png"/>
-        </a>
-        <button aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                data-bs-target="#topNav" data-bs-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="topNav">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/category_page">카테고리 / 커뮤니티</a></li>
-            </ul>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                <li class="nav-item me-lg-3"><a class="nav-link" href="/my_page">MyPage / Profile</a></li>
-                <li class="nav-item me-lg-3"><a class="nav-link" href="/login_page">로그인/회원가입</a></li>
-                <li class="nav-item">
-                    <button class="nav-link theme-toggle-btn" id="themeToggle" title="라이트/다크 모드 전환">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
-                    </button>
+        </style>
+    </head>
+    <body class="nav-fixed" data-theme="light">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
+             style="background-color: #f4efff;" id="sidenavAccordion">
+
+            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
+            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
+                <i data-feather="menu"></i>
+            </button>
+
+            <!-- 네비게이션 상단 좌측 로고 -->
+            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
+               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                      font-weight: 700;
+                      letter-spacing: 1px;">A-VERSE</a>
+
+            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
+            <ul class="navbar-nav align-items-center ms-auto">
+
+                <!-- 문서 드롭다운 메뉴
+                        nav-item → 네비게이션 항목
+                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
+                        no-caret → 기본 ▼ 화살표 숨김.
+                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
+                        me-3 → 오른쪽 여백 추가-->
+                <li class="nav-item dropdown no-caret d-none d-md-block me-3">
+
+                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
+                            nav-link → 네비게이션 링크 스타일
+                            dropdown-toggle → Bootstrap의 "클릭 시 메뉴 열기" 기능을 활성화
+                            id="navbarDropdownDocs" → 아래쪽 <div class="dropdown-menu">와 연결할 식별자
+                            href="javascript:void(0);" → 클릭해도 페이지 이동하지 않게 함
+                            role="button" → 접근성용
+                            data-bs-toggle="dropdown" → Bootstrap의 드롭다운 동작을 지정
+                            aria-haspopup="true" → "이 버튼이 메뉴를 연다"는 의미
+                            aria-expanded="false" → 처음엔 닫혀 있다는 의미-->
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
+                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </a>
+
+                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
+                            dropdown-menu → 기본 드롭다운 스타일
+                            dropdown-menu-end → 메뉴를 오른쪽 정렬
+                            py-0 → 위아래 패딩 제거
+                            me-sm-n15 me-lg-0 → 작은 화면에선 오른쪽 여백 조정(-15px)
+                            o-hidden → overflow 숨김
+                            animated--fade-in-up → 부드럽게 위로 뜨는 애니메이션
+                            aria-labelledby="navbarDropdownDocs" → 위의 트리거 버튼(id와 연결)과 연동-->
+                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
+                </li>
+
+
+
+                <li class="nav-item d-flex align-items-center me-3">
+                    <a href="http://localhost:8087/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Login
+                    </a>
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
+                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Sign Up
+                    </a>
+                </li>
+
+
+
+                <!-- 상단 좌측 유저 정보 드롭다운 메뉴 -->
+                <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+
+                    <!-- btn btn-icon btn-transparent-dark → 투명한 배경의 아이콘형 버튼
+                           dropdown-toggle → 클릭하면 드롭다운 메뉴 열림
+                           id="navbarDropdownUserImage" → 아래쪽 메뉴(aria-labelledby)와 연결
+                           href="javascript:void(0);" → 클릭해도 페이지 이동 X
+                           role="button" → 접근성 표시
+                           <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
+                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
+                                                                                                               src="assets/img/illustrations/profiles/profile-1.png" /></a>
+                    <!--열리는 메뉴 상자-->
+                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+
+                        <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
+                        <h6 class="dropdown-header d-flex align-items-center">
+                            <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
+                            <div class="dropdown-user-details">
+                                <div class="dropdown-user-details-name">이유나</div>
+                                <div class="dropdown-user-details-email">이유나 @ 이쁘니</div>
+                            </div>
+                        </h6>
+
+                        <!--회색 구분선-->
+                        <div class="dropdown-divider"></div>
+
+                        <!--MY_page-->
+                        <a class="dropdown-item" href="http://localhost:8087/my_page">
+                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                            MY_page
+                        </a>
+
+                        <!--log-out-->
+                        <a class="dropdown-item" href="#!">
+                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                            Logout
+                        </a>
+                    </div>
                 </li>
             </ul>
-        </div>
-    </div>
-</nav>
 
-<main>
-    <div class="container-xl px-4 py-4">
-        <!-- Top compare header with images and VS -->
-        <div class="row align-items-center text-center mb-4">
-            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                <div class="product-box bg-light">AI 1번</div>
-            </div>
-            <div class="col-12 col-lg-2 mb-4 mb-lg-0">
-                <div class="vs-badge">VS</div>
-            </div>
-            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                <div class="product-box bg-light me-5">AI 2번</div>
-            </div>
-        </div>
 
-        <div class="row align-items-stretch" style="min-height: 400px;">
-            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
-                <div class="card h-100">
-                    <div class="card-body p-0">
-                        <div class="table-responsive h-100">
-                            <table class="table table-bordered align-middle mb-0 h-100">
-                                <thead class="table-light text-center">
-                                <tr>
-                                    <th>AI 1번 스펙</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 1-1</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 1-2</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 1-3</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 1-4</td>
-                                </tr>
-                                </tbody>
-                            </table>
+
+
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sidenav shadow-right sidenav-light">
+                    <div class="sidenav-menu">
+                        <div class="nav accordion" id="accordionSidenav">
+
+                            <!-- 사이드바의 카테고리 섹션-->
+                            <div class="sidenav-menu-heading">AI 추천</div>
+                            <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
+                            <a class="nav-link collapsed"
+                               href="javascript:void(0);"
+                               data-bs-toggle="collapse"
+                               data-bs-target="#collapseDashboards"
+                               aria-expanded="false"
+                               aria-controls="collapseDashboards">
+                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                                카테고리
+                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                    <a class="nav-link" href="http://localhost:8087/category_all">전체</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_text">글</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_image">그림</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_audio">음악/음성</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_coding">코딩 및 개발</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_video">영상</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_search">검색</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_education">교육, 학습</a>
+                                </nav>
+                            </div>
+
+                            <!-- 사이드바의 커뮤니티 섹션-->
+                            <div class="sidenav-menu-heading">Social</div>
+                            <a class="nav-link" href="http://localhost:8087/community_page">
+                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
+                                커뮤니티
+                            </a>
+
+                            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                                    <!-- Nested Sidenav Accordion (Pages -> Account)-->
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                                        Account
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
+                                        <nav class="sidenav-menu-nested nav">
+                                            <a class="nav-link" href="account-profile.html">Profile</a>
+                                            <a class="nav-link" href="account-billing.html">Billing</a>
+                                            <a class="nav-link" href="account-security.html">Security</a>
+                                            <a class="nav-link" href="community_page.html">Notifications</a>
+                                        </nav>
+                                    </div>
+                                    <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Authentication
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
+                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
+                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
+                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
+                                                Basic
+                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                            </a>
+                                            <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
+                                                <nav class="sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="auth-login-basic.html">Login</a>
+                                                    <a class="nav-link" href="auth-register-basic.html">Register</a>
+                                                    <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
+                                                </nav>
+                                            </div>
+
+                                            <!-- 사이드바의 설정 섹션-->
+                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
+                                                설정
+                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                            </a>
+                                            <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
+                                                <nav class="sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
+                                                </nav>
+                                            </div>
+                                        </nav>
+                                    </div>
+
+
+
+
+                                    <!-- Nested Sidenav Accordion (Pages -> Error)-->
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Error
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
+                                        <nav class="sidenav-menu-nested nav">
+                                            <a class="nav-link" href="error-400.html">400 Error</a>
+                                            <a class="nav-link" href="error-401.html">401 Error</a>
+                                            <a class="nav-link" href="error-403.html">403 Error</a>
+                                            <a class="nav-link" href="error-404-1.html">404 Error 1</a>
+                                            <a class="nav-link" href="error-404-2.html">404 Error 2</a>
+                                            <a class="nav-link" href="error-500.html">500 Error</a>
+                                            <a class="nav-link" href="error-503.html">503 Error</a>
+                                            <a class="nav-link" href="error-504.html">504 Error</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link" href="pricing.html">Pricing</a>
+                                    <a class="nav-link" href="invoice.html">Invoice</a>
+                                </nav>
+                            </div>
+                            <!-- 사이드바의 설정 섹션-->
+                            <div class="sidenav-menu-heading">Setting</div>
+                            <!-- 설정섹션-->
+                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                                <div class="nav-link-icon"><i data-feather="tool"></i></div>
+                                설정
+                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
+                                <nav class="sidenav-menu-nested nav">
+                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
+                                </nav>
+                            </div>
+
+
+
+
                         </div>
                     </div>
-                </div>
+
+                    <!-- Sidenav Footer-->
+                    <div class="sidenav-footer">
+                        <div class="sidenav-footer-content">
+                            <button class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center gap-2" id="themeToggle" title="테마 변경">
+                                <i data-feather="sun" id="lightIcon"></i>
+                                <i data-feather="moon" id="darkIcon"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </nav>
             </div>
 
-            <div class="col-12 col-lg-2 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0 position-relative neg-margin-x">
-                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
-                    <div class="spec-label-item">앱 이름</div>
-                    <div class="spec-label-item">가격</div>
-                    <div class="spec-label-item">핵심 기능</div>
-                    <div class="spec-label-item">웹 / 앱</div>
-                </div>
-            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-xl px-4 py-4">
+                        <!-- Top compare header with images and VS -->
+                        <div class="row align-items-center text-center mb-4">
+                            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
+                                <div class="product-box bg-light">AI 1번</div>
+                            </div>
+                            <div class="col-12 col-lg-2 mb-4 mb-lg-0">
+                                <div class="vs-badge">VS</div>
+                            </div>
+                            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
+                                <div class="product-box bg-light me-5">AI 2번</div>
+                            </div>
+                        </div>
 
-            <div class="col-12 col-lg-5">
-                <div class="card h-100">
-                    <div class="card-body p-0">
-                        <div class="table-responsive h-100">
-                            <table class="table table-bordered align-middle mb-0 h-100">
-                                <thead class="table-light text-center">
-                                <tr>
-                                    <th>AI 2번 스펙</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 2-1</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 2-2</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 2-3</td>
-                                </tr>
-                                <tr class="spec-row">
-                                    <td class="spec-cell">데이터 2-4</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="row align-items-stretch" style="min-height: 400px;">
+                            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                                <div class="card h-100">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive h-100">
+                                            <table class="table table-bordered align-middle mb-0 h-100">
+                                                <thead class="table-light text-center">
+                                                <tr>
+                                                    <th>AI 1번 스펙</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 1-1</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 1-2</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 1-3</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 1-4</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-2 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0 position-relative neg-margin-x">
+                                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
+                                    <div class="spec-label-item">앱 이름</div>
+                                    <div class="spec-label-item">가격</div>
+                                    <div class="spec-label-item">핵심 기능</div>
+                                    <div class="spec-label-item">웹 / 앱</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-5">
+                                <div class="card h-100">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive h-100">
+                                            <table class="table table-bordered align-middle mb-0 h-100">
+                                                <thead class="table-light text-center">
+                                                <tr>
+                                                    <th>AI 2번 스펙</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 2-1</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 2-2</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 2-3</td>
+                                                </tr>
+                                                <tr class="spec-row">
+                                                    <td class="spec-cell">데이터 2-4</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </main>
+                <footer class="footer-admin mt-auto footer-light">
+                    <div class="container-xl px-4">
+                        <div class="row">
+                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 text-md-end small">
+                                <a href="#!">Privacy Policy</a>
+                                &middot;
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-</main>
-<script crossorigin="anonymous"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/scripts.js"></script>
-<script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
 
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-    }
+        <script>
+            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
+             document.addEventListener('DOMContentLoaded', function () {
+               [
+                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
+                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
+               ].forEach(([panelSel, triggerSel]) => {
+                 const panel   = document.querySelector(panelSel);
+                 const trigger = document.querySelector(triggerSel);
+                 if (panel){
+                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
+                   panel.style.height = 'auto';
+                 }
+                 if (trigger){
+                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
+                   trigger.setAttribute('aria-expanded','true');
+                 }
+               });
+             });
+        </script>
 
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
+        <script>
+            // === Feather icons 초기화 ===
+            feather.replace();
 
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-    });
-</script>
-</body>
+            // === 다크모드 토글 ===
+            (function() {
+                const themeToggle = document.getElementById('themeToggle');
+                const body = document.body;
+
+                // localStorage에서 테마 불러오기
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    body.setAttribute('data-theme', savedTheme);
+                }
+
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', function() {
+                        const currentTheme = body.getAttribute('data-theme') || 'light';
+                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                        body.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                    });
+                }
+            })();
+        </script>
+    </body>
 </html>

@@ -13,175 +13,220 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+
+        <style>
+            /* === A-VERSE 테마 토글 버튼 (우주 보라빛 스타일) === */
+            #themeToggle {
+              all: unset;                                   /* 기본 버튼 스타일 초기화 */
+              width: 4rem;                                  /* 기존보다 조금 크게 */
+              height: 4rem;
+              border-radius: 50%;
+              cursor: pointer;
+              display: flex !important;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              overflow: hidden;
+
+              /* 보라-블루 오로라 그라데이션 */
+              background: linear-gradient(135deg, #b39aff 0%, #8ca6ff 50%, #b7e8ff 100%);
+              box-shadow:
+                0 0 20px rgba(160, 140, 255, 0.3),
+                inset 0 0 10px rgba(255, 255, 255, 0.15);
+              backdrop-filter: blur(6px);
+              -webkit-backdrop-filter: blur(6px);
+              transition: all 0.3s ease;
+            }
+
+            #themeToggle:hover {
+              transform: scale(1.1);
+              box-shadow:
+                0 0 28px rgba(180, 160, 255, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+
+            /* === Feather 아이콘 공통 (크게 + 색상 통일) === */
+            #themeToggle i[data-feather] {
+              width: 2rem;
+              height: 2rem;
+              line-height: 0;
+            }
+
+            #themeToggle svg {
+              width: 2rem;
+              height: 2rem;
+              stroke: #ffffff;                             /* 흰색 아이콘 */
+              stroke-width: 1.6;
+              filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+              transition: all 0.3s ease;
+            }
+
+            #themeToggle:hover svg {
+              stroke: #e9e1ff;                             /* 살짝 더 밝은 흰빛 */
+              filter: drop-shadow(0 0 10px rgba(183, 169, 255, 0.9));
+            }
+
+            /* === 사이드바 하단 배경과 자연스럽게 이어지도록 === */
+            .sidenav-footer {
+              background: linear-gradient(180deg,
+                rgba(14, 14, 20, 0.95) 0%,
+                rgba(24, 24, 32, 0.98) 100%);
+              border-top: 1px solid rgba(255, 255, 255, 0.05);
+              padding: 1.5rem 0;
+            }
+            /* 1) 사이드바 푸터 배경을 투명으로 (검정 사각형 제거) */
+                .sidenav-footer{
+                  background: transparent !important;
+                  border-top: none !important;
+                  padding: 1.25rem 0; /* 여백만 유지 */
+                }
+                .sidenav-footer-content{
+                  background: transparent !important;
+                }
+
+                /* 2) 혹시 테마/기본 CSS가 더 강하게 덮으면, 부모 경로까지 지정 */
+                #layoutSidenav_nav .sidenav .sidenav-footer{
+                  background: transparent !important;
+                  border-top: none !important;
+                }
+
+                /* 3) 토글 버튼: 아이콘만, 더 크게 (직전 코드 유지 + 크기만 살짝 키움) */
+                #themeToggle{
+                  all: unset;
+                  width: 4.25rem;   /* 4rem → 4.25rem로 살짝 키움 */
+                  height: 4.25rem;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  display: flex !important;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  overflow: hidden;
+
+                  /* 오로라 보라빛 그라데이션 */
+                  background: linear-gradient(135deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                  box-shadow:
+                    0 0 20px rgba(160,140,255,.30),
+                    inset 0 0 10px rgba(255,255,255,.15);
+                  backdrop-filter: blur(6px);
+                  -webkit-backdrop-filter: blur(6px);
+                  transition: all .3s ease;
+                }
+                #themeToggle:hover{
+                  transform: scale(1.1);
+                  box-shadow:
+                    0 0 28px rgba(180,160,255,.55),
+                    inset 0 0 10px rgba(255,255,255,.20);
+                }
+
+                /* Feather 아이콘 크게 + 테두리/배경 없음 */
+                #themeToggle i[data-feather]{ width: 2.2rem; height: 2.2rem; line-height: 0; }
+                #themeToggle svg{ width: 2.2rem; height: 2.2rem; stroke: #fff; stroke-width: 1.6; fill: none; }
+                #themeToggle:hover svg{ stroke: #efeaff; }
+
+        </style>
+
     </head>
-    <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
-            <!-- Sidenav Toggle Button-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-            <!-- Navbar Brand-->
-            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
-            <!-- * * * * * * When using an image, we recommend the SVG format.-->
-            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
-            <!-- Navbar Search Input-->
-            <!-- * * Note: * * Visible only on and above the lg breakpoint-->
-            <form class="form-inline me-auto d-none d-lg-block me-3">
-                <div class="input-group input-group-joined input-group-solid">
-                    <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
-                    <div class="input-group-text"><i data-feather="search"></i></div>
-                </div>
-            </form>
-            <!-- Navbar Items-->
+    <body class="nav-fixed" data-theme="light">
+                <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
+             style="background-color: #f4efff;" id="sidenavAccordion">
+
+            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
+            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
+                <i data-feather="menu"></i>
+            </button>
+
+            <!-- 네비게이션 상단 좌측 로고 -->
+            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
+               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                      font-weight: 700;
+                      letter-spacing: 1px;">A-VERSE</a>
+
+            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
             <ul class="navbar-nav align-items-center ms-auto">
-                <!-- Documentation Dropdown-->
+
+                <!-- 문서 드롭다운 메뉴
+                        nav-item → 네비게이션 항목
+                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
+                        no-caret → 기본 ▼ 화살표 숨김.
+                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
+                        me-3 → 오른쪽 여백 추가-->
                 <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="fw-500">Documentation</div>
-                        <i class="fas fa-chevron-right dropdown-arrow"></i>
+
+                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
+                            nav-link → 네비게이션 링크 스타일
+                            dropdown-toggle → Bootstrap의 "클릭 시 메뉴 열기" 기능을 활성화
+                            id="navbarDropdownDocs" → 아래쪽 <div class="dropdown-menu">와 연결할 식별자
+                            href="javascript:void(0);" → 클릭해도 페이지 이동하지 않게 함
+                            role="button" → 접근성용
+                            data-bs-toggle="dropdown" → Bootstrap의 드롭다운 동작을 지정
+                            aria-haspopup="true" → "이 버튼이 메뉴를 연다"는 의미
+                            aria-expanded="false" → 처음엔 닫혀 있다는 의미-->
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
+                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="book"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Documentation</div>
-                                Usage instructions and reference
-                            </div>
-                        </a>
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="code"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Components</div>
-                                Code snippets and reference
-                            </div>
-                        </a>
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Changelog</div>
-                                Updates and changes
-                            </div>
-                        </a>
-                    </div>
+
+                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
+                            dropdown-menu → 기본 드롭다운 스타일
+                            dropdown-menu-end → 메뉴를 오른쪽 정렬
+                            py-0 → 위아래 패딩 제거
+                            me-sm-n15 me-lg-0 → 작은 화면에선 오른쪽 여백 조정(-15px)
+                            o-hidden → overflow 숨김
+                            animated--fade-in-up → 부드럽게 위로 뜨는 애니메이션
+                            aria-labelledby="navbarDropdownDocs" → 위의 트리거 버튼(id와 연결)과 연동-->
+                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
                 </li>
-                <!-- Navbar Search Dropdown-->
-                <!-- * * Note: * * Visible only below the lg breakpoint-->
-                <li class="nav-item dropdown no-caret me-3 d-lg-none">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="search"></i></a>
-                    <!-- Dropdown - Search-->
-                    <div class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
-                        <form class="form-inline me-auto w-100">
-                            <div class="input-group input-group-joined input-group-solid">
-                                <input class="form-control pe-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                                <div class="input-group-text"><i data-feather="search"></i></div>
-                            </div>
-                        </form>
-                    </div>
+
+
+
+                <li class="nav-item d-flex align-items-center me-3">
+                    <a href="http://localhost:8087/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Login
+                    </a>
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
+                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Sign Up
+                    </a>
                 </li>
-                <!-- Alerts Dropdown-->
-                <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownAlerts">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="bell"></i>
-                            Alerts Center
-                        </h6>
-                        <!-- Example Alert 1-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 29, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing serious, but it requires your attention.</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 2-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 22, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to view!</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 3-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 8, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting down.</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 4-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 2, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access to the organization.</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
-                    </div>
-                </li>
-                <!-- Messages Dropdown-->
-                <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="mail"></i>
-                            Message Center
-                        </h6>
-                        <!-- Example Message 1  -->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-2.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Thomas Wilcox · 58m</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 2-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-3.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Emily Fowler · 2d</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 3-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-4.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Marshall Rosencrantz · 3d</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 4-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="assets/img/illustrations/profiles/profile-5.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Colby Newton · 3d</div>
-                            </div>
-                        </a>
-                        <!-- Footer Link-->
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
-                    </div>
-                </li>
-                <!-- User Dropdown-->
+
+
+
+                <!-- 상단 좌측 유저 정보 드롭다운 메뉴 -->
                 <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></a>
+
+                    <!-- btn btn-icon btn-transparent-dark → 투명한 배경의 아이콘형 버튼
+                           dropdown-toggle → 클릭하면 드롭다운 메뉴 열림
+                           id="navbarDropdownUserImage" → 아래쪽 메뉴(aria-labelledby)와 연결
+                           href="javascript:void(0);" → 클릭해도 페이지 이동 X
+                           role="button" → 접근성 표시
+                           <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
+                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
+                                                                                                               src="assets/img/illustrations/profiles/profile-1.png" /></a>
+                    <!--열리는 메뉴 상자-->
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+
+                        <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
                         <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
+                            <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
                             <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">Valerie Luna</div>
-                                <div class="dropdown-user-details-email">vluna@aol.com</div>
+                                <div class="dropdown-user-details-name">이유나</div>
+                                <div class="dropdown-user-details-email">이유나 @ 이쁘니</div>
                             </div>
                         </h6>
+
+                        <!--회색 구분선-->
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#!">
+
+                        <!--MY_page-->
+                        <a class="dropdown-item" href="http://localhost:8087/my_page">
                             <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            Account
+                            MY_page
                         </a>
+
+                        <!--log-out-->
                         <a class="dropdown-item" href="#!">
                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                             Logout
@@ -189,6 +234,10 @@
                     </div>
                 </li>
             </ul>
+
+
+
+
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -641,6 +690,39 @@
                     });
                 }
             });
+
+            // === 다크모드 토글 ===
+            (function() {
+                const themeToggle = document.getElementById('themeToggle');
+                const body = document.body;
+
+                // localStorage에서 테마 불러오기
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    body.setAttribute('data-theme', savedTheme);
+                }
+
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', function() {
+                        const currentTheme = body.getAttribute('data-theme') || 'light';
+                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                        body.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                    });
+                }
+            })();
+
+            // === 사이드바 메뉴 자동 펼치기: collapseDashboards ===
+            (function() {
+                const dashboardsCollapse = document.getElementById('collapseDashboards');
+                if (dashboardsCollapse) {
+                    const bsCollapse = new bootstrap.Collapse(dashboardsCollapse, {
+                        toggle: false
+                    });
+                    bsCollapse.show();
+                }
+            })();
         </script>
+
     </body>
 </html>
