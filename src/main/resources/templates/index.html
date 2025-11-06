@@ -140,55 +140,57 @@
             </ul>
 
 
+
+
         </nav>
+        <!-- 네비게이션 전체 레이아웃 -->
         <div id="layoutSidenav">
+            <!-- 네비게이션 왼쪽 사이드바 -->
             <div id="layoutSidenav_nav">
+                <!-- 사이드바(왼쪽 메뉴 리스트)를 구성하는 태그
+                        sidenav 사이드 메뉴 전체 스타일
+                        shadow-right 오른쪽에 그림자 효과를 줘서 사이드바가 입체적으로 보이게 함
+                        sidenav-light 밝은 톤(화이트/그레이 기반) 사이드바 스타일- / sidenav-dark 는 어두운 버전***스타일 확인-->
                 <nav class="sidenav shadow-right sidenav-light">
+                    <!-- 사이드바 안에서 메뉴 항목 전체 -->
                     <div class="sidenav-menu">
+                        <!--왼쪽 사이드 메뉴에서 대분류 메뉴를 클릭하면 하위 메뉴가 열리고 닫히는 구조-->
                         <div class="nav accordion" id="accordionSidenav">
-                            <!-- Sidenav Menu Heading (Account)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <div class="sidenav-menu-heading d-sm-none">Account</div>
-                            <!-- Sidenav Link (Alerts)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <a class="nav-link d-sm-none" href="#!">
-                                <div class="nav-link-icon"><i data-feather="bell"></i></div>
-                                Alerts
-                                <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
-                            </a>
-                            <!-- Sidenav Link (Messages)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <a class="nav-link d-sm-none" href="#!">
-                                <div class="nav-link-icon"><i data-feather="mail"></i></div>
-                                Messages
-                                <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
-                            </a>
-                            <!-- Sidenav Menu Heading (Core)-->
-                            <div class="sidenav-menu-heading">Core</div>
-                            <!-- Sidenav Accordion (Dashboard)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                                Dashboards
+
+                            <!-- 사이드바의 카테고리 섹션-->
+                            <div class="sidenav-menu-heading">AI 추천</div>
+                            <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
+                            <a class="nav-link collapsed"
+                               href="javascript:void(0);"
+                               data-bs-toggle="collapse"
+                               data-bs-target="#collapseDashboards"
+                               aria-expanded="false"
+                               aria-controls="collapseDashboards">
+                                <!--***링크 연결 확인-->
+                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                                카테고리
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="main1_page.html">
-                                        Default
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
-                                    </a>
-                                    <a class="nav-link" href="main2_page.html">Multipurpose</a>
-                                    <a class="nav-link" href="dashboard-3.html">Affiliate</a>
+                                    <a class="nav-link" href="http://localhost:8087/category_page">전체</a>
+                                    <a class="nav-link" href="#!">글</a>
+                                    <a class="nav-link" href="#!">그림</a>
+                                    <a class="nav-link" href="#!">음악/음성</a>
+                                    <a class="nav-link" href="#!">코딩 및 개발</a>
+                                    <a class="nav-link" href="#!">영상</a>
+                                    <a class="nav-link" href="#!">검색</a>
+                                    <a class="nav-link" href="#!">교육, 학습</a>
                                 </nav>
                             </div>
-                            <!-- Sidenav Heading (Custom)-->
-                            <div class="sidenav-menu-heading">Custom</div>
-                            <!-- Sidenav Accordion (Pages)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                                Pages
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+
+                            <!-- 사이드바의 커뮤니티 섹션-->
+                            <div class="sidenav-menu-heading">Social</div>
+                            <a class="nav-link" href="http://localhost:8087/community_page">
+                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
+                                커뮤니티
                             </a>
+
                             <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                     <!-- Nested Sidenav Accordion (Pages -> Account)-->
@@ -223,20 +225,23 @@
                                                     <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
                                                 </nav>
                                             </div>
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Social)-->
+
+                                            <!-- 사이드바의 설정 섹션-->
                                             <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
-                                                Social
+                                                설정
                                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                             </a>
                                             <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
                                                 <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="login_page.html">Login</a>
-                                                    <a class="nav-link" href="join_page.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-social.html">Forgot Password</a>
+                                                    <a class="nav-link" href="http://localhost:8087/my_psge">마이페이지</a>
                                                 </nav>
                                             </div>
                                         </nav>
                                     </div>
+
+
+
+
                                     <!-- Nested Sidenav Accordion (Pages -> Error)-->
                                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                         Error
@@ -410,34 +415,21 @@
                                     <a class="nav-link" href="tooltips.html">Tooltips</a>
                                 </nav>
                             </div>
-                            <!-- Sidenav Accordion (Utilities)-->
+                            <!-- 설정섹션-->
                             <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
                                 <div class="nav-link-icon"><i data-feather="tool"></i></div>
-                                Utilities
+                                설정
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="animations.html">Animations</a>
-                                    <a class="nav-link" href="background.html">Background</a>
-                                    <a class="nav-link" href="borders.html">Borders</a>
-                                    <a class="nav-link" href="lift.html">Lift</a>
-                                    <a class="nav-link" href="shadows.html">Shadows</a>
-                                    <a class="nav-link" href="typography.html">Typography</a>
+                                    <a class="nav-link" href="http://localhost:8087/my_psge">마이페이지</a>
                                 </nav>
                             </div>
-                            <!-- Sidenav Heading (Addons)-->
-                            <div class="sidenav-menu-heading">Plugins</div>
-                            <!-- Sidenav Link (Charts)-->
-                            <a class="nav-link" href="charts.html">
-                                <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                                Charts
-                            </a>
-                            <!-- Sidenav Link (Tables)-->
-                            <a class="nav-link" href="tables.html">
-                                <div class="nav-link-icon"><i data-feather="filter"></i></div>
-                                Tables
-                            </a>
+
+
+
+
                         </div>
                     </div>
                     <!-- Sidenav Footer-->
