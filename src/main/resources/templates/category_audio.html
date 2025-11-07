@@ -471,6 +471,7 @@
                                 </div>
                             </form>
                         </div>
+
                         
                         <!-- 워크스페이스 칸 -->
                         <div class="row justify-content-center mb-4">
@@ -550,213 +551,299 @@
                             </div>
                         </div>
                         
+                        <hr class="my-4">
+                        
+                        <!-- AI 도구 비교 섹션 -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="mb-0">AI 도구 비교</h3>
+                                <button id="compareBtn" class="btn btn-sm btn-secondary" disabled onclick="goToCompare()">비교하기</button>
+                            </div>
+                            <p class="text-muted small mb-3">비교하고 싶은 도구를 최대 2개까지 선택하세요.</p>
+                        </div>
+                        
                         <h2 class="section-title mb-3">음악/음성 AI 도구</h2>
-                        <div class="tools-grid row g-3 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 50%; margin: 0 auto;">
+                        <div class="tools-grid row g-5 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 90%; margin: 0 auto; gap: 2rem;">
                             <!-- 가로 5개, 세로 3개 = 총 15개 정사각형 -->
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 1">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="music" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 1</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="music" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 1</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 2">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="mic" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 2</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="mic" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 2</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 3">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="headphones" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 3</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="headphones" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 3</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 4">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="volume-2" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 4</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="volume-2" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 4</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 5">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="radio" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 5</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="radio" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 5</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 6">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="disc" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 6</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="disc" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 6</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 7">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="play" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 7</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="play" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 7</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 8">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="skip-forward" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 8</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="skip-forward" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 8</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 9">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="skip-back" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 9</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="skip-back" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 9</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 10">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="repeat" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 10</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="repeat" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 10</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 11">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="shuffle" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 11</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="shuffle" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 11</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 12">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="speaker" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 12</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="speaker" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 12</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 13">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="video" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 13</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="video" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 13</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 14">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="film" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 14</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="film" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 14</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                            <div class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Tool 15">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
-                                            <i class="mb-1" data-feather="cast" style="width: 2rem; height: 2rem;"></i>
-                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 15</div>
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-1" data-feather="cast" style="width: 1.5rem; height: 1.5rem;"></i>
+                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 15</div>
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
@@ -764,14 +851,47 @@
                                 </div>
                             </div>
                         </div>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Pagination" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a></li>
+                                <li class="page-item active" aria-current="page"><a class="page-link pagination-number" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link pagination-number" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link pagination-number" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link pagination-number" href="#">다음</a></li>
+                            </ul>
+                        </nav>
+                        <style>
+                            /* Pagination number buttons styling */
+                            .pagination .page-link.pagination-number {
+                                background-color: #fff;
+                                color: #6900C7;
+                                border-color: #dee2e6;
+                            }
+                            
+                            .pagination .page-link.pagination-number:hover {
+                                background-color: #6900C7;
+                                color: #fff;
+                                border-color: #6900C7;
+                            }
+                            
+                            .pagination .page-item.active .page-link.pagination-number {
+                                background-color: #6900C7;
+                                color: #fff;
+                                border-color: #6900C7;
+                            }
+                        </style>
                     </div>
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
-                            <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a> &middot; <a href="#!">Terms &amp; Conditions</a>
+
                             </div>
                         </div>
                     </div>
@@ -782,40 +902,125 @@
         <script src="js/scripts.js"></script>
 
         <script>
-            // === 1) feather.replace() ===
-            feather.replace();
-
-            // === 2) 다크모드 토글 ===
-            (function() {
-                const themeToggle = document.getElementById('themeToggle');
-                const body = document.body;
-
-                // localStorage에서 테마 불러오기
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    body.setAttribute('data-theme', savedTheme);
-                }
-
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', function() {
-                        const currentTheme = body.getAttribute('data-theme') || 'light';
-                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                        body.setAttribute('data-theme', newTheme);
-                        localStorage.setItem('theme', newTheme);
-                    });
-                }
-            })();
-
-            // === 3) 사이드바 메뉴 자동 펼치기: collapseDashboards ===
-            document.addEventListener('DOMContentLoaded', function() {
-                const dashboardsCollapse = document.getElementById('collapseDashboards');
-                if (dashboardsCollapse) {
-                    const bsCollapse = new bootstrap.Collapse(dashboardsCollapse, {
-                        toggle: false
-                    });
-                    bsCollapse.show();
-                }
-            });
+            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
+             document.addEventListener('DOMContentLoaded', function () {
+               [
+                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
+                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
+               ].forEach(([panelSel, triggerSel]) => {
+                 const panel   = document.querySelector(panelSel);
+                 const trigger = document.querySelector(triggerSel);
+                 if (panel){
+                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
+                   panel.style.height = 'auto';
+                 }
+                 if (trigger){
+                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
+                   trigger.setAttribute('aria-expanded','true');
+                 }
+               });
+               
+               // Feather 아이콘 초기화
+               if (typeof feather !== 'undefined') {
+                   feather.replace();
+               }
+               
+               // 다크모드 토글
+               const themeToggle = document.getElementById('themeToggle');
+               const body = document.body;
+               const savedTheme = localStorage.getItem('theme');
+               if (savedTheme) {
+                   body.setAttribute('data-theme', savedTheme);
+               }
+               if (themeToggle) {
+                   themeToggle.addEventListener('click', function() {
+                       const currentTheme = body.getAttribute('data-theme') || 'light';
+                       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                       body.setAttribute('data-theme', newTheme);
+                       localStorage.setItem('theme', newTheme);
+                   });
+               }
+             });
+             
+             // AI 도구 비교 기능
+             let selectedTools = [];
+             const maxSelection = 2;
+             
+             function toggleToolSelection(element) {
+                 const toolItem = element.closest('.compare-tool-item');
+                 const toolName = toolItem.getAttribute('data-tool-name');
+                 const card = toolItem.querySelector('.compare-tool-card');
+                 const checkIcon = toolItem.querySelector('.compare-check-icon');
+                 
+                 if (!toolName) return;
+                 
+                 const index = selectedTools.indexOf(toolName);
+                 
+                 if (index > -1) {
+                     // 이미 선택된 경우 - 선택 해제
+                     selectedTools.splice(index, 1);
+                     card.style.border = '2px solid transparent';
+                     checkIcon.style.display = 'none';
+                 } else {
+                     // 선택되지 않은 경우
+                     if (selectedTools.length >= maxSelection) {
+                         alert('최대 ' + maxSelection + '개까지만 선택할 수 있습니다.');
+                         return;
+                     }
+                     selectedTools.push(toolName);
+                     card.style.border = '2px solid #6900C7';
+                     checkIcon.style.display = 'flex';
+                 }
+                 
+                 // Feather 아이콘 다시 렌더링
+                 if (typeof feather !== 'undefined') {
+                     feather.replace();
+                 }
+                 
+                 // 비교하기 버튼 활성화/비활성화
+                 updateCompareButton();
+             }
+             
+             function updateCompareButton() {
+                 const compareBtn = document.getElementById('compareBtn');
+                 if (compareBtn) {
+                     if (selectedTools.length === maxSelection) {
+                         compareBtn.disabled = false;
+                     } else {
+                         compareBtn.disabled = true;
+                     }
+                 }
+             }
+             
+             function goToCompare() {
+                 if (selectedTools.length === maxSelection) {
+                     // URL 파라미터로 선택된 도구 전달
+                     const params = new URLSearchParams({
+                         tool1: selectedTools[0],
+                         tool2: selectedTools[1]
+                     });
+                     window.location.href = 'compare_page.html?' + params.toString();
+                 } else {
+                     alert('비교할 도구 2개를 선택해주세요.');
+                 }
+             }
         </script>
+        
+        <style>
+            /* AI 도구 비교 카드 스타일 */
+            .compare-tool-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(105, 0, 199, 0.2);
+            }
+            
+            .compare-tool-card.selected {
+                border: 2px solid #6900C7 !important;
+                box-shadow: 0 0 0 2px rgba(105, 0, 199, 0.2);
+            }
+            
+            .compare-check-icon {
+                z-index: 10;
+            }
+        </style>
     </body>
 </html>
