@@ -150,6 +150,21 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+ /* 도구 카드 로고 전용 스타일 */
+                .workspace-logo {
+                  width: 120%;
+                  height: auto;            /* 비율 자동 유지 */
+                  object-fit: contain;     /* 상자 안에 맞게 축소 */
+                  display: block;
+                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                  background-color: transparent;
+                  transition: transform 0.25s ease;
+                }
+
+                .workspace-logo:hover {
+                  transform: scale(1.05);  /* 살짝 커지게 */
+                }
+
 hr {
   margin: 1rem 0;
   color: inherit;
