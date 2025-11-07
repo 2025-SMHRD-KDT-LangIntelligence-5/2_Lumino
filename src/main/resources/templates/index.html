@@ -279,6 +279,151 @@
                 .sidenav .sidenav-menu-nested .nav-link {
                   padding-left: 1.8rem;
                 }
+
+
+            /* ========== A-VERSE Section Base (Lavender Glass) ========== */
+                .az-section {
+                  padding: 28px 0 64px;
+                  background: linear-gradient(180deg, var(--az-lav-1, #efeaff), rgba(0,0,0,0));
+                }
+
+                /* 섹션 타이틀: 중앙정렬 + 밑줄 */
+                .az-section .section-title {
+                  margin: 0 0 18px;
+                  font-weight: 800;
+                  font-size: 1.55rem;
+                  letter-spacing: .4px;
+                  text-align: center;
+                  background: linear-gradient(90deg,#a99aff,#c0b5ff,#dcd6ff);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  position: relative;
+                  display: inline-block;
+                }
+                .az-section .section-title::after {
+                  content: "";
+                  display: block;
+                  margin: 10px auto 0;
+                  width: 180px;
+                  height: 3px;
+                  border-radius: 999px;
+                  background: linear-gradient(90deg,#c9bfff,#bcd0ff);
+                  box-shadow: 0 4px 12px rgba(160,140,255,.25);
+                }
+
+                /* 그리드 간격(Explore 2열) */
+                .az-section .row.gx-explore { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
+
+                /* 라벤더 글래스 카드 */
+                .metric-card{
+                  border: 0; border-radius: 22px;
+                  background: linear-gradient(90deg,#dcd6ff,#c8c1ff);
+                  box-shadow: 0 6px 18px rgba(160,140,255,.12);
+                  overflow: hidden;
+                  transition: transform .18s ease, box-shadow .18s ease;
+                }
+                .metric-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(160,140,255,.22); }
+
+                /* 카드 헤더: 좌/우 정렬 옵션 */
+                .metric-card .card-header{
+                  border:0; padding:16px 22px;
+                  background: linear-gradient(90deg,#dcd6ff,#c8c1ff);
+                  display:flex; align-items:center;
+                  color:#4b3d84 !important; font-weight:700; font-size:1.05rem;
+                }
+                .metric-card .card-header.header-left { justify-content:flex-start; }
+                .metric-card .card-header.header-right{ justify-content:flex-end;   }
+
+                .metric-card .card-body{
+                  background: linear-gradient(180deg,#ffffff,rgba(255,255,255,.7));
+                  padding: 20px 22px 22px;
+                }
+
+                /* 카드 내부 링크 파랑 제거 */
+                #workspace-zone a, #explore-zone a { color: inherit !important; text-decoration:none; }
+
+                    /* ===== 공통 섹션 배경 & 제목 라인 ===== */
+                    .az-section {
+                      position: relative;
+                      background: linear-gradient(180deg, #f3f5ff 0%, #eef0ff 100%);
+                      border-radius: 28px;
+                      padding: 32px 22px 72px; /* 하단 여백 넉넉 */
+                      box-shadow: 0 12px 36px rgba(40, 30, 120, 0.06) inset;
+                      margin-bottom: 40px;
+                    }
+
+                    .az-section .section-title {
+                      text-align: center;
+                      font-weight: 800;
+                      letter-spacing: 0.5px;
+                      color: #7d6aff;
+                      opacity: .95;
+                      margin-bottom: 18px;
+                    }
+                    .az-section .section-title::after {
+                      content: "";
+                      display: block;
+                      width: 140px;
+                      height: 3px;
+                      margin: 10px auto 0;
+                      border-radius: 999px;
+                      background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
+                    }
+
+                    /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
+                    #workspace-zone .card {
+                      max-width: 900px;  /* 가로 폭 */
+                      margin: 0 auto;
+                      border-radius: 22px;
+                      box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
+                    }
+                    #workspace-zone .card-header { padding: .8rem 1rem; }
+                    #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
+
+                    /* ===== Explore 리스트 카드화 + 배지 ===== */
+                    .metric-card .card-header {
+                      background: linear-gradient(90deg, #d8d0ff, #e6e2ff);
+                      border: none;
+                      color: #5a4fb8 !important; /* 파란색 방지 */
+                      font-weight: 700;
+                      border-radius: 18px 18px 0 0;
+                    }
+                    .header-left  { text-align: left;  padding-left: 18px; }
+                    .header-right { text-align: right; padding-right: 18px; }
+
+                    .metric-card .card-body { padding: 14px; }
+
+                    .metric-card .rank-item {
+                      display: flex; justify-content: space-between; align-items: center;
+                      background: rgba(255, 255, 255, 0.65);
+                      border-radius: 12px;
+                      padding: 10px 14px; margin-bottom: 10px;
+                      box-shadow: 0 2px 8px rgba(160,140,255,0.12);
+                      transition: all .2s ease;
+                    }
+                    .metric-card .rank-item:hover {
+                      transform: translateY(-2px);
+                      background: rgba(255,255,255,0.85);
+                      box-shadow: 0 4px 14px rgba(160,140,255,0.22);
+                    }
+
+                    .metric-card .rank-item .title {
+                      font-weight: 600; color: #3e3273; font-size: .96rem;
+                    }
+                    .metric-card .rank-item .badge {
+                      font-size: .75rem; border-radius: 999px; padding: 4px 10px;
+                      font-weight: 700; color: #fff; letter-spacing: .2px;
+                    }
+                    .metric-card .rank-item .badge.like     { background: linear-gradient(90deg,#b197ff,#8da6ff); }
+                    .metric-card .rank-item .badge.download { background: linear-gradient(90deg,#8eb9ff,#8da6ff); }
+
+                    /* ===== 레이아웃 여백 보정 ===== */
+                    #workspace-zone.az-section   { padding-bottom: 72px; }
+                    #explore-zone.az-section     { padding-bottom: 120px; } /* 하단 더 여유 */
+
+                    @media (min-width: 992px) {
+                      .gx-explore { --bs-gutter-x: 28px; }
+                    }
         </style>
 
 
@@ -410,7 +555,7 @@
         <!-- 네비게이션 전체 레이아웃 -->
         <div id="layoutSidenav">
             <!-- 네비게이션 왼쪽 사이드바 -->
-            <div id="layoutSidenav_nav" style="background-color: #fffff;">
+            <div id="layoutSidenav_nav" style="background-color: #ffffff;">
                 <!-- 사이드바(왼쪽 메뉴 리스트)를 구성하는 태그
                         sidenav 사이드 메뉴 전체 스타일
                         shadow-right 오른쪽에 그림자 효과를 줘서 사이드바가 입체적으로 보이게 함
@@ -585,80 +730,140 @@
                             </div>
                         </div>
                     </header>
-                    <!-- Main page content-->
-                    <div class="container-xl px-4">
-                <h4 class="mb-0 mt-4 text-center">Workspace Zone</h4>
-                        <hr class="mt-2 mb-4" />
-                <div class="row justify-content-center">
-                    <!-- Left: AI Tools Icon Grid with Workspace Selector -->
-                    <div class="col-lg-8 mb-4 mx-auto">
-                        <div class="card h-100">
-                            <div class="card-header d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
-                                    <div>
-                                        <h5 class="mb-0">AI Tools</h5>
-                                        <div class="small text-muted">Select workspace and manage AI tool icons</div>
+
+
+
+                    <!-- ========== Workspace Zone (라벤더 배경 + 타이틀 밑줄) ========== -->
+                    <section id="workspace-zone" class="az-section">
+                        <div class="container-xl px-4">
+                            <h2 class="section-title">Workspace Zone</h2>
+
+                            <!-- 기존 AI Tools 카드 그대로 넣되, 불필요한 inline-style 제거 권장 -->
+                            <div class="card mt-4">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                                        <div>
+                                            <h5 class="mb-0">AI Tools</h5>
+                                            <div class="small text-muted">Select workspace and manage AI tool icons</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                        <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
+                                            <option value="workspace-marketing.html">Marketing</option>
+                                            <option value="workspace-engineering.html" selected>Engineering</option>
+                                            <option value="workspace-design.html">Design</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                    <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width: 160px;">
-                                        <option value="workspace-marketing.html">Marketing</option>
-                                        <option value="workspace-engineering.html" selected>Engineering</option>
-                                        <option value="workspace-design.html">Design</option>
-                                    </select>
+
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <!-- 네 개 아이콘 타일: 너가 쓰던 마크업 그대로 유지해도 됨 -->
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                    <i class="mb-2" data-feather="cpu"></i>
+                                                    <div>Model Runner</div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                    <i class="mb-2" data-feather="message-circle"></i>
+                                                    <div>Chat Assistant</div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                    <i class="mb-2" data-feather="image"></i>
+                                                    <div>Image Gen</div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                    <i class="mb-2" data-feather="mic"></i>
+                                                    <div>Speech</div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                    <i class="mb-2" data-feather="plus"></i>
+                                                    <div>Add Tool</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="cpu"></i>
-                                                <div>Model Runner</div>
-                            </div>
-                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="message-circle"></i>
-                                                <div>Chat Assistant</div>
-                            </div>
-                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="image"></i>
-                                                <div>Image Gen</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="mic"></i>
-                                                <div>Speech</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <!-- Add AI Tool Tile -->
-                                    <div class="col-4 col-md-3 col-xl-2">
-                                        <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
-                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                <i class="mb-2" data-feather="plus"></i>
-                                                <div>Add Tool</div>
-                                    </div>
-                                        </a>
-                                    </div>
-                                    </div>
-                            </div>
+                            </div><!-- /card -->
                         </div>
-                    </div>
-                </div>
-                    </div>
+                    </section>
+
+                    <!-- ========== Explore Zone (2열: 좌=저장 Top, 우=사용 Top) ========== -->
+                    <section id="explore-zone" class="az-section">
+                        <div class="container-xl px-4">
+                            <h2 class="section-title">Explore Zone</h2>
+
+                            <div class="row gx-explore mt-4">
+                                <!-- Left: 가장 많이 저장된 -->
+                                <div class="col-12 col-lg-6">
+                                    <div class="metric-card card h-100">
+                                        <div class="card-header header-left">가장 많이 저장된</div>
+                                        <div class="card-body">
+                                            <div class="rank-item">
+                                                <span class="title">Notion AI</span>
+                                                <span class="badge like">❤️ 1,284</span>
+                                            </div>
+                                            <div class="rank-item">
+                                                <span class="title">Midjourney</span>
+                                                <span class="badge like">❤️ 1,042</span>
+                                            </div>
+                                            <div class="rank-item">
+                                                <span class="title">Perplexity</span>
+                                                <span class="badge like">❤️ 918</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right: 가장 많이 사용됨 -->
+                                <div class="col-12 col-lg-6">
+                                    <div class="metric-card card h-100">
+                                        <div class="card-header header-right">가장 많이 사용됨</div>
+                                        <div class="card-body">
+                                            <div class="rank-item">
+                                                <span class="title">ChatGPT</span>
+                                                <span class="badge download">⬇️ 3,842</span>
+                                            </div>
+                                            <div class="rank-item">
+                                                <span class="title">Claude</span>
+                                                <span class="badge download">⬇️ 2,730</span>
+                                            </div>
+                                            <div class="rank-item">
+                                                <span class="title">DeepL</span>
+                                                <span class="badge download">⬇️ 2,215</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+
                 </main>
             </div>
         </div>
