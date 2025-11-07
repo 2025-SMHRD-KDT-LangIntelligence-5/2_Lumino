@@ -121,6 +121,81 @@
                 #themeToggle svg{ width: 2.2rem; height: 2.2rem; stroke: #fff; stroke-width: 1.6; fill: none; }
                 #themeToggle:hover svg{ stroke: #efeaff; }
 
+            /* === 검색창 전체 래퍼 === */
+                .search-bar {
+                  max-width: 50vw;
+                  width: 100%;
+                  border-radius: 50px;
+                  overflow: hidden;
+                  background: rgba(255,255,255,0.3);
+                  backdrop-filter: blur(12px);
+                  border: 2px solid transparent;
+                  background-image:
+                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                    linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
+                  background-origin: border-box;
+                  background-clip: content-box, border-box;
+                  transition: all 0.4s ease;
+                  box-shadow: 0 0 20px rgba(150,120,255,0.15);
+                }
+
+                /* === 입력창 === */
+                .search-input {
+                  border: none !important;
+                  background: transparent !important;
+                  padding: 0.8rem 1.2rem;
+                  font-size: 1rem;
+                  color: #3a3a3a;
+                  width: 100%;
+                  transition: all 0.3s ease;
+                }
+                .search-input::placeholder {
+                  color: #aaa;
+                  letter-spacing: 0.5px;
+                }
+                .search-input:focus {
+                  outline: none;
+                  color: #222;
+                }
+
+                /* === 아이콘 영역 === */
+                .search-icon {
+                  border: none !important;
+                  background: transparent !important;
+                  padding-right: 1.2rem;
+                  color: #7d6aff;
+                  transition: all 0.3s ease;
+                }
+
+                /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
+                .search-bar:focus-within {
+                  background-image:
+                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                    linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
+                  box-shadow: 0 0 25px rgba(150,120,255,0.35);
+                  transform: scale(1.02);
+                }
+
+                /* === 엔터(Submit) 시 시각적 반응 === */
+                .search-input:focus:valid {
+                  animation: enterPulse 0.3s ease-out;
+                }
+                @keyframes enterPulse {
+                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                  50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
+                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                }
+
+            /* 엔터(Submit) 시 시각적 반응 */
+                .enter-pulse {
+                  animation: enterPulse 0.35s ease-out;
+                }
+                @keyframes enterPulse {
+                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                  50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
+                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                }
+
         </style>
 
     </head>
@@ -237,9 +312,16 @@
 
         </nav>
         <div id="layoutSidenav">
+            <!-- 네비게이션 왼쪽 사이드바 -->
             <div id="layoutSidenav_nav">
+                <!-- 사이드바(왼쪽 메뉴 리스트)를 구성하는 태그
+                        sidenav 사이드 메뉴 전체 스타일
+                        shadow-right 오른쪽에 그림자 효과를 줘서 사이드바가 입체적으로 보이게 함
+                        sidenav-light 밝은 톤(화이트/그레이 기반) 사이드바 스타일- / sidenav-dark 는 어두운 버전***스타일 확인-->
                 <nav class="sidenav shadow-right sidenav-light">
+                    <!-- 사이드바 안에서 메뉴 항목 전체 -->
                     <div class="sidenav-menu">
+                        <!--왼쪽 사이드 메뉴에서 대분류 메뉴를 클릭하면 하위 메뉴가 열리고 닫히는 구조-->
                         <div class="nav accordion" id="accordionSidenav">
 
                             <!-- 사이드바의 카테고리 섹션-->
@@ -251,6 +333,7 @@
                                data-bs-target="#collapseDashboards"
                                aria-expanded="false"
                                aria-controls="collapseDashboards">
+                                <!--***링크 연결 확인-->
                                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
                                 카테고리
                                 <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -274,7 +357,6 @@
                                 <div class="nav-link-icon"><i data-feather="globe"></i></div>
                                 커뮤니티
                             </a>
-
                             <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
                                 <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
                                     <!-- Nested Sidenav Accordion (Pages -> Account)-->
@@ -322,10 +404,6 @@
                                             </div>
                                         </nav>
                                     </div>
-
-
-
-
                                     <!-- Nested Sidenav Accordion (Pages -> Error)-->
                                     <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                         Error
@@ -347,6 +425,7 @@
                                     <a class="nav-link" href="invoice.html">Invoice</a>
                                 </nav>
                             </div>
+
                             <!-- 사이드바의 설정 섹션-->
                             <div class="sidenav-menu-heading">Setting</div>
                             <!-- 설정섹션-->
@@ -360,9 +439,6 @@
                                     <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
                                 </nav>
                             </div>
-
-
-
 
                         </div>
                     </div>
@@ -384,75 +460,306 @@
                 <main>
                     <div class="container-xl px-4 mt-4">
                         <h1 class="mb-4">AI 도구 카테고리</h1>
-                        <ul class="nav nav-tabs mb-4">
-                            <li class="nav-item"><a class="nav-link" href="/category_all">전체</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_text">글</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_image">그림</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="/category_audio">음악/음성</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_coding">코딩 및 개발</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_video">영상</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_search">검색</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/category_education">교육/학습</a></li>
-                        </ul>
+                        
+                        <!-- 검색창 -->
+                        <div class="page-header-search"
+                             style="min-height: 5vh; display: flex; align-items: center; justify-content: center; margin-top: 4rem; margin-bottom: 4rem;">
+                            <form id="searchForm" class="input-group input-group-joined search-bar" action="#" method="get">
+                                <div class="input-group input-group-joined search-bar" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
+                                    <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
+                                    <span class="input-group-text search-icon" style="border: none;"><i data-feather="search"></i></span>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- 워크스페이스 칸 -->
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-lg-10 mb-4 mx-auto">
+                                <div class="card h-100" style="transform: scale(0.833); transform-origin: top center;">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                                            <div>
+                                                <h5 class="mb-0">AI Tools</h5>
+                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width: 160px;">
+                                                <option value="workspace-marketing.html">Marketing</option>
+                                                <option value="workspace-engineering.html" selected>Engineering</option>
+                                                <option value="workspace-design.html">Design</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex flex-nowrap gap-3" style="overflow-x: auto;">
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="tool-model-runner.html" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="cpu"></i>
+                                                    <div>Model Runner</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="tool-chat-assistant.html" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="message-circle"></i>
+                                                    <div>Chat Assistant</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="tool-image-gen.html" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="image"></i>
+                                                    <div>Image Gen</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="tool-speech.html" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="mic"></i>
+                                                    <div>Speech</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="#" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="code"></i>
+                                                    <div>Tool 5</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="#" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="zap"></i>
+                                                    <div>Tool 6</div>
+                                                </div>
+                                            </a>
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="#" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="file-text"></i>
+                                                    <div>Tool 7</div>
+                                                </div>
+                                            </a>
+                                            <!-- Add AI Tool Tile -->
+                                            <a class="card lift lift-sm text-center h-100 flex-shrink-0" href="add-ai-tool.html" style="width: 120px;">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                    <i class="mb-2" data-feather="plus"></i>
+                                                    <div>Add Tool</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <h2 class="section-title mb-3">음악/음성 AI 도구</h2>
-                        <div class="tools-grid row">
-                            <div class="col-xl-4 col-lg-6 mb-4 tool-card">
-                                <div class="card lift h-100">
-                                    <div class="card-body">
-                                        <div class="tool-header d-flex align-items-center gap-3 mb-3">
-                                            <div class="tool-icon" style="font-size: 2rem;">🎤</div>
-                                            <div class="tool-info">
-                                                <h3 class="mb-0 h5">ElevenLabs</h3>
-                                                <span class="badge bg-primary-soft text-primary">음성 변환</span>
-                                            </div>
+                        <div class="tools-grid row g-3 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 50%; margin: 0 auto;">
+                            <!-- 가로 5개, 세로 3개 = 총 15개 정사각형 -->
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="music" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 1</div>
                                         </div>
-                                        <p class="tool-description">자연스러운 음성을 생성하고 다양한 언어로 변환할 수 있는 AI 도구입니다.</p>
-                                        <div class="tool-footer d-flex justify-content-between align-items-center mt-3">
-                                            <div class="tool-stats d-flex gap-3">
-                                                <span>⭐ 4.6</span>
-                                                <span>👥 420K</span>
-                                            </div>
-                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-6 mb-4 tool-card">
-                                <div class="card lift h-100">
-                                    <div class="card-body">
-                                        <div class="tool-header d-flex align-items-center gap-3 mb-3">
-                                            <div class="tool-icon" style="font-size: 2rem;">🎵</div>
-                                            <div class="tool-info">
-                                                <h3 class="mb-0 h5">Murf AI</h3>
-                                                <span class="badge bg-primary-soft text-primary">음성 변환</span>
-                                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="mic" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 2</div>
                                         </div>
-                                        <p class="tool-description">전문가 품질의 음성 나레이션을 생성하는 AI 보이스오버 도구입니다.</p>
-                                        <div class="tool-footer d-flex justify-content-between align-items-center mt-3">
-                                            <div class="tool-stats d-flex gap-3">
-                                                <span>⭐ 4.5</span>
-                                                <span>👥 340K</span>
-                                            </div>
-                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-6 mb-4 tool-card">
-                                <div class="card lift h-100">
-                                    <div class="card-body">
-                                        <div class="tool-header d-flex align-items-center gap-3 mb-3">
-                                            <div class="tool-icon" style="font-size: 2rem;">🎼</div>
-                                            <div class="tool-info">
-                                                <h3 class="mb-0 h5">Soundraw</h3>
-                                                <span class="badge bg-primary-soft text-primary">음악 생성</span>
-                                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="headphones" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 3</div>
                                         </div>
-                                        <p class="tool-description">AI로 로열티 프리 음악을 쉽게 생성하고 커스터마이징할 수 있습니다.</p>
-                                        <div class="tool-footer d-flex justify-content-between align-items-center mt-3">
-                                            <div class="tool-stats d-flex gap-3">
-                                                <span>⭐ 4.6</span>
-                                                <span>👥 280K</span>
-                                            </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="volume-2" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 4</div>
                                         </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="radio" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 5</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="disc" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 6</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="play" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 7</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="skip-forward" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 8</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="skip-back" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 9</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="repeat" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 10</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="shuffle" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 11</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="speaker" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 12</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="video" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 13</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="film" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 14</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 1.6rem); max-width: calc(20% - 1.6rem);">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 100%;" href="#">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1rem;">
+                                            <i class="mb-1" data-feather="cast" style="width: 2rem; height: 2rem;"></i>
+                                            <div style="font-size: 0.85rem; font-weight: 500;">Tool 15</div>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
                                     </div>
                                 </div>
                             </div>
