@@ -13,7 +13,123 @@
         <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+
+        <style>
+
+
+                               /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
+                               #workspace-zone .card {
+                                 max-width: 900px;  /* 가로 폭 */
+                                 margin: 0 auto;
+                                 border-radius: 22px;
+                                 box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
+                               }
+                               #workspace-zone .card-header { padding: .8rem 1rem; }
+                               #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
+
+
+
+
+
+
+
+
+
+/* 워크스페이스 카드 로고 전용 스타일 */
+                .workspace-logo {
+                  width: 120%;
+                  height: auto;            /* 비율 자동 유지 */
+                  object-fit: contain;     /* 상자 안에 맞게 축소 */
+                  display: block;
+                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                  background-color: transparent;
+                  transition: transform 0.25s ease;
+                }
+
+                .workspace-logo:hover {
+                  transform: scale(1.05);  /* 살짝 커지게 */
+                }
+
+
+        </style>
+
+
     </head>
+
+    <section id="workspace-zone" class="az-section">
+        <div class="container-xl px-4">
+            <h2 class="section-title">Workspace Zone</h2>
+
+
+    <div class="card mt-4">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                <div>
+                    <h5 class="mb-0">Englneeing</h5>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
+                    <option value="workspace-marketing.html">Marketing</option>
+                    <option value="workspace-engineering.html" selected>Engineering</option>
+                    <option value="workspace-design.html">Design</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row g-3">
+
+                <!-- 네 개 아이콘 타일 -->
+                <div class="col-4 col-md-3 col-xl-2">
+                    <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                            <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-md-3 col-xl-2">
+                    <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                            <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-md-3 col-xl-2">
+                    <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                            <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-md-3 col-xl-2">
+                    <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                            <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-md-3 col-xl-2">
+                    <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                            <i class="mb-2" data-feather="plus"></i>
+                            <div>Add Tool</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>
+
+
     <body class="nav-fixed">
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
             <!-- Sidenav Toggle Button-->
