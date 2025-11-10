@@ -9,7 +9,7 @@
         <title>전체 - AI 도구 카테고리</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <link href="/css/category.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/LogoNotBG.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
@@ -54,115 +54,6 @@
               .workspace-logo:hover {
                 transform: scale(1.05);  /* 살짝 커지게 */
               }
-
-          /* === A-VERSE 테마 토글 버튼 (우주 보라빛 스타일) === */
-          #themeToggle {
-            all: unset;                                   /* 기본 버튼 스타일 초기화 */
-            width: 4rem;                                  /* 기존보다 조금 크게 */
-            height: 4rem;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-
-            /* 보라-블루 오로라 그라데이션 */
-            background: linear-gradient(135deg, #b39aff 0%, #8ca6ff 50%, #b7e8ff 100%);
-            box-shadow:
-              0 0 20px rgba(160, 140, 255, 0.3),
-              inset 0 0 10px rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            transition: all 0.3s ease;
-          }
-
-          #themeToggle:hover {
-            transform: scale(1.1);
-            box-shadow:
-              0 0 28px rgba(180, 160, 255, 0.6),
-              inset 0 0 10px rgba(255, 255, 255, 0.2);
-          }
-
-          /* === Feather 아이콘 공통 (크게 + 색상 통일) === */
-          #themeToggle i[data-feather] {
-            width: 2rem;
-            height: 2rem;
-            line-height: 0;
-          }
-
-          #themeToggle svg {
-            width: 2rem;
-            height: 2rem;
-            stroke: #ffffff;                             /* 흰색 아이콘 */
-            stroke-width: 1.6;
-            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
-            transition: all 0.3s ease;
-          }
-
-          #themeToggle:hover svg {
-            stroke: #e9e1ff;                             /* 살짝 더 밝은 흰빛 */
-            filter: drop-shadow(0 0 10px rgba(183, 169, 255, 0.9));
-          }
-
-          /* === 사이드바 하단 배경과 자연스럽게 이어지도록 === */
-          .sidenav-footer {
-            background: linear-gradient(180deg,
-              rgba(14, 14, 20, 0.95) 0%,
-              rgba(24, 24, 32, 0.98) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1.5rem 0;
-          }
-          /* 1) 사이드바 푸터 배경을 투명으로 (검정 사각형 제거) */
-              .sidenav-footer{
-                background: transparent !important;
-                border-top: none !important;
-                padding: 1.25rem 0; /* 여백만 유지 */
-              }
-              .sidenav-footer-content{
-                background: transparent !important;
-              }
-
-              /* 2) 혹시 테마/기본 CSS가 더 강하게 덮으면, 부모 경로까지 지정 */
-              #layoutSidenav_nav .sidenav .sidenav-footer{
-                background: transparent !important;
-                border-top: none !important;
-              }
-
-              /* 3) 토글 버튼: 아이콘만, 더 크게 (직전 코드 유지 + 크기만 살짝 키움) */
-              #themeToggle{
-                all: unset;
-                width: 4.25rem;   /* 4rem → 4.25rem로 살짝 키움 */
-                height: 4.25rem;
-                border-radius: 50%;
-                cursor: pointer;
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                overflow: hidden;
-
-                /* 오로라 보라빛 그라데이션 */
-                background: linear-gradient(135deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
-                box-shadow:
-                  0 0 20px rgba(160,140,255,.30),
-                  inset 0 0 10px rgba(255,255,255,.15);
-                backdrop-filter: blur(6px);
-                -webkit-backdrop-filter: blur(6px);
-                transition: all .3s ease;
-              }
-              #themeToggle:hover{
-                transform: scale(1.1);
-                box-shadow:
-                  0 0 28px rgba(180,160,255,.55),
-                  inset 0 0 10px rgba(255,255,255,.20);
-              }
-
-              /* Feather 아이콘 크게 + 테두리/배경 없음 */
-              #themeToggle i[data-feather]{ width: 2.2rem; height: 2.2rem; line-height: 0; }
-              #themeToggle svg{ width: 2.2rem; height: 2.2rem; stroke: #fff; stroke-width: 1.6; fill: none; }
-              #themeToggle:hover svg{ stroke: #efeaff; }
 
           /* === 검색창 전체 래퍼 === */
               .search-bar {
@@ -238,6 +129,31 @@
                 50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
                 100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
               }
+
+            /* 모드 이미지 버튼 (이미지만 보이게) */
+                .mode-btn{
+                  all: unset;                  /* 기본 버튼 스타일 제거 */
+                  display: flex !important;
+                  align-items: center;
+                  justify-content: center;
+                  width: 6rem;              /* 크기 조정: 더 키우려면 값만 늘리세요 */
+                  height: 4.25rem;
+                  cursor: pointer;
+                  margin: 0 auto;              /* 가운데 정렬 */
+                }
+                .mode-btn img{
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  border-radius: 18px;         /* 이미지 모서리 살짝 라운드 (원한다면 0으로) */
+                  pointer-events: none;        /* 클릭 판정은 버튼이 받도록 */
+                }
+
+                /* 호버 시 살짝 글로우 */
+                .mode-btn:hover{
+                  filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
+                  transform: translateZ(0);
+                }
 
         </style>
     </head>
@@ -318,7 +234,7 @@
                            <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
                     <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="assets/img/illustrations/profiles/profile-1.png" /></a>
+                                                                                                               src="/assets/img/illustrations/profiles/profile-1.png" /></a>
                     <!--열리는 메뉴 상자-->
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
 
@@ -354,7 +270,7 @@
 
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav" style="background-color: #ffffff;">
                 <nav class="sidenav shadow-right sidenav-light">
                     <div class="sidenav-menu">
                         <div class="nav accordion" id="accordionSidenav">
@@ -487,9 +403,9 @@
                     <!-- Sidenav Footer-->
                     <div class="sidenav-footer">
                         <div class="sidenav-footer-content">
-                            <button class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center gap-2" id="themeToggle" title="테마 변경">
-                                <i data-feather="sun" id="lightIcon"></i>
-                                <i data-feather="moon" id="darkIcon"></i>
+                            <!-- ✅ 라이트/다크 모드 토글 (이미지 버튼) -->
+                            <button id="themeToggle" class="mode-btn" title="테마 전환">
+                                <img src="/assets/img/mode.png" alt="Toggle theme">
                             </button>
                         </div>
 
@@ -598,7 +514,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="https://chatgpt.com">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/ChatGPT.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/ChatGPT.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -611,7 +527,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Gemini.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Gemini.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -624,7 +540,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Claude.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/claude.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -637,7 +553,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Poe.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Poe.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -650,7 +566,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/CURSOR.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/cursor.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -663,7 +579,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Perplexity Al.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Perplexity Al.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -676,7 +592,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Wrtn.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Wrtn.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -689,7 +605,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/DALL-E.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/DALL-E.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -702,7 +618,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/suno.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/suno.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -715,7 +631,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Soundful.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Soundful.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -728,7 +644,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/naver_clovar.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/naver_clovar.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -741,7 +657,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/wemakevoice.png" class="workspace-logo" style="border-radius: 0px;">
+                                            <img src="/assets/img/logo_img/wemakevoice.png" class="workspace-logo" style="border-radius: 0px;">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -754,7 +670,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Daglo.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Daglo.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -767,7 +683,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Pollo_AI.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Pollo_AI.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -780,7 +696,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="assets/img/logo_img/Gamma.png" class="workspace-logo">
+                                            <img src="/assets/img/logo_img/Gamma.png" class="workspace-logo">
                                         </div>
                                     </a>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
@@ -882,5 +798,6 @@
                 }
             });
         </script>
-    </body>
+
+        </body>
 </html>
