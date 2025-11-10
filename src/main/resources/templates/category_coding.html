@@ -12,6 +12,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
         <style>
+
+            /* 워크스페이스 카드 로고 전용 스타일 */
+                .workspace-logo {
+                  width: 100%;
+                  height: auto;            /* 비율 자동 유지 */
+                  object-fit: contain;     /* 상자 안에 맞게 축소 */
+                  display: block;
+                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                  background-color: transparent;
+                  transition: transform 0.25s ease;
+                }
+
+                .workspace-logo:hover {
+                  transform: scale(1.05);  /* 살짝 커지게 */
+                }
+
+
             /* === A-VERSE 테마 토글 버튼 (우주 보라빛 스타일) === */
             #themeToggle {
               all: unset;                                   /* 기본 버튼 스타일 초기화 */
@@ -568,8 +585,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="code" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">GitHub Copilot</div>
+                                                <img src="/assets/img/logo_img/deepcode.png" alt="deecode Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -587,8 +603,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="terminal" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tabnine</div>
+                                                <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -606,8 +621,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="git-branch" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Cursor</div>
+                                                <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -625,8 +639,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="package" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 4</div>
+                                                <img src="/assets/img/logo_img/Lovable_dev.png" alt="Lovable_dev Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -644,8 +657,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="file-code" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 5</div>
+                                                <img src="/assets/img/logo_img/Krater.png" alt="Krater Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -663,8 +675,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="layers" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 6</div>
+                                                <img src="/assets/img/logo_img/Vibesheet.png" alt="Vibesheet Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -682,8 +693,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="box" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 7</div>
+                                                <img src="/assets/img/logo_img/windsurf.png" alt="windsurf Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -701,8 +711,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="grid" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 8</div>
+                                                <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -720,8 +729,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="cpu" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 9</div>
+                                                <img src="/assets/img/logo_img/Aider.png" alt="Aider Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -739,8 +747,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="zap" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 10</div>
+                                                <img src="/assets/img/logo_img/Poe.png" alt="Poe Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -758,8 +765,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="database" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 11</div>
+                                                <img src="/assets/img/logo_img/Aistudio.png" alt="Aistudio Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -777,8 +783,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="server" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 12</div>
+                                                <img src="/assets/img/logo_img/Pictory.png" alt="Pictory Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -796,8 +801,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="tool" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 13</div>
+                                                <img src="/assets/img/logo_img/Synthesia.png" alt="Synthesia Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -815,8 +819,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="settings" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 14</div>
+                                                <img src="/assets/img/logo_img/Pollo_AI.png" alt="Pollo_AI Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
@@ -834,8 +837,7 @@
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <i class="mb-1" data-feather="cloud" style="width: 1.5rem; height: 1.5rem;"></i>
-                                                <div style="font-size: 0.75rem; font-weight: 500;">Tool 15</div>
+                                                <img src="/assets/img/logo_img/Runway.png" alt="Runway Logo" class="workspace-logo">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
