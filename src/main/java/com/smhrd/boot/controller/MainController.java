@@ -15,15 +15,4 @@ public class MainController {
         return "index"; // templates 폴더의 index을 찾음
     }
 
-    // 메인1 페이지 매핑
-    @GetMapping("/main1_page")
-    public String main1_page() {
-        return "main1_page"; // templates 폴더의 account-notifications.html을 찾음
-    }
-
-    // 메인2 페이지 매핑
-    @GetMapping("/main2_page")
-    public String main2_page() {
-        return "main2_page"; // templates 폴더의 account-notifications.html을 찾음
-    }
 }
