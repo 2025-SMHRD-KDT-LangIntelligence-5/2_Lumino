@@ -13,183 +13,262 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
         <style>
-                /* 모드 이미지 버튼 (이미지만 보이게) */
-                .mode-btn{
-                  all: unset;                  /* 기본 버튼 스타일 제거 */
-                  display: flex !important;
-                  align-items: center;
-                  justify-content: center;
-                  width: 6rem;              /* 크기 조정: 더 키우려면 값만 늘리세요 */
-                  height: 4.25rem;
-                  cursor: pointer;
-                  margin: 0 auto;              /* 가운데 정렬 */
-                }
-                .mode-btn img{
-                  width: 100%;
-                  height: 100%;
-                  display: block;
-                  border-radius: 18px;         /* 이미지 모서리 살짝 라운드 (원한다면 0으로) */
-                  pointer-events: none;        /* 클릭 판정은 버튼이 받도록 */
-                }
 
-                /* 호버 시 살짝 글로우 */
-                .mode-btn:hover{
-                  filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
-                  transform: translateZ(0);
-                }
+            /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
+                   #workspace-zone .card {
+                     max-width: 900px;  /* 가로 폭 */
+                     margin: 0 auto;
+                     border-radius: 22px;
+                     box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
+                   }
+                   #workspace-zone .card-header { padding: .8rem 1rem; }
+                   #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
 
-            /* === 검색창 전체 래퍼 === */
-                .search-bar {
-                  max-width: 50vw;
-                  width: 100%;
-                  border-radius: 50px;
-                  overflow: hidden;
-                  background: rgba(255,255,255,0.3);
-                  backdrop-filter: blur(12px);
-                  border: 2px solid transparent;
-                  background-image:
-                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                    linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
-                  background-origin: border-box;
-                  background-clip: content-box, border-box;
-                  transition: all 0.4s ease;
-                  box-shadow: 0 0 20px rgba(150,120,255,0.15);
-                }
+            /* 워크스페이스 카드 로고 전용 스타일 */
+               .workspace-logo {
+                 width: 100%;
+                 max-width: 180px;
+                 height: auto;
+                 object-fit: contain;
+                 display: block;
+                 border-radius: 12px;
+                 background-color: transparent;
+                 transition: transform 0.25s ease;
+                 margin: 0 auto;
+               }
 
-                /* === 입력창 === */
-                .search-input {
-                  border: none !important;
-                  background: transparent !important;
-                  padding: 0.8rem 1.2rem;
-                  font-size: 1rem;
-                  color: #3a3a3a;
-                  width: 100%;
-                  transition: all 0.3s ease;
-                }
-                .search-input::placeholder {
-                  color: #aaa;
-                  letter-spacing: 0.5px;
-                }
-                .search-input:focus {
-                  outline: none;
-                  color: #222;
-                }
+               .workspace-logo:hover {
+                 transform: scale(1.05);
+               }
+               /* 모드 이미지 버튼 (이미지만 보이게) */
+               .mode-btn{
+                 all: unset;                  /* 기본 버튼 스타일 제거 */
+                 display: flex !important;
+                 align-items: center;
+                 justify-content: center;
+                 width: 6rem;              /* 크기 조정: 더 키우려면 값만 늘리세요 */
+                 height: 4.25rem;
+                 cursor: pointer;
+                 margin: 0 auto;              /* 가운데 정렬 */
+               }
+               .mode-btn img{
+                 width: 100%;
+                 height: 100%;
+                 display: block;
+                 border-radius: 18px;         /* 이미지 모서리 살짝 라운드 (원한다면 0으로) */
+                 pointer-events: none;        /* 클릭 판정은 버튼이 받도록 */
+               }
 
-                /* === 아이콘 영역 === */
-                .search-icon {
-                  border: none !important;
-                  background: transparent !important;
-                  padding-right: 1.2rem;
-                  color: #7d6aff;
-                  transition: all 0.3s ease;
-                }
+               /* 호버 시 살짝 글로우 */
+               .mode-btn:hover{
+                 filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
+                 transform: translateZ(0);
+               }
 
-                /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
-                .search-bar:focus-within {
-                  background-image:
-                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                    linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
-                  box-shadow: 0 0 25px rgba(150,120,255,0.35);
-                  transform: scale(1.02);
-                }
+           /* === 검색창 전체 래퍼 === */
+               .search-bar {
+                 max-width: 50vw;
+                 width: 100%;
+                 border-radius: 50px;
+                 overflow: hidden;
+                 background: rgba(255,255,255,0.3);
+                 backdrop-filter: blur(12px);
+                 border: 2px solid transparent;
+                 background-image:
+                   linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                   linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
+                 background-origin: border-box;
+                 background-clip: content-box, border-box;
+                 transition: all 0.4s ease;
+                 box-shadow: 0 0 20px rgba(150,120,255,0.15);
+               }
 
-                /* === 엔터(Submit) 시 시각적 반응 === */
-                .search-input:focus:valid {
-                  animation: enterPulse 0.3s ease-out;
-                }
-                @keyframes enterPulse {
-                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                  50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
-                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                }
+               /* === 입력창 === */
+               .search-input {
+                 border: none !important;
+                 background: transparent !important;
+                 padding: 0.8rem 1.2rem;
+                 font-size: 1rem;
+                 color: #3a3a3a;
+                 width: 100%;
+                 transition: all 0.3s ease;
+               }
+               .search-input::placeholder {
+                 color: #aaa;
+                 letter-spacing: 0.5px;
+               }
+               .search-input:focus {
+                 outline: none;
+                 color: #222;
+               }
 
-            /* 엔터(Submit) 시 시각적 반응 */
-                .enter-pulse {
-                  animation: enterPulse 0.35s ease-out;
-                }
-                @keyframes enterPulse {
-                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                  50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
-                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                }
+               /* === 아이콘 영역 === */
+               .search-icon {
+                 border: none !important;
+                 background: transparent !important;
+                 padding-right: 1.2rem;
+                 color: #7d6aff;
+                 transition: all 0.3s ease;
+               }
 
-            /* === A-VERSE 감성 디테일 (라이트/다크 공통으로 덮어쓰기) === */
+               /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
+               .search-bar:focus-within {
+                 background-image:
+                   linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                   linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
+                 box-shadow: 0 0 25px rgba(150,120,255,0.35);
+                 transform: scale(1.02);
+               }
 
-                /* 1) 네비게이션/사이드바 글래스 질감 */
-                .topnav,
-                .sidenav {
-                  backdrop-filter: blur(12px);
-                  -webkit-backdrop-filter: blur(12px);
-                }
-                body[data-theme="light"] .topnav,
-                body[data-theme="light"] .sidenav {
-                  background: rgba(255,255,255,0.60);
-                  border: 1px solid rgba(180,180,255,0.20);
-                  box-shadow: 0 6px 18px rgba(160,140,255,0.10);
-                }
-                body[data-theme="dark"] .topnav,
-                body[data-theme="dark"] .sidenav {
-                  background: rgba(20,20,35,0.45);
-                  border: 1px solid rgba(160,160,220,0.12);
-                  box-shadow: 0 8px 24px rgba(10,10,20,0.45);
-                }
+               /* === 엔터(Submit) 시 시각적 반응 === */
+               .search-input:focus:valid {
+                 animation: enterPulse 0.3s ease-out;
+               }
+               @keyframes enterPulse {
+                 0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                 50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
+                 100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+               }
 
-                /* 3) 카드 부유감 */
-                .card.lift:hover {
-                  transform: translateY(-4px);
-                  box-shadow: 0 10px 28px rgba(160,140,255,0.22);
-                }
+           /* 엔터(Submit) 시 시각적 반응 */
+               .enter-pulse {
+                 animation: enterPulse 0.35s ease-out;
+               }
+               @keyframes enterPulse {
+                 0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                 50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
+                 100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+               }
 
-                /* 6) 페이지 헤더(로고 영역) 글로시 오버레이 */
-                .page-header {
-                  position: relative; overflow: hidden;
-                }
-                .page-header::after{
-                  content:"";
-                  position:absolute; inset:0;
-                  background:
-                    radial-gradient(600px 180px at 10% -10%, rgba(179,154,255,0.15), transparent 60%),
-                    radial-gradient(500px 160px at 85% -10%, rgba(141,166,255,0.12), transparent 60%);
-                  pointer-events: none;
-                }
+           /* === A-VERSE 감성 디테일 (라이트/다크 공통으로 덮어쓰기) === */
 
-                /* 7) 버튼/링크 호버 오로라 흐름 */
-                .btn:hover, .nav-link:hover {
-                  background: linear-gradient(120deg,#b39aff,#8da6ff,#b7e8ff);
-                  background-size: 200% 200%;
-                  animation: moveGlow 1.5s ease infinite;
-                }
-                @keyframes moveGlow {
-                  0%{ background-position: 0% 50%; }
-                  100%{ background-position: 100% 50%; }
-                }
+               /* 1) 네비게이션/사이드바 글래스 질감 */
+               .topnav,
+               .sidenav {
+                 backdrop-filter: blur(12px);
+                 -webkit-backdrop-filter: blur(12px);
+               }
+               body[data-theme="light"] .topnav,
+               body[data-theme="light"] .sidenav {
+                 background: rgba(255,255,255,0.60);
+                 border: 1px solid rgba(180,180,255,0.20);
+                 box-shadow: 0 6px 18px rgba(160,140,255,0.10);
+               }
+               body[data-theme="dark"] .topnav,
+               body[data-theme="dark"] .sidenav {
+                 background: rgba(20,20,35,0.45);
+                 border: 1px solid rgba(160,160,220,0.12);
+                 box-shadow: 0 8px 24px rgba(10,10,20,0.45);
+               }
 
-                /* 8) 검색창 고급 테두리 & 포커스 */
-                .page-header-search .input-group {
-                  border-radius: 9999px; overflow: hidden;
-                  border: 1px solid rgba(161, 139, 255, 0.35);
-                  box-shadow:
-                    0 2px 14px rgba(0,0,0,0.08),
-                    0 0 0 1px rgba(161, 139, 255, 0.20) inset;
-                  backdrop-filter: blur(8px);
-                }
-                .page-header-search .form-control {
-                  background: rgba(255,255,255,0.75);
-                }
-                body[data-theme="dark"] .page-header-search .form-control {
-                  background: rgba(20,20,30,0.75); color: #eaeaf4;
-                }
-                .page-header-search .form-control:focus {
-                  box-shadow: 0 0 0 3px rgba(180,159,255,0.25);
-                }
+               /* 3) 카드 부유감 */
+               .card.lift:hover {
+                 transform: translateY(-4px);
+                 box-shadow: 0 10px 28px rgba(160,140,255,0.22);
+               }
 
-                /* 9) 사이드 메뉴 글씨를 오른쪽으로 조금 더 */
-                .sidenav .nav-link {
-                  padding-left: 1.1rem;
+               /* 6) 페이지 헤더(로고 영역) 글로시 오버레이 */
+               .page-header {
+                 position: relative; overflow: hidden;
+               }
+               .page-header::after{
+                 content:"";
+                 position:absolute; inset:0;
+                 background:
+                   radial-gradient(600px 180px at 10% -10%, rgba(179,154,255,0.15), transparent 60%),
+                   radial-gradient(500px 160px at 85% -10%, rgba(141,166,255,0.12), transparent 60%);
+                 pointer-events: none;
+               }
+
+               /* 7) 버튼/링크 호버 오로라 흐름 */
+               .btn:hover, .nav-link:hover {
+                 background: linear-gradient(120deg,#b39aff,#8da6ff,#b7e8ff);
+                 background-size: 200% 200%;
+                 animation: moveGlow 1.5s ease infinite;
+               }
+               @keyframes moveGlow {
+                 0%{ background-position: 0% 50%; }
+                 100%{ background-position: 100% 50%; }
+               }
+
+               /* 8) 검색창 고급 테두리 & 포커스 */
+               .page-header-search .input-group {
+                 border-radius: 9999px; overflow: hidden;
+                 border: 1px solid rgba(161, 139, 255, 0.35);
+                 box-shadow:
+                   0 2px 14px rgba(0,0,0,0.08),
+                   0 0 0 1px rgba(161, 139, 255, 0.20) inset;
+                 backdrop-filter: blur(8px);
+               }
+               .page-header-search .form-control {
+                 background: rgba(255,255,255,0.75);
+               }
+               body[data-theme="dark"] .page-header-search .form-control {
+                 background: rgba(20,20,30,0.75); color: #eaeaf4;
+               }
+               .page-header-search .form-control:focus {
+                 box-shadow: 0 0 0 3px rgba(180,159,255,0.25);
+               }
+
+               /* 9) 사이드 메뉴 글씨를 오른쪽으로 조금 더 */
+               .sidenav .nav-link {
+                 padding-left: 1.1rem;
+               }
+               .sidenav .sidenav-menu-nested .nav-link {
+                 padding-left: 1.8rem;
+               }
+
+               /* Workspace Zone */
+                .az-section {
+                  border-radius: 1.25rem;
+                  padding: 1.75rem 2rem;
+                  background: transparent;
+                  max-width: 760px;
+                  margin: 0 auto;
                 }
-                .sidenav .sidenav-menu-nested .nav-link {
-                  padding-left: 1.8rem;
-                }
+               .az-section .workspace-inner-card {
+                 border: none;
+                 border-radius: 1rem;
+                 background: rgba(255, 255, 255, 0.9);
+                 box-shadow: 0 6px 22px rgba(107, 90, 180, 0.16);
+                 margin: 0;
+               }
+               .workspace-inner-card .card-body {
+                 max-width: 620px;
+                 margin: 0 auto;
+               }
+               .workspace-logo {
+                 width: 100%;
+                 max-width: 180px;
+                 height: auto;
+                 object-fit: contain;
+                 display: block;
+                 border-radius: 12px;
+                 background-color: transparent;
+                 transition: transform 0.25s ease;
+                 margin: 0 auto;
+               }
+               .workspace-logo:hover {
+                 transform: scale(1.05);
+               }
+               .workspace-tile {
+                 width: 100%;
+                 aspect-ratio: 1 / 1;
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 gap: 0.35rem;
+                 border-radius: 1rem;
+                 padding: 0.75rem;
+                 background: #ffffff;
+               }
+               .workspace-tile i {
+                 color: #5b4abf;
+               }
+               .workspace-tool-card {
+                 border-radius: 1rem;
+                 overflow: hidden;
+               }
         </style>
         <link rel="icon" type="image/png" href="/assets/img/LogoNotBG.png" />
     </head>
@@ -205,6 +284,7 @@
             <!-- 네비게이션 상단 좌측 로고 -->
             <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
                style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                      background-clip: text;
                       -webkit-background-clip: text;
                       -webkit-text-fill-color: transparent;
                       font-weight: 700;
@@ -482,41 +562,55 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="cpu"></i>
-                                                        <div>Model Runner</div>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <!-- ========== Workspace Zone (라벤더 배경 + 타이틀 밑줄) ========== -->
+                                        <section class="az-section workspace-zone">
+                                            <div class="container-xl px-4">
+                                                <p class="small mb-3 text-dark">코드 리뷰 자동화 + 대화형 보조 + 이미지 생성 + 음성 처리 툴로 구성된 워크스페이스.</p>
+                                                <div class="card mt-4 workspace-inner-card">
+                                                    <div class="card-body">
+                                                        <div class="row g-3 justify-content-center">
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/cursor.png" alt="Cursor Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/deepcode.png" alt="Deepcode Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/windsurf.png" alt="Windsurf Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="image"></i>
-                                                        <div>Image Gen</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="mic"></i>
-                                                        <div>Speech</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="mt-3 small text-muted">코드 리뷰 자동화 + 대화형 보조 + 이미지 생성 + 음성 처리 툴로 구성된 워크스페이스.</div>
+                                        </section>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
@@ -537,41 +631,55 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="image"></i>
-                                                        <div>Image Gen</div>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <!-- ========== Workspace Zone (라벤더 배경 + 타이틀 밑줄) ========== -->
+                                        <section class="az-section workspace-zone">
+                                            <div class="container-xl px-4">
+                                                <p class="small mb-3 text-dark">디자인 아이데이션 중심 도구 구성.</p>
+                                                <div class="card mt-4 workspace-inner-card">
+                                                    <div class="card-body">
+                                                        <div class="row g-3 justify-content-center">
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Runway.png" alt="Runway Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Leonardo%20AI.png" alt="Leonardo AI Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/SeaArt.png" alt="SeaArt Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Microsoft%20Designer.png" alt="Microsoft Designer Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Fotor%20AI.png" alt="Fotor AI Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </a>
                                                 </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
-                                                </div>
-                                                </a>
-                                                </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="cpu"></i>
-                                                        <div>Model Runner</div>
-                                                </div>
-                                                </a>
-                                                </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="mic"></i>
-                                                        <div>Speech</div>
-                                                </div>
-                                                </a>
                                             </div>
-                                        </div>
-                                        <div class="mt-3 small text-muted">디자인 아이데이션 중심 도구 구성.</div>
+                                        </section>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
@@ -592,41 +700,55 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row g-3">
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <!-- ========== Workspace Zone (라벤더 배경 + 타이틀 밑줄) ========== -->
+                                        <section class="az-section workspace-zone">
+                                            <div class="container-xl px-4">
+                                                <p class="small mb-3 text-dark">콘텐츠 제작 및 퍼포먼스 마케팅 중심 구성.</p>
+                                                <div class="card mt-4 workspace-inner-card">
+                                                    <div class="card-body">
+                                                        <div class="row g-3 justify-content-center">
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Perplexity%20AI.png" alt="Perplexity AI Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Gamma.png" alt="Gamma Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/HeyGen.png" alt="HeyGen Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/Pictory.png" alt="Pictory Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-4 col-md-3 col-xl-2">
+                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-speech.html">
+                                                                    <div class="workspace-tile">
+                                                                        <img src="/assets/img/logo_img/suno.png" alt="Suno Logo" class="workspace-logo" />
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="cpu"></i>
-                                                        <div>Model Runner</div>
-                                                </div>
-                                                </a>
-                                                </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-image-gen.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="image"></i>
-                                                        <div>Image Gen</div>
-                                                </div>
-                                                </a>
-                                                </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" href="tool-speech.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="mic"></i>
-                                                        <div>Speech</div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="mt-3 small text-muted">콘텐츠 제작 및 퍼포먼스 마케팅 중심 구성.</div>
+                                        </section>
+                                        <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
