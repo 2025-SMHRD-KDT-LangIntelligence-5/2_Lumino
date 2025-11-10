@@ -39,6 +39,86 @@
               transform: translateZ(0);
             }
 
+            /* 두 섹션 공통 적용: id가 workspace-zone로 시작하거나 .az-section 클래스인 섹션 모두 */
+            section[id^="workspace-zone"] .card,
+            .az-section .card{
+              max-width: 900px;       /* 가로 폭 */
+              margin: 0 auto;
+              border-radius: 22px;
+              box-shadow: 0 6px 14px rgba(160,140,255,.12);
+            }
+            section[id^="workspace-zone"] .card-header,
+            .az-section .card-header{
+              padding: .8rem 1rem;
+            }
+            section[id^="workspace-zone"] .card-body,
+            .az-section .card-body{
+              padding: 1.0rem 1.25rem; /* 세로 간격 */
+            }
+
+             /* 워크스페이스 카드 로고 전용 스타일 */
+                .workspace-logo {
+                  width: 120%;
+                  height: auto;            /* 비율 자동 유지 */
+                  object-fit: contain;     /* 상자 안에 맞게 축소 */
+                  display: block;
+                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                  background-color: transparent;
+                  transition: transform 0.25s ease;
+                }
+
+                .workspace-logo:hover {
+                  transform: scale(1.05);  /* 살짝 커지게 */
+                }
+
+:root{
+                  --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
+                  --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
+                  --brand:#9c8cff; --accent:#a7b7ff;
+                  --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
+                }
+
+                /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
+                .small, .text-muted{ color:var(--ink-3)!important; }
+
+
+            /* ==============================
+               Elegant Universal Body Background
+               ============================== */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              background-color: #f9f9ff;
+              background-image:
+                /* subtle inner glow (top-left) */
+                radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
+                /* soft diagonal lavender flow */
+                linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
+                /* gentle vignette edges */
+                radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: #242a39;
+              transition: background 0.6s ease, color 0.4s ease;
+            }
+
+            /***** Chrome/Edge *****/
+                *::-webkit-scrollbar{ height:10px; width:10px; }
+                *::-webkit-scrollbar-thumb{
+                  background: linear-gradient(var(--brand), var(--accent));
+                  border-radius:999px; border:2px solid transparent; background-clip: content-box;
+                }
+                *::-webkit-scrollbar-track{ background: transparent; }
+                /***** Firefox *****/
+                *{
+                  scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
+                  scrollbar-width: thin;
+                }
+
         </style>
 
     </head>
@@ -294,109 +374,66 @@
                         </div>
                         
                         <!-- 워크스페이스 목록 (DB에서 가져온 워크스페이스들이 자동으로 표시됨) -->
-                        <!-- 임시 예시 워크스페이스 1 -->
-                        <div class="row justify-content-center mb-5">
-                            <!-- Left: AI Tools Icon Grid with Workspace Selector -->
-                            <div class="col-lg-8 mb-4 mx-auto">
-                                <div class="card h-100">
-                                    <div class="card-header d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
-                                            <div>
-                                                <h5 class="mb-0">Engineering</h5>
-                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(1)" title="워크스페이스 삭제">
-                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem; color: #e61919;"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row g-3">
-                                            <!-- AI Tool items -->
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="cpu"></i>
-                                                        <div>Model Runner</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-image-gen.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="image"></i>
-                                                        <div>Image Gen</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <!-- Add AI Tool Tile -->
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="#" onclick="event.preventDefault(); showAddToolModal(1); return false;">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="plus"></i>
-                                                        <div>Add Tool</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 임시 예시 워크스페이스 2 -->
-                        <div class="row justify-content-center mb-5">
-                            <!-- Left: AI Tools Icon Grid with Workspace Selector -->
-                            <div class="col-lg-8 mb-4 mx-auto">
-                                <div class="card h-100">
+                        <!-- 워크스페이스 1 -->
+                        <section id="workspace-zone-1" class="az-section">
+                                <!-- 기존 AI Tools 카드 그대로 넣되, 불필요한 inline-style 제거 권장 -->
+                                <div class="card mt-4">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                             <div>
                                                 <h5 class="mb-0">Marketing</h5>
-                                                <div class="small text-muted">Select workspace and manage AI tool icons</div>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn btn-sm btn-transparent-danger" type="button" onclick="deleteWorkspace(2)" title="워크스페이스 삭제">
-                                                <i data-feather="trash-2" style="width: 1rem; height: 1rem; color: #e61919;"></i>
-                                            </button>
+                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
+                                                <option value="workspace-marketing.html" selected>Marketing</option>
+                                                <option value="workspace-engineering.html" >Engineering</option>
+                                                <option value="workspace-design.html">Design</option>
+                                            </select>
                                         </div>
                                     </div>
+
                                     <div class="card-body">
                                         <div class="row g-3">
-                                            <!-- AI Tool items -->
+
+                                            <!-- 네 개 아이콘 타일 -->
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-speech.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="mic"></i>
-                                                        <div>Speech</div>
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
                                                     </div>
                                                 </a>
                                             </div>
+
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
                                                     </div>
                                                 </a>
                                             </div>
-                                            <!-- Add AI Tool Tile -->
+
                                             <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100 rounded-4" style="border-radius: 1rem;" href="#" onclick="event.preventDefault(); showAddToolModal(2); return false;">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
                                                     </div>
@@ -406,8 +443,81 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                         
+                        <!-- 워크스페이스 2 -->
+                        <section id="workspace-zone-2" class="az-section">
+                                <!-- 기존 AI Tools 카드 그대로 넣되, 불필요한 inline-style 제거 권장 -->
+                                <div class="card mt-4">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                                            <div>
+                                                <h5 class="mb-0">Engineering</h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
+                                                <option value="workspace-marketing.html">Marketing</option>
+                                                <option value="workspace-engineering.html" selected>Engineering</option>
+                                                <option value="workspace-design.html">Design</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="row g-3">
+
+                                            <!-- 네 개 아이콘 타일 -->
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4 col-md-3 col-xl-2">
+                                                <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+
                         <!-- 실제 DB 데이터(주석 처리됨 - 나중에 활성화!) -->
                         <!--
                         <div th:each="workspace : ${workspaces}" class="row justify-content-center mb-4">
