@@ -114,6 +114,12 @@
                   100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
                 }
 
+            
+            /* === 사이드바 강제 흰색 배경 === */
+                #layoutSidenav_nav {
+                  background-color: #ffffff !important;
+                }
+
             /* === A-VERSE 감성 디테일 (라이트/다크 공통으로 덮어쓰기) === */
 
                 /* 1) 네비게이션/사이드바 글래스 질감 */
@@ -128,11 +134,14 @@
                   border: 1px solid rgba(180,180,255,0.20);
                   box-shadow: 0 6px 18px rgba(160,140,255,0.10);
                 }
-                body[data-theme="dark"] .topnav,
-                body[data-theme="dark"] .sidenav {
+                body[data-theme="dark"] .topnav {
                   background: rgba(20,20,35,0.45);
                   border: 1px solid rgba(160,160,220,0.12);
                   box-shadow: 0 8px 24px rgba(10,10,20,0.45);
+                }
+                /* 사이드바는 항상 흰색 배경 유지 */
+                body[data-theme="dark"] .sidenav {
+                  background: rgba(255,255,255,0.95) !important;
                 }
 
                 /* 3) 카드 부유감 */
@@ -202,12 +211,11 @@
 
             /* 새로운 테이블 구조에 맞춘 스타일 (수정 및 추가) */
             .spec-row td {
-                height: 7rem; /* 기존 spec-label 높이와 맞춥니다 */
                 vertical-align: middle;
-                text-align: center; /* 👈 이 부분을 추가하여 텍스트를 가운데 정렬합니다 */
+                text-align: center;
             }
 
-            /* 중앙 레이블 항목 스타일 */
+            /* 중앙 레이블 항목 스타일 - 테두리 제거, 텍스트만 표시 */
             .spec-label-item {
                 width: 100%;
                 height: 7rem; /* 행 높이와 동일하게 설정 */
@@ -216,21 +224,13 @@
                 justify-content: center;
                 font-weight: bold;
                 color: #6c757d;
-                /* 테두리 스타일을 테이블과 일치하도록 조정합니다. */
-                border: 1px solid #dee2e6; /* 기본 테두리를 추가합니다. */
+                border: none; /* 테두리 제거 */
                 padding: 0 10px;
-            }
-
-            /* 테이블의 행 수와 정확히 일치하도록 상단 테두리 제거 */
-            /* 첫 번째 항목의 상단 테두리는 유지해야 합니다. */
-            .spec-label-item:not(:first-child) {
-                border-top: none;
             }
 
             /* 다크 모드 스타일 업데이트 */
             body.dark-mode .spec-label-item {
                 color: #c084fc;
-                border-color: #8b5cf6 !important;
             }
 
             /* 테이블의 높이를 100%로 설정하기 위한 기본 스타일 */
@@ -357,7 +357,7 @@
 
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav" style="background-color: #fffff;">
+            <div id="layoutSidenav_nav" style="background-color: #ffffff;">
                 <nav class="sidenav shadow-right sidenav-light">
                     <div class="sidenav-menu">
                         <div class="nav accordion" id="accordionSidenav">
@@ -589,11 +589,8 @@
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small"></div>
                             <div class="col-md-6 text-md-end small">
-                                <a href="#!">Privacy Policy</a>
-                                &middot;
-                                <a href="#!">Terms &amp; Conditions</a>
                             </div>
                         </div>
                     </div>
