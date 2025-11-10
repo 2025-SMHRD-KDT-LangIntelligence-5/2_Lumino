@@ -119,6 +119,14 @@
                   scrollbar-width: thin;
                 }
 
+            /* 워크스페이스 헤더 액션 버튼 */
+                .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
+                .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
+                .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
+
+                .ws-edit-btn:hover { color: #7c6cff; }
+                .ws-delete-btn:hover { color: #ff5a5a; }
+
         </style>
 
     </head>
@@ -316,7 +324,7 @@
                                         </h1>
                                     </div>
                                     <div class="col-12 col-xl-auto mb-3">
-                                        <a class="btn btn-sm btn-light text-secondary" href="workspace_page.html">
+                                        <a class="btn btn-sm btn-light text-secondary" href="http://localhost:8087/index">
                                             <i class="me-1" data-feather="arrow-left"></i>
                                             메인화면으로 돌아가기
                                         </a>
@@ -392,6 +400,20 @@
                                                 <option value="workspace-engineering.html" >Engineering</option>
                                                 <option value="workspace-design.html">Design</option>
                                             </select>
+
+                                            <!-- 수정 · 삭제 버튼 추가 (select 바로 뒤) -->
+                                            <button type="button"
+                                                    class="btn btn-sm btn-transparent-dark ws-edit-btn ms-2 me-1"
+                                                    data-wsid="1" data-wsname="Marketing" title="이름 수정">
+                                                <i data-feather="edit-2"></i>
+                                            </button>
+
+                                            <button type="button"
+                                                    class="btn btn-sm btn-transparent-danger ws-delete-btn"
+                                                    data-wsid="1" data-wsname="Marketing" title="워크스페이스 삭제">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+
                                         </div>
                                     </div>
 
@@ -463,6 +485,20 @@
                                                 <option value="workspace-engineering.html" selected>Engineering</option>
                                                 <option value="workspace-design.html">Design</option>
                                             </select>
+
+                                            <!-- 수정 · 삭제 버튼 추가 (select 바로 뒤) -->
+                                            <button type="button"
+                                                    class="btn btn-sm btn-transparent-dark ws-edit-btn ms-2 me-1"
+                                                    data-wsid="1" data-wsname="Marketing" title="이름 수정">
+                                                <i data-feather="edit-2"></i>
+                                            </button>
+
+                                            <button type="button"
+                                                    class="btn btn-sm btn-transparent-danger ws-delete-btn"
+                                                    data-wsid="1" data-wsname="Marketing" title="워크스페이스 삭제">
+                                                <i data-feather="trash-2"></i>
+                                            </button>
+
                                         </div>
                                     </div>
 
@@ -603,6 +639,36 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                <!-- (이름 수정 모달) -->
+                <div class="modal fade" id="editWorkspaceModal" tabindex="-1" aria-labelledby="editWorkspaceLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form id="editWorkspaceForm">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editWorkspaceLabel">워크스페이스 수정</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="editWsId">
+                                    <div class="mb-3">
+                                        <label for="editWsName" class="form-label">워크스페이스 이름</label>
+                                        <input type="text" class="form-control" id="editWsName" required placeholder="예: Engineering">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">취소</button>
+                                    <button type="submit" class="btn btn-secondary">저장</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
@@ -795,5 +861,72 @@
                 return false;
             }
         </script>
+
+
+                <script>
+                    // 아이콘 다시 그리기(동적으로 추가된 아이콘 반영)
+                    if (window.feather) feather.replace();
+
+                    /* === 수정 모달 열기 === */
+                    document.addEventListener('click', (e) => {
+                      const btn = e.target.closest('.ws-edit-btn');
+                      if (!btn) return;
+
+                      const id = btn.dataset.wsid;
+                      const name = btn.dataset.wsname || '';
+
+                      document.getElementById('editWsId').value = id;
+                      document.getElementById('editWsName').value = name;
+
+                      const modal = new bootstrap.Modal(document.getElementById('editWorkspaceModal'));
+                      modal.show();
+                    });
+
+                    /* === 수정 저장 (PUT /api/workspace/{id}) === */
+                    document.getElementById('editWorkspaceForm').addEventListener('submit', async (e) => {
+                      e.preventDefault();
+                      const id = document.getElementById('editWsId').value;
+                      const name = document.getElementById('editWsName').value.trim();
+                      if (!name) return;
+
+                      try {
+                        const res = await fetch(`/api/workspace/${encodeURIComponent(id)}`, {
+                          method: 'PUT',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ name })
+                        });
+                        if (!res.ok) throw new Error('수정 실패');
+
+                        bootstrap.Modal.getInstance(document.getElementById('editWorkspaceModal')).hide();
+                        location.reload(); // 필요하면 헤더 텍스트만 바꿔도 됨
+                      } catch (err) {
+                        console.error(err);
+                        alert('워크스페이스 수정 중 오류가 발생했습니다.');
+                      }
+                    });
+
+                    /* === 삭제 (DELETE /api/workspace/{id}) === */
+                    document.addEventListener('click', async (e) => {
+                      const btn = e.target.closest('.ws-delete-btn');
+                      if (!btn) return;
+
+                      const id = btn.dataset.wsid;
+                      const name = btn.dataset.wsname || '';
+
+                      if (!confirm(`"${name}" 워크스페이스를 삭제하시겠습니까?\n삭제 후 되돌릴 수 없습니다.`)) return;
+
+                      try {
+                        const res = await fetch(`/api/workspace/${encodeURIComponent(id)}`, { method: 'DELETE' });
+                        if (!res.ok) throw new Error('삭제 실패');
+                        location.reload();
+                      } catch (err) {
+                        console.error(err);
+                        alert('워크스페이스 삭제 중 오류가 발생했습니다.');
+                      }
+                    });
+                </script>
+
+
+
     </body>
 </html>
