@@ -457,6 +457,23 @@
   }
 }
 
+                 /* lumino 링크 스타일: 검은색, 클릭 효과 제거 */
+                 .lumino-link {
+                     color: #000 !important;
+                     text-decoration: none;
+                     cursor: default;
+                     pointer-events: none;
+                 }
+                 .lumino-link:hover,
+                 .lumino-link:active,
+                 .lumino-link:focus {
+                     color: #000 !important;
+                     text-decoration: none;
+                     transform: none !important;
+                     animation: none !important;
+                     transition: none !important;
+                 }
+
         </style>
 
     </head>
@@ -515,13 +532,13 @@
 
 
                 <li class="nav-item d-flex align-items-center me-3">
-                    <a href="http://localhost:8087/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
-                        Login
+                    <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
+                        lumino
                     </a>
-                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
-                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
-                        Sign Up
-                    </a>
+<!--                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>-->
+<!--                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">-->
+<!--                        Sign Up-->
+<!--                    </a>-->
                 </li>
 
 
