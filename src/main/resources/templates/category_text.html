@@ -367,6 +367,96 @@
                 .ws-edit-btn:hover { color: #7c6cff; }
                 .ws-delete-btn:hover { color: #ff5a5a; }
 
+
+
+
+/* 팔레트(필요시 한 번에 조정) */
+:root{
+  --accent:#4b2ee6;     /* 포인트(보라) */
+  --ink:#1b1e27;        /* 본문 글자 */
+  --ui:#f7f7fb;         /* 카드 배경 계열 */
+  --line:#e7e9f1;       /* 옅은 선색 */
+}
+
+/* 카드 내부 간격 정돈 */
+.compare-tool-item .d-flex.flex-column.align-items-center {
+  gap: 10px;
+}
+
+/* 미니멀 라벨: 단색 배경 + 얇은 외곽선 + 미세한 입체감 */
+.toolname{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+  color:var(--ink);
+  font-weight:700;
+  font-size:0.9rem;
+  letter-spacing:.2px;
+  line-height:1;
+
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,.03) inset,  /* 안쪽 아주 옅은 엠보싱 */
+    0 .5px 1px rgba(0,0,0,.06);     /* 바깥 미세 그림자 */
+  transition:border-color .15s ease, transform .15s ease;
+}
+
+/* 작은 액센트 점(과하지 않게) */
+.toolname::before{
+  content:"";
+  width:6px; height:6px; border-radius:50%;
+  background:var(--accent);
+  margin-right:8px;
+}
+
+/* hover: 과하지 않게 선색만 살짝 강조 + 1px 부상감 */
+.compare-tool-item:hover .toolname{
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  transform: translateY(-1px);
+}
+
+/* 버튼은 라벨과 경쟁하지 않도록 고스트 아웃라인 */
+.compare-tool-item .btn.btn-sm.btn-secondary{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid color-mix(in srgb, var(--accent) 35%, #ffffff);
+  padding:6px 10px;
+  font-weight:600;
+  border-radius:10px;
+  box-shadow:none;
+  transition:background-color .15s ease, border-color .15s ease;
+}
+.compare-tool-item .btn.btn-sm.btn-secondary:hover{
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 55%, #ffffff);
+}
+
+/* 다크모드 대비 최적화 */
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#f2f3f7;
+    --ui:#101217;
+    --line:#2a2f3a;
+  }
+  .toolname{ background:#141823; border-color:var(--line); }
+  .compare-tool-item .btn.btn-sm.btn-secondary{
+    color: color-mix(in srgb, var(--accent) 75%, #ffffff);
+    border-color: color-mix(in srgb, var(--accent) 35%, #000000);
+  }
+}
+
+/* 모션 민감 사용자 배려 */
+@media (prefers-reduced-motion: reduce){
+  .toolname,
+  .compare-tool-item .btn.btn-sm.btn-secondary{
+    transition:none;
+  }
+}
+
         </style>
 
     </head>
@@ -746,9 +836,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">레오나르도</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
