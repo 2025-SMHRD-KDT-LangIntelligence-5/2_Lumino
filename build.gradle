@@ -33,11 +33,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
     // OpenAI API 연동을 위한 Spring AI
-    implementation "org.springframework.ai:spring-ai-openai-spring-boot-starter"
-    implementation 'org.springframework.ai:spring-ai-core'
-    implementation 'org.springframework.ai:spring-ai-openai'
-    implementation "org.springframework.boot:spring-boot-starter-webflux"
-    implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT")
+//    implementation "org.springframework.ai:spring-ai-openai-spring-boot-starter"
+//    implementation 'org.springframework.ai:spring-ai-core'
+//    implementation 'org.springframework.ai:spring-ai-openai'
+//    implementation "org.springframework.boot:spring-boot-starter-webflux"
+//    implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT")
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
