@@ -444,7 +444,7 @@
                                 <div class="flex-grow-1 d-flex align-items-center" style="gap: 0.75rem; max-width: 400px;">
                                     <div>
                                         <label class="small mb-1" for="displayNickname">닉네임</label>
-                                        <div class="fs-5 fw-bold" id="displayNickname" th:text="${user?.nickname ?: 'User'}">User</div>
+                                        <div class="fs-5 fw-bold" id="displayNickname" th:text="${user?.nickname ?: 'lumino'}">lumino</div>
                                     </div>
                                     <div class="mt-4">
                                         <button class="btn btn-sm btn-transparent-dark" type="button" style="padding: 0.25rem;">
@@ -485,14 +485,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
-                                                <option value="workspace-marketing.html" selected>Marketing</option>
-                                                <option value="workspace-engineering.html" >Engineering</option>
-                                                <option value="workspace-design.html">Design</option>
-                                            </select>
-
-                                            <!-- 수정 · 삭제 버튼 추가 (select 바로 뒤) -->
+                                            <!-- 수정 · 삭제 버튼 추가 -->
                                             <button type="button"
                                                     class="btn btn-sm btn-transparent-dark ws-edit-btn ms-2 me-1"
                                                     data-wsid="1" data-wsname="Marketing" title="이름 수정">
@@ -570,14 +563,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
-                                                <option value="workspace-marketing.html">Marketing</option>
-                                                <option value="workspace-engineering.html" selected>Engineering</option>
-                                                <option value="workspace-design.html">Design</option>
-                                            </select>
-
-                                            <!-- 수정 · 삭제 버튼 추가 (select 바로 뒤) -->
+                                            <!-- 수정 · 삭제 버튼 추가 -->
                                             <button type="button"
                                                     class="btn btn-sm btn-transparent-dark ws-edit-btn ms-2 me-1"
                                                     data-wsid="1" data-wsname="Marketing" title="이름 수정">
