@@ -306,6 +306,62 @@
                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
                     }
 
+             :root{
+                  --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
+                  --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
+                  --brand:#9c8cff; --accent:#a7b7ff;
+                  --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
+                }
+
+                /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
+                .small, .text-muted{ color:var(--ink-3)!important; }
+
+
+            /* ==============================
+               Elegant Universal Body Background
+               ============================== */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              background-color: #f9f9ff;
+              background-image:
+                /* subtle inner glow (top-left) */
+                radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
+                /* soft diagonal lavender flow */
+                linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
+                /* gentle vignette edges */
+                radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: #242a39;
+              transition: background 0.6s ease, color 0.4s ease;
+            }
+
+            /***** Chrome/Edge *****/
+                *::-webkit-scrollbar{ height:10px; width:10px; }
+                *::-webkit-scrollbar-thumb{
+                  background: linear-gradient(var(--brand), var(--accent));
+                  border-radius:999px; border:2px solid transparent; background-clip: content-box;
+                }
+                *::-webkit-scrollbar-track{ background: transparent; }
+                /***** Firefox *****/
+                *{
+                  scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
+                  scrollbar-width: thin;
+                }
+
+            /* 워크스페이스 헤더 액션 버튼 */
+                .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
+                .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
+                .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
+
+                .ws-edit-btn:hover { color: #7c6cff; }
+                .ws-delete-btn:hover { color: #ff5a5a; }
+
         </style>
 
     </head>
