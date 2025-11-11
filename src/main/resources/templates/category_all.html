@@ -14,452 +14,147 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
         <style>
-            .form-control {
-                   background: #FFFFFF;
-                 }
 
-             /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
-                    #workspace-zone .card {
-                      max-width: 900px;  /* 가로 폭 */
-                      margin: 0 auto;
-                      border-radius: 22px;
-                      box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
-                    }
-                    #workspace-zone .card-header { padding: .8rem 1rem; }
-                    #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
+            /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
+                   #workspace-zone .card {
+                     max-width: 900px;  /* 가로 폭 */
+                     margin: 0 auto;
+                     border-radius: 22px;
+                     box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
+                   }
+                   #workspace-zone .card-header { padding: .8rem 1rem; }
+                   #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
 
-             /* 워크스페이스 카드 로고 전용 스타일 */
-                .workspace-logo {
+            /* 워크스페이스 카드 로고 전용 스타일 */
+               .workspace-logo {
+                 width: 120%;
+                 height: auto;            /* 비율 자동 유지 */
+                 object-fit: contain;     /* 상자 안에 맞게 축소 */
+                 display: block;
+                 border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                 background-color: transparent;
+                 transition: transform 0.25s ease;
+               }
+
+               .workspace-logo:hover {
+                 transform: scale(1.05);  /* 살짝 커지게 */
+               }
+
+           /* 도구 카드 로고 전용 스타일 */
+              .workspace-logo {
+                width: 100%;
+                height: auto;            /* 비율 자동 유지 */
+                object-fit: contain;     /* 상자 안에 맞게 축소 */
+                display: block;
+                border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                background-color: transparent;
+                transition: transform 0.25s ease;
+              }
+
+              .workspace-logo:hover {
+                transform: scale(1.05);  /* 살짝 커지게 */
+              }
+
+          /* === 검색창 전체 래퍼 === */
+              .search-bar {
+                max-width: 50vw;
+                width: 100%;
+                border-radius: 50px;
+                overflow: hidden;
+                background: rgba(255,255,255,0.3);
+                backdrop-filter: blur(12px);
+                border: 2px solid transparent;
+                background-image:
+                  linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                  linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+                transition: all 0.4s ease;
+                box-shadow: 0 0 20px rgba(150,120,255,0.15);
+              }
+
+              /* === 입력창 === */
+              .search-input {
+                border: none !important;
+                background: transparent !important;
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+                color: #3a3a3a;
+                width: 100%;
+                transition: all 0.3s ease;
+              }
+              .search-input::placeholder {
+                color: #aaa;
+                letter-spacing: 0.5px;
+              }
+              .search-input:focus {
+                outline: none;
+                color: #222;
+              }
+
+              /* === 아이콘 영역 === */
+              .search-icon {
+                border: none !important;
+                background: transparent !important;
+                padding-right: 1.2rem;
+                color: #7d6aff;
+                transition: all 0.3s ease;
+              }
+
+              /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
+              .search-bar:focus-within {
+                background-image:
+                  linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                  linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
+                box-shadow: 0 0 25px rgba(150,120,255,0.35);
+                transform: scale(1.02);
+              }
+
+              /* === 엔터(Submit) 시 시각적 반응 === */
+              .search-input:focus:valid {
+                animation: enterPulse 0.3s ease-out;
+              }
+              @keyframes enterPulse {
+                0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
+                100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+              }
+
+          /* 엔터(Submit) 시 시각적 반응 */
+              .enter-pulse {
+                animation: enterPulse 0.35s ease-out;
+              }
+              @keyframes enterPulse {
+                0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
+                100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+              }
+
+            /* 모드 이미지 버튼 (이미지만 보이게) */
+                .mode-btn{
+                  all: unset;                  /* 기본 버튼 스타일 제거 */
+                  display: flex !important;
+                  align-items: center;
+                  justify-content: center;
+                  width: 6rem;              /* 크기 조정: 더 키우려면 값만 늘리세요 */
+                  height: 4.25rem;
+                  cursor: pointer;
+                  margin: 0 auto;              /* 가운데 정렬 */
+                }
+                .mode-btn img{
                   width: 100%;
-                  height: auto;            /* 비율 자동 유지 */
-                  object-fit: contain;     /* 상자 안에 맞게 축소 */
+                  height: 100%;
                   display: block;
-                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
-                  background-color: transparent;
-                  transition: transform 0.25s ease;
+                  border-radius: 18px;         /* 이미지 모서리 살짝 라운드 (원한다면 0으로) */
+                  pointer-events: none;        /* 클릭 판정은 버튼이 받도록 */
                 }
 
-                .workspace-logo:hover {
-                  transform: scale(1.05);  /* 살짝 커지게 */
+                /* 호버 시 살짝 글로우 */
+                .mode-btn:hover{
+                  filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
+                  transform: translateZ(0);
                 }
 
-            /* === 검색창 전체 래퍼 === */
-                .search-bar {
-                  max-width: 50vw;
-                  width: 100%;
-                  border-radius: 50px;
-                  overflow: hidden;
-                  background: rgba(255,255,255,0.3);
-                  backdrop-filter: blur(12px);
-                  border: 2px solid transparent;
-                  background-image:
-                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                    linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
-                  background-origin: border-box;
-                  background-clip: content-box, border-box;
-                  transition: all 0.4s ease;
-                  box-shadow: 0 0 20px rgba(150,120,255,0.15);
-                }
-
-                /* === 입력창 === */
-                .search-input {
-                  border: none !important;
-                  background: transparent !important;
-                  padding: 0.8rem 1.2rem;
-                  font-size: 1rem;
-                  color: #3a3a3a;
-                  width: 100%;
-                  transition: all 0.3s ease;
-                }
-                .search-input::placeholder {
-                  color: #aaa;
-                  letter-spacing: 0.5px;
-                }
-                .search-input:focus {
-                  outline: none;
-                  color: #222;
-                }
-
-                /* === 아이콘 영역 === */
-                .search-icon {
-                  border: none !important;
-                  background: transparent !important;
-                  padding-right: 1.2rem;
-                  color: #7d6aff;
-                  transition: all 0.3s ease;
-                }
-
-                /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
-                .search-bar:focus-within {
-                  background-image:
-                    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                    linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
-                  box-shadow: 0 0 25px rgba(150,120,255,0.35);
-                  transform: scale(1.02);
-                }
-
-                /* === 엔터(Submit) 시 시각적 반응 === */
-                .search-input:focus:valid {
-                  animation: enterPulse 0.3s ease-out;
-                }
-                @keyframes enterPulse {
-                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                  50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
-                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                }
-
-            /* 엔터(Submit) 시 시각적 반응 */
-                .enter-pulse {
-                  animation: enterPulse 0.35s ease-out;
-                }
-                @keyframes enterPulse {
-                  0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                  50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
-                  100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                }
-
-
-             /* 모드 이미지 버튼 (이미지만 보이게) */
-                 .mode-btn{
-                   all: unset;                  /* 기본 버튼 스타일 제거 */
-                   display: flex !important;
-                   align-items: center;
-                   justify-content: center;
-                   width: 6rem;              /* 크기 조정: 더 키우려면 값만 늘리세요 */
-                   height: 4.25rem;
-                   cursor: pointer;
-                   margin: 0 auto;              /* 가운데 정렬 */
-                 }
-                 .mode-btn img{
-                   width: 100%;
-                   height: 100%;
-                   display: block;
-                   border-radius: 18px;         /* 이미지 모서리 살짝 라운드 (원한다면 0으로) */
-                   pointer-events: none;        /* 클릭 판정은 버튼이 받도록 */
-                 }
-
-                 /* 호버 시 살짝 글로우 */
-                 .mode-btn:hover{
-                   filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
-                   transform: translateZ(0);
-                 }
-
-             /* === A-VERSE 감성 디테일 (라이트/다크 공통으로 덮어쓰기) === */
-
-                 /* 1) 네비게이션/사이드바 글래스 질감 */
-                 .topnav,
-                 .sidenav {
-                   backdrop-filter: blur(12px);
-                   -webkit-backdrop-filter: blur(12px);
-                 }
-                 body[data-theme="light"] .topnav,
-                 body[data-theme="light"] .sidenav {
-                   background: rgba(255,255,255,0.60);
-                   border: 1px solid rgba(180,180,255,0.20);
-                   box-shadow: 0 6px 18px rgba(160,140,255,0.10);
-                 }
-                 body[data-theme="dark"] .topnav,
-                 body[data-theme="dark"] .sidenav {
-                   background: rgba(20,20,35,0.45);
-                   border: 1px solid rgba(160,160,220,0.12);
-                   box-shadow: 0 8px 24px rgba(10,10,20,0.45);
-                 }
-
-                 /* 3) 카드 부유감 */
-                 .card.lift:hover {
-                   transform: translateY(-4px);
-                   box-shadow: 0 10px 28px rgba(160,140,255,0.22);
-                 }
-
-                 /* 6) 페이지 헤더(로고 영역) 글로시 오버레이 */
-                 .page-header {
-                   position: relative; overflow: hidden;
-                 }
-                 .page-header::after{
-                   content:"";
-                   position:absolute; inset:0;
-                   background:
-                     radial-gradient(600px 180px at 10% -10%, rgba(179,154,255,0.15), transparent 60%),
-                     radial-gradient(500px 160px at 85% -10%, rgba(141,166,255,0.12), transparent 60%);
-                   pointer-events: none;
-                 }
-
-                 /* 7) 버튼/링크 호버 오로라 흐름 */
-                 .btn:hover, .nav-link:hover {
-                   background: linear-gradient(120deg,#b39aff,#8da6ff,#b7e8ff);
-                   background-size: 200% 200%;
-                   animation: moveGlow 1.5s ease infinite;
-                 }
-                 @keyframes moveGlow {
-                   0%{ background-position: 0% 50%; }
-                   100%{ background-position: 100% 50%; }
-                 }
-
-                 /* 8) 검색창 고급 테두리 & 포커스 */
-                 .page-header-search .input-group {
-                   border-radius: 9999px; overflow: hidden;
-                   border: 1px solid rgba(161, 139, 255, 0.35);
-                   box-shadow:
-                     0 2px 14px rgba(0,0,0,0.08),
-                     0 0 0 1px rgba(161, 139, 255, 0.20) inset;
-                   backdrop-filter: blur(8px);
-                 }
-                 .page-header-search .form-control {
-                   background: #ffffff;
-                 }
-                 body[data-theme="dark"] .page-header-search .form-control {
-                   background: rgba(20,20,30,0.75); color: #eaeaf4;
-                 }
-                 .page-header-search .form-control:focus {
-                   box-shadow: 0 0 0 3px rgba(180,159,255,0.25);
-                 }
-
-                 /* 9) 사이드 메뉴 글씨를 오른쪽으로 조금 더 */
-                 .sidenav .nav-link {
-                   padding-left: 1.1rem;
-                 }
-                 .sidenav .sidenav-menu-nested .nav-link {
-                   padding-left: 1.8rem;
-                 }
-
-
-             /* ========== A-VERSE Section Base (Lavender Glass) ========== */
-                 .az-section {
-                   padding: 28px 0 64px;
-                   background: linear-gradient(180deg, var(--az-lav-1, #efeaff), rgba(0,0,0,0));
-                 }
-
-                 /* 섹션 타이틀: 중앙정렬 + 밑줄 */
-                 .az-section .section-title {
-                   margin: 0 0 18px;
-                   font-weight: 800;
-                   font-size: 1.55rem;
-                   letter-spacing: .4px;
-                   text-align: center;
-                   background: linear-gradient(90deg,#a99aff,#c0b5ff,#dcd6ff);
-                   -webkit-background-clip: text;
-                   -webkit-text-fill-color: transparent;
-                   position: relative;
-                   display: inline-block;
-                 }
-                 .az-section .section-title::after {
-                   content: "";
-                   display: block;
-                   margin: 10px auto 0;
-                   width: 180px;
-                   height: 3px;
-                   border-radius: 999px;
-                   background: linear-gradient(90deg,#c9bfff,#bcd0ff);
-                   box-shadow: 0 4px 12px rgba(160,140,255,.25);
-                 }
-
-                 /* 그리드 간격(Explore 2열) */
-                 .az-section .row.gx-explore { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
-
-                 /* 라벤더 글래스 카드 */
-                 .metric-card{
-                   border: 0; border-radius: 22px;
-                   background: linear-gradient(90deg,#dcd6ff,#c8c1ff);
-                   box-shadow: 0 6px 18px rgba(160,140,255,.12);
-                   overflow: hidden;
-                   transition: transform .18s ease, box-shadow .18s ease;
-                 }
-                 .metric-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(160,140,255,.22); }
-
-                 /* 카드 헤더: 좌/우 정렬 옵션 */
-                 .metric-card .card-header{
-                   border:0; padding:16px 22px;
-                   background: linear-gradient(90deg,#dcd6ff,#c8c1ff);
-                   display:flex; align-items:center;
-                   color:#4b3d84 !important; font-weight:700; font-size:1.05rem;
-                 }
-                 .metric-card .card-header.header-left { justify-content:flex-start; }
-                 .metric-card .card-header.header-right{ justify-content:flex-end;   }
-
-                 .metric-card .card-body{
-                   background: linear-gradient(180deg,#ffffff,rgba(255,255,255,.7));
-                   padding: 20px 22px 22px;
-                 }
-
-                 /* 카드 내부 링크 파랑 제거 */
-                 #workspace-zone a, #explore-zone a { color: inherit !important; text-decoration:none; }
-
-                     /* ===== 공통 섹션 배경 & 제목 라인 ===== */
-                     .az-section {
-                       position: relative;
-                       background: linear-gradient(180deg, #f3f5ff 0%, #eef0ff 100%);
-                       border-radius: 28px;
-                       padding: 32px 22px 72px; /* 하단 여백 넉넉 */
-                       box-shadow: 0 12px 36px rgba(40, 30, 120, 0.06) inset;
-                       margin-bottom: 40px;
-                     }
-
-                     .az-section .section-title {
-                       text-align: center;
-                       font-weight: 800;
-                       letter-spacing: 0.5px;
-                       color: #7d6aff;
-                       opacity: .95;
-                       margin-bottom: 18px;
-                     }
-                     .az-section .section-title::after {
-                       content: "";
-                       display: block;
-                       width: 140px;
-                       height: 3px;
-                       margin: 10px auto 0;
-                       border-radius: 999px;
-                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
-                     }
-
-             :root{
-                   --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
-                   --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
-                   --brand:#9c8cff; --accent:#a7b7ff;
-                   --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
-                 }
-
-                 /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
-                 body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-                 h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
-                 .small, .text-muted{ color:var(--ink-3)!important; }
-
-
-             /* ==============================
-                Elegant Universal Body Background
-                ============================== */
-             html, body {
-               height: 100%;
-               margin: 0;
-               padding: 0;
-               background-color: #f9f9ff;
-               background-image:
-                 /* subtle inner glow (top-left) */
-                 radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
-                 /* soft diagonal lavender flow */
-                 linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
-                 /* gentle vignette edges */
-                 radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
-               background-attachment: fixed;
-               background-repeat: no-repeat;
-               background-size: cover;
-               color: #242a39;
-               transition: background 0.6s ease, color 0.4s ease;
-             }
-
-             /***** Chrome/Edge *****/
-                 *::-webkit-scrollbar{ height:10px; width:10px; }
-                 *::-webkit-scrollbar-thumb{
-                   background: linear-gradient(var(--brand), var(--accent));
-                   border-radius:999px; border:2px solid transparent; background-clip: content-box;
-                 }
-                 *::-webkit-scrollbar-track{ background: transparent; }
-                 /***** Firefox *****/
-                 *{
-                   scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
-                   scrollbar-width: thin;
-                 }
-
-             /* 워크스페이스 헤더 액션 버튼 */
-                 .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
-                 .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
-                 .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
-
-                 .ws-edit-btn:hover { color: #7c6cff; }
-                 .ws-delete-btn:hover { color: #ff5a5a; }
-
-                 /* lumino 링크 스타일: 검은색, 클릭 효과 제거 */
-                 .lumino-link {
-                     color: #000 !important;
-                     text-decoration: none;
-                     cursor: default;
-                     pointer-events: none;
-                 }
-                 .lumino-link:hover,
-                 .lumino-link:active,
-                 .lumino-link:focus {
-                     color: #000 !important;
-                     text-decoration: none;
-                     transform: none !important;
-                     animation: none !important;
-                     transition: none !important;
-                 }
-
-            /* ===== 카드 레이아웃(간격) ===== */
-/* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
-.compare-tool-item .d-flex.flex-column.align-items-center {
-  gap: 14px;
-}
-
-/* ===== 라벨(툴 이름) ===== */
-.toolname{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  background: rgba(255, 255, 255, 0.88);
-  color: #1a1a1a;
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: 0.2px;
-
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(75, 46, 230, 0.08);
-  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
-  transition: all 0.25s ease;
-  margin: 0; /* 하단 마진 제거 */
-}
-
-/* 라벨 앞 포인트 점 */
-.toolname::before{
-  content: "•";
-  color: var(--accent);
-  font-size: 1.15rem;
-  line-height: 1;
-  margin-right: 3px;
-}
-
-/* hover 시 살짝만 밝게 */
-.compare-tool-item:hover .toolname{
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(75, 46, 230, 0.15);
-  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
-  transform: translateY(-1px);
-}
-
-/* ===== 버튼(사이트/상세설명) ===== */
-.compare-tool-item .btn.btn-sm.btn-secondary{
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  font-weight: 600;
-  border-radius: 999px;
-  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
-  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
-}
-
-.compare-tool-item .btn.btn-sm.btn-secondary:hover{
-  background: #4328e0; /* var(--accent)보다 살짝 진하게 */
-  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
-  transform: translateY(-1px);
-}
-
-/* ===== 라벨 ↔ 버튼 간격(핵심) ===== */
-/* 버튼 묶음이 라벨에 더 붙도록 상단 마진을 음수로 당김 */
-.compare-tool-item .toolname + .d-flex{
-  margin-top: -6px !important; /* -4~-8px 사이에서 취향대로 조절 */
-}
-
-/* ===== 접근성(모션 민감) ===== */
-@media (prefers-reduced-motion: reduce){
-  .toolname,
-  .compare-tool-item .btn.btn-sm.btn-secondary{
-    transition:none;
-  }
-}
         </style>
     </head>
     <body class="nav-fixed" data-theme="light">
@@ -517,13 +212,13 @@
 
 
                 <li class="nav-item d-flex align-items-center me-3">
-                    <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
-                        lumino
+                    <a href="http://localhost:8087/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Login
                     </a>
-<!--                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>-->
-<!--                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">-->
-<!--                        Sign Up-->
-<!--                    </a>-->
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
+                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Sign Up
+                    </a>
                 </li>
 
 
@@ -539,7 +234,7 @@
                            <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
                     <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="/assets/img/illustrations/profiles/luminosang.png" /></a>
+                                                                                                               src="/assets/img/illustrations/profiles/profile-1.png" /></a>
                     <!--열리는 메뉴 상자-->
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
 
@@ -822,9 +517,10 @@
                                             <img src="/assets/img/logo_img/ChatGPT.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">ChatGPT</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <a href="https://chatgpt.com"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button></a>
-                                        <a href="https://www.damoa.ai/services/1?category=86&query=&page=1&kpage=1"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button></a>
+                                        <a href="https://www.damoa.ai/services/1?category=86&query=&page=1&kpage=1"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -835,9 +531,10 @@
                                             <img src="/assets/img/logo_img/Gemini.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Gemini</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -848,9 +545,10 @@
                                             <img src="/assets/img/logo_img/claude.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">claude</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -861,9 +559,10 @@
                                             <img src="/assets/img/logo_img/Poe.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Poe</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -874,9 +573,10 @@
                                             <img src="/assets/img/logo_img/cursor.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">cursor</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -887,9 +587,10 @@
                                             <img src="/assets/img/logo_img/Perplexity Al.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Perplexity Al</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -900,9 +601,10 @@
                                             <img src="/assets/img/logo_img/Wrtn.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Wrtn</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -913,9 +615,10 @@
                                             <img src="/assets/img/logo_img/DALL-E.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">DALL-E</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -926,9 +629,10 @@
                                             <img src="/assets/img/logo_img/suno.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">suno</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -939,9 +643,10 @@
                                             <img src="/assets/img/logo_img/Soundful.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Soundful</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -952,9 +657,10 @@
                                             <img src="/assets/img/logo_img/naver_clovar.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">naver clovar</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -962,12 +668,13 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/wemakevoice.png" class="workspace-logo" style="border-radius: 0px;">
+                                            <img src="/assets/img/logo_img/wemakevoice.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">wemakevoice</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -978,9 +685,10 @@
                                             <img src="/assets/img/logo_img/Daglo.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Daglo</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -991,9 +699,10 @@
                                             <img src="/assets/img/logo_img/Pollo_AI.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Pollo AI</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1004,9 +713,10 @@
                                             <img src="/assets/img/logo_img/Gamma.png" class="workspace-logo">
                                         </div>
                                     </a>
+                                    <div class="toolname">Gamma</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세설명</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,22 +1,36 @@
 package com.smhrd.boot.service;
 
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
-// 이 어노테이션을 추가해야 Spring이 이 클래스를 빈(Bean)으로 등록하고,
-// ChatbotController에서 주입(DI) 받아 사용할 수 있습니다.
 @Service
-public class ChatGPTService {
+@RequiredArgsConstructor
+public class ChatGPTService implements ChatGPTS {
 
-    // TODO: 여기에 실제 ChatGPT API 연동 및 비즈니스 로직을 구현해야 합니다.
+    // Spring AI가 자동 등록한 ChatClient 빈을 주입 받습니다.
+    private final ChatClient chatClient;
+    private final ObjectMapper objectMapper;
+    private final AiChatHistoryService aiChatHistoryService;
 
-    // ChatbotController에서 호출하는 메서드 스켈레톤
-    public String getChatGPTResponse(String userMessage, String sessionId) {
-        // 임시 응답 (구현 전까지)
-        return "죄송합니다, 잠시 후 다시 시도해주세요.";
-    }
+    @Override
+    public AiChatResponseDto getAiRecommendation(Long memberId, String sessionId, String prompt) {
+        // ChatClient를 사용해 AI에게 요청
+        String response = chatClient.prompt().user(prompt).call().content();
 
-    // 대화 히스토리 초기화 메서드 스켈레톤 (옵션)
-    public void clearHistory(String sessionId) {
-        // 히스토리 초기화 로직
+        // JSON 응답 파싱
+        String recommendation;
+        try {
+            Map<String, String> responseMap = objectMapper.readValue(response, Map.class);
+            recommendation = Optional.ofNullable(responseMap.get("recommendation"))
+                    .orElse("추천할 메뉴가 없습니다.").trim();
+        } catch (Exception exception) {
+            recommendation = "추천할 메뉴를 파싱하는 데 실패했습니다.";
+        }
+
+        // AI 추천 히스토리 MySQL + Redis에 저장
+        aiChatHistoryService.saveChatHistory(memberId, sessionId, recommendation);
+
+        return new AiChatResponseDto(recommendation);
     }
 }

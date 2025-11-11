@@ -205,7 +205,7 @@
                   backdrop-filter: blur(8px);
                 }
                 .page-header-search .form-control {
-                  background: #ffffff;
+                  background: rgba(255,255,255,0.75);
                 }
                 body[data-theme="dark"] .page-header-search .form-control {
                   background: rgba(20,20,30,0.75); color: #eaeaf4;
@@ -312,155 +312,6 @@
                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
                     }
 
-             :root{
-                  --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
-                  --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
-                  --brand:#9c8cff; --accent:#a7b7ff;
-                  --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
-                }
-
-                /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
-                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-                h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
-                .small, .text-muted{ color:var(--ink-3)!important; }
-
-
-            /* ==============================
-               Elegant Universal Body Background
-               ============================== */
-            html, body {
-              height: 100%;
-              margin: 0;
-              padding: 0;
-              background-color: #f9f9ff;
-              background-image:
-                /* subtle inner glow (top-left) */
-                radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
-                /* soft diagonal lavender flow */
-                linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
-                /* gentle vignette edges */
-                radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
-              background-attachment: fixed;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: #242a39;
-              transition: background 0.6s ease, color 0.4s ease;
-            }
-
-            /***** Chrome/Edge *****/
-                *::-webkit-scrollbar{ height:10px; width:10px; }
-                *::-webkit-scrollbar-thumb{
-                  background: linear-gradient(var(--brand), var(--accent));
-                  border-radius:999px; border:2px solid transparent; background-clip: content-box;
-                }
-                *::-webkit-scrollbar-track{ background: transparent; }
-                /***** Firefox *****/
-                *{
-                  scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
-                  scrollbar-width: thin;
-                }
-
-            /* 워크스페이스 헤더 액션 버튼 */
-                .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
-                .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
-                .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
-
-                .ws-edit-btn:hover { color: #7c6cff; }
-                .ws-delete-btn:hover { color: #ff5a5a; }
-
-                 /* lumino 링크 스타일: 검은색, 클릭 효과 제거 */
-                 .lumino-link {
-                     color: #000 !important;
-                     text-decoration: none;
-                     cursor: default;
-                     pointer-events: none;
-                 }
-                 .lumino-link:hover,
-                 .lumino-link:active,
-                 .lumino-link:focus {
-                     color: #000 !important;
-                     text-decoration: none;
-                     transform: none !important;
-                     animation: none !important;
-                     transition: none !important;
-                 }
-
-            /* ===== 카드 레이아웃(간격) ===== */
-/* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
-.compare-tool-item .d-flex.flex-column.align-items-center {
-  gap: 14px;
-}
-
-/* ===== 라벨(툴 이름) ===== */
-.toolname{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  background: rgba(255, 255, 255, 0.88);
-  color: #1a1a1a;
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: 0.2px;
-
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(75, 46, 230, 0.08);
-  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
-  transition: all 0.25s ease;
-  margin: 0; /* 하단 마진 제거 */
-}
-
-/* 라벨 앞 포인트 점 */
-.toolname::before{
-  content: "•";
-  color: var(--accent);
-  font-size: 1.15rem;
-  line-height: 1;
-  margin-right: 3px;
-}
-
-/* hover 시 살짝만 밝게 */
-.compare-tool-item:hover .toolname{
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(75, 46, 230, 0.15);
-  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
-  transform: translateY(-1px);
-}
-
-/* ===== 버튼(사이트/상세설명) ===== */
-.compare-tool-item .btn.btn-sm.btn-secondary{
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  font-weight: 600;
-  border-radius: 999px;
-  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
-  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
-}
-
-.compare-tool-item .btn.btn-sm.btn-secondary:hover{
-  background: #4328e0; /* var(--accent)보다 살짝 진하게 */
-  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
-  transform: translateY(-1px);
-}
-
-/* ===== 라벨 ↔ 버튼 간격(핵심) ===== */
-/* 버튼 묶음이 라벨에 더 붙도록 상단 마진을 음수로 당김 */
-.compare-tool-item .toolname + .d-flex{
-  margin-top: -6px !important; /* -4~-8px 사이에서 취향대로 조절 */
-}
-
-/* ===== 접근성(모션 민감) ===== */
-@media (prefers-reduced-motion: reduce){
-  .toolname,
-  .compare-tool-item .btn.btn-sm.btn-secondary{
-    transition:none;
-  }
-}
-
         </style>
 
     </head>
@@ -519,13 +370,13 @@
 
 
                 <li class="nav-item d-flex align-items-center me-3">
-                    <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
-                        lumino
+                    <a href="http://localhost:8087/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Login
                     </a>
-<!--                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>-->
-<!--                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">-->
-<!--                        Sign Up-->
-<!--                    </a>-->
+                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
+                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
+                        Sign Up
+                    </a>
                 </li>
 
 
@@ -541,7 +392,7 @@
                            <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
                     <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="assets/img/illustrations/profiles/luminosang.png" /></a>
+                                                                                                               src="assets/img/illustrations/profiles/profile-1.png" /></a>
                     <!--열리는 메뉴 상자-->
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
 
@@ -840,9 +691,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">deecode</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -858,9 +710,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">cursor</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -876,9 +729,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Warp</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -894,9 +748,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Lovable_dev</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -912,9 +767,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Krater</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -930,9 +786,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Vibesheet</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -948,9 +805,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">windsurf</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -966,9 +824,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Codacy</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -984,9 +843,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Aider</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1002,9 +862,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Poe</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1020,9 +881,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Aistudio</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1038,9 +900,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Pictory</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1056,9 +919,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Synthesia</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1074,9 +938,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Pollo_AI</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
@@ -1092,9 +957,10 @@
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
+                                    <div class="toolname">Runway</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼1</button>
-                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">버튼2</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
