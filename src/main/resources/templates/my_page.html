@@ -548,7 +548,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </section>
                         
                         <!-- 워크스페이스 2 -->
@@ -626,7 +625,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </section>
 
 
@@ -676,48 +674,47 @@
                         </div>
                         -->
                     </div>
-                    
-                    <!-- Add Tool Modal -->
-                    <div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="addToolModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addToolModalLabel">AI 도구 추가</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <form id="addToolForm" onsubmit="return submitAddTool(event);">
-                                    <div class="modal-body">
-                                        <input type="hidden" id="modalWorkspaceId" name="workspaceId" />
-                                        <div class="mb-3">
-                                            <label for="toolName" class="form-label">도구 이름</label>
-                                            <input type="text" class="form-control" id="toolName" name="toolName" required placeholder="예: ChatGPT, DALL-E" />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="toolUrl" class="form-label">도구 URL</label>
-                                            <input type="url" class="form-control" id="toolUrl" name="toolUrl" required placeholder="https://example.com" />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="toolImageFile" class="form-label">도구 로고 이미지</label>
-                                            <input type="file" class="form-control" id="toolImageFile" name="toolImageFile" accept="image/*" />
-                                            <div class="form-text">AI 도구의 로고 이미지를 업로드하세요. (선택사항)</div>
-                                        </div>
-                                        <div id="imagePreview" class="mb-3" style="display: none;">
-                                            <label class="form-label">이미지 미리보기</label>
-                                            <div>
-                                                <img id="previewImg" src="" alt="Preview" style="max-width: 100px; max-height: 100px; border-radius: 0.5rem; border: 1px solid #dee2e6;" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                                        <button type="submit" class="btn btn-secondary">완료</button>
-                                    </div>
-                                </form>
+                </main>
+                
+                <!-- Add Tool Modal -->
+                <div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="addToolModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addToolModalLabel">AI 도구 추가</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <form id="addToolForm" onsubmit="return submitAddTool(event);">
+                                <div class="modal-body">
+                                    <input type="hidden" id="modalWorkspaceId" name="workspaceId" />
+                                    <div class="mb-3">
+                                        <label for="toolName" class="form-label">도구 이름</label>
+                                        <input type="text" class="form-control" id="toolName" name="toolName" required placeholder="예: ChatGPT, DALL-E" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="toolUrl" class="form-label">도구 URL</label>
+                                        <input type="url" class="form-control" id="toolUrl" name="toolUrl" required placeholder="https://example.com" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="toolImageFile" class="form-label">도구 로고 이미지</label>
+                                        <input type="file" class="form-control" id="toolImageFile" name="toolImageFile" accept="image/*" />
+                                        <div class="form-text">AI 도구의 로고 이미지를 업로드하세요. (선택사항)</div>
+                                    </div>
+                                    <div id="imagePreview" class="mb-3" style="display: none;">
+                                        <label class="form-label">이미지 미리보기</label>
+                                        <div>
+                                            <img id="previewImg" src="" alt="Preview" style="max-width: 100px; max-height: 100px; border-radius: 0.5rem; border: 1px solid #dee2e6;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                    <button type="submit" class="btn btn-secondary">완료</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-
+                </div>
 
                 <!-- (이름 수정 모달) -->
                 <div class="modal fade" id="editWorkspaceModal" tabindex="-1" aria-labelledby="editWorkspaceLabel" aria-hidden="true">
@@ -743,18 +740,11 @@
                         </div>
                     </div>
                 </div>
-
-
-
-                </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
                             <div class="col-md-6 small"></div>
                             <div class="col-md-6 text-md-end small">
-                                <a href="#!"></a>
-                                &middot;
-                                <a href="#!"></a>
                             </div>
                         </div>
                     </div>
