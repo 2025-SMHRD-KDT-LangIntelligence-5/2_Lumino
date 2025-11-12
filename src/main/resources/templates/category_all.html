@@ -15,6 +15,48 @@
 
         <style>
 
+            /* ===== category_all 버튼 색상 연보라로 통일 ===== */
+                button.btn.btn-sm.btn-secondary {
+                  background-color: #A7B7FF !important; /* 연보라색 */
+                  color: #fff !important;
+                  border: none !important;
+                  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+                }
+
+                button.btn.btn-sm.btn-secondary:hover {
+                  background-color: #4328e0 !important; /* hover 시 살짝 진한 보라 */
+                }
+
+            /* ===== 버튼(사이트/상세설명) ===== */
+                .compare-tool-item .btn.btn-sm.btn-secondary{
+                  background: var(--accent);
+                  color: #fff;
+                  border: none;
+                  padding: 6px 14px;
+                  font-weight: 600;
+                  border-radius: 999px;
+                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
+                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+                }
+
+                .compare-tool-item .btn.btn-sm.btn-secondary:hover{
+                  background: #4328e0; /* var(--accent)보다 살짝 진하게 */
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
+                  transform: translateY(-1px);
+                }
+
+            /* ===== 버튼 색상 category_text와 통일 ===== */
+                .compare-tool-item .btn.btn-sm.btn-secondary {
+                  background-color: #b39aff !important;  /* 기본: 연보라 */
+                  color: #fff !important;
+                  border: none;
+                  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+                }
+
+                .compare-tool-item .btn.btn-sm.btn-secondary:hover {
+                  background-color: #8d79ff !important;  /* hover: 살짝 진보라 */
+                }
+
             /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
                    #workspace-zone .card {
                      max-width: 900px;  /* 가로 폭 */
@@ -154,6 +196,10 @@
                   filter: drop-shadow(0 0 12px rgba(161,139,255,.55));
                   transform: translateZ(0);
                 }
+
+
+
+
 
         </style>
     </head>
