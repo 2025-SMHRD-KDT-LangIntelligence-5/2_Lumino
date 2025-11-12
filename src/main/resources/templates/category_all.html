@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -744,9 +744,9 @@
                         <!-- 검색창 -->
                         <div class="page-header-search"
                              style="min-height: 5vh; display: flex; align-items: center; justify-content: center; margin-top: 4rem; margin-bottom: 4rem;">
-                            <form id="searchForm" class="input-group input-group-joined search-bar" action="#" method="get">
+                            <form id="searchForm" class="input-group input-group-joined search-bar" action="/search" method="get">
                                 <div class="input-group input-group-joined search-bar" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
-                                    <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
+                                    <input class="form-control" type="text" name="keyword" placeholder="Search..." aria-label="Search" autofocus style="border: none;" th:value="${keyword}" />
                                     <span class="input-group-text search-icon" style="border: none;"><i data-feather="search"></i></span>
                                 </div>
                             </form>
@@ -832,28 +832,59 @@
                         
                         <h2 class="section-title mb-3">전체 AI 도구</h2>
                         <div class="tools-grid row g-5 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 90%; margin: 0 auto; gap: 2rem;">
-                            <!-- 가로 5개, 세로 3개 = 총 15개 정사각형 -->
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <!-- 검색 결과가 있을 때 -->
+                            <div th:if="${tools != null and !tools.empty}" th:each="tool : ${tools}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" th:attr="data-tool-name=${tool.tool_name}">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="https://chatgpt.com">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/ChatGPT.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/ChatGPT.png" alt="Tool Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
-                                    <div class="toolname">ChatGPT</div>
+                                    </div>
+                                    <div class="toolname" th:text="${tool.tool_name}">Tool Name</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
-                                        <a href="https://chatgpt.com"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button></a>
-                                        <a href="https://www.damoa.ai/services/1?category=86&query=&page=1&kpage=1"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button></a>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            
+                            <!-- 검색 결과가 없을 때 기존 하드코딩된 목록 (가로 5개, 세로 3개 = 총 15개 정사각형) -->
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="ChatGPT">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Gemini.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/ChatGPT.png" alt="ChatGPT Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
+                                    <div class="toolname">ChatGPT</div>
+                                    <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
+                                        <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Gemini">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Gemini.png" alt="Gemini Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
+                                        </div>
+                                    </div>
                                     <div class="toolname">Gemini</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -861,13 +892,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="claude">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/claude.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/claude.png" alt="claude Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">claude</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -875,13 +911,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Poe">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Poe.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Poe.png" alt="Poe Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Poe</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -889,13 +930,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="cursor">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/cursor.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">cursor</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -903,13 +949,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Perplexity Al">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Perplexity Al.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Perplexity Al.png" alt="Perplexity Al Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Perplexity Al</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -917,13 +968,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Wrtn">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Wrtn.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Wrtn.png" alt="Wrtn Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Wrtn</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -931,13 +987,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="DALL-E">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/DALL-E.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/DALL-E.png" alt="DALL-E Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">DALL-E</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -945,13 +1006,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="suno">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/suno.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/suno.png" alt="suno Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">suno</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -959,13 +1025,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Soundful">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Soundful.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Soundful.png" alt="Soundful Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Soundful</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -973,13 +1044,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="naver clovar">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/naver_clovar.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/naver_clovar.png" alt="naver clovar Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">naver clovar</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -987,13 +1063,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="wemakevoice">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/wemakevoice.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/wemakevoice.png" alt="wemakevoice Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">wemakevoice</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -1001,13 +1082,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Daglo">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Daglo.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Daglo.png" alt="Daglo Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Daglo</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -1015,13 +1101,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Pollo AI">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Pollo_AI.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Pollo_AI.png" alt="Pollo AI Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Pollo AI</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
@@ -1029,13 +1120,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);">
+                            <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="Gamma">
                                 <div class="d-flex flex-column align-items-center">
-                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
-                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                            <img src="/assets/img/logo_img/Gamma.png" class="workspace-logo">
+                                    <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
+                                        <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <img src="/assets/img/logo_img/Gamma.png" alt="Gamma Logo" class="workspace-logo">
+                                            </div>
+                                        </a>
+                                        <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                                            <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
-                                    </a>
+                                    </div>
                                     <div class="toolname">Gamma</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>

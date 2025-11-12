@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -729,9 +729,9 @@
                         <!-- 검색창 -->
                         <div class="page-header-search"
                              style="min-height: 5vh; display: flex; align-items: center; justify-content: center; margin-top: 4rem; margin-bottom: 4rem;">
-                            <form id="searchForm" class="input-group input-group-joined search-bar" action="#" method="get">
+                            <form id="searchForm" class="input-group input-group-joined search-bar" action="/search" method="get">
                                 <div class="input-group input-group-joined search-bar" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
-                                    <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
+                                    <input class="form-control" type="text" name="keyword" placeholder="Search..." aria-label="Search" autofocus style="border: none;" th:value="${keyword}" />
                                     <span class="input-group-text search-icon" style="border: none;"><i data-feather="search"></i></span>
                                 </div>
                             </form>
