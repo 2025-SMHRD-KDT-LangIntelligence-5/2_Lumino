@@ -13,6 +13,24 @@
 
         <style>
 
+            /* 버튼 기본색 연보라로 강제 지정 */
+                .compare-tool-item .btn.btn-sm.btn-secondary {
+                  background-color: #A7B7FF !important;  /* 연보라색 */
+                  color: #fff !important;
+                  border: none !important;
+                  opacity: 1 !important; /* 투명도 제거 */
+                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
+                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+                }
+
+            /* hover 시 살짝 진한 보라 */
+                .compare-tool-item .btn.btn-sm.btn-secondary:hover {
+                  background-color: #4328E0 !important;
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
+                  transform: translateY(-1px);
+                }
+
+
             /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
                    #workspace-zone .card {
                      max-width: 900px;  /* 가로 폭 */
@@ -311,6 +329,82 @@
                       border-radius: 999px;
                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
                     }
+
+                /* ===== 카드 레이아웃(간격) ===== */
+                /* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
+                .compare-tool-item .d-flex.flex-column.align-items-center {
+                  gap: 14px;
+                }
+
+                /* ===== 라벨(툴 이름) ===== */
+                .toolname{
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6px;
+
+                  background: rgba(255, 255, 255, 0.88);
+                  color: #1a1a1a;
+                  font-weight: 600;
+                  font-size: 0.92rem;
+                  letter-spacing: 0.2px;
+
+                  padding: 8px 18px;
+                  border-radius: 999px;
+                  border: 1px solid rgba(75, 46, 230, 0.08);
+                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
+                  transition: all 0.25s ease;
+                  margin: 0; /* 하단 마진 제거 */
+                }
+
+                /* 라벨 앞 포인트 점 */
+                .toolname::before{
+                  content: "•";
+                  color: var(--accent);
+                  font-size: 1.15rem;
+                  line-height: 1;
+                  margin-right: 3px;
+                }
+
+                /* hover 시 살짝만 밝게 */
+                .compare-tool-item:hover .toolname{
+                  background: rgba(255, 255, 255, 0.96);
+                  border-color: rgba(75, 46, 230, 0.15);
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
+                  transform: translateY(-1px);
+                }
+
+                /* ===== 버튼(사이트/상세설명) ===== */
+                .compare-tool-item .btn.btn-sm.btn-secondary{
+                  background: var(--accent);
+                  color: #fff;
+                  border: none;
+                  padding: 6px 14px;
+                  font-weight: 600;
+                  border-radius: 999px;
+                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
+                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+                }
+
+                .compare-tool-item .btn.btn-sm.btn-secondary:hover{
+                  background: #4328e0; /* var(--accent)보다 살짝 진하게 */
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
+                  transform: translateY(-1px);
+                }
+
+                /* ===== 라벨 ↔ 버튼 간격(핵심) ===== */
+                /* 버튼 묶음이 라벨에 더 붙도록 상단 마진을 음수로 당김 */
+                .compare-tool-item .toolname + .d-flex{
+                  margin-top: -6px !important; /* -4~-8px 사이에서 취향대로 조절 */
+                }
+
+                /* ===== 접근성(모션 민감) ===== */
+                @media (prefers-reduced-motion: reduce){
+                  .toolname,
+                  .compare-tool-item .btn.btn-sm.btn-secondary{
+                    transition:none;
+                  }
+                }
 
         </style>
 
