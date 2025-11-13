@@ -12,7 +12,7 @@
 <br>
 
 ## 📅 프로젝트 기간
-2025.09.11 ~ 2025.11.26 (7주)
+2025.09.11 ~ 2025.11.26 (10주)
 <br>
 
 ## ⭐ 주요 기능
@@ -83,7 +83,8 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조) 예시 
-[<img width="1920" height="1080" alt="시스템아키텍쳐" src="https://github.com/user-attachments/assets/eaca0ded-a4af-41e7-a6d7-52dff4f860fd" />](https://drive.google.com/file/d/1AujW2kz9C73gE20Rzhv_ZceQuziL2HCf/view?usp=drive_link)
+<img width="818" height="494" alt="시스템 아키텍쳐" src="https://github.com/user-attachments/assets/9db6714a-66da-4cc3-a1c6-fcddf913432d" />
+
 <br>
 
 ## 📌 SW유스케이스
@@ -92,7 +93,8 @@
 <br>
 
 ## 📌 서비스 흐름도
-<img width="810" height="694" alt="image" src="https://github.com/user-attachments/assets/cbf19a4f-0a71-47fd-b8a8-2c87b9a488db" />
+<img width="1286" height="702" alt="서비스흐름도" src="https://github.com/user-attachments/assets/4a9a317c-0538-4f1e-904c-ae0ce3447e46" />
+
 
 <br>
 
@@ -131,16 +133,16 @@
     <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
   </tr>
 <tr>
-    <td align="center"><strong>이유나</strong></td>
-    <td align="center"><strong>윤희훈</strong></td>
     <td align="center"><strong>김세연</strong></td>
-    <td align="center"><strong>신태빈</strong></td>
+    <td align="center"><strong>윤희훈</strong></td>
+    <td align="center"><strong>이유나</strong></td>
+    <td align="center"><strong>김수빈</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>감정 흐름 설계<br>전체 구조 기획<br>문서 및 발표 총괄</b></td>
-    <td align="center"><b>DB Table 생성<br>My SQL과 SpringBoot 연결<br>기능별 JSP 생성<br>페이지별 CSS 수정<br>JSTL/EL 라이브러리 적용<br>Git hub 사용</b></td>
-    <td align="center"><b>UI/UX 화면 구성<br>DBeaver와 My SQL 연결<br>감정 작성·분석 시각화 구현<br>페이지별 CSS 수정<br>캘린더 라이브러리 적용<br>Git hub 사용</b></td>
-    <td align="center"><b>문서작성 보조</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
   </tr>
 </table>
 
