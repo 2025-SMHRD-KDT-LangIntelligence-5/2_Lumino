@@ -13,21 +13,8 @@
 
         <style>
 
-            /* 버튼 기본색 연보라로 강제 지정 */
-                .compare-tool-item .btn.btn-sm.btn-secondary {
-                  background-color: #A7B7FF !important;  /* 연보라색 */
-                  color: #fff !important;
-                  border: none !important;
-                  opacity: 1 !important; /* 투명도 제거 */
-                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
-                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
-                }
-
-            /* hover 시 살짝 진한 보라 */
-                .compare-tool-item .btn.btn-sm.btn-secondary:hover {
-                  background-color: #4328E0 !important;
-                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
-                  transform: translateY(-1px);
+            .form-control {
+                  background: #FFFFFF;
                 }
 
             /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
@@ -49,10 +36,6 @@
                  border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
                  background-color: transparent;
                  transition: transform 0.25s ease;
-               }
-
-               .workspace-logo:hover {
-                 transform: scale(1.05);  /* 살짝 커지게 */
                }
 
                .workspace-logo:hover {
@@ -221,10 +204,10 @@
                   backdrop-filter: blur(8px);
                 }
                 .page-header-search .form-control {
-                  background: #FFFFFF;
+                  background: #ffffff;
                 }
                 body[data-theme="dark"] .page-header-search .form-control {
-                  background: #FFFFFF; color: #eaeaf4;
+                  background: rgba(20,20,30,0.75); color: #eaeaf4;
                 }
                 .page-header-search .form-control:focus {
                   box-shadow: 0 0 0 3px rgba(180,159,255,0.25);
@@ -328,7 +311,81 @@
                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
                     }
 
-            /* ===== 카드 레이아웃(간격) ===== */
+            :root{
+                  --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
+                  --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
+                  --brand:#9c8cff; --accent:#a7b7ff;
+                  --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
+                }
+
+                /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
+                .small, .text-muted{ color:var(--ink-3)!important; }
+
+
+            /* ==============================
+               Elegant Universal Body Background
+               ============================== */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              background-color: #f9f9ff;
+              background-image:
+                /* subtle inner glow (top-left) */
+                radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
+                /* soft diagonal lavender flow */
+                linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
+                /* gentle vignette edges */
+                radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: #242a39;
+              transition: background 0.6s ease, color 0.4s ease;
+            }
+
+            /***** Chrome/Edge *****/
+                *::-webkit-scrollbar{ height:10px; width:10px; }
+                *::-webkit-scrollbar-thumb{
+                  background: linear-gradient(var(--brand), var(--accent));
+                  border-radius:999px; border:2px solid transparent; background-clip: content-box;
+                }
+                *::-webkit-scrollbar-track{ background: transparent; }
+                /***** Firefox *****/
+                *{
+                  scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
+                  scrollbar-width: thin;
+                }
+
+            /* 워크스페이스 헤더 액션 버튼 */
+                .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
+                .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
+                .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
+
+                .ws-edit-btn:hover { color: #7c6cff; }
+                .ws-delete-btn:hover { color: #ff5a5a; }
+
+                 /* lumino 링크 스타일: 검은색, 클릭 효과 제거 */
+                 .lumino-link {
+                     color: #000 !important;
+                     text-decoration: none;
+                     cursor: default;
+                     pointer-events: none;
+                 }
+                 .lumino-link:hover,
+                 .lumino-link:active,
+                 .lumino-link:focus {
+                     color: #000 !important;
+                     text-decoration: none;
+                     transform: none !important;
+                     animation: none !important;
+                     transition: none !important;
+                 }
+
+
+                /* ===== 카드 레이아웃(간격) ===== */
                 /* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
                 .compare-tool-item .d-flex.flex-column.align-items-center {
                   gap: 14px;
@@ -404,6 +461,7 @@
                     transition:none;
                   }
                 }
+
 
         </style>
 

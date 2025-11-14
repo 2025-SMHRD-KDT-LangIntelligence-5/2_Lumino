@@ -13,139 +13,109 @@
 
         <style>
 
-            /* 버튼 기본색 연보라로 강제 지정 */
-                .compare-tool-item .btn.btn-sm.btn-secondary {
-                  background-color: #A7B7FF !important;  /* 연보라색 */
-                  color: #fff !important;
-                  border: none !important;
-                  opacity: 1 !important; /* 투명도 제거 */
-                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
-                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+            .form-control {
+                  background: #FFFFFF;
                 }
 
-            /* hover 시 살짝 진한 보라 */
-                .compare-tool-item .btn.btn-sm.btn-secondary:hover {
-                  background-color: #4328E0 !important;
-                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
-                  transform: translateY(-1px);
-                }
+            /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
+                   #workspace-zone .card {
+                     max-width: 900px;  /* 가로 폭 */
+                     margin: 0 auto;
+                     border-radius: 22px;
+                     box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
+                   }
+                   #workspace-zone .card-header { padding: .8rem 1rem; }
+                   #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
 
-            /* ===== 버튼(사이트/상세설명) ===== */
-                .compare-tool-item .btn.btn-sm.btn-secondary{
-                  background: var(--accent);
-                  color: #fff;
-                  border: none;
-                  padding: 6px 14px;
-                  font-weight: 600;
-                  border-radius: 999px;
-                  box-shadow: 0 2px 5px rgba(75,46,230,0.20);
-                  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
-                }
+            /* 워크스페이스 카드 로고 전용 스타일 */
+               .workspace-logo {
+                 width: 100%;
+                 height: auto;            /* 비율 자동 유지 */
+                 object-fit: contain;     /* 상자 안에 맞게 축소 */
+                 display: block;
+                 border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                 background-color: transparent;
+                 transition: transform 0.25s ease;
+               }
 
-                .compare-tool-item .btn.btn-sm.btn-secondary:hover{
-                  background: #4328e0; /* var(--accent)보다 살짝 진하게 */
-                  box-shadow: 0 4px 10px rgba(75,46,230,0.30);
-                  transform: translateY(-1px);
-                }
-                        /* ===== Workspace 카드 크기 ↓ (반쯤 줄이기) ===== */
-                                                     #workspace-zone .card {
-                                                       max-width: 900px;  /* 가로 폭 */
-                                                       margin: 0 auto;
-                                                       border-radius: 22px;
-                                                       box-shadow: 0 6px 14px rgba(160, 140, 255, 0.12);
-                                                     }
-                                                     #workspace-zone .card-header { padding: .8rem 1rem; }
-                                                     #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
+               .workspace-logo:hover {
+                 transform: scale(1.05);  /* 살짝 커지게 */
+               }
 
-                      /* 워크스페이스 카드 로고 전용 스타일 */
-                          .workspace-logo {
-                            width: 100%;
-                            height: auto;            /* 비율 자동 유지 */
-                            object-fit: contain;     /* 상자 안에 맞게 축소 */
-                            display: block;
-                            border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
-                            background-color: transparent;
-                            transition: transform 0.25s ease;
-                          }
+           /* === 검색창 전체 래퍼 === */
+               .search-bar {
+                 max-width: 50vw;
+                 width: 100%;
+                 border-radius: 50px;
+                 overflow: hidden;
+                 background: rgba(255,255,255,0.3);
+                 backdrop-filter: blur(12px);
+                 border: 2px solid transparent;
+                 background-image:
+                   linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                   linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
+                 background-origin: border-box;
+                 background-clip: content-box, border-box;
+                 transition: all 0.4s ease;
+                 box-shadow: 0 0 20px rgba(150,120,255,0.15);
+               }
 
-                          .workspace-logo:hover {
-                            transform: scale(1.05);  /* 살짝 커지게 */
-                          }
+               /* === 입력창 === */
+               .search-input {
+                 border: none !important;
+                 background: transparent !important;
+                 padding: 0.8rem 1.2rem;
+                 font-size: 1rem;
+                 color: #3a3a3a;
+                 width: 100%;
+                 transition: all 0.3s ease;
+               }
+               .search-input::placeholder {
+                 color: #aaa;
+                 letter-spacing: 0.5px;
+               }
+               .search-input:focus {
+                 outline: none;
+                 color: #222;
+               }
 
-                      /* === 검색창 전체 래퍼 === */
-                          .search-bar {
-                            max-width: 50vw;
-                            width: 100%;
-                            border-radius: 50px;
-                            overflow: hidden;
-                            background: rgba(255,255,255,0.3);
-                            backdrop-filter: blur(12px);
-                            border: 2px solid transparent;
-                            background-image:
-                              linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                              linear-gradient(135deg, #b39aff, #8da6ff, #b7e8ff);
-                            background-origin: border-box;
-                            background-clip: content-box, border-box;
-                            transition: all 0.4s ease;
-                            box-shadow: 0 0 20px rgba(150,120,255,0.15);
-                          }
+               /* === 아이콘 영역 === */
+               .search-icon {
+                 border: none !important;
+                 background: transparent !important;
+                 padding-right: 1.2rem;
+                 color: #7d6aff;
+                 transition: all 0.3s ease;
+               }
 
-                          /* === 입력창 === */
-                          .search-input {
-                            border: none !important;
-                            background: transparent !important;
-                            padding: 0.8rem 1.2rem;
-                            font-size: 1rem;
-                            color: #3a3a3a;
-                            width: 100%;
-                            transition: all 0.3s ease;
-                          }
-                          .search-input::placeholder {
-                            color: #aaa;
-                            letter-spacing: 0.5px;
-                          }
-                          .search-input:focus {
-                            outline: none;
-                            color: #222;
-                          }
+               /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
+               .search-bar:focus-within {
+                 background-image:
+                   linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+                   linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
+                 box-shadow: 0 0 25px rgba(150,120,255,0.35);
+                 transform: scale(1.02);
+               }
 
-                          /* === 아이콘 영역 === */
-                          .search-icon {
-                            border: none !important;
-                            background: transparent !important;
-                            padding-right: 1.2rem;
-                            color: #7d6aff;
-                            transition: all 0.3s ease;
-                          }
+               /* === 엔터(Submit) 시 시각적 반응 === */
+               .search-input:focus:valid {
+                 animation: enterPulse 0.3s ease-out;
+               }
+               @keyframes enterPulse {
+                 0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                 50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
+                 100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+               }
 
-                          /* === 포커스 시 효과 (빛나는 오로라 테두리) === */
-                          .search-bar:focus-within {
-                            background-image:
-                              linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
-                              linear-gradient(135deg, #c6b0ff, #b7e8ff, #91a8ff);
-                            box-shadow: 0 0 25px rgba(150,120,255,0.35);
-                            transform: scale(1.02);
-                          }
-
-                          /* === 엔터(Submit) 시 시각적 반응 === */
-                          .search-input:focus:valid {
-                            animation: enterPulse 0.3s ease-out;
-                          }
-                          @keyframes enterPulse {
-                            0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                            50%  { box-shadow: 0 0 15px rgba(150,120,255,0.4); }
-                            100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                          }
-
-                      /* 엔터(Submit) 시 시각적 반응 */
-                          .enter-pulse {
-                            animation: enterPulse 0.35s ease-out;
-                          }
-                          @keyframes enterPulse {
-                            0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                            50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
-                            100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
-                          }
+           /* 엔터(Submit) 시 시각적 반응 */
+               .enter-pulse {
+                 animation: enterPulse 0.35s ease-out;
+               }
+               @keyframes enterPulse {
+                 0%   { box-shadow: 0 0 0 rgba(150,120,255,0); }
+                 50%  { box-shadow: 0 0 16px rgba(150,120,255,0.45); }
+                 100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
+               }
 
 
             /* 모드 이미지 버튼 (이미지만 보이게) */
@@ -234,10 +204,10 @@
                   backdrop-filter: blur(8px);
                 }
                 .page-header-search .form-control {
-                  background: #FFFFFF;
+                  background: #ffffff;
                 }
                 body[data-theme="dark"] .page-header-search .form-control {
-                  background: #FFFFFF; color: #eaeaf4;
+                  background: rgba(20,20,30,0.75); color: #eaeaf4;
                 }
                 .page-header-search .form-control:focus {
                   box-shadow: 0 0 0 3px rgba(180,159,255,0.25);
@@ -341,68 +311,81 @@
                       background: linear-gradient(90deg, #b39aff, #8da6ff, #b7e8ff);
                     }
 
-            /* ===== 카드 레이아웃(간격) ===== */
-                /* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
-                .compare-tool-item .d-flex.flex-column.align-items-center {
-                  gap: 14px;
+            :root{
+                  --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
+                  --ink-1:#26324b; --ink-2:#4b5675; --ink-3:#7d84a0;
+                  --brand:#9c8cff; --accent:#a7b7ff;
+                  --card-r:18px; --tile-r:18px; --shadow:0 8px 24px rgba(30,16,80,.08);
                 }
 
-                /* ===== 라벨(툴 이름) ===== */
-                .toolname{
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  gap: 6px;
+                /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
+                .small, .text-muted{ color:var(--ink-3)!important; }
 
-                  background: rgba(255, 255, 255, 0.88);
-                  color: #1a1a1a;
-                  font-weight: 600;
-                  font-size: 0.92rem;
-                  letter-spacing: 0.2px;
 
-                  padding: 8px 18px;
-                  border-radius: 999px;
-                  border: 1px solid rgba(75, 46, 230, 0.08);
-                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
-                  transition: all 0.25s ease;
-                  margin: 0;
-                  margin-top: 0.5rem; /* 상단 마진 추가 */
+            /* ==============================
+               Elegant Universal Body Background
+               ============================== */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              background-color: #f9f9ff;
+              background-image:
+                /* subtle inner glow (top-left) */
+                radial-gradient(1200px 480px at 8% -10%, rgba(173,153,255,.12), transparent 60%),
+                /* soft diagonal lavender flow */
+                linear-gradient(135deg, #fafaff 0%, #f3f5ff 50%, #ecefff 100%),
+                /* gentle vignette edges */
+                radial-gradient(1200px 600px at 50% 120%, rgba(170,160,255,.08), transparent 70%);
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: #242a39;
+              transition: background 0.6s ease, color 0.4s ease;
+            }
+
+            /***** Chrome/Edge *****/
+                *::-webkit-scrollbar{ height:10px; width:10px; }
+                *::-webkit-scrollbar-thumb{
+                  background: linear-gradient(var(--brand), var(--accent));
+                  border-radius:999px; border:2px solid transparent; background-clip: content-box;
+                }
+                *::-webkit-scrollbar-track{ background: transparent; }
+                /***** Firefox *****/
+                *{
+                  scrollbar-color: color-mix(in oklab, var(--brand) 55%, #cfd6ff) transparent;
+                  scrollbar-width: thin;
                 }
 
-                /* 라벨 앞 포인트 점 */
-                .toolname::before{
-                  content: "•";
-                  color: #7d6aff;
-                  font-size: 1.15rem;
-                  line-height: 1;
-                  margin-right: 3px;
-                }
+            /* 워크스페이스 헤더 액션 버튼 */
+                .ws-edit-btn i, .ws-delete-btn i { width: 1rem; height: 1rem; }
+                .btn-transparent-dark { background: transparent; border: none; color: #555a66; }
+                .btn-transparent-danger { background: transparent; border: none; color: #e04343; }
 
-                /* hover 시 살짝만 밝게 */
-                .compare-tool-item:hover .toolname{
-                  background: rgba(255, 255, 255, 0.96);
-                  border-color: rgba(75, 46, 230, 0.15);
-                  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
-                  transform: translateY(-1px);
-                }
+                .ws-edit-btn:hover { color: #7c6cff; }
+                .ws-delete-btn:hover { color: #ff5a5a; }
+
+                 /* lumino 링크 스타일: 검은색, 클릭 효과 제거 */
+                 .lumino-link {
+                     color: #000 !important;
+                     text-decoration: none;
+                     cursor: default;
+                     pointer-events: none;
+                 }
+                 .lumino-link:hover,
+                 .lumino-link:active,
+                 .lumino-link:focus {
+                     color: #000 !important;
+                     text-decoration: none;
+                     transform: none !important;
+                     animation: none !important;
+                     transition: none !important;
+                 }
 
 
-
-                /* ===== 라벨 ↔ 버튼 간격(핵심) ===== */
-                /* 버튼 묶음이 라벨에 더 붙도록 상단 마진을 음수로 당김 */
-                .compare-tool-item .toolname + .d-flex{
-                  margin-top: -6px !important; /* -4~-8px 사이에서 취향대로 조절 */
-                }
-
-                /* ===== 접근성(모션 민감) ===== */
-                @media (prefers-reduced-motion: reduce){
-                  .toolname,
-                  .compare-tool-item .btn.btn-sm.btn-secondary{
-                    transition:none;
-                  }
-                }
-
-            /* ===== 카드 레이아웃(간격) ===== */
+                /* ===== 카드 레이아웃(간격) ===== */
                 /* 로고 ↔ 라벨 간격은 유지, 라벨 ↔ 버튼은 별도로 조정할 것 */
                 .compare-tool-item .d-flex.flex-column.align-items-center {
                   gap: 14px;
@@ -478,6 +461,7 @@
                     transition:none;
                   }
                 }
+
 
         </style>
 
