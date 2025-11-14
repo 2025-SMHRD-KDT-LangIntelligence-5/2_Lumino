@@ -832,7 +832,7 @@
                         <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
                         
                         <h2 class="section-title mb-3">전체 AI 도구</h2>
-                        <div class="tools-grid row g-5 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 90%; margin: 0 auto; gap: 2rem;">
+                        <div class="tools-grid row g-5" style="display: flex; flex-wrap: wrap; justify-content: flex-start; max-width: 90%; margin: 0 auto; gap: 2rem;">
                             <!-- 검색 결과가 있을 때 -->
                             <div th:if="${tools != null and !tools.empty}" th:each="tool : ${tools}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" th:attr="data-tool-name=${tool.tool_name}">
                                 <div class="d-flex flex-column align-items-center">
@@ -853,7 +853,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- 검색 결과가 없을 때 기존 하드코딩된 목록 (가로 5개, 세로 3개 = 총 15개 정사각형) -->
                             <div th:if="${tools == null or tools.empty}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" data-tool-name="ChatGPT">
                                 <div class="d-flex flex-column align-items-center">
@@ -1232,6 +1232,107 @@
                     searchTools();
                 }
             });
+        </script>
+
+        <script>
+            // 프론트엔드 검색 기능 (toolname 기준 필터링)
+            const searchInput = document.querySelector('input[name="keyword"]');
+            const toolsGrid = document.querySelector('.tools-grid');
+
+            if (searchInput && toolsGrid) {
+                let searchTimeout;
+
+                // 입력할 때마다 검색
+                searchInput.addEventListener('input', function(e) {
+                    const keyword = e.target.value.trim();
+
+                    // 디바운싱: 입력 후 300ms 대기
+                    clearTimeout(searchTimeout);
+
+                    searchTimeout = setTimeout(() => {
+                        filterToolsByName(keyword);
+                    }, 300);
+                });
+
+                // Enter 키로도 검색
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const keyword = e.target.value.trim();
+                        filterToolsByName(keyword);
+                    }
+                });
+
+                // 페이지 로드 시 URL 파라미터에서 keyword 읽어서 자동 검색
+                window.addEventListener('DOMContentLoaded', function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const keyword = urlParams.get('keyword');
+
+                    if (keyword && keyword.trim().length > 0) {
+                        // 검색창에 키워드 입력
+                        searchInput.value = keyword;
+                        // 자동으로 검색 실행
+                        filterToolsByName(keyword);
+                    }
+                });
+            }
+
+            function filterToolsByName(keyword) {
+                const toolsGrid = document.querySelector('.tools-grid');
+                if (!toolsGrid) return;
+
+                // 모든 도구 아이템 가져오기
+                const allToolItems = toolsGrid.querySelectorAll('.compare-tool-item');
+
+                // 검색어를 소문자로 변환
+                const searchKeyword = keyword.toLowerCase().trim();
+
+                let visibleCount = 0;
+
+                // 각 도구를 검사
+                allToolItems.forEach(item => {
+                    // .toolname 요소에서 도구 이름 가져오기
+                    const toolNameEl = item.querySelector('.toolname');
+
+                    if (!toolNameEl) return;
+
+                    // 도구 이름을 소문자로 변환
+                    const toolName = toolNameEl.textContent.toLowerCase().trim();
+
+                    // 검색어가 비어있으면 모두 표시
+                    if (searchKeyword.length === 0) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    }
+                    // 검색어가 있으면 부분 일치 확인
+                    else if (toolName.includes(searchKeyword) || searchKeyword.includes(toolName)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    }
+                    // 일치하지 않으면 숨김
+                    else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // 검색 결과가 없을 때 메시지 표시
+                let noResultMsg = document.querySelector('.no-result-message');
+
+                if (searchKeyword.length > 0 && visibleCount === 0) {
+                    if (!noResultMsg) {
+                        noResultMsg = document.createElement('div');
+                        noResultMsg.className = 'col-12 text-center no-result-message';
+                        noResultMsg.innerHTML = '<p class="text-muted" style="margin-top: 2rem; font-size: 1.1rem;">검색 결과가 없습니다.</p>';
+                        toolsGrid.appendChild(noResultMsg);
+                    } else {
+                        noResultMsg.style.display = 'block';
+                    }
+                } else {
+                    if (noResultMsg) {
+                        noResultMsg.style.display = 'none';
+                    }
+                }
+            }
         </script>
 
         </body>

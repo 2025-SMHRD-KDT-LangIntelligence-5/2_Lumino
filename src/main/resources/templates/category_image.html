@@ -1277,17 +1277,79 @@
                 transform: translateY(-2px);
                 box-shadow: 0 4px 8px rgba(105, 0, 199, 0.2);
             }
-            
+
             .compare-tool-card.selected {
                 border: 2px solid #6900C7 !important;
                 box-shadow: 0 0 0 2px rgba(105, 0, 199, 0.2);
             }
-            
+
             .compare-check-icon {
                 z-index: 10;
             }
+
+            /* 검색 하이라이트 스타일 */
+            .search-highlight {
+                animation: highlightPulse 2s ease-in-out;
+                border: 3px solid #b39aff !important;
+                box-shadow: 0 0 20px rgba(179, 154, 255, 0.6) !important;
+            }
+
+            @keyframes highlightPulse {
+                0%, 100% {
+                    box-shadow: 0 0 20px rgba(179, 154, 255, 0.6);
+                    transform: scale(1);
+                }
+                50% {
+                    box-shadow: 0 0 30px rgba(179, 154, 255, 0.9);
+                    transform: scale(1.05);
+                }
+            }
         </style>
 
-    
+        <script>
+            // URL 파라미터에서 검색어 가져오기
+            document.addEventListener('DOMContentLoaded', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchTerm = urlParams.get('search');
+
+                if (searchTerm) {
+                    // 모든 toolname 요소 찾기
+                    const toolnames = document.querySelectorAll('.toolname');
+                    let found = false;
+
+                    toolnames.forEach(toolnameEl => {
+                        const toolText = toolnameEl.textContent.toLowerCase();
+                        const search = searchTerm.toLowerCase();
+
+                        // 부분 일치 확인
+                        if (toolText.includes(search) || search.includes(toolText)) {
+                            // 해당 도구의 카드 찾기
+                            const toolCard = toolnameEl.closest('.compare-tool-item').querySelector('.compare-tool-card');
+
+                            if (toolCard && !found) {
+                                // 하이라이트 효과 추가
+                                toolCard.classList.add('search-highlight');
+
+                                // 해당 위치로 스크롤 (부드럽게)
+                                setTimeout(() => {
+                                    toolCard.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'center'
+                                    });
+                                }, 300);
+
+                                // 2초 후 하이라이트 제거
+                                setTimeout(() => {
+                                    toolCard.classList.remove('search-highlight');
+                                }, 3000);
+
+                                found = true;
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+
         </body>
 </html>
