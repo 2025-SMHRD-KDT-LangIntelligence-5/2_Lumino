@@ -253,6 +253,45 @@
                   100%{ background-position: 100% 50%; }
                 }
 
+                /* ===== 툴 이름 라벨 스타일 ===== */
+                .toolname{
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6px;
+
+                  background: rgba(255, 255, 255, 0.88);
+                  color: #1a1a1a;
+                  font-weight: 600;
+                  font-size: 0.92rem;
+                  letter-spacing: 0.2px;
+
+                  padding: 8px 18px;
+                  border-radius: 999px;
+                  border: 1px solid rgba(75, 46, 230, 0.08);
+                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
+                  transition: all 0.25s ease;
+                  margin: 0;
+                  margin-top: 0.5rem;
+                }
+
+                /* 라벨 앞 포인트 점 */
+                .toolname::before{
+                  content: "•";
+                  color: #7d6aff;
+                  font-size: 1.15rem;
+                  line-height: 1;
+                  margin-right: 3px;
+                }
+
+                /* hover 시 살짝 밝게 */
+                .d-flex.flex-column:hover .toolname{
+                  background: rgba(255, 255, 255, 0.96);
+                  border-color: rgba(75, 46, 230, 0.15);
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
+                  transform: translateY(-1px);
+                }
+
                 /* 8) 검색창 고급 테두리 & 포커스 */
                 .page-header-search .input-group {
                   border-radius: 9999px; overflow: hidden;
@@ -435,7 +474,7 @@
 
             /* 워크스페이스 카드 로고 전용 스타일 */
                 .workspace-logo {
-                  width: 120%;
+                  width: 100%;
                   height: auto;            /* 비율 자동 유지 */
                   object-fit: contain;     /* 상자 안에 맞게 축소 */
                   display: block;
@@ -802,48 +841,62 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <div class="row g-3">
+                                    <div class="row g-3 justify-content-start">
 
                                         <!-- 네 개 아이콘 타일 -->
-                                        <div class="col-4 col-md-3 col-xl-2">
-                                            <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
-                                                    <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
-                                                </div>
-                                            </a>
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                                <div class="toolname">Warp</div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-4 col-md-3 col-xl-2">
-                                            <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
-                                                    <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
-                                                </div>
-                                            </a>
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                                <div class="toolname">Codacy</div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-4 col-md-3 col-xl-2">
-                                            <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
-                                                    <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
-                                                </div>
-                                            </a>
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                                <div class="toolname">cursor</div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-4 col-md-3 col-xl-2">
-                                            <a class="card lift lift-sm text-center h-100" href="tool-model-runner.html">
-                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
-                                                    <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
-                                                </div>
-                                            </a>
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                                <div class="toolname">deepcode</div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-4 col-md-3 col-xl-2">
-                                            <a class="card lift lift-sm text-center h-100" href="add-ai-tool.html">
-                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; aspect-ratio:1/1;">
-                                                    <i class="mb-2" data-feather="plus"></i>
-                                                    <div>Add Tool</div>
-                                                </div>
-                                            </a>
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="add-ai-tool.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
