@@ -801,9 +801,9 @@
                         <!-- 검색창 -->
                         <div class="page-header-search"
                              style="min-height: 5vh; display: flex; align-items: center; justify-content: center; margin-top: 1.5rem;">
-                            <form id="searchForm" class="input-group input-group-joined search-bar" action="#" method="get">
+                            <form id="searchForm" class="input-group input-group-joined search-bar" action="/search" method="get">
                             <div class="input-group input-group-joined search-bar" style="max-width: 50vw; width: 100%; border-radius: 9999px; overflow: hidden;">
-                                <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
+                                <input class="form-control search-input" type="text" name="keyword" placeholder="Search..." aria-label="Search" autofocus style="border: none;" />
                                 <span class="input-group-text search-icon" style="border: none;"><i data-feather="search"></i></span>
                             </div>
                         </div>
@@ -1034,24 +1034,19 @@
               const input = form.querySelector('.search-input');
 
               form.addEventListener('submit', (e) => {
-                e.preventDefault(); // 페이지 전환 막고 JS로 처리
                 const q = (input.value || '').trim();
                 if (!q) {
+                  e.preventDefault(); // 빈 검색어는 submit 막기
                   input.focus();
                   return;
                 }
 
-                // TODO: 여기에 실제 검색 로직을 붙이세요.
-                // 예시 1) 검색 페이지로 이동:
-                // window.location.href = '/search?q=' + encodeURIComponent(q);
-
-                // 예시 2) 콘솔 테스트:
-                console.log('Searching:', q);
-
-                // 반짝이는 피드백
+                // 반짝이는 피드백 추가 (검색 페이지로 이동하기 전)
                 input.classList.remove('enter-pulse');
                 void input.offsetWidth; // reflow로 애니메이션 재실행 트릭
                 input.classList.add('enter-pulse');
+
+                // form이 정상적으로 submit됨 (e.preventDefault()를 호출하지 않음)
               });
             });
         </script>
