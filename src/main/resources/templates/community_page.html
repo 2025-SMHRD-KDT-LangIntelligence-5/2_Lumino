@@ -390,6 +390,57 @@
                      animation: none !important;
                      transition: none !important;
                  }
+
+                /* ===== 라벨(툴 이름) ===== */
+                .workspace-zone .toolname{
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 4px;
+
+                  background: rgba(255, 255, 255, 0.88);
+                  color: #1a1a1a;
+                  font-weight: 600;
+                  font-size: 0.75rem;
+                  letter-spacing: 0.15px;
+
+                  padding: 5px 12px;
+                  border-radius: 999px;
+                  border: 1px solid rgba(75, 46, 230, 0.08);
+                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
+                  transition: all 0.25s ease;
+                  margin: 0;
+                  margin-top: 0.3rem; /* 상단 마진 추가 */
+                }
+
+                /* 라벨 앞 포인트 점 */
+                .workspace-zone .toolname::before{
+                  content: "•";
+                  color: #7d6aff;
+                  font-size: 0.95rem;
+                  line-height: 1;
+                  margin-right: 2px;
+                }
+
+                /* hover 시 살짝만 밝게 */
+                .workspace-zone .card:hover .toolname {
+                  background: rgba(255, 255, 255, 0.96);
+                  border-color: rgba(75, 46, 230, 0.15);
+                  box-shadow: 0 4px 10px rgba(75,46,230,0.12);
+                  transform: translateY(-1px);
+                }
+
+                /* 프로필 이미지 원형 스타일 */
+                .community-profile-img {
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  border: 2px solid rgba(125, 106, 255, 0.2);
+                  margin-right: 12px;
+                  flex-shrink: 0;
+                }
+
         </style>
         <link rel="icon" type="image/png" href="/assets/img/LogoNotBG.png" />
     </head>
@@ -671,9 +722,12 @@
                                 <!-- Workspace Toolset Feed (3 posts) -->
                                 <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center text-secondary">
-                                        <div>
-                                            <div class="fw-bold">추천 툴 세트 · Engineering</div>
-                                            <div class="text-muted small">by User1 · 2h ago</div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="/assets/img/illustrations/profiles/luminosang.png" alt="Profile" class="community-profile-img" />
+                                            <div>
+                                                <div class="fw-bold">추천 툴 세트 · Engineering</div>
+                                                <div class="text-muted small">by User1 · 2h ago</div>
+                                            </div>
                                         </div>
                                         <div>
                                             <button class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" type="button">
@@ -693,39 +747,54 @@
                                                     <div class="card-body">
                                                         <div class="row g-3 justify-content-center">
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Warp</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Codacy</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/cursor.png" alt="Cursor Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/cursor.png" alt="Cursor Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">cursor</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/deepcode.png" alt="Deepcode Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/deepcode.png" alt="Deepcode Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">deepcode</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/windsurf.png" alt="Windsurf Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-model-runner.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/windsurf.png" alt="Windsurf Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Windsurf</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -733,6 +802,7 @@
                                             </div>
                                         </section>
                                         <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <hr class="my-3" style="border-top: 1px solid rgba(0,0,0,0.1);" />
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
@@ -741,9 +811,12 @@
 
                                 <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center text-secondary">
-                                        <div>
-                                            <div class="fw-bold">추천 툴 세트 · Design</div>
-                                            <div class="text-muted small">by User2 · 1d ago</div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="/assets/img/illustrations/profiles/luminosang.png" alt="Profile" class="community-profile-img" />
+                                            <div>
+                                                <div class="fw-bold">추천 툴 세트 · Design</div>
+                                                <div class="text-muted small">by User2 · 1d ago</div>
+                                            </div>
                                         </div>
                                         <div>
                                             <button class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" type="button">
@@ -762,39 +835,54 @@
                                                     <div class="card-body">
                                                         <div class="row g-3 justify-content-center">
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Runway.png" alt="Runway Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Runway.png" alt="Runway Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Runway</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Leonardo%20AI.png" alt="Leonardo AI Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Leonardo%20AI.png" alt="Leonardo AI Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Leonardo</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/SeaArt.png" alt="SeaArt Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/SeaArt.png" alt="SeaArt Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">SeaArt</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Microsoft%20Designer.png" alt="Microsoft Designer Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Microsoft%20Designer.png" alt="Microsoft Designer Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Microsoft Designer</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Fotor%20AI.png" alt="Fotor AI Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Fotor%20AI.png" alt="Fotor AI Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Fotor</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -802,6 +890,7 @@
                                             </div>
                                         </section>
                                         <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <hr class="my-3" style="border-top: 1px solid rgba(0,0,0,0.1);" />
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
@@ -810,9 +899,12 @@
 
                                 <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center text-secondary">
-                                        <div>
-                                            <div class="fw-bold">추천 툴 세트 · Marketing</div>
-                                            <div class="text-muted small">by User3 · 3d ago</div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="/assets/img/illustrations/profiles/luminosang.png" alt="Profile" class="community-profile-img" />
+                                            <div>
+                                                <div class="fw-bold">추천 툴 세트 · Marketing</div>
+                                                <div class="text-muted small">by User3 · 3d ago</div>
+                                            </div>
                                         </div>
                                         <div>
                                             <button class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1" type="button">
@@ -831,39 +923,54 @@
                                                     <div class="card-body">
                                                         <div class="row g-3 justify-content-center">
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Perplexity%20AI.png" alt="Perplexity AI Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Perplexity%20AI.png" alt="Perplexity AI Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Perplexity</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Gamma.png" alt="Gamma Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Gamma.png" alt="Gamma Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Gamma</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/HeyGen.png" alt="HeyGen Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-chat-assistant.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/HeyGen.png" alt="HeyGen Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">HeyGen</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/Pictory.png" alt="Pictory Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-image-gen.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/Pictory.png" alt="Pictory Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Pictory</div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-4 col-md-3 col-xl-2">
-                                                                <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-speech.html">
-                                                                    <div class="workspace-tile">
-                                                                        <img src="/assets/img/logo_img/suno.png" alt="Suno Logo" class="workspace-logo" />
-                                                                    </div>
-                                                                </a>
+                                                                <div class="d-flex flex-column align-items-center">
+                                                                    <a class="card lift lift-sm text-center h-100 workspace-tool-card" href="tool-speech.html">
+                                                                        <div class="workspace-tile">
+                                                                            <img src="/assets/img/logo_img/suno.png" alt="Suno Logo" class="workspace-logo" />
+                                                                        </div>
+                                                                    </a>
+                                                                    <div class="toolname">Suno</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -871,6 +978,7 @@
                                             </div>
                                         </section>
                                         <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
+                                        <hr class="my-3" style="border-top: 1px solid rgba(0,0,0,0.1);" />
                                         <div class="mt-3 d-flex gap-2">
                                             <a class="btn btn-sm btn-secondary" href="#">내 워크스페이스에 저장</a>
                                         </div>
