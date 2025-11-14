@@ -695,6 +695,71 @@
                                 </div>
                         </section>
 
+                        <!-- 데이터베이스에서 가져온 워크스페이스 -->
+                        <section th:each="workspace, iterStat : ${workspaces}"
+                                 th:id="'workspace-zone-db-' + ${iterStat.index}"
+                                 class="az-section">
+                            <div class="card mt-4">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                                        <div>
+                                            <h5 class="mb-0" th:text="${workspace.workspaceName}">워크스페이스 이름</h5>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <!-- 수정 · 삭제 버튼 -->
+                                        <button type="button"
+                                                class="btn btn-sm btn-transparent-dark ws-edit-btn ms-2 me-1"
+                                                th:data-wsid="${workspace.workspaceId}"
+                                                th:data-wsname="${workspace.workspaceName}"
+                                                title="이름 수정">
+                                            <i data-feather="edit-2"></i>
+                                        </button>
+
+                                        <button type="button"
+                                                class="btn btn-sm btn-transparent-danger ws-delete-btn"
+                                                th:data-wsid="${workspace.workspaceId}"
+                                                th:data-wsname="${workspace.workspaceName}"
+                                                title="워크스페이스 삭제">
+                                            <i data-feather="trash-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <!-- 각 tool 표시 -->
+                                        <div th:each="tool : ${workspace.tools}" class="col-4 col-md-3 col-xl-2">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center h-100" href="#" style="width:100%; aspect-ratio:1/1;">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%;">
+                                                        <!-- tool 로고 이미지 경로: /assets/img/logo_img/{tool_name}.png -->
+                                                        <img th:src="@{'/assets/img/logo_img/' + ${tool.toolName} + '.png'}"
+                                                             th:alt="${tool.toolName} + ' Logo'"
+                                                             class="workspace-logo"
+                                                             onerror="this.src='/assets/img/logo_img/default.png'" />
+                                                    </div>
+                                                </a>
+                                                <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Add Tool 버튼 -->
+                                        <div class="col-4 col-md-3 col-xl-2">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center h-100" href="#" style="width:100%; aspect-ratio:1/1;">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%;">
+                                                        <i class="mb-2" data-feather="plus"></i>
+                                                        <div>Add Tool</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
 
                         <!-- 실제 DB 데이터(주석 처리됨 - 나중에 활성화!) -->
