@@ -149,10 +149,10 @@
     <td align="center"><strong>김수빈</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>페이지별 CSS 수정<br>서버 도메인과 인텔리제이 작업 동기화<br>챗봇기능 생성<br>Python에서 FastAPI로 챗봇에 OpenAI ChatGPT연결<br>챗봇에 RAG설정<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
 </table>
 
