@@ -83,6 +83,7 @@
         <td>
             <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"/>
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+            <img src="https://img.shields.io/badge/canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"/>
             <img src="https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white"/>
         </td>
     </tr>
@@ -148,18 +149,18 @@
     <td align="center"><strong>김수빈</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>서버 도메인과 인텔리제이 작업 동기화<br>챗봇기능 생성<br>Python에서 FastAPI로 챗봇에 OpenAI ChatGPT연결<br>챗봇에 RAG설정<br><br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용 사용</b></td>
+    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub, Polaris Office, Canva 사용 사용</b></td>
   </tr>
 </table>
 
 ## 🤾‍♂️ 트러블 슈팅
 
 * 문제1<br>
- 문제점 설명 : list.jsp에 diary_idx 컬럼이 매칭 오류 <br>
- 해결방안 : MyBatis가 EL 표현식의 스네이크 표기법을 인식하지 못해 스네이크 표기법을 카멜케이스 표기법으로 자동 매핑 되도록 MyBatis 설정을 변경하여 해결함.
+ 문제점 설명 : 챗봇 기능을 구현하는 build.gradle에 챗봇 의존성을 추가했는데 SpringAI 문제로 계속 빌드 실패 문제<br>
+ 해결방안 : IntelliJ 내부에서 SpringAI를 사용하여 챗봇에 FastAPI를 연결하려고 했으나 복잡성과 효율성 문제로 Python으로 FastAPI를 연결하여 해결함.
 
 * 문제2<br>
  문제점 설명 : list.jsp에 일기장 목록을 5개씩 불러오는데 테이블에 불러와지지 않는 문제 <br>
