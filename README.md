@@ -16,11 +16,11 @@
 <br>
 
 ## ⭐ 주요 기능
-* 
-* 
-* 
-* 
-* 
+* AI 도구 카테고리 분류 및 검색
+* AI 도구 비교
+* AI 도구 워크스페이스
+* 커뮤니티 워크스페이스 추천
+* RAG기반 챗봇
 <br>
 
 ## ⛏ 기술스택
@@ -30,31 +30,39 @@
         <th>내용</th>
     </tr>
     <tr>
-        <td>사용언어</td>
+        <td>프론트엔드</td>
         <td>
-            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
             <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
             <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
             <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=JAVASCRIPT&logoColor=white">
         </td>
     </tr>
     <tr>
+        <td>백엔드</td>
+        <td>
+            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
+            <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+            <img src="https://img.shields.io/badge/fastapi-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
         <td>라이브러리</td>
         <td>
             <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/>
-             , 캘린더
         </td>
     </tr>
     <tr>
         <td>개발환경</td>
         <td>
-            <img src="https://img.shields.io/badge/EclipseIDE-2C2255?style=for-the-badge&logo=EclipseIDE&logoColor=white"/>
+            <img src="https://img.shields.io/badge/intellijidea-000000?style=for-the-badge&logo=intellijidea&logoColor=white"/>
+            <img src="https://img.shields.io/badge/jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white"/>
         </td>
     </tr>
     <tr>
         <td>프레임워크</td>
         <td>
             <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"/>
+            <img src="https://img.shields.io/badge/fastapi-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -67,6 +75,13 @@
         <td>데이터베이스</td>
         <td> 
             <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
+        <td>개발/관리도구</td>
+        <td>
+            <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"/>
+            <img src="https://img.shields.io/badge/filezilla-BF0000?style=for-the-badge&logo=filezilla&logoColor=white"/>
             <img src="https://img.shields.io/badge/DBeaver-382923?style=for-the-badge&logo=DBeaver&logoColor=white"/>
         </td>
     </tr>
@@ -74,6 +89,7 @@
         <td>협업도구</td>
         <td>
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+            <img src="https://img.shields.io/badge/canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white"/>
             <img src="https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white"/>
         </td>
     </tr>
@@ -99,7 +115,7 @@
 <br>
 
 ## 📌 ER다이어그램
-<img width="1209" height="805" alt="er다이어그램" src="https://github.com/user-attachments/assets/4cb25ba9-b538-4b32-a7d4-17fe80851d45" />
+![루미노 er다이어그램](https://github.com/user-attachments/assets/e5def6af-a98e-4469-8e34-b77d6ebb2a6e)
 
 <br>
 
@@ -139,18 +155,18 @@
     <td align="center"><strong>김수빈</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
-    <td align="center"><b>1<br>2<br>3<br>페이지별 CSS 수정<br>5<br>Git hub 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>서버도메인과 IntelliJ 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
 </table>
 
 ## 🤾‍♂️ 트러블 슈팅
 
 * 문제1<br>
- 문제점 설명 : list.jsp에 diary_idx 컬럼이 매칭 오류 <br>
- 해결방안 : MyBatis가 EL 표현식의 스네이크 표기법을 인식하지 못해 스네이크 표기법을 카멜케이스 표기법으로 자동 매핑 되도록 MyBatis 설정을 변경하여 해결함.
+ 문제점 설명 : 챗봇 기능을 구현하는 build.gradle에 챗봇 의존성을 추가했는데 SpringAI 문제로 계속 빌드 실패 문제<br>
+ 해결방안 : IntelliJ 내부에서 SpringAI를 사용하여 챗봇에 FastAPI를 연결하려고 했으나 복잡성과 효율성 문제로 Python으로 FastAPI를 연결하여 해결함.
 
 * 문제2<br>
  문제점 설명 : list.jsp에 일기장 목록을 5개씩 불러오는데 테이블에 불러와지지 않는 문제 <br>
