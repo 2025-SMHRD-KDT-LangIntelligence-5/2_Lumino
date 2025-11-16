@@ -150,7 +150,7 @@
   </tr>
   <tr>
     <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>페이지별 CSS 수정<br>서버도메인과 IntelliJ 작업 동기화<br>챗봇 기능 생성<br>Python에서 FastAPI로 비동기 연결<br>챗봇에 OpenAI'gpt-4o-mini'모델연결<br>챗봇에 RAG설정<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>페이지별 CSS 수정<br>서버도메인과 IntelliJ 작업 동기화<br>챗봇 기능 생성<br>Python에서 FastAPI로 비동기 연결<br>챗봇에 'gpt-4o-mini' 모델연결<br>챗봇에 RAG설정<br>Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
