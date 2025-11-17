@@ -1210,13 +1210,14 @@
              let selectedTools = [];
              const maxSelection = 2;
              
-             function toggleToolSelection(element) {
-                 const toolItem = element.closest('.compare-tool-item');
-                 const toolName = toolItem.getAttribute('data-tool-name');
-                 const card = toolItem.querySelector('.compare-tool-card');
-                 const checkIcon = toolItem.querySelector('.compare-check-icon');
-                 
-                 if (!toolName) return;
+            function toggleToolSelection(element) {
+                const toolItem = element.closest('.compare-tool-item');
+                const toolNameEl = toolItem.querySelector('.toolname');
+                const toolName = toolNameEl ? toolNameEl.textContent.trim() : null;
+                const card = toolItem.querySelector('.compare-tool-card');
+                const checkIcon = toolItem.querySelector('.compare-check-icon');
+                
+                if (!toolName) return;
                  
                  const index = selectedTools.indexOf(toolName);
                  
@@ -1256,18 +1257,23 @@
                  }
              }
              
-             function goToCompare() {
-                 if (selectedTools.length === maxSelection) {
-                     // URL 파라미터로 선택된 도구 전달
-                     const params = new URLSearchParams({
-                         tool1: selectedTools[0],
-                         tool2: selectedTools[1]
-                     });
-                     window.location.href = 'compare_page.html?' + params.toString();
-                 } else {
-                     alert('비교할 도구 2개를 선택해주세요.');
-                 }
-             }
+            function goToCompare() {
+                console.log('goToCompare called, selectedTools:', selectedTools);
+                if (selectedTools.length === maxSelection) {
+                    // URL 파라미터로 선택된 도구 전달
+                    const params = new URLSearchParams({
+                        tool1: selectedTools[0],
+                        tool2: selectedTools[1]
+                    });
+                    console.log('Navigating to:', 'http://localhost:8087/compare_page?' + params.toString());
+                    window.location.href = 'http://localhost:8087/compare_page?' + params.toString();
+                } else {
+                    alert('비교할 도구 2개를 선택해주세요.');
+                }
+            }
+            
+            // 전역 스코프에 명시적으로 할당
+            window.goToCompare = goToCompare;
         </script>
         
         <style>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -612,16 +612,26 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-xl px-4 py-4">
+                        <!-- 에러 메시지 표시 -->
+                        <div th:if="${error}" class="alert alert-danger" role="alert">
+                            <strong>오류:</strong> <span th:text="${error}"></span>
+                        </div>
+                        <div th:if="${tool1Error}" class="alert alert-warning" role="alert">
+                            <strong>경고:</strong> <span th:text="${tool1Error}"></span>
+                        </div>
+                        <div th:if="${tool2Error}" class="alert alert-warning" role="alert">
+                            <strong>경고:</strong> <span th:text="${tool2Error}"></span>
+                        </div>
                         <!-- Top compare header with images and VS -->
                         <div class="row align-items-center text-center mb-4">
                             <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                                <div class="product-box bg-light">AI 1번</div>
+                                <div class="product-box bg-light" th:text="${tool1 != null ? tool1.toolName : 'AI 1번'}">AI 1번</div>
                             </div>
                             <div class="col-12 col-lg-2 mb-4 mb-lg-0">
                                 <div class="vs-badge">VS</div>
                             </div>
                             <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                                <div class="product-box bg-light me-5">AI 2번</div>
+                                <div class="product-box bg-light me-5" th:text="${tool2 != null ? tool2.toolName : 'AI 2번'}">AI 2번</div>
                             </div>
                         </div>
 
@@ -633,21 +643,18 @@
                                             <table class="table table-bordered align-middle mb-0 h-100">
                                                 <thead class="table-light text-center">
                                                 <tr>
-                                                    <th>AI 1번 스펙</th>
+                                                    <th th:text="${tool1 != null ? tool1.toolName + ' 스펙' : 'AI 1번 스펙'}">AI 1번 스펙</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 1-1</td>
+                                                    <td class="spec-cell" th:text="${tool1 != null ? tool1.toolName : '데이터 1-1'}">데이터 1-1</td>
                                                 </tr>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 1-2</td>
+                                                    <td class="spec-cell" th:text="${tool1 != null ? tool1.priceInfo : '데이터 1-2'}">데이터 1-2</td>
                                                 </tr>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 1-3</td>
-                                                </tr>
-                                                <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 1-4</td>
+                                                    <td class="spec-cell" th:text="${tool1 != null ? tool1.webappInfo : '데이터 1-3'}">데이터 1-3</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -660,7 +667,6 @@
                                 <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
                                     <div class="spec-label-item">앱 이름</div>
                                     <div class="spec-label-item">가격</div>
-                                    <div class="spec-label-item">핵심 기능</div>
                                     <div class="spec-label-item">웹 / 앱</div>
                                 </div>
                             </div>
@@ -672,21 +678,18 @@
                                             <table class="table table-bordered align-middle mb-0 h-100">
                                                 <thead class="table-light text-center">
                                                 <tr>
-                                                    <th>AI 2번 스펙</th>
+                                                    <th th:text="${tool2 != null ? tool2.toolName + ' 스펙' : 'AI 2번 스펙'}">AI 2번 스펙</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 2-1</td>
+                                                    <td class="spec-cell" th:text="${tool2 != null ? tool2.toolName : '데이터 2-1'}">데이터 2-1</td>
                                                 </tr>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 2-2</td>
+                                                    <td class="spec-cell" th:text="${tool2 != null ? tool2.priceInfo : '데이터 2-2'}">데이터 2-2</td>
                                                 </tr>
                                                 <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 2-3</td>
-                                                </tr>
-                                                <tr class="spec-row">
-                                                    <td class="spec-cell">데이터 2-4</td>
+                                                    <td class="spec-cell" th:text="${tool2 != null ? tool2.webappInfo : '데이터 2-3'}">데이터 2-3</td>
                                                 </tr>
                                                 </tbody>
                                             </table>

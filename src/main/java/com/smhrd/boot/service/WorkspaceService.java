@@ -37,7 +37,7 @@ public class WorkspaceService {
         // 2. tool_id 리스트로 변환
         List<Integer> toolIds = new ArrayList<>();
         for (Compare tool : allTools) {
-            toolIds.add(tool.getTool_id());
+            toolIds.add(tool.getToolId());
         }
 
         // 3. 랜덤으로 섞기
@@ -86,7 +86,7 @@ public class WorkspaceService {
                 Optional<Compare> toolOpt = compareRepository.findById(item.getToolId());
                 if (toolOpt.isPresent()) {
                     Compare tool = toolOpt.get();
-                    tools.add(new ToolDTO(tool.getTool_id(), tool.getTool_name()));
+                    tools.add(new ToolDTO(tool.getToolId(), tool.getToolName()));
                 }
             }
 

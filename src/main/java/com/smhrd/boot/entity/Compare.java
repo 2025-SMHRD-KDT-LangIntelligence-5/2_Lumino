@@ -14,8 +14,15 @@ import lombok.Setter;
 @Table(name="tools") // 생성되는 테이블의 이름 지정(생략하면 클래스 이름과 동일하게 생성)
 public class Compare {
     @Id // 기본키
-    private Integer tool_id;
+    @Column(name = "tool_id")
+    private Integer toolId;
     
     @Column(name = "tool_name")
-    private String tool_name;
+    private String toolName;
+    
+    @Column(name = "price_info")
+    private String priceInfo;
+    
+    @Column(name = "webapp_info")
+    private String webappInfo;
 }
