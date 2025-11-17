@@ -93,7 +93,7 @@ public class WorkspaceService {
             // DTO 생성
             WorkspaceWithToolsDTO dto = new WorkspaceWithToolsDTO(
                 workspace.getWorkspace_id(),
-                "테스트 워크스페이스", // workspace 엔티티에 이름 필드가 없어서 임시로 설정
+                workspace.getWorkspace_name(), // 데이터베이스의 workspace_name 사용
                 tools
             );
             result.add(dto);

@@ -12,10 +12,11 @@ import lombok.Setter;
 @Setter // 필드 값 수정 or 초기화 메서드
 @Entity
 @Table(name="workspaces") // 생성되는 테이블의 이름 지정(생략하면 클래스 이름과 동일하게 생성)
-//@Table(name="workspaces_item")
-//@OneToMany
-
 public class Workspace {
     @Id // 기본키
+    @Column(name = "workspace_id")
     private Integer workspace_id;
+
+    @Column(name = "workspace_name")
+    private String workspace_name;
 }
