@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor // JPA가 엔티티를 생성할 때 필요한 기본 생성자
 @AllArgsConstructor // 전체 파라미터가 들어가는 생성자
 @Getter // 필드에 접근할 수 있는 메서드
 @Setter // 필드 값 수정 or 초기화 메서드
