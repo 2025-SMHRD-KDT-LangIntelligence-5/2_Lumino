@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(awk:*)",
+      "Bash(if [ -f \"pom.xml\" ])",
+      "Bash(then mvn clean compile)",
+      "Bash(elif [ -f \"build.gradle\" ])",
+      "Bash(then ./gradlew build)",
+      "Bash(else echo \"No build file found\")",
+      "Bash(fi)",
+      "Bash(./gradlew test:*)",
+      "Bash(./gradlew clean build:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []

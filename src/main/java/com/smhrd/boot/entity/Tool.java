@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 public class Tool {
     @Id
     @Column(name = "tool_id")
-    private Integer tool_id;
+    private Integer toolId;
 
     @Column(name = "tool_name")
-    private String tool_name;
+    private String toolName;
 
     @Column(name = "category_id")
-    private Integer category_id;
+    private Integer categoryId;
 }
