@@ -101,4 +101,43 @@ public class WorkspaceService {
 
         return result;
     }
+
+    /**
+     * 모든 워크스페이스 조회
+     * @return Workspace 리스트
+     */
+    public List<Workspace> getAllWorkspaces() {
+        return workspaceRepository.findAll();
+    }
+
+    /**
+     * 특정 워크스페이스와 도구 정보 조회
+     * @param workspaceId 워크스페이스 ID
+     * @return WorkspaceWithToolsDTO
+     */
+    public WorkspaceWithToolsDTO getWorkspaceWithTools(Integer workspaceId) {
+        Optional<Workspace> workspaceOpt = workspaceRepository.findById(workspaceId);
+        if (!workspaceOpt.isPresent()) {
+            return null;
+        }
+
+        Workspace workspace = workspaceOpt.get();
+        List<WorkspaceItem> items = workspaceItemRepository.findByWorkspaceId(workspaceId);
+
+        // 각 아이템의 tool 정보 조회
+        List<ToolDTO> tools = new ArrayList<>();
+        for (WorkspaceItem item : items) {
+            Optional<Compare> toolOpt = compareRepository.findById(item.getToolId());
+            if (toolOpt.isPresent()) {
+                Compare tool = toolOpt.get();
+                tools.add(new ToolDTO(tool.getTool_id(), tool.getTool_name()));
+            }
+        }
+
+        return new WorkspaceWithToolsDTO(
+            workspace.getWorkspace_id(),
+            workspace.getWorkspace_name(),
+            tools
+        );
+    }
 }

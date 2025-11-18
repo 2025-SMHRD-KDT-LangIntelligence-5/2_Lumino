@@ -24,4 +24,9 @@ public class MainService {
         }
         return compareRepository.findByToolNameContaining(keyword.trim());
     }
+
+    // 고정된 랜덤 15개 도구 조회
+    public List<Compare> getRandom15Tools() {
+        return compareRepository.findRandom15Tools();
+    }
 }
