@@ -1,14 +1,18 @@
 package com.smhrd.boot.controller;
 
+import com.smhrd.boot.dto.WorkspaceWithToolsDTO;
 import com.smhrd.boot.entity.Workspace;
 import com.smhrd.boot.entity.WorkspaceItem;
 import com.smhrd.boot.service.WorkspaceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@Slf4j
 
 @RequiredArgsConstructor // lombok 사용 생성자 주입 방식
 @Controller // 데이터(결과)를 반환하는 컨트롤러

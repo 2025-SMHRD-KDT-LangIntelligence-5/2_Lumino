@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--문서 기본 언어가 영어임-->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <!--문서의 문자 인코딩을 UTF-8-->
@@ -425,6 +425,22 @@
                     #workspace-zone .card-header { padding: .8rem 1rem; }
                     #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
 
+                    /* ===== 워크스페이스 카드 내부 작은 스크롤바 ===== */
+                    #workspace-zone .card-body::-webkit-scrollbar {
+                      height: 6px; /* 스크롤바 높이 (가로 스크롤) */
+                    }
+                    #workspace-zone .card-body::-webkit-scrollbar-track {
+                      background: rgba(200, 200, 220, 0.1);
+                      border-radius: 10px;
+                    }
+                    #workspace-zone .card-body::-webkit-scrollbar-thumb {
+                      background: #d8b5ff; /* 연한 보라색 */
+                      border-radius: 10px;
+                    }
+                    #workspace-zone .card-body::-webkit-scrollbar-thumb:hover {
+                      background: #c9a0ff; /* 호버 시 조금 더 진한 보라색 */
+                    }
+
 /*====================================================워크스페이스 가져가세요=============================================================================== */
 
                     /* ===== Explore 리스트 카드화 + 배지 ===== */
@@ -828,67 +844,41 @@
                                     <div class="d-flex align-items-center">
                                         <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                         <div>
-                                            <h5 class="mb-0">Englneeing</h5>
+                                            <h5 class="mb-0" th:text="${workspace != null ? workspace.workspaceName : 'Engineering'}">Engineering</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                        <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;">
-                                            <option value="workspace-marketing.html">Marketing</option>
-                                            <option value="workspace-engineering.html" selected>Engineering</option>
-                                            <option value="workspace-design.html">Design</option>
+                                        <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;" onchange="changeWorkspace(this)">
+                                            <option value="">워크스페이스 선택</option>
+                                            <option th:each="ws : ${workspaces}"
+                                                    th:value="${ws.workspace_id}"
+                                                    th:text="${ws.workspace_name}"
+                                                    th:selected="${ws.workspace_id == 1}">
+                                                Workspace Name
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="card-body">
-                                    <div class="row g-3 justify-content-start">
+                                <div class="card-body" style="overflow-x: auto; overflow-y: hidden;">
+                                    <div class="row g-3 justify-content-start flex-nowrap" id="workspace-tools-container">
 
-                                        <!-- 네 개 아이콘 타일 -->
-                                        <div class="col-auto">
+                                        <!-- 데이터베이스에서 가져온 도구들을 동적으로 표시 -->
+                                        <div class="col-auto" th:each="tool : ${workspace != null ? workspace.tools : {}}">
                                             <div class="d-flex flex-column align-items-center">
                                                 <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                        <img src="/assets/img/logo_img/Warp.png" alt="Warp Logo" class="workspace-logo">
+                                                        <img th:src="@{/assets/img/logo_img/{name}.png(name=${tool.toolName})}"
+                                                             th:alt="${tool.toolName} + ' Logo'"
+                                                             class="workspace-logo">
                                                     </div>
                                                 </a>
-                                                <div class="toolname">Warp</div>
+                                                <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
                                             </div>
                                         </div>
 
-                                        <div class="col-auto">
-                                            <div class="d-flex flex-column align-items-center">
-                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                        <img src="/assets/img/logo_img/Codacy.png" alt="Codacy Logo" class="workspace-logo">
-                                                    </div>
-                                                </a>
-                                                <div class="toolname">Codacy</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="d-flex flex-column align-items-center">
-                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                        <img src="/assets/img/logo_img/cursor.png" alt="cursor Logo" class="workspace-logo">
-                                                    </div>
-                                                </a>
-                                                <div class="toolname">cursor</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-auto">
-                                            <div class="d-flex flex-column align-items-center">
-                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                        <img src="/assets/img/logo_img/deepcode.png" alt="deepcode Logo" class="workspace-logo">
-                                                    </div>
-                                                </a>
-                                                <div class="toolname">deepcode</div>
-                                            </div>
-                                        </div>
-
+                                        <!-- Add Tool 버튼 -->
                                         <div class="col-auto">
                                             <div class="d-flex flex-column align-items-center">
                                                 <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="add-ai-tool.html">
@@ -1055,6 +1045,92 @@
                 }, 200);
               });
             });
+
+            // 워크스페이스 변경 함수
+            function changeWorkspace(selectElement) {
+                const workspaceId = selectElement.value;
+                if (!workspaceId) {
+                    return;
+                }
+
+                console.log('워크스페이스 변경:', workspaceId);
+
+                // AJAX로 워크스페이스 정보 가져오기
+                fetch('/api/workspace/' + workspaceId)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('API 요청 실패: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('받은 데이터:', data);
+
+                        // 제목 업데이트
+                        const titleElement = document.querySelector('#workspace-zone .card-header h5');
+                        if (titleElement) {
+                            titleElement.textContent = data.workspaceName;
+                            console.log('제목 업데이트 완료:', data.workspaceName);
+                        }
+
+                        // 도구 목록 업데이트
+                        const toolsContainer = document.getElementById('workspace-tools-container');
+                        console.log('도구 컨테이너:', toolsContainer);
+
+                        if (toolsContainer) {
+                            toolsContainer.innerHTML = '';
+                            console.log('도구 개수:', data.tools ? data.tools.length : 0);
+
+                            if (data.tools && data.tools.length > 0) {
+                                data.tools.forEach(tool => {
+                                    console.log('도구 추가:', tool.toolName);
+                                    const toolHtml = `
+                                        <div class="col-auto">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
+                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                        <img src="/assets/img/logo_img/${tool.toolName}.png" alt="${tool.toolName} Logo" class="workspace-logo">
+                                                    </div>
+                                                </a>
+                                                <div class="toolname">${tool.toolName}</div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    toolsContainer.innerHTML += toolHtml;
+                                });
+                            } else {
+                                toolsContainer.innerHTML = '<div class="col-auto"><p class="text-muted">도구가 없습니다.</p></div>';
+                            }
+
+                            // Add Tool 버튼 추가
+                            toolsContainer.innerHTML += `
+                                <div class="col-auto">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="add-ai-tool.html">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-2" data-feather="plus"></i>
+                                                <div>Add Tool</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+
+                            // Feather icons 다시 초기화
+                            if (typeof feather !== 'undefined') {
+                                feather.replace();
+                            }
+
+                            console.log('도구 목록 업데이트 완료');
+                        } else {
+                            console.error('도구 컨테이너를 찾을 수 없습니다');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('워크스페이스 로드 실패:', error);
+                        alert('워크스페이스를 불러오는데 실패했습니다: ' + error.message);
+                    });
+            }
         </script>
 
     </body>
