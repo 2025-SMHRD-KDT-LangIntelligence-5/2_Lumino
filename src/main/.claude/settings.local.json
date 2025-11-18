@@ -11,7 +11,18 @@
       "Bash(fi)",
       "Bash(./gradlew test:*)",
       "Bash(./gradlew clean build:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(mysql:*)",
+      "Bash(curl:*)",
+      "Bash(cd \"C:/Users/smhrd/Desktop/boot/src/main/resources/static/assets/img/logo_img\" echo \"=== 현재 파일명 확인 ===\" ls -1)",
+      "Bash(grep -E \"Runway|Synthesia|Genspark\" echo \"\" echo \"=== 파일명 세부 정보 (16진수) ===\" ls -1)",
+      "Bash(for file in Runway.png Synthesia.png Genspark.png)",
+      "Bash(do echo \"현재: $file\")",
+      "Bash(done)",
+      "Bash(while read file)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(xxd:*)"
     ],
     "deny": [],
     "ask": []
