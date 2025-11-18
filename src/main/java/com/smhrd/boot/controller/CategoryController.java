@@ -25,16 +25,16 @@ public class CategoryController {
     private final CategoryService categoryService;
     private final WorkspaceService workspaceService;
 
-    // 카테고리 페이지 매핑 - 고정된 15개 도구 표시 + 워크스페이스 목록
+    // 카테고리 페이지 매핑 - 데이터베이스에서 모든 도구 표시 + 워크스페이스 목록
     @GetMapping("/category_all")
     public String category_all(Model model) {
-        List<Compare> randomTools = mainService.getRandom15Tools();
+        List<Compare> allTools = categoryService.getAllTools();
         List<Workspace> workspaces = workspaceService.getAllWorkspaces();
 
         // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
         WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
 
-        model.addAttribute("tools", randomTools);
+        model.addAttribute("tools", allTools);
         model.addAttribute("workspaces", workspaces);
         model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_all";

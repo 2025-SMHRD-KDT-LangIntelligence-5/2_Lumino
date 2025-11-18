@@ -50,4 +50,20 @@ public class WorkspaceController {
         return ResponseEntity.ok(items);
     }
 
+    /**
+     * 워크스페이스에 특정 도구 추가
+     * @param workspaceId 워크스페이스 ID
+     * @param toolId 추가할 도구 ID
+     * @return 추가된 WorkspaceItem 또는 에러 메시지
+     */
+    @PostMapping("/api/workspace/{workspaceId}/add-tool/{toolId}")
+    @ResponseBody
+    public ResponseEntity<?> addToolToWorkspace(@PathVariable Integer workspaceId, @PathVariable Integer toolId) {
+        WorkspaceItem item = workspaceService.addToolToWorkspace(workspaceId, toolId);
+        if (item == null) {
+            return ResponseEntity.badRequest().body("Tool already exists in workspace");
+        }
+        return ResponseEntity.ok(item);
+    }
+
 }

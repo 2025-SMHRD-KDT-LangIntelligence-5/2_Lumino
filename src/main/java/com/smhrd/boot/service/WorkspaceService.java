@@ -140,4 +140,28 @@ public class WorkspaceService {
             tools
         );
     }
+
+    /**
+     * 워크스페이스에 특정 도구 추가
+     * @param workspaceId 워크스페이스 ID
+     * @param toolId 추가할 도구 ID
+     * @return 추가된 WorkspaceItem
+     */
+    @Transactional
+    public WorkspaceItem addToolToWorkspace(Integer workspaceId, Integer toolId) {
+        // 이미 존재하는지 확인
+        List<WorkspaceItem> existingItems = workspaceItemRepository.findByWorkspaceId(workspaceId);
+        for (WorkspaceItem item : existingItems) {
+            if (item.getToolId().equals(toolId)) {
+                // 이미 존재하면 null 반환
+                return null;
+            }
+        }
+
+        // 새로운 WorkspaceItem 생성 및 저장
+        WorkspaceItem newItem = new WorkspaceItem();
+        newItem.setWorkspaceId(workspaceId);
+        newItem.setToolId(toolId);
+        return workspaceItemRepository.save(newItem);
+    }
 }
