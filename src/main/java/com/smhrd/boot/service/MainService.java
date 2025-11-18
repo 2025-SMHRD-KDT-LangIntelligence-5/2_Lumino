@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MainService {
@@ -25,8 +26,9 @@ public class MainService {
         return compareRepository.findByToolNameContaining(keyword.trim());
     }
 
-    // 고정된 랜덤 15개 도구 조회
+    // 고정된 15개 도구 조회 (랜덤 아님)
     public List<Compare> getRandom15Tools() {
-        return compareRepository.findRandom15Tools();
+        List<Compare> allTools = compareRepository.findAll();
+        return allTools.stream().limit(15).collect(Collectors.toList());
     }
 }

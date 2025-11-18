@@ -99,4 +99,11 @@ public class CategoryController {
         return workspaceService.getWorkspaceWithTools(workspaceId);
     }
 
+    // 디버깅: 실제 데이터베이스 도구 이름 확인
+    @GetMapping("/api/debug/tools")
+    @ResponseBody
+    public List<Compare> getDebugTools() {
+        return mainService.getRandom15Tools();
+    }
+
 }

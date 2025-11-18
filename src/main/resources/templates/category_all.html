@@ -29,6 +29,22 @@
                    #workspace-zone .card-header { padding: .8rem 1rem; }
                    #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
 
+            /* ===== 워크스페이스 카드 내부 작은 스크롤바 ===== */
+                   #workspace-zone .card-body::-webkit-scrollbar {
+                     height: 6px; /* 스크롤바 높이 (가로 스크롤) */
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-track {
+                     background: rgba(200, 200, 220, 0.1);
+                     border-radius: 10px;
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-thumb {
+                     background: linear-gradient(90deg, #b39aff, #8da6ff);
+                     border-radius: 10px;
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-thumb:hover {
+                     background: linear-gradient(90deg, #9c8cff, #7d96ff);
+                   }
+
             /* 워크스페이스 카드 로고 전용 스타일 */
                .workspace-logo {
                  width: 100%;
@@ -769,8 +785,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-body">
-                                        <div class="row g-3 justify-content-start">
+                                    <div class="card-body" style="overflow-x: auto; overflow-y: hidden;">
+                                        <div class="row g-3 justify-content-start flex-nowrap">
 
                                             <!-- 워크스페이스 도구 목록 -->
                                             <div th:if="${defaultWorkspace != null and defaultWorkspace.tools != null}"
@@ -781,7 +797,8 @@
                                                         <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                             <img th:src="@{'/assets/img/logo_img/' + ${tool.toolName} + '.png'}"
                                                                  th:alt="${tool.toolName} + ' Logo'"
-                                                                 class="workspace-logo">
+                                                                 class="workspace-logo"
+                                                                 onerror="console.error('워크스페이스 이미지 로드 실패:', this.src); this.onerror=null; this.src='/assets/img/logo_img/default.png';">
                                                         </div>
                                                     </a>
                                                     <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
@@ -810,19 +827,22 @@
                         <h2 class="section-title mb-3">전체 AI 도구</h2>
                         <div class="tools-grid row g-5" style="display: flex; flex-wrap: wrap; justify-content: flex-start; max-width: 90%; margin: 0 auto; gap: 2rem;">
                             <!-- 검색 결과가 있을 때 -->
-                            <div th:if="${tools != null and !tools.empty}" th:each="tool : ${tools}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" th:attr="data-tool-name=${tool.tool_name}">
+                            <div th:if="${tools != null and !tools.empty}" th:each="tool : ${tools}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" th:attr="data-tool-name=${tool.toolName}">
                                 <div class="d-flex flex-column align-items-center">
                                     <div class="position-relative" style="cursor: pointer;" onclick="toggleToolSelection(this)">
                                         <a class="card lift lift-sm text-center rounded-4 compare-tool-card" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; border: 2px solid transparent; transition: all 0.3s ease;" href="#" onclick="event.preventDefault();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
-                                                <img th:src="@{'/assets/img/logo_img/' + ${tool.tool_name} + '.png'}" th:alt="${tool.tool_name} + ' Logo'" class="workspace-logo">
+                                                <img th:src="@{'/assets/img/logo_img/' + ${tool.toolName} + '.png'}"
+                                                     th:alt="${tool.toolName} + ' Logo'"
+                                                     class="workspace-logo"
+                                                     onerror="console.error('이미지 로드 실패:', this.src); this.onerror=null; this.src='/assets/img/logo_img/default.png';">
                                             </div>
                                         </a>
                                         <div class="compare-check-icon" style="position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                                             <i data-feather="check" style="width: 16px; height: 16px; color: #6900C7; stroke-width: 3;"></i>
                                         </div>
                                     </div>
-                                    <div class="toolname" th:text="${tool.tool_name}">Tool Name</div>
+                                    <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button>
                                         <button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button>
