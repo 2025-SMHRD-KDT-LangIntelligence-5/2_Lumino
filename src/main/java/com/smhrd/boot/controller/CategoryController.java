@@ -44,7 +44,14 @@ public class CategoryController {
     @GetMapping("/category_audio")
     public String category_audio(Model model) {
         List<Tool> tools = categoryService.getToolsByCategory(3);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
         model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_audio";
     }
 
@@ -52,7 +59,14 @@ public class CategoryController {
     @GetMapping("/category_coding")
     public String category_coding(Model model) {
         List<Tool> tools = categoryService.getToolsByCategory(4);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
         model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_coding";
     }
 
@@ -60,27 +74,59 @@ public class CategoryController {
     @GetMapping("/category_education")
     public String category_education(Model model) {
         List<Tool> tools = categoryService.getToolsByCategory(7);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
         model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_education";
     }
 
-    // 카테고리 페이지 매핑
+    // 카테고리 페이지 매핑 - 이미지 도구 (category_id = 2)
     @GetMapping("/category_image")
-    public String category_image() {
-        return "category_image"; // templates 폴더의 account-notifications.html을 찾음
+    public String category_image(Model model) {
+        List<Tool> tools = categoryService.getToolsByCategory(2);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
+        model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
+        return "category_image";
     }
 
     // 카테고리 페이지 매핑 - 검색 도구 (category_id = 6)
     @GetMapping("/category_search")
     public String category_search(Model model) {
         List<Tool> tools = categoryService.getToolsByCategory(6);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
         model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_search";
     }
 
-    // 카테고리 페이지 매핑
+    // 카테고리 페이지 매핑 - 텍스트 도구 (category_id = 1)
     @GetMapping("/category_text")
-    public String category_text() {
+    public String category_text(Model model) {
+        List<Tool> tools = categoryService.getToolsByCategory(1);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
+        model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_text";
     }
 
@@ -88,7 +134,14 @@ public class CategoryController {
     @GetMapping("/category_video")
     public String category_video(Model model) {
         List<Tool> tools = categoryService.getToolsByCategory(5);
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+
+        // 기본 워크스페이스 (workspace_id = 1) 정보 가져오기
+        WorkspaceWithToolsDTO defaultWorkspace = workspaceService.getWorkspaceWithTools(1);
+
         model.addAttribute("tools", tools);
+        model.addAttribute("workspaces", workspaces);
+        model.addAttribute("defaultWorkspace", defaultWorkspace);
         return "category_video";
     }
 
