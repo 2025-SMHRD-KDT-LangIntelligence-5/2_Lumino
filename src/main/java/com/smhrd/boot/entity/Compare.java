@@ -22,7 +22,11 @@ public class Compare {
     
     @Column(name = "price_info")
     private String priceInfo;
-    
+
+    @Lob
+    @Column(name="description", columnDefinition = "TEXT")
+    private String description;
+
     @Column(name = "webapp_info")
     private String webappInfo;
 }
