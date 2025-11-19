@@ -1,6 +1,5 @@
 package com.smhrd.boot.controller;
 
-import com.smhrd.boot.dto.WorkspaceWithToolsDTO;
 import com.smhrd.boot.entity.Workspace;
 import com.smhrd.boot.entity.WorkspaceItem;
 import com.smhrd.boot.service.WorkspaceService;
