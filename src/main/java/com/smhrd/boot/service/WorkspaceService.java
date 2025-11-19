@@ -164,4 +164,31 @@ public class WorkspaceService {
         newItem.setToolId(toolId);
         return workspaceItemRepository.save(newItem);
     }
+
+    /**
+     * 워크스페이스 전체 저장 (workspace_name과 tool_name 배열을 받아서 저장)
+     * @param workspaceName 워크스페이스 이름
+     * @param toolNames 도구 이름 배열
+     * @return 생성된 Workspace
+     */
+    @Transactional
+    public Workspace saveWorkspaceWithTools(String workspaceName, List<String> toolNames) {
+        // 1. 새로운 Workspace 생성
+        Workspace workspace = new Workspace();
+        workspace.setWorkspace_name(workspaceName);
+        Workspace savedWorkspace = workspaceRepository.save(workspace);
+
+        // 2. tool_name으로 tool_id를 찾아서 workspace_items에 저장
+        for (String toolName : toolNames) {
+            Compare tool = compareRepository.findByToolName(toolName);
+            if (tool != null) {
+                WorkspaceItem item = new WorkspaceItem();
+                item.setWorkspaceId(savedWorkspace.getWorkspace_id());
+                item.setToolId(tool.getToolId());
+                workspaceItemRepository.save(item);
+            }
+        }
+
+        return savedWorkspace;
+    }
 }

@@ -1,5 +1,6 @@
 package com.smhrd.boot.controller;
 
+import com.smhrd.boot.dto.SaveWorkspaceRequest;
 import com.smhrd.boot.entity.Workspace;
 import com.smhrd.boot.entity.WorkspaceItem;
 import com.smhrd.boot.service.WorkspaceService;
@@ -63,6 +64,26 @@ public class WorkspaceController {
             return ResponseEntity.badRequest().body("Tool already exists in workspace");
         }
         return ResponseEntity.ok(item);
+    }
+
+    /**
+     * 워크스페이스 전체 저장 (workspace_name과 tool_name 배열을 받아서 저장)
+     * @param request SaveWorkspaceRequest (workspaceName, toolNames)
+     * @return 생성된 Workspace
+     */
+    @PostMapping("/api/workspace/save")
+    @ResponseBody
+    public ResponseEntity<?> saveWorkspace(@RequestBody SaveWorkspaceRequest request) {
+        try {
+            Workspace workspace = workspaceService.saveWorkspaceWithTools(
+                request.getWorkspaceName(),
+                request.getToolNames()
+            );
+            return ResponseEntity.ok(workspace);
+        } catch (Exception e) {
+            log.error("워크스페이스 저장 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("워크스페이스 저장에 실패했습니다: " + e.getMessage());
+        }
     }
 
 }
