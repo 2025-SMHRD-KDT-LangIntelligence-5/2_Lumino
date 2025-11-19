@@ -1190,8 +1190,11 @@
 
                             // 카테고리 헤더
                             const categoryHeader = document.createElement('div');
-                            categoryHeader.className = 'mb-3 mt-4';
-                            categoryHeader.innerHTML = `<h6 class="fw-bold text-secondary">${categoryName}</h6>`;
+                            categoryHeader.className = 'mb-3 mt-4 d-flex align-items-center';
+                            categoryHeader.innerHTML = `
+                                <h6 class="fw-bold text-secondary mb-0 me-3">${categoryName}</h6>
+                                <div style="flex: 1; height: 2px; background: linear-gradient(90deg, #9c8cff, #a7b7ff); border-radius: 1px;"></div>
+                            `;
                             container.appendChild(categoryHeader);
 
                             // 도구 그리드 (가로 3줄)
