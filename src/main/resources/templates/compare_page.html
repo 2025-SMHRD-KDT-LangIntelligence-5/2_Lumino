@@ -598,14 +598,6 @@
                         </div>
                     </div>
 
-                    <!-- Sidenav Footer-->
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                            <button id="themeToggle" class="mode-btn" title="테마 전환">
-                                <img src="/assets/img/mode.png" alt="Toggle theme">
-                            </button>
-                        </div>
-                    </div>
                 </nav>
             </div>
 
@@ -746,26 +738,6 @@
             // === Feather icons 초기화 ===
             feather.replace();
 
-            // === 다크모드 토글 ===
-            (function() {
-                const themeToggle = document.getElementById('themeToggle');
-                const body = document.body;
-
-                // localStorage에서 테마 불러오기
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    body.setAttribute('data-theme', savedTheme);
-                }
-
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', function() {
-                        const currentTheme = body.getAttribute('data-theme') || 'light';
-                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                        body.setAttribute('data-theme', newTheme);
-                        localStorage.setItem('theme', newTheme);
-                    });
-                }
-            })();
         </script>
     </body>
 </html>

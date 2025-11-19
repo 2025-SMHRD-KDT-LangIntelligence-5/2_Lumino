@@ -700,16 +700,6 @@
                         </div>
                     </div>
 
-                    <!-- Sidenav Footer-->
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                            <!-- ✅ 라이트/다크 모드 토글 (이미지 버튼) -->
-                            <button id="themeToggle" class="mode-btn" title="테마 전환">
-                                <img src="/assets/img/mode.png" alt="Toggle theme">
-                            </button>
-                        </div>
-
-                    </div>
                 </nav>
             </div>
 
@@ -910,21 +900,6 @@
             feather.replace();
                }
 
-               // 다크모드 토글
-                const themeToggle = document.getElementById('themeToggle');
-                const body = document.body;
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    body.setAttribute('data-theme', savedTheme);
-                }
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', function() {
-                        const currentTheme = body.getAttribute('data-theme') || 'light';
-                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                        body.setAttribute('data-theme', newTheme);
-                        localStorage.setItem('theme', newTheme);
-                    });
-                }
              });
              
              // AI 도구 비교 기능

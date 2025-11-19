@@ -431,15 +431,6 @@
                         </div>
                     </div>
 
-                    <!-- 좌측 하단 회색 박스-->
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                            <!-- ✅ 라이트/다크 모드 토글 (이미지 버튼) -->
-                            <button id="themeToggle" class="mode-btn" title="테마 전환">
-                                <img src="/assets/img/mode.png" alt="Toggle theme">
-                            </button>
-                    </div>
-                    </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
@@ -701,26 +692,6 @@
                     });
             }
 
-            // === 다크모드 토글 ===
-            (function() {
-                const themeToggle = document.getElementById('themeToggle');
-                const body = document.body;
-
-                // localStorage에서 테마 불러오기
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    body.setAttribute('data-theme', savedTheme);
-                }
-
-                if (themeToggle) {
-                    themeToggle.addEventListener('click', function() {
-                        const currentTheme = body.getAttribute('data-theme') || 'light';
-                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                        body.setAttribute('data-theme', newTheme);
-                        localStorage.setItem('theme', newTheme);
-                    });
-                }
-            })();
 
             // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
             document.addEventListener('DOMContentLoaded', function () {
