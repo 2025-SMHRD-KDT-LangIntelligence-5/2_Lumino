@@ -22,7 +22,11 @@
       "Bash(while read file)",
       "Bash(echo:*)",
       "Bash(printf:*)",
-      "Bash(xxd:*)"
+      "Bash(xxd:*)",
+      "Bash(cat:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(./gradlew bootRun:*)"
     ],
     "deny": [],
     "ask": []

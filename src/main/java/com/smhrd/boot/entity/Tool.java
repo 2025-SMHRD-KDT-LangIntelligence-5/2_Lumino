@@ -20,4 +20,10 @@ public class Tool {
 
     @Column(name = "category_id")
     private Integer categoryId;
+
+    @Column(name = "website_use", length = 1000)
+    private String websiteUse;
+
+    @Column(name = "website_detail", length = 1000)
+    private String websiteDetail;
 }
