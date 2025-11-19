@@ -115,7 +115,8 @@
 <br>
 
 ## 📌 ER다이어그램
-![루미노 er다이어그램](https://github.com/user-attachments/assets/e5def6af-a98e-4469-8e34-b77d6ebb2a6e)
+![루미노 er다이어그램](https://github.com/user-attachments/assets/44df8bc8-8677-4c08-baf9-93816df51bc7)
+
 
 <br>
 
