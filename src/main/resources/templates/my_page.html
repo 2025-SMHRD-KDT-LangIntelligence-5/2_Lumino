@@ -834,7 +834,10 @@
                       e.preventDefault();
                       const id = document.getElementById('editWsId').value;
                       const name = document.getElementById('editWsName').value.trim();
-                      if (!name) return;
+                      if (!name) {
+                        alert('워크스페이스 이름을 입력해주세요.');
+                        return;
+                      }
 
                       try {
                         const res = await fetch(`/api/workspace/${encodeURIComponent(id)}`, {
@@ -842,13 +845,19 @@
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({ name })
                         });
-                        if (!res.ok) throw new Error('수정 실패');
+                        
+                        if (!res.ok) {
+                          const errorText = await res.text();
+                          throw new Error(errorText || '수정 실패');
+                        }
 
+                        const result = await res.json();
+                        alert('워크스페이스 이름이 성공적으로 수정되었습니다.');
                         bootstrap.Modal.getInstance(document.getElementById('editWorkspaceModal')).hide();
-                        location.reload(); // 필요하면 헤더 텍스트만 바꿔도 됨
+                        location.reload();
                       } catch (err) {
                         console.error(err);
-                        alert('워크스페이스 수정 중 오류가 발생했습니다.');
+                        alert('워크스페이스 수정 중 오류가 발생했습니다: ' + err.message);
                       }
                     });
 
@@ -863,12 +872,21 @@
                       if (!confirm(`"${name}" 워크스페이스를 삭제하시겠습니까?\n삭제 후 되돌릴 수 없습니다.`)) return;
 
                       try {
-                        const res = await fetch(`/api/workspace/${encodeURIComponent(id)}`, { method: 'DELETE' });
-                        if (!res.ok) throw new Error('삭제 실패');
+                        const res = await fetch(`/api/workspace/${encodeURIComponent(id)}`, { 
+                          method: 'DELETE' 
+                        });
+                        
+                        if (!res.ok) {
+                          const errorText = await res.text();
+                          throw new Error(errorText || '삭제 실패');
+                        }
+                        
+                        const result = await res.text();
+                        alert('워크스페이스가 성공적으로 삭제되었습니다.');
                         location.reload();
                       } catch (err) {
                         console.error(err);
-                        alert('워크스페이스 삭제 중 오류가 발생했습니다.');
+                        alert('워크스페이스 삭제 중 오류가 발생했습니다: ' + err.message);
                       }
                     });
                 </script>

@@ -191,4 +191,49 @@ public class WorkspaceService {
 
         return savedWorkspace;
     }
+
+    /**
+     * 워크스페이스 이름 수정
+     * @param workspaceId 워크스페이스 ID
+     * @param workspaceName 새로운 워크스페이스 이름
+     * @return 수정된 Workspace
+     */
+    @Transactional
+    public Workspace updateWorkspaceName(Integer workspaceId, String workspaceName) {
+        // 1. 워크스페이스가 존재하는지 확인
+        Optional<Workspace> workspaceOpt = workspaceRepository.findById(workspaceId);
+        if (!workspaceOpt.isPresent()) {
+            throw new RuntimeException("워크스페이스를 찾을 수 없습니다.");
+        }
+
+        // 2. 이름이 비어있는지 확인
+        if (workspaceName == null || workspaceName.trim().isEmpty()) {
+            throw new RuntimeException("워크스페이스 이름은 비어있을 수 없습니다.");
+        }
+
+        // 3. 워크스페이스 이름 수정
+        Workspace workspace = workspaceOpt.get();
+        workspace.setWorkspace_name(workspaceName.trim());
+        
+        return workspaceRepository.save(workspace);
+    }
+
+    /**
+     * 워크스페이스 삭제 (연관된 workspace_items도 함께 삭제)
+     * @param workspaceId 워크스페이스 ID
+     */
+    @Transactional
+    public void deleteWorkspace(Integer workspaceId) {
+        // 1. 워크스페이스가 존재하는지 확인
+        Optional<Workspace> workspaceOpt = workspaceRepository.findById(workspaceId);
+        if (!workspaceOpt.isPresent()) {
+            throw new RuntimeException("워크스페이스를 찾을 수 없습니다.");
+        }
+
+        // 2. 연관된 workspace_items 먼저 삭제
+        workspaceItemRepository.deleteByWorkspaceId(workspaceId);
+
+        // 3. 워크스페이스 삭제
+        workspaceRepository.deleteById(workspaceId);
+    }
 }

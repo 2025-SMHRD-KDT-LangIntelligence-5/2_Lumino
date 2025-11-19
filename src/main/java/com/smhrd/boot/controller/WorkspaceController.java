@@ -86,4 +86,44 @@ public class WorkspaceController {
         }
     }
 
+    /**
+     * 워크스페이스 이름 수정
+     * @param workspaceId 워크스페이스 ID
+     * @param request 수정할 이름을 담은 Map (name 키로 전달)
+     * @return 수정된 Workspace
+     */
+    @PutMapping("/api/workspace/{workspaceId}")
+    @ResponseBody
+    public ResponseEntity<?> updateWorkspace(@PathVariable Integer workspaceId, @RequestBody java.util.Map<String, String> request) {
+        try {
+            String name = request.get("name");
+            if (name == null || name.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("워크스페이스 이름은 필수입니다.");
+            }
+
+            Workspace workspace = workspaceService.updateWorkspaceName(workspaceId, name);
+            return ResponseEntity.ok(workspace);
+        } catch (Exception e) {
+            log.error("워크스페이스 수정 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("워크스페이스 수정에 실패했습니다: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 워크스페이스 삭제
+     * @param workspaceId 워크스페이스 ID
+     * @return 성공 여부
+     */
+    @DeleteMapping("/api/workspace/{workspaceId}")
+    @ResponseBody
+    public ResponseEntity<?> deleteWorkspace(@PathVariable Integer workspaceId) {
+        try {
+            workspaceService.deleteWorkspace(workspaceId);
+            return ResponseEntity.ok().body("워크스페이스가 성공적으로 삭제되었습니다.");
+        } catch (Exception e) {
+            log.error("워크스페이스 삭제 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("워크스페이스 삭제에 실패했습니다: " + e.getMessage());
+        }
+    }
+
 }

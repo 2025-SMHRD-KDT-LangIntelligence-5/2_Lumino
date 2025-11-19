@@ -10,4 +10,7 @@ import java.util.List;
 public interface WorkspaceItemRepository extends JpaRepository<WorkspaceItem, Integer> {
     // workspace_id로 workspace_items 조회
     List<WorkspaceItem> findByWorkspaceId(Integer workspaceId);
+    
+    // workspace_id로 workspace_items 삭제
+    void deleteByWorkspaceId(Integer workspaceId);
 }
