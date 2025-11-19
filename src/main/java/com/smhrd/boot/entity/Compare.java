@@ -29,4 +29,10 @@ public class Compare {
 
     @Column(name = "webapp_info")
     private String webappInfo;
+
+    @Column(name = "website_use", length = 1000)
+    private String websiteUse;
+
+    @Column(name = "website_detail", length = 1000)
+    private String websiteDetail;
 }
