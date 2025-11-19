@@ -21,4 +21,7 @@ public interface CompareRepository extends JpaRepository<Compare, Integer> {
     // 랜덤으로 15개 도구 조회
     @Query(value = "SELECT * FROM tools ORDER BY RAND() LIMIT 15", nativeQuery = true)
     List<Compare> findRandom15Tools();
+
+    // category_id로 도구 조회
+    List<Compare> findByCategoryId(Integer categoryId);
 }

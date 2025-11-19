@@ -31,4 +31,9 @@ public class MainService {
         List<Compare> allTools = compareRepository.findAll();
         return allTools.stream().limit(15).collect(Collectors.toList());
     }
+
+    // 모든 도구 조회
+    public List<Compare> getAllTools() {
+        return compareRepository.findAll();
+    }
 }

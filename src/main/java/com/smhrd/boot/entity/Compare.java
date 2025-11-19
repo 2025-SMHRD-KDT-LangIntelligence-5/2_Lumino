@@ -35,4 +35,7 @@ public class Compare {
 
     @Column(name = "website_detail", length = 1000)
     private String websiteDetail;
+
+    @Column(name = "category_id")
+    private Integer categoryId;
 }

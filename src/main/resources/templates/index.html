@@ -879,7 +879,7 @@
                                         <!-- Add Tool 버튼 -->
                                         <div class="col-auto">
                                             <div class="d-flex flex-column align-items-center">
-                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="add-ai-tool.html">
+                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.preventDefault(); showAddToolModal(); return false;">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
@@ -1104,7 +1104,7 @@
                             toolsContainer.innerHTML += `
                                 <div class="col-auto">
                                     <div class="d-flex flex-column align-items-center">
-                                        <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="add-ai-tool.html">
+                                        <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.preventDefault(); showAddToolModal(); return false;">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                 <i class="mb-2" data-feather="plus"></i>
                                                 <div>Add Tool</div>
@@ -1128,6 +1128,152 @@
                         console.error('워크스페이스 로드 실패:', error);
                         alert('워크스페이스를 불러오는데 실패했습니다: ' + error.message);
                     });
+            }
+        </script>
+
+        <!-- Add Tool Modal -->
+        <div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="addToolModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="max-width: 600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToolModalLabel">도구 추가</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                        <div id="toolsContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 카테고리 이름 매핑
+            const categoryNames = {
+                1: '글',
+                2: '그림',
+                3: '음악/음성',
+                4: '코딩 및 개발',
+                5: '영상',
+                6: '검색',
+                7: '교육, 학습'
+            };
+
+            // Add Tool 모달 열기
+            function showAddToolModal() {
+                const modal = new bootstrap.Modal(document.getElementById('addToolModal'));
+                modal.show();
+                loadTools();
+            }
+
+            // 도구 목록 로드
+            function loadTools() {
+                fetch('/api/tools/all')
+                    .then(response => response.json())
+                    .then(tools => {
+                        const container = document.getElementById('toolsContainer');
+                        container.innerHTML = '';
+
+                        // 카테고리별로 그룹화
+                        const toolsByCategory = {};
+                        tools.forEach(tool => {
+                            const categoryId = tool.categoryId || 0;
+                            if (!toolsByCategory[categoryId]) {
+                                toolsByCategory[categoryId] = [];
+                            }
+                            toolsByCategory[categoryId].push(tool);
+                        });
+
+                        // 카테고리별로 표시
+                        Object.keys(toolsByCategory).sort().forEach(categoryId => {
+                            const categoryTools = toolsByCategory[categoryId];
+                            const categoryName = categoryNames[categoryId] || '기타';
+
+                            // 카테고리 헤더
+                            const categoryHeader = document.createElement('div');
+                            categoryHeader.className = 'mb-3 mt-4';
+                            categoryHeader.innerHTML = `<h6 class="fw-bold text-secondary">${categoryName}</h6>`;
+                            container.appendChild(categoryHeader);
+
+                            // 도구 그리드 (가로 3줄)
+                            const toolsGrid = document.createElement('div');
+                            toolsGrid.className = 'row g-2 mb-4';
+                            
+                            categoryTools.forEach(tool => {
+                                const toolCol = document.createElement('div');
+                                toolCol.className = 'col-4';
+                                
+                                const card = document.createElement('div');
+                                card.className = 'card text-center';
+                                card.style.cssText = 'cursor: pointer; border: 1px solid #dee2e6; border-radius: 0.75rem; padding: 0.5rem; height: 100%;';
+                                card.onclick = () => selectTool(tool.toolId, tool.toolName);
+                                
+                                const cardBody = document.createElement('div');
+                                cardBody.className = 'card-body p-2';
+                                
+                                const img = document.createElement('img');
+                                img.src = `/assets/img/logo_img/${encodeURIComponent(tool.toolName)}.png`;
+                                img.alt = `${tool.toolName} Logo`;
+                                img.className = 'img-fluid mb-2';
+                                img.style.cssText = 'max-width: 60px; max-height: 60px; object-fit: contain;';
+                                img.onerror = function() { this.src = '/assets/img/logo_img/default.png'; };
+                                
+                                const toolNameDiv = document.createElement('div');
+                                toolNameDiv.className = 'toolname';
+                                toolNameDiv.style.cssText = 'font-size: 0.75rem; font-weight: 500; color: #333;';
+                                toolNameDiv.textContent = tool.toolName;
+                                
+                                cardBody.appendChild(img);
+                                cardBody.appendChild(toolNameDiv);
+                                card.appendChild(cardBody);
+                                toolCol.appendChild(card);
+                                toolsGrid.appendChild(toolCol);
+                            });
+
+                            container.appendChild(toolsGrid);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('도구 로드 실패:', error);
+                        document.getElementById('toolsContainer').innerHTML = '<p class="text-danger">도구를 불러오는데 실패했습니다.</p>';
+                    });
+            }
+
+            // 도구 선택
+            function selectTool(toolId, toolName) {
+                const workspaceId = document.getElementById('workspace-select-inline')?.value || 1;
+                
+                if (!workspaceId) {
+                    alert('워크스페이스를 먼저 선택해주세요.');
+                    return;
+                }
+
+                // API 호출하여 도구 추가
+                fetch(`/api/workspace/${workspaceId}/add-tool/${toolId}`, {
+                    method: 'POST'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(`${toolName}이(가) 워크스페이스에 추가되었습니다.`);
+                    bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
+                    // 워크스페이스 새로고침
+                    const selectElement = document.getElementById('workspace-select-inline');
+                    if (selectElement) {
+                        changeWorkspace(selectElement);
+                    }
+                })
+                .catch(error => {
+                    console.error('도구 추가 실패:', error);
+                    if (error.message.includes('already exists')) {
+                        alert(`${toolName}은(는) 이미 워크스페이스에 추가되어 있습니다.`);
+                    } else {
+                        alert('도구 추가에 실패했습니다: ' + error.message);
+                    }
+                });
             }
         </script>
 

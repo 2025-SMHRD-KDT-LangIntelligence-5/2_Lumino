@@ -49,4 +49,11 @@ public class MainController {
         return mainService.searchTools(keyword);
     }
 
+    // 모든 도구를 카테고리별로 조회하는 API
+    @GetMapping("/api/tools/all")
+    @ResponseBody
+    public List<Compare> getAllTools() {
+        return mainService.getAllTools();
+    }
+
 }
