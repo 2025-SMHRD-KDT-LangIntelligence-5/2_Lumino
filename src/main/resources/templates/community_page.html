@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Account Settings - Notifications - SB Admin Pro</title>
-        <link rel="stylesheet" href="/css/styles.css">
+        <!-- 공통 메타태그 -->
+        <th:block th:replace="~{fragments/head :: common-meta}"></th:block>
+
+        <title>커뮤니티 - A-VERSE</title>
+
+        <!-- 공통 CSS -->
+        <th:block th:replace="~{fragments/head :: common-css}"></th:block>
         <link href="/css/community.css" rel="stylesheet" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
         <style>
 
@@ -442,254 +440,19 @@
                 }
 
         </style>
-        <link rel="icon" type="image/png" href="/assets/img/LogoNotBG.png" />
+
+        <!-- 공통 스크립트 라이브러리 -->
+        <th:block th:replace="~{fragments/head :: common-scripts-head}"></th:block>
     </head>
     <body class="nav-fixed" data-theme="light">
-                <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
-             style="background-color: #f4efff;" id="sidenavAccordion">
-
-            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
-                <i data-feather="menu"></i>
-            </button>
-
-            <!-- 네비게이션 상단 좌측 로고 -->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
-               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
-                      background-clip: text;
-                      -webkit-background-clip: text;
-                      -webkit-text-fill-color: transparent;
-                      font-weight: 700;
-                      letter-spacing: 1px;">A-VERSE</a>
-
-            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
-            <ul class="navbar-nav align-items-center ms-auto">
-
-                <!-- 문서 드롭다운 메뉴
-                        nav-item → 네비게이션 항목
-                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
-                        no-caret → 기본 ▼ 화살표 숨김.
-                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
-                        me-3 → 오른쪽 여백 추가-->
-                <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            nav-link → 네비게이션 링크 스타일
-                            dropdown-toggle → Bootstrap의 "클릭 시 메뉴 열기" 기능을 활성화
-                            id="navbarDropdownDocs" → 아래쪽 <div class="dropdown-menu">와 연결할 식별자
-                            href="javascript:void(0);" → 클릭해도 페이지 이동하지 않게 함
-                            role="button" → 접근성용
-                            data-bs-toggle="dropdown" → Bootstrap의 드롭다운 동작을 지정
-                            aria-haspopup="true" → "이 버튼이 메뉴를 연다"는 의미
-                            aria-expanded="false" → 처음엔 닫혀 있다는 의미-->
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    </a>
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            dropdown-menu → 기본 드롭다운 스타일
-                            dropdown-menu-end → 메뉴를 오른쪽 정렬
-                            py-0 → 위아래 패딩 제거
-                            me-sm-n15 me-lg-0 → 작은 화면에선 오른쪽 여백 조정(-15px)
-                            o-hidden → overflow 숨김
-                            animated--fade-in-up → 부드럽게 위로 뜨는 애니메이션
-                            aria-labelledby="navbarDropdownDocs" → 위의 트리거 버튼(id와 연결)과 연동-->
-                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
-                </li>
-
-
-
-                <li class="nav-item d-flex align-items-center me-3">
-                    <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
-                        lumino
-                    </a>
-<!--                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>-->
-<!--                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">-->
-<!--                        Sign Up-->
-<!--                    </a>-->
-                </li>
-
-
-
-                <!-- 상단 좌측 유저 정보 드롭다운 메뉴 -->
-                <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-
-                    <!-- btn btn-icon btn-transparent-dark → 투명한 배경의 아이콘형 버튼
-                           dropdown-toggle → 클릭하면 드롭다운 메뉴 열림
-                           id="navbarDropdownUserImage" → 아래쪽 메뉴(aria-labelledby)와 연결
-                           href="javascript:void(0);" → 클릭해도 페이지 이동 X
-                           role="button" → 접근성 표시
-                           <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="assets/img/illustrations/profiles/luminosang.png" /></a>
-                    <!--열리는 메뉴 상자-->
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-
-                        <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
-                        <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
-                            <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">이유나</div>
-                                <div class="dropdown-user-details-email">이유나 @ 이쁘니</div>
-                            </div>
-                        </h6>
-
-                        <!--회색 구분선-->
-                        <div class="dropdown-divider"></div>
-
-                        <!--MY_page-->
-                        <a class="dropdown-item" href="http://localhost:8087/my_page">
-                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            MY_page
-                        </a>
-
-                        <!--log-out-->
-                        <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                            Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
-
-
-
-        </nav>
+        <!-- 상단 네비게이션 (Fragment) -->
+        <div th:replace="~{fragments/header :: header}"></div>
+        <!-- 네비게이션 전체 레이아웃 -->
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sidenav shadow-right sidenav-light">
-                    <div class="sidenav-menu">
-                        <div class="nav accordion" id="accordionSidenav">
+            <!-- 왼쪽 사이드바 (Fragment) -->
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-                            <!-- 사이드바의 카테고리 섹션-->
-                            <div class="sidenav-menu-heading">AI 추천</div>
-                            <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
-                            <a class="nav-link collapsed"
-                               href="javascript:void(0);"
-                               data-bs-toggle="collapse"
-                               data-bs-target="#collapseDashboards"
-                               aria-expanded="false"
-                               aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                                카테고리
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="http://localhost:8087/category_all">전체</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_text">글</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_image">그림</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_audio">음악/음성</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_coding">코딩 및 개발</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_video">영상</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_search">검색</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_education">교육, 학습</a>
-                                </nav>
-                            </div>
-
-                            <!-- 사이드바의 커뮤니티 섹션-->
-                            <div class="sidenav-menu-heading">Social</div>
-                            <a class="nav-link" href="http://localhost:8087/community_page">
-                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                커뮤니티
-                            </a>
-
-                            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                    <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                        Account
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="account-profile.html">Profile</a>
-                                            <a class="nav-link" href="account-billing.html">Billing</a>
-                                            <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="community_page.html">Notifications</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
-                                                Basic
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-basic.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-basic.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
-                                                </nav>
-                                            </div>
-
-                                            <!-- 사이드바의 설정 섹션-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
-                                                설정
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
-                                                </nav>
-                                            </div>
-                                        </nav>
-                                    </div>
-
-
-
-
-                                    <!-- Nested Sidenav Accordion (Pages -> Error)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error-400.html">400 Error</a>
-                                            <a class="nav-link" href="error-401.html">401 Error</a>
-                                            <a class="nav-link" href="error-403.html">403 Error</a>
-                                            <a class="nav-link" href="error-404-1.html">404 Error 1</a>
-                                            <a class="nav-link" href="error-404-2.html">404 Error 2</a>
-                                            <a class="nav-link" href="error-500.html">500 Error</a>
-                                            <a class="nav-link" href="error-503.html">503 Error</a>
-                                            <a class="nav-link" href="error-504.html">504 Error</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link" href="pricing.html">Pricing</a>
-                                    <a class="nav-link" href="invoice.html">Invoice</a>
-                                </nav>
-                            </div>
-                            <!-- 사이드바의 설정 섹션-->
-                            <div class="sidenav-menu-heading">Setting</div>
-                            <!-- 설정섹션-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                                <div class="nav-link-icon"><i data-feather="tool"></i></div>
-                                설정
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
-                                </nav>
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
+            <!-- 메인 콘텐츠 영역 -->
             <div id="layoutSidenav_content">
                 <main>
                     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
@@ -1033,86 +796,13 @@
                     </div>
                 </footer>
             </div>
+            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <!-- 공통 스크립트 -->
+        <th:block th:replace="~{fragments/scripts :: common-scripts}"></th:block>
 
-        <script>
-            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
-             document.addEventListener('DOMContentLoaded', function () {
-               [
-                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
-                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
-               ].forEach(([panelSel, triggerSel]) => {
-                 const panel   = document.querySelector(panelSel);
-                 const trigger = document.querySelector(triggerSel);
-                 if (panel){
-                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
-                   panel.style.height = 'auto';
-                 }
-                 if (trigger){
-                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
-                   trigger.setAttribute('aria-expanded','true');
-                 }
-               });
-
-               // "내 워크스페이스에 저장" 버튼 클릭 이벤트 리스너
-               document.querySelectorAll('.btn-secondary').forEach(function(button) {
-                 if (button.textContent.includes('내 워크스페이스에 저장')) {
-                   button.addEventListener('click', function(e) {
-                     e.preventDefault();
-
-                     // 가장 가까운 workspace-zone 찾기
-                     const workspaceZone = button.closest('.card-body').querySelector('.workspace-zone');
-                     if (!workspaceZone) {
-                       alert('워크스페이스 정보를 찾을 수 없습니다.');
-                       return;
-                     }
-
-                     // 워크스페이스 이름 가져오기
-                     const workspaceName = workspaceZone.querySelector('.card-header h5').textContent.trim();
-
-                     // 모든 도구 이름 수집
-                     const toolNames = [];
-                     workspaceZone.querySelectorAll('.toolname').forEach(function(toolEl) {
-                       toolNames.push(toolEl.textContent.trim());
-                     });
-
-                     if (toolNames.length === 0) {
-                       alert('도구 정보를 찾을 수 없습니다.');
-                       return;
-                     }
-
-                     // API 호출
-                     fetch('/api/workspace/save', {
-                       method: 'POST',
-                       headers: {
-                         'Content-Type': 'application/json'
-                       },
-                       body: JSON.stringify({
-                         workspaceName: workspaceName,
-                         toolNames: toolNames
-                       })
-                     })
-                     .then(response => {
-                       if (!response.ok) {
-                         return response.text().then(text => { throw new Error(text) });
-                       }
-                       return response.json();
-                     })
-                     .then(data => {
-                       alert('워크스페이스가 성공적으로 저장되었습니다!');
-                       console.log('저장된 워크스페이스:', data);
-                     })
-                     .catch(error => {
-                       alert('워크스페이스 저장에 실패했습니다: ' + error.message);
-                       console.error('Error:', error);
-                     });
-                   });
-                 }
-               });
-             });
-        </script>
+        <!-- 사이드바 자동 펼치기 -->
+        <th:block th:replace="~{fragments/scripts :: sidebar-auto-expand}"></th:block>
 
         <!-- Floating Write Button -->
         <a href="write_page" class="btn btn-secondary rounded-circle" style="position: fixed; right: 24px; bottom: 24px; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">

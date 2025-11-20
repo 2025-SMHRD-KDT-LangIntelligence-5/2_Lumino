@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- 왼쪽 사이드바 Fragment -->
+    <div th:fragment="sidebar" id="layoutSidenav_nav" style="background-color: #ffffff;">
+        <!-- 사이드바(왼쪽 메뉴 리스트)를 구성하는 태그 -->
+        <nav class="sidenav shadow-right sidenav-light">
+            <!-- 사이드바 안에서 메뉴 항목 전체 -->
+            <div class="sidenav-menu">
+                <!--왼쪽 사이드 메뉴에서 대분류 메뉴를 클릭하면 하위 메뉴가 열리고 닫히는 구조-->
+                <div class="nav accordion" id="accordionSidenav">
+
+                    <!-- 사이드바의 카테고리 섹션-->
+                    <div class="sidenav-menu-heading">AI 추천</div>
+                    <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
+                    <a class="nav-link collapsed"
+                       href="javascript:void(0);"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#collapseDashboards"
+                       aria-expanded="false"
+                       aria-controls="collapseDashboards">
+                        <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                        카테고리
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                            <a class="nav-link" th:href="@{/category_all}">전체</a>
+                            <a class="nav-link" th:href="@{/category_text}">글</a>
+                            <a class="nav-link" th:href="@{/category_image}">그림</a>
+                            <a class="nav-link" th:href="@{/category_audio}">음악/음성</a>
+                            <a class="nav-link" th:href="@{/category_coding}">코딩 및 개발</a>
+                            <a class="nav-link" th:href="@{/category_video}">영상</a>
+                            <a class="nav-link" th:href="@{/category_search}">검색</a>
+                            <a class="nav-link" th:href="@{/category_education}">교육, 학습</a>
+                        </nav>
+                    </div>
+
+                    <!-- 사이드바의 커뮤니티 섹션-->
+                    <div class="sidenav-menu-heading">Social</div>
+                    <a class="nav-link" th:href="@{/community_page}">
+                        <div class="nav-link-icon"><i data-feather="globe"></i></div>
+                        커뮤니티
+                    </a>
+
+                    <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                            <!-- Nested Sidenav Accordion (Pages -> Account)-->
+                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
+                                Account
+                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
+                                <nav class="sidenav-menu-nested nav">
+                                    <a class="nav-link" href="account-profile.html">Profile</a>
+                                    <a class="nav-link" href="account-billing.html">Billing</a>
+                                    <a class="nav-link" href="account-security.html">Security</a>
+                                    <a class="nav-link" href="community_page.html">Notifications</a>
+                                </nav>
+                            </div>
+                            <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
+                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                Authentication
+                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
+                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
+                                    <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
+                                        Basic
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
+                                        <nav class="sidenav-menu-nested nav">
+                                            <a class="nav-link" href="auth-login-basic.html">Login</a>
+                                            <a class="nav-link" href="auth-register-basic.html">Register</a>
+                                            <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
+                                        </nav>
+                                    </div>
+
+                                    <!-- 사이드바의 설정 섹션-->
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
+                                        설정
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
+                                        <nav class="sidenav-menu-nested nav">
+                                            <a class="nav-link" th:href="@{/my_page}">마이페이지</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div>
+
+                            <!-- Nested Sidenav Accordion (Pages -> Error)-->
+                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                Error
+                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
+                                <nav class="sidenav-menu-nested nav">
+                                    <a class="nav-link" href="error-400.html">400 Error</a>
+                                    <a class="nav-link" href="error-401.html">401 Error</a>
+                                    <a class="nav-link" href="error-403.html">403 Error</a>
+                                    <a class="nav-link" href="error-404-1.html">404 Error 1</a>
+                                    <a class="nav-link" href="error-404-2.html">404 Error 2</a>
+                                    <a class="nav-link" href="error-500.html">500 Error</a>
+                                    <a class="nav-link" href="error-503.html">503 Error</a>
+                                    <a class="nav-link" href="error-504.html">504 Error</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="pricing.html">Pricing</a>
+                            <a class="nav-link" href="invoice.html">Invoice</a>
+                        </nav>
+                    </div>
+
+                    <!-- 사이드바의 설정 섹션-->
+                    <div class="sidenav-menu-heading">Setting</div>
+                    <!-- 설정섹션-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                        <div class="nav-link-icon"><i data-feather="tool"></i></div>
+                        설정
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" th:href="@{/my_page}">마이페이지</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

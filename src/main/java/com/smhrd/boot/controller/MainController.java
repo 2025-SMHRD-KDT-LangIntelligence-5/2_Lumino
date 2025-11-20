@@ -21,7 +21,7 @@ public class MainController {
     private final WorkspaceService workspaceService;
 
     // 메인 페이지 매핑
-    @GetMapping("/index")
+    @GetMapping({"/", "/index"})
     public String index(Model model) {
         // workspace_id = 1인 워크스페이스와 도구들을 가져옴
         WorkspaceWithToolsDTO workspace = workspaceService.getWorkspaceWithTools(1);

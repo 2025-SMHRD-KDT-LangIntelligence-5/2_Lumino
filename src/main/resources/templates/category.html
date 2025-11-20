@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>글 - AI 도구 카테고리</title>
-        <link href="/css/styles.css" rel="stylesheet" />
+        <!-- 공통 메타태그 -->
+        <th:block th:replace="~{fragments/head :: common-meta}"></th:block>
+
+        <title th:text="${categoryTitle} + ' - AI 도구 카테고리'">AI 도구 카테고리</title>
+
+        <!-- 공통 CSS -->
+        <th:block th:replace="~{fragments/head :: common-css}"></th:block>
+
         <link href="/css/category.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="/assets/img/LogoNotBG.png" />
-        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
         <style>
 
@@ -26,6 +26,22 @@
                    }
                    #workspace-zone .card-header { padding: .8rem 1rem; }
                    #workspace-zone .card-body   { padding: 1.0rem 1.25rem; } /* 세로 간격 축소 */
+
+            /* ===== 워크스페이스 카드 내부 작은 스크롤바 ===== */
+                   #workspace-zone .card-body::-webkit-scrollbar {
+                     height: 6px; /* 스크롤바 높이 (가로 스크롤) */
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-track {
+                     background: rgba(200, 200, 220, 0.1);
+                     border-radius: 10px;
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-thumb {
+                     background: linear-gradient(90deg, #b39aff, #8da6ff);
+                     border-radius: 10px;
+                   }
+                   #workspace-zone .card-body::-webkit-scrollbar-thumb:hover {
+                     background: linear-gradient(90deg, #9c8cff, #7d96ff);
+                   }
 
             /* 워크스페이스 카드 로고 전용 스타일 */
                .workspace-logo {
@@ -465,250 +481,16 @@
 
         </style>
 
+        <!-- 공통 스크립트 라이브러리 -->
+        <th:block th:replace="~{fragments/head :: common-scripts-head}"></th:block>
     </head>
     <body class="nav-fixed" data-theme="light">
-                <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
-             style="background-color: #f4efff;" id="sidenavAccordion">
-
-            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
-                <i data-feather="menu"></i>
-            </button>
-
-            <!-- 네비게이션 상단 좌측 로고 -->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
-               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
-                      -webkit-background-clip: text;
-                      -webkit-text-fill-color: transparent;
-                      font-weight: 700;
-                      letter-spacing: 1px;">A-VERSE</a>
-
-            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
-            <ul class="navbar-nav align-items-center ms-auto">
-
-                <!-- 문서 드롭다운 메뉴
-                        nav-item → 네비게이션 항목
-                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
-                        no-caret → 기본 ▼ 화살표 숨김.
-                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
-                        me-3 → 오른쪽 여백 추가-->
-                <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            nav-link → 네비게이션 링크 스타일
-                            dropdown-toggle → Bootstrap의 "클릭 시 메뉴 열기" 기능을 활성화
-                            id="navbarDropdownDocs" → 아래쪽 <div class="dropdown-menu">와 연결할 식별자
-                            href="javascript:void(0);" → 클릭해도 페이지 이동하지 않게 함
-                            role="button" → 접근성용
-                            data-bs-toggle="dropdown" → Bootstrap의 드롭다운 동작을 지정
-                            aria-haspopup="true" → "이 버튼이 메뉴를 연다"는 의미
-                            aria-expanded="false" → 처음엔 닫혀 있다는 의미-->
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    </a>
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            dropdown-menu → 기본 드롭다운 스타일
-                            dropdown-menu-end → 메뉴를 오른쪽 정렬
-                            py-0 → 위아래 패딩 제거
-                            me-sm-n15 me-lg-0 → 작은 화면에선 오른쪽 여백 조정(-15px)
-                            o-hidden → overflow 숨김
-                            animated--fade-in-up → 부드럽게 위로 뜨는 애니메이션
-                            aria-labelledby="navbarDropdownDocs" → 위의 트리거 버튼(id와 연결)과 연동-->
-                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
-                </li>
-
-
-
-                <li class="nav-item d-flex align-items-center me-3">
-                    <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
-                        lumino
-                    </a>
-<!--                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>-->
-<!--                    <a href="http://localhost:8087/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">-->
-<!--                        Sign Up-->
-<!--                    </a>-->
-                </li>
-
-
-
-                <!-- 상단 좌측 유저 정보 드롭다운 메뉴 -->
-                <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-
-                    <!-- btn btn-icon btn-transparent-dark → 투명한 배경의 아이콘형 버튼
-                           dropdown-toggle → 클릭하면 드롭다운 메뉴 열림
-                           id="navbarDropdownUserImage" → 아래쪽 메뉴(aria-labelledby)와 연결
-                           href="javascript:void(0);" → 클릭해도 페이지 이동 X
-                           role="button" → 접근성 표시
-                           <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="/assets/img/illustrations/profiles/luminosang.png" /></a>
-                    <!--열리는 메뉴 상자-->
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-
-                        <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
-                        <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="assets/img/illustrations/profiles/luminosang.png" />
-                            <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">lumino</div>
-                                <div class="dropdown-user-details-email">lumino@gmail.com</div>
-                            </div>
-                        </h6>
-
-                        <!--회색 구분선-->
-                        <div class="dropdown-divider"></div>
-
-                        <!--MY_page-->
-                        <a class="dropdown-item" href="http://localhost:8087/my_page">
-                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            MY_page
-                        </a>
-
-                        <!--log-out-->
-                        <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                            Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
-
-
-
-        </nav>
+        <!-- 상단 네비게이션 (Fragment) -->
+        <div th:replace="~{fragments/header :: header}"></div>
+        <!-- 네비게이션 전체 레이아웃 -->
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav" style="background-color: #ffffff;">
-                <nav class="sidenav shadow-right sidenav-light">
-                    <div class="sidenav-menu">
-                        <div class="nav accordion" id="accordionSidenav">
-
-                            <!-- 사이드바의 카테고리 섹션-->
-                            <div class="sidenav-menu-heading">AI 추천</div>
-                            <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
-                            <a class="nav-link"
-                               href="javascript:void(0);"
-                               aria-expanded="true"
-                               aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                                카테고리
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse show" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="http://localhost:8087/category_all">전체</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_text">글</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_image">그림</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_audio">음악/음성</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_coding">코딩 및 개발</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_video">영상</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_search">검색</a>
-                                    <a class="nav-link" href="http://localhost:8087/category_education">교육, 학습</a>
-                                </nav>
-                            </div>
-
-                            <!-- 사이드바의 커뮤니티 섹션-->
-                            <div class="sidenav-menu-heading">Social</div>
-                            <a class="nav-link" href="http://localhost:8087/community_page">
-                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                커뮤니티
-                            </a>
-
-                            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                    <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                        Account
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="account-profile.html">Profile</a>
-                                            <a class="nav-link" href="account-billing.html">Billing</a>
-                                            <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="community_page.html">Notifications</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
-                                                Basic
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-basic.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-basic.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
-                                                </nav>
-                                            </div>
-
-                                            <!-- 사이드바의 설정 섹션-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
-                                                설정
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
-                                                </nav>
-                                            </div>
-                                        </nav>
-                                    </div>
-
-
-
-
-                                    <!-- Nested Sidenav Accordion (Pages -> Error)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error-400.html">400 Error</a>
-                                            <a class="nav-link" href="error-401.html">401 Error</a>
-                                            <a class="nav-link" href="error-403.html">403 Error</a>
-                                            <a class="nav-link" href="error-404-1.html">404 Error 1</a>
-                                            <a class="nav-link" href="error-404-2.html">404 Error 2</a>
-                                            <a class="nav-link" href="error-500.html">500 Error</a>
-                                            <a class="nav-link" href="error-503.html">503 Error</a>
-                                            <a class="nav-link" href="error-504.html">504 Error</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link" href="pricing.html">Pricing</a>
-                                    <a class="nav-link" href="invoice.html">Invoice</a>
-                                </nav>
-                            </div>
-                            <!-- 사이드바의 설정 섹션-->
-                            <div class="sidenav-menu-heading">Setting</div>
-                            <!-- 설정섹션-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                                <div class="nav-link-icon"><i data-feather="tool"></i></div>
-                                설정
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="http://localhost:8087/my_page">마이페이지</a>
-                                </nav>
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
+            <!-- 왼쪽 사이드바 (Fragment) -->
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -748,20 +530,20 @@
                                                 <i data-feather="plus" style="width: 14px; height: 14px;"></i>
                                                 새 워크스페이스
                                             </button>
-                                            <div class="d-flex align-items-center">
-                                                <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
-                                                <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;" onchange="changeWorkspace(this)">
-                                                    <option value="">워크스페이스 선택</option>
-                                                    <option th:each="workspace : ${workspaces}"
-                                                            th:value="${workspace.workspace_id}"
-                                                            th:text="${workspace.workspace_name}"
-                                                            th:selected="${workspace.workspace_id == 1}">
-                                                        Workspace Name
-                                                    </option>
-                                                </select>
-                                            </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
+                                            <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;" onchange="changeWorkspace(this)">
+                                                <option value="">워크스페이스 선택</option>
+                                                <option th:each="workspace : ${workspaces}"
+                                                        th:value="${workspace.workspace_id}"
+                                                        th:text="${workspace.workspace_name}"
+                                                        th:selected="${workspace.workspace_id == 1}">
+                                                    Workspace Name
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
 
                                     <div class="card-body" style="overflow-x: auto; overflow-y: hidden;">
                                         <div class="row g-3 justify-content-start flex-nowrap">
@@ -802,19 +584,8 @@
 
                         <!-- ====================================================워크스페이스 가져가세요=============================================================================== -->
                         
-                        <hr class="my-4">
-                        
-                        <!-- AI 도구 비교 섹션 -->
-                        <div class="mb-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h3 class="mb-0">AI 도구 비교</h3>
-                                <button id="compareBtn" class="btn btn-sm btn-secondary" disabled onclick="goToCompare()">비교하기</button>
-                            </div>
-                            <p class="text-muted small mb-3">비교하고 싶은 도구를 최대 2개까지 선택하세요.</p>
-                        </div>
-                        
-                        <h2 class="section-title mb-3">글 (텍스트 생성) AI 도구</h2>
-                        <div class="tools-grid row g-5 justify-content-center" style="display: flex; flex-wrap: wrap; max-width: 90%; margin: 0 auto; gap: 2rem;">
+                        <h2 class="section-title mb-3">전체 AI 도구</h2>
+                        <div class="tools-grid row g-5" style="display: flex; flex-wrap: wrap; justify-content: flex-start; max-width: 90%; margin: 0 auto; gap: 2rem;">
                             <!-- 데이터베이스에서 도구 동적 렌더링 -->
                             <div th:each="tool : ${tools}" class="col-6 col-sm-4 col-md-3 compare-tool-item" style="flex: 0 0 calc(20% - 2rem); max-width: calc(20% - 2rem);" th:attr="data-tool-name=${tool.toolName}">
                                 <div class="d-flex flex-column align-items-center">
@@ -834,10 +605,11 @@
                                     <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
                                     <div class="d-flex gap-1 mt-2 justify-content-center" style="width: 100%;">
                                         <a th:href="${tool.websiteUse}" target="_blank"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">사이트</button></a>
-                                        <a th:href="${tool.websiteDetail}" target="_blank"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button></a>
+                                        <a th:href="${tool.websiteUse}" target="_blank"><button class="btn btn-sm btn-secondary" style="border-radius: 0.75rem; font-size: 0.65rem; padding: 0.25rem 0.75rem; width: auto;">상세 설명</button></a>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <br>
@@ -887,182 +659,132 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <!-- 공통 스크립트 -->
+        <th:block th:replace="~{fragments/scripts :: common-scripts}"></th:block>
+
+        <!-- 사이드바 자동 펼치기 -->
+        <th:block th:replace="~{fragments/scripts :: sidebar-auto-expand}"></th:block>
 
         <script>
-            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
-             document.addEventListener('DOMContentLoaded', function () {
-               [
-                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
-                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
-               ].forEach(([panelSel, triggerSel]) => {
-                 const panel   = document.querySelector(panelSel);
-                 const trigger = document.querySelector(triggerSel);
-                 if (panel){
-                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
-                   panel.style.height = 'auto';
-                 }
-                 if (trigger){
-                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
-                   trigger.setAttribute('aria-expanded','true');
-                 }
-               });
-               
-               // Feather 아이콘 초기화
-               if (typeof feather !== 'undefined') {
-                   feather.replace();
-               }
-             });
-             
-             // AI 도구 비교 기능
-             let selectedTools = [];
-             const maxSelection = 2;
-             
-            function toggleToolSelection(element) {
-                const toolItem = element.closest('.compare-tool-item');
-                const toolNameEl = toolItem.querySelector('.toolname');
-                const toolName = toolNameEl ? toolNameEl.textContent.trim() : null;
-                const card = toolItem.querySelector('.compare-tool-card');
-                const checkIcon = toolItem.querySelector('.compare-check-icon');
-                
-                if (!toolName) return;
-                 
-                 const index = selectedTools.indexOf(toolName);
-                 
-                 if (index > -1) {
-                     // 이미 선택된 경우 - 선택 해제
-                     selectedTools.splice(index, 1);
-                     card.style.border = '2px solid transparent';
-                     checkIcon.style.display = 'none';
-                 } else {
-                     // 선택되지 않은 경우
-                     if (selectedTools.length >= maxSelection) {
-                         alert('최대 ' + maxSelection + '개까지만 선택할 수 있습니다.');
-                         return;
-                     }
-                     selectedTools.push(toolName);
-                     card.style.border = '2px solid #6900C7';
-                     checkIcon.style.display = 'flex';
-                 }
-                 
-                 // Feather 아이콘 다시 렌더링
-                 if (typeof feather !== 'undefined') {
-                     feather.replace();
-                 }
-                 
-                 // 비교하기 버튼 활성화/비활성화
-                 updateCompareButton();
-             }
-             
-             function updateCompareButton() {
-                 const compareBtn = document.getElementById('compareBtn');
-                 if (compareBtn) {
-                     if (selectedTools.length === maxSelection) {
-                         compareBtn.disabled = false;
-                     } else {
-                         compareBtn.disabled = true;
-                     }
-                 }
-             }
-             
-            function goToCompare() {
-                console.log('goToCompare called, selectedTools:', selectedTools);
-                if (selectedTools.length === maxSelection) {
-                    // URL 파라미터로 선택된 도구 전달
-                    const params = new URLSearchParams({
-                        tool1: selectedTools[0],
-                        tool2: selectedTools[1]
-                    });
-                    console.log('Navigating to:', 'http://localhost:8087/compare_page?' + params.toString());
-                    window.location.href = 'http://localhost:8087/compare_page?' + params.toString();
-                } else {
-                    alert('비교할 도구 2개를 선택해주세요.');
-                }
-            }
-            
-            // 전역 스코프에 명시적으로 할당
-            window.goToCompare = goToCompare;
-        </script>
-        
-        <style>
-            /* AI 도구 비교 카드 스타일 */
-            .compare-tool-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(105, 0, 199, 0.2);
+            function searchTools() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const cards = document.querySelectorAll('.tool-card');
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(searchTerm) || searchTerm === '') {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             }
 
-            .compare-tool-card.selected {
-                border: 2px solid #6900C7 !important;
-                box-shadow: 0 0 0 2px rgba(105, 0, 199, 0.2);
-            }
-
-            .compare-check-icon {
-                z-index: 10;
-            }
-
-            /* 검색 하이라이트 스타일 */
-            .search-highlight {
-                animation: highlightPulse 2s ease-in-out;
-                border: 3px solid #b39aff !important;
-                box-shadow: 0 0 20px rgba(179, 154, 255, 0.6) !important;
-            }
-
-            @keyframes highlightPulse {
-                0%, 100% {
-                    box-shadow: 0 0 20px rgba(179, 154, 255, 0.6);
-                    transform: scale(1);
-                }
-                50% {
-                    box-shadow: 0 0 30px rgba(179, 154, 255, 0.9);
-                    transform: scale(1.05);
-                }
-            }
-        </style>
-
-        <script>
-            // URL 파라미터에서 검색어 가져오기
-            document.addEventListener('DOMContentLoaded', () => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const searchTerm = urlParams.get('search');
-
-                if (searchTerm) {
-                    // 모든 toolname 요소 찾기
-                    const toolnames = document.querySelectorAll('.toolname');
-                    let found = false;
-
-                    toolnames.forEach(toolnameEl => {
-                        const toolText = toolnameEl.textContent.toLowerCase();
-                        const search = searchTerm.toLowerCase();
-
-                        // 부분 일치 확인
-                        if (toolText.includes(search) || search.includes(toolText)) {
-                            // 해당 도구의 카드 찾기
-                            const toolCard = toolnameEl.closest('.compare-tool-item').querySelector('.compare-tool-card');
-
-                            if (toolCard && !found) {
-                                // 하이라이트 효과 추가
-                                toolCard.classList.add('search-highlight');
-
-                                // 해당 위치로 스크롤 (부드럽게)
-                                setTimeout(() => {
-                                    toolCard.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'center'
-                                    });
-                                }, 300);
-
-                                // 2초 후 하이라이트 제거
-                                setTimeout(() => {
-                                    toolCard.classList.remove('search-highlight');
-                                }, 3000);
-
-                                found = true;
-                            }
-                        }
-                    });
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchTools();
                 }
             });
+        </script>
+
+        <script>
+            // 프론트엔드 검색 기능 (toolname 기준 필터링)
+            const searchInput = document.querySelector('input[name="keyword"]');
+            const toolsGrid = document.querySelector('.tools-grid');
+
+            if (searchInput && toolsGrid) {
+                let searchTimeout;
+
+                // 입력할 때마다 검색
+                searchInput.addEventListener('input', function(e) {
+                    const keyword = e.target.value.trim();
+
+                    // 디바운싱: 입력 후 300ms 대기
+                    clearTimeout(searchTimeout);
+
+                    searchTimeout = setTimeout(() => {
+                        filterToolsByName(keyword);
+                    }, 300);
+                });
+
+                // Enter 키로도 검색
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const keyword = e.target.value.trim();
+                        filterToolsByName(keyword);
+                    }
+                });
+
+                // 페이지 로드 시 URL 파라미터에서 keyword 읽어서 자동 검색
+                window.addEventListener('DOMContentLoaded', function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const keyword = urlParams.get('keyword');
+
+                    if (keyword && keyword.trim().length > 0) {
+                        // 검색창에 키워드 입력
+                        searchInput.value = keyword;
+                        // 자동으로 검색 실행
+                        filterToolsByName(keyword);
+                    }
+                });
+            }
+
+            function filterToolsByName(keyword) {
+                const toolsGrid = document.querySelector('.tools-grid');
+                if (!toolsGrid) return;
+
+                // 모든 도구 아이템 가져오기
+                const allToolItems = toolsGrid.querySelectorAll('.compare-tool-item');
+
+                // 검색어를 소문자로 변환
+                const searchKeyword = keyword.toLowerCase().trim();
+
+                let visibleCount = 0;
+
+                // 각 도구를 검사
+                allToolItems.forEach(item => {
+                    // .toolname 요소에서 도구 이름 가져오기
+                    const toolNameEl = item.querySelector('.toolname');
+
+                    if (!toolNameEl) return;
+
+                    // 도구 이름을 소문자로 변환
+                    const toolName = toolNameEl.textContent.toLowerCase().trim();
+
+                    // 검색어가 비어있으면 모두 표시
+                    if (searchKeyword.length === 0) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    }
+                    // 검색어가 있으면 부분 일치 확인
+                    else if (toolName.includes(searchKeyword) || searchKeyword.includes(toolName)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    }
+                    // 일치하지 않으면 숨김
+                    else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // 검색 결과가 없을 때 메시지 표시
+                let noResultMsg = document.querySelector('.no-result-message');
+
+                if (searchKeyword.length > 0 && visibleCount === 0) {
+                    if (!noResultMsg) {
+                        noResultMsg = document.createElement('div');
+                        noResultMsg.className = 'col-12 text-center no-result-message';
+                        noResultMsg.innerHTML = '<p class="text-muted" style="margin-top: 2rem; font-size: 1.1rem;">검색 결과가 없습니다.</p>';
+                        toolsGrid.appendChild(noResultMsg);
+                    } else {
+                        noResultMsg.style.display = 'block';
+                    }
+                } else {
+                    if (noResultMsg) {
+                        noResultMsg.style.display = 'none';
+                    }
+                }
+            }
         </script>
 
         <script>
@@ -1119,7 +841,6 @@
 
                             // Feather icons 다시 초기화
                             if (typeof feather !== 'undefined') {
-                                feather.replace();
                             }
                         }
                     })

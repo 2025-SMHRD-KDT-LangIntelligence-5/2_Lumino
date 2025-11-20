@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 공통 메타태그 Fragment -->
+    <th:block th:fragment="common-meta">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+    </th:block>
+
+    <!-- 공통 CSS Fragment -->
+    <th:block th:fragment="common-css">
+        <link href="/css/styles.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="/assets/img/LogoNotBG.png" />
+    </th:block>
+
+    <!-- 공통 스크립트 라이브러리 Fragment -->
+    <th:block th:fragment="common-scripts-head">
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    </th:block>
+</head>
+</html>

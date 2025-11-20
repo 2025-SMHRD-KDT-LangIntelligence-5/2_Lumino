@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- 상단 네비게이션 Fragment -->
+    <nav th:fragment="header" class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
+         style="background-color: #f4efff;" id="sidenavAccordion">
+
+        <!-- 사이드바 토글 버튼 ☰(메뉴)-->
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
+            <i data-feather="menu"></i>
+        </button>
+
+        <!-- 네비게이션 상단 좌측 로고 -->
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" th:href="@{/index}"
+           style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  font-weight: 700;
+                  letter-spacing: 1px;">A-VERSE</a>
+
+        <!-- 네비게이션(메뉴 항목) 코드가 시작-->
+        <ul class="navbar-nav align-items-center ms-auto">
+
+            <!-- 문서 드롭다운 메뉴 -->
+            <li class="nav-item dropdown no-caret d-none d-md-block me-3">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
+                   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
+            </li>
+
+            <!-- 사용자 이름 표시 -->
+            <li class="nav-item d-flex align-items-center me-3">
+                <a class="nav-link small fw-semibold lumino-link" style="font-size: 0.85rem; padding: 0; color: #000;">
+                    lumino
+                </a>
+            </li>
+
+            <!-- 상단 우측 유저 정보 드롭다운 메뉴 -->
+            <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
+                   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-fluid" src="assets/img/illustrations/profiles/luminosang.png" />
+                </a>
+
+                <!--열리는 메뉴 상자-->
+                <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                    <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
+                    <h6 class="dropdown-header d-flex align-items-center">
+                        <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
+                        <div class="dropdown-user-details">
+                            <div class="dropdown-user-details-name">lumino</div>
+                            <div class="dropdown-user-details-email">lumino@gmail.com</div>
+                        </div>
+                    </h6>
+
+                    <!--회색 구분선-->
+                    <div class="dropdown-divider"></div>
+
+                    <!--MY_page-->
+                    <a class="dropdown-item" th:href="@{/my_page}">
+                        <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                        MY_page
+                    </a>
+
+                    <!--log-out-->
+                    <a class="dropdown-item" href="#!">
+                        <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                        Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
