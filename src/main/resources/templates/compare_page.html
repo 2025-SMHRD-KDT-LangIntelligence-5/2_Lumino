@@ -9,7 +9,6 @@
         <!-- 공통 CSS -->
         <th:block th:replace="~{fragments/head :: common-css}"></th:block>
         <title>AI 비교 - A-VERSE</title>
-        <link href="/css/compare.css" rel="stylesheet" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
@@ -23,7 +22,7 @@
                 }
 
                 /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
-                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important; }
                 h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
                 .small, .text-muted{ color:var(--ink-3)!important; }
 
@@ -163,12 +162,6 @@
                   100% { box-shadow: 0 0 0 rgba(150,120,255,0); }
                 }
 
-            
-            /* === 사이드바 강제 흰색 배경 === */
-                #layoutSidenav_nav {
-                  background-color: #ffffff !important;
-                }
-
             /* === A-VERSE 감성 디테일 (라이트/다크 공통으로 덮어쓰기) === */
 
                 /* 1) 네비게이션/사이드바 글래스 질감 */
@@ -183,14 +176,11 @@
                   border: 1px solid rgba(180,180,255,0.20);
                   box-shadow: 0 6px 18px rgba(160,140,255,0.10);
                 }
-                body[data-theme="dark"] .topnav {
+                body[data-theme="dark"] .topnav,
+                body[data-theme="dark"] .sidenav {
                   background: rgba(20,20,35,0.45);
                   border: 1px solid rgba(160,160,220,0.12);
                   box-shadow: 0 8px 24px rgba(10,10,20,0.45);
-                }
-                /* 사이드바는 항상 흰색 배경 유지 */
-                body[data-theme="dark"] .sidenav {
-                  background: rgba(255,255,255,0.95) !important;
                 }
 
                 /* 3) 카드 부유감 */
@@ -249,6 +239,32 @@
                 .sidenav .sidenav-menu-nested .nav-link {
                   padding-left: 1.8rem;
                 }
+
+                /* ===== 라벨(툴 이름) ===== */
+                .toolname{
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 0.75rem;
+                  font-weight: 500;
+                  color: #333;
+                  padding: 8px 18px;
+                  background: rgba(255, 255, 255, 0.88);
+                  border-radius: 999px;
+                  border: 1px solid rgba(75, 46, 230, 0.08);
+                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
+                  backdrop-filter: blur(8px);
+                  transition: all 0.2s ease;
+                }
+
+                /* 라벨 앞 포인트 점 */
+                .toolname::before{
+                  content: "•";
+                  color: #7d6aff;
+                  font-size: 1.2em;
+                  line-height: 1;
+                }
+
         /* === Compare Page Specific Styles === */
             .py-4 {
                 margin-top: 50px;
@@ -262,12 +278,26 @@
             .spec-row td {
                 vertical-align: middle;
                 text-align: center;
+                height: 7rem;
+            }
+
+            .spec-cell {
+                vertical-align: middle !important;
+                text-align: center;
+                height: 7rem;
+                padding: 1.5rem 1rem;
+            }
+
+            /* 테이블 헤더 높이 고정 */
+            thead th {
+                height: 3.5rem;
+                vertical-align: middle !important;
             }
 
             /* 중앙 레이블 컨테이너 - 테이블 헤더 높이만큼 상단 여백 추가 */
-            .col-12.col-lg-2.d-flex.justify-content-center.px-lg-0.mb-4.mb-lg-0.position-relative.neg-margin-x > div {
+            .col-12.col-lg-1.d-flex.justify-content-center.px-lg-0.mb-4.mb-lg-0.position-relative > div {
                 justify-content: flex-start !important;
-                padding-top: 45px; /* 테이블 헤더 높이와 동일하게 설정 */
+                padding-top: 3.5rem; /* 테이블 헤더 높이와 동일하게 설정 */
             }
 
             /* 중앙 레이블 항목 스타일 - 테두리 제거, 텍스트만 표시 */
@@ -293,10 +323,6 @@
                 height: 100% !important;
             }
 
-            .neg-margin-x {
-                margin-left: -15px !important;
-                margin-right: -15px !important;
-            }
 
              :root{
                   --lav-1:#ede9ff; --lav-2:#e6ddff; --lav-3:#dcd6ff;
@@ -306,7 +332,7 @@
                 }
 
                 /* 한글 가독 폰트(시스템+나눔스퀘어/프리텐다드 명시) */
-                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+                body{ font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important; }
                 h1,h2,h3,h4,h5{ color:var(--ink-1); letter-spacing:.1px; }
                 .small, .text-muted{ color:var(--ink-3)!important; }
 
@@ -356,254 +382,13 @@
         </style>
     </head>
     <body class="nav-fixed" data-theme="light">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start"
-             style="background-color: #f4efff;" id="sidenavAccordion">
-
-            <!-- 사이드바 토글 버튼 ☰(메뉴)-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
-                <i data-feather="menu"></i>
-            </button>
-
-            <!-- 네비게이션 상단 좌측 로고 -->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index"
-               style="background: linear-gradient(120deg, #b39aff 0%, #8da6ff 50%, #b7e8ff 100%);
-                      -webkit-background-clip: text;
-                      -webkit-text-fill-color: transparent;
-                      font-weight: 700;
-                      letter-spacing: 1px;">A-VERSE</a>
-
-            <!-- 네비게이션(메뉴 항목) 코드가 시작-->
-            <ul class="navbar-nav align-items-center ms-auto">
-
-                <!-- 문서 드롭다운 메뉴
-                        nav-item → 네비게이션 항목
-                        dropdown → 클릭 시 메뉴가 펼쳐지는 드롭다운 형태
-                        no-caret → 기본 ▼ 화살표 숨김.
-                        d-none d-md-block → 화면 크기가 md(768px) 이상일 때만 표시됨 / 모바일에서는 안 보임
-                        me-3 → 오른쪽 여백 추가-->
-                <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            nav-link → 네비게이션 링크 스타일
-                            dropdown-toggle → Bootstrap의 "클릭 시 메뉴 열기" 기능을 활성화
-                            id="navbarDropdownDocs" → 아래쪽 <div class="dropdown-menu">와 연결할 식별자
-                            href="javascript:void(0);" → 클릭해도 페이지 이동하지 않게 함
-                            role="button" → 접근성용
-                            data-bs-toggle="dropdown" → Bootstrap의 드롭다운 동작을 지정
-                            aria-haspopup="true" → "이 버튼이 메뉴를 연다"는 의미
-                            aria-expanded="false" → 처음엔 닫혀 있다는 의미-->
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    </a>
-
-                    <!-- 드롭다운을 여는 클릭 가능한 링크(버튼)
-                            dropdown-menu → 기본 드롭다운 스타일
-                            dropdown-menu-end → 메뉴를 오른쪽 정렬
-                            py-0 → 위아래 패딩 제거
-                            me-sm-n15 me-lg-0 → 작은 화면에선 오른쪽 여백 조정(-15px)
-                            o-hidden → overflow 숨김
-                            animated--fade-in-up → 부드럽게 위로 뜨는 애니메이션
-                            aria-labelledby="navbarDropdownDocs" → 위의 트리거 버튼(id와 연결)과 연동-->
-                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs"></div>
-                </li>
-
-
-
-                <li class="nav-item d-flex align-items-center me-3">
-                    <a href="http://averse.world/login_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
-                        Login
-                    </a>
-                    <span class="text-muted mx-1" style="font-size: 0.8rem;">|</span>
-                    <a href="http://averse.world/join_page" class="nav-link small fw-semibold text-muted" style="font-size: 0.85rem; padding: 0;">
-                        Sign Up
-                    </a>
-                </li>
-
-
-
-                <!-- 상단 좌측 유저 정보 드롭다운 메뉴 -->
-                <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-
-                    <!-- btn btn-icon btn-transparent-dark → 투명한 배경의 아이콘형 버튼
-                           dropdown-toggle → 클릭하면 드롭다운 메뉴 열림
-                           id="navbarDropdownUserImage" → 아래쪽 메뉴(aria-labelledby)와 연결
-                           href="javascript:void(0);" → 클릭해도 페이지 이동 X
-                           role="button" → 접근성 표시
-                           <img class="img-fluid" src="..."> → 사용자 프로필 이미지-->
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);"
-                       role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid"
-                                                                                                               src="assets/img/illustrations/profiles/luminosang.png" /></a>
-                    <!--열리는 메뉴 상자-->
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-
-                        <!--유저 클릭시 나오는 상자 내용 첫번째 블럭-->
-                        <h6 class="dropdown-header d-flex align-items-center">
-                            <img class="dropdown-user-img" src="/assets/img/illustrations/profiles/profile-1.png" />
-                            <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">이유나</div>
-                                <div class="dropdown-user-details-email">이유나 @ 이쁘니</div>
-                            </div>
-                        </h6>
-
-                        <!--회색 구분선-->
-                        <div class="dropdown-divider"></div>
-
-                        <!--MY_page-->
-                        <a class="dropdown-item" href="http://averse.world/my_page">
-                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            MY_page
-                        </a>
-
-                        <!--log-out-->
-                        <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                            Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-
-
-
-
-        </nav>
+        <div th:replace="~{fragments/header :: header}"></div>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav" style="background-color: #ffffff;">
-                <nav class="sidenav shadow-right sidenav-light">
-                    <div class="sidenav-menu">
-                        <div class="nav accordion" id="accordionSidenav">
-
-                            <!-- 사이드바의 카테고리 섹션-->
-                            <div class="sidenav-menu-heading">AI 추천</div>
-                            <!-- 카테고리 메뉴(아코리언 구조=>하위 메뉴가 접혔다 펼쳐지는 구조)-->
-                            <a class="nav-link collapsed"
-                               href="javascript:void(0);"
-                               data-bs-toggle="collapse"
-                               data-bs-target="#collapseDashboards"
-                               aria-expanded="false"
-                               aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                                카테고리
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="http://averse.world/category_all">전체</a>
-                                    <a class="nav-link" href="http://averse.world/category_text">글</a>
-                                    <a class="nav-link" href="http://averse.world/category_image">그림</a>
-                                    <a class="nav-link" href="http://averse.world/category_audio">음악/음성</a>
-                                    <a class="nav-link" href="http://averse.world/category_coding">코딩 및 개발</a>
-                                    <a class="nav-link" href="http://averse.world/category_video">영상</a>
-                                    <a class="nav-link" href="http://averse.world/category_search">검색</a>
-                                    <a class="nav-link" href="http://averse.world/category_education">교육, 학습</a>
-                                </nav>
-                            </div>
-
-                            <!-- 사이드바의 커뮤니티 섹션-->
-                            <div class="sidenav-menu-heading">Social</div>
-                            <a class="nav-link" href="http://averse.world/community_page">
-                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                커뮤니티
-                            </a>
-
-                            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                    <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                        Account
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="account-profile.html">Profile</a>
-                                            <a class="nav-link" href="account-billing.html">Billing</a>
-                                            <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="community_page.html">Notifications</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
-                                                Basic
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-basic.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-basic.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
-                                                </nav>
-                                            </div>
-
-                                            <!-- 사이드바의 설정 섹션-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
-                                                설정
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="http://averse.world/my_page">마이페이지</a>
-                                                </nav>
-                                            </div>
-                                        </nav>
-                                    </div>
-
-
-
-
-                                    <!-- Nested Sidenav Accordion (Pages -> Error)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error-400.html">400 Error</a>
-                                            <a class="nav-link" href="error-401.html">401 Error</a>
-                                            <a class="nav-link" href="error-403.html">403 Error</a>
-                                            <a class="nav-link" href="error-404-1.html">404 Error 1</a>
-                                            <a class="nav-link" href="error-404-2.html">404 Error 2</a>
-                                            <a class="nav-link" href="error-500.html">500 Error</a>
-                                            <a class="nav-link" href="error-503.html">503 Error</a>
-                                            <a class="nav-link" href="error-504.html">504 Error</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link" href="pricing.html">Pricing</a>
-                                    <a class="nav-link" href="invoice.html">Invoice</a>
-                                </nav>
-                            </div>
-                            <!-- 사이드바의 설정 섹션-->
-                            <div class="sidenav-menu-heading">Setting</div>
-                            <!-- 설정섹션-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                                <div class="nav-link-icon"><i data-feather="tool"></i></div>
-                                설정
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="http://averse.world/my_page">마이페이지</a>
-                                </nav>
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-
-                </nav>
-            </div>
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-xl px-4 py-4">
+                    <div class="container-xl py-4" style="padding-left: 8rem; padding-right: 1rem;">
                         <!-- 에러 메시지 표시 -->
                         <div th:if="${error}" class="alert alert-danger" role="alert">
                             <strong>오류:</strong> <span th:text="${error}"></span>
@@ -616,19 +401,41 @@
                         </div>
                         <!-- Top compare header with images and VS -->
                         <div class="row align-items-center text-center mb-4">
-                            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                                <div class="product-box bg-light" th:text="${tool1 != null ? tool1.toolName : 'AI 1번'}">AI 1번</div>
+                            <div class="col-12 col-lg-5 offset-lg-0 mb-4 mb-lg-0">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 200px; max-width: 200px; height: 200px;">
+                                        <div class="card-body d-flex align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1.5rem;">
+                                            <img th:if="${tool1 != null}"
+                                                 th:src="@{'/assets/img/logo_img/' + ${tool1.toolName} + '.png'}"
+                                                 th:alt="${tool1.toolName + ' Logo'}"
+                                                 style="max-width: 140px; max-height: 140px; object-fit: contain;"
+                                                 onerror="this.src='/assets/img/logo_img/default.png'">
+                                        </div>
+                                    </div>
+                                    <div class="toolname" th:text="${tool1 != null ? tool1.toolName : 'AI 1번'}" style="margin-top: 1rem;">AI 1번</div>
+                                </div>
                             </div>
-                            <div class="col-12 col-lg-2 mb-4 mb-lg-0">
-                                <div class="vs-badge">VS</div>
+                            <div class="col-12 col-lg-1 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+                                <div class="vs-badge" style="font-size: 2rem; font-weight: 700; color: #7d6aff; background: rgba(125, 106, 255, 0.08); padding: 0.75rem 1.5rem; border-radius: 999px; border: 2px solid rgba(125, 106, 255, 0.2);">VS</div>
                             </div>
-                            <div class="col-12 col-lg-3 mb-4 mb-lg-0 mx-auto">
-                                <div class="product-box bg-light me-5" th:text="${tool2 != null ? tool2.toolName : 'AI 2번'}">AI 2번</div>
+                            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 200px; max-width: 200px; height: 200px;">
+                                        <div class="card-body d-flex align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 1.5rem;">
+                                            <img th:if="${tool2 != null}"
+                                                 th:src="@{'/assets/img/logo_img/' + ${tool2.toolName} + '.png'}"
+                                                 th:alt="${tool2.toolName + ' Logo'}"
+                                                 style="max-width: 140px; max-height: 140px; object-fit: contain;"
+                                                 onerror="this.src='/assets/img/logo_img/default.png'">
+                                        </div>
+                                    </div>
+                                    <div class="toolname" th:text="${tool2 != null ? tool2.toolName : 'AI 2번'}" style="margin-top: 1rem;">AI 2번</div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row align-items-stretch" style="min-height: 400px;">
-                            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                            <div class="col-12 col-lg-5 offset-lg-0 mb-4 mb-lg-0">
                                 <div class="card h-100">
                                     <div class="card-body p-0">
                                         <div class="table-responsive h-100">
@@ -658,7 +465,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-2 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0 position-relative neg-margin-x">
+                            <div class="col-12 col-lg-1 d-flex justify-content-center px-lg-0 mb-4 mb-lg-0 position-relative">
                                 <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center">
                                     <div class="spec-label-item">앱 이름</div>
                                     <div class="spec-label-item">가격</div>
@@ -667,7 +474,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-5">
+                            <div class="col-12 col-lg-5 mb-4 mb-lg-0">
                                 <div class="card h-100">
                                     <div class="card-body p-0">
                                         <div class="table-responsive h-100">

@@ -572,15 +572,24 @@
                                     <div class="d-flex align-items-center">
                                         <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
                                         <div>
-                                            <h5 class="mb-0" th:text="${workspace != null ? workspace.workspaceName : 'Engineering'}">Engineering</h5>
+                                            <h5 class="mb-0" id="workspace-title-index" th:text="${workspace != null ? workspace.workspaceName : 'Engineering'}"
+                                                contenteditable="false"
+                                                style="cursor: text; padding: 4px 8px; border-radius: 4px; min-width: 120px;">Engineering</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column align-items-end gap-2">
-                                        <button type="button" class="btn btn-sm btn-secondary"
-                                                onclick="showCreateWorkspaceModal()">
-                                            <i data-feather="plus" style="width: 14px; height: 14px;"></i>
-                                            새 워크스페이스
-                                        </button>
+                                        <div class="d-flex gap-2">
+                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                    onclick="createNewWorkspaceModeIndex()">
+                                                <i data-feather="plus" style="width: 14px; height: 14px;"></i>
+                                                새 워크스페이스
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-transparent-dark" id="toggleDeleteModeIndex"
+                                                    onclick="toggleDeleteModeIndex()"
+                                                    title="도구 삭제">
+                                                <i data-feather="trash-2" style="color: #dc3545;"></i>
+                                            </button>
+                                        </div>
                                         <div class="d-flex align-items-center">
                                             <label class="small text-muted me-2" for="workspace-select-inline">Workspace</label>
                                             <select class="form-select form-select-sm" id="workspace-select-inline" style="min-width:160px;" onchange="changeWorkspace(this)">
@@ -600,8 +609,9 @@
                                     <div class="row g-3 justify-content-start flex-nowrap" id="workspace-tools-container">
 
                                         <!-- 데이터베이스에서 가져온 도구들을 동적으로 표시 -->
-                                        <div class="col-auto" th:each="tool : ${workspace != null ? workspace.tools : {}}">
-                                            <div class="d-flex flex-column align-items-center">
+                                        <div class="col-auto tool-item-index" th:each="tool : ${workspace != null ? workspace.tools : {}}"
+                                             th:attr="data-tool-id=${tool.toolId}">
+                                            <div class="d-flex flex-column align-items-center position-relative">
                                                 <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                         <img th:src="@{/assets/img/logo_img/{name}.png(name=${tool.toolName})}"
@@ -609,6 +619,10 @@
                                                              class="workspace-logo">
                                                     </div>
                                                 </a>
+                                                <div class="tool-delete-icon-index" style="position: absolute; top: -8px; right: -8px; width: 28px; height: 28px; border-radius: 50%; background: #dc3545; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;"
+                                                     th:attr="onclick='deleteToolFromWorkspaceIndex(' + ${tool.toolId} + ')'">
+                                                    <i data-feather="x" style="width: 18px; height: 18px; color: white; stroke-width: 3;"></i>
+                                                </div>
                                                 <div class="toolname" th:text="${tool.toolName}">Tool Name</div>
                                             </div>
                                         </div>
@@ -616,12 +630,12 @@
                                         <!-- Add Tool 버튼 -->
                                         <div class="col-auto">
                                             <div class="d-flex flex-column align-items-center">
-                                                <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.preventDefault(); showAddToolModal(); return false;">
+                                                <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.stopPropagation(); showAddToolModal();">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                         <i class="mb-2" data-feather="plus"></i>
                                                         <div>Add Tool</div>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -763,11 +777,87 @@
               });
             });
 
+            // 새 워크스페이스 생성 모드 플래그 (index용)
+            let isNewWorkspaceModeIndex = false;
+            let newWorkspaceIdIndex = null;
+
+            // 새 워크스페이스 생성 모드 (index용)
+            function createNewWorkspaceModeIndex() {
+                isNewWorkspaceModeIndex = true;
+                newWorkspaceIdIndex = null;
+
+                // 제목을 편집 가능하게 만들고 기본 텍스트 설정
+                const titleElement = document.getElementById('workspace-title-index');
+                if (titleElement) {
+                    titleElement.textContent = '새 워크스페이스';
+                    titleElement.contentEditable = 'true';
+                    titleElement.style.border = '1px solid #dee2e6';
+                    titleElement.focus();
+
+                    // 텍스트 전체 선택
+                    const range = document.createRange();
+                    range.selectNodeContents(titleElement);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+
+                // 워크스페이스 선택 초기화
+                const selectElement = document.getElementById('workspace-select-inline');
+                if (selectElement) {
+                    selectElement.value = '';
+                }
+
+                // 도구 목록 초기화 - Add Tool만 표시
+                const toolsContainer = document.getElementById('workspace-tools-container');
+                if (toolsContainer) {
+                    toolsContainer.innerHTML = `
+                        <div class="col-auto">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.stopPropagation(); showAddToolModal();">
+                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                        <i class="mb-2" data-feather="plus"></i>
+                                        <div>Add Tool</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    // Feather icons 다시 초기화
+                    if (typeof feather !== 'undefined') {
+                        feather.replace();
+                    }
+                }
+            }
+
+            // 워크스페이스 이름 저장 (index용) - 편집 종료 시 포커스 해제만
+            function saveWorkspaceNameIndex(element) {
+                if (!isNewWorkspaceModeIndex) {
+                    return; // 새 워크스페이스 모드가 아니면 아무것도 하지 않음
+                }
+
+                // 편집 모드 해제만 하고, 실제 저장은 도구 추가할 때 함
+                element.contentEditable = 'false';
+                element.style.border = 'none';
+            }
+
             // 워크스페이스 변경 함수
             function changeWorkspace(selectElement) {
                 const workspaceId = selectElement.value;
                 if (!workspaceId) {
                     return;
+                }
+
+                // 새 워크스페이스 모드 비활성화
+                isNewWorkspaceModeIndex = false;
+                newWorkspaceIdIndex = null;
+
+                // 제목 편집 비활성화
+                const titleElement = document.getElementById('workspace-title-index');
+                if (titleElement) {
+                    titleElement.contentEditable = 'false';
+                    titleElement.style.border = 'none';
                 }
 
                 console.log('워크스페이스 변경:', workspaceId);
@@ -802,13 +892,17 @@
                                 data.tools.forEach(tool => {
                                     console.log('도구 추가:', tool.toolName);
                                     const toolHtml = `
-                                        <div class="col-auto">
-                                            <div class="d-flex flex-column align-items-center">
+                                        <div class="col-auto tool-item-index" data-tool-id="${tool.toolId}">
+                                            <div class="d-flex flex-column align-items-center position-relative">
                                                 <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="tool-model-runner.html">
                                                     <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                         <img src="/assets/img/logo_img/${tool.toolName}.png" alt="${tool.toolName} Logo" class="workspace-logo">
                                                     </div>
                                                 </a>
+                                                <div class="tool-delete-icon-index" style="position: absolute; top: -8px; right: -8px; width: 28px; height: 28px; border-radius: 50%; background: #dc3545; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;"
+                                                     onclick="deleteToolFromWorkspaceIndex(${tool.toolId})">
+                                                    <i data-feather="x" style="width: 18px; height: 18px; color: white; stroke-width: 3;"></i>
+                                                </div>
                                                 <div class="toolname">${tool.toolName}</div>
                                             </div>
                                         </div>
@@ -823,12 +917,12 @@
                             toolsContainer.innerHTML += `
                                 <div class="col-auto">
                                     <div class="d-flex flex-column align-items-center">
-                                        <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.preventDefault(); showAddToolModal(); return false;">
+                                        <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" onclick="event.stopPropagation(); showAddToolModal();">
                                             <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
                                                 <i class="mb-2" data-feather="plus"></i>
                                                 <div>Add Tool</div>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             `;
@@ -836,6 +930,14 @@
                             // Feather icons 다시 초기화
                             if (typeof feather !== 'undefined') {
                                 feather.replace();
+                            }
+
+                            // 삭제 모드가 활성화되어 있으면 삭제 아이콘 표시
+                            if (isDeleteModeActiveIndex) {
+                                const deleteIcons = document.querySelectorAll('.tool-delete-icon-index');
+                                deleteIcons.forEach(icon => {
+                                    icon.style.display = 'flex';
+                                });
                             }
 
                             console.log('도구 목록 업데이트 완료');
@@ -847,6 +949,73 @@
                         console.error('워크스페이스 로드 실패:', error);
                         alert('워크스페이스를 불러오는데 실패했습니다: ' + error.message);
                     });
+            }
+
+            // 삭제 모드 토글 (index용)
+            let isDeleteModeActiveIndex = false;
+
+            function toggleDeleteModeIndex() {
+                isDeleteModeActiveIndex = !isDeleteModeActiveIndex;
+                const deleteIcons = document.querySelectorAll('.tool-delete-icon-index');
+                const toggleBtn = document.getElementById('toggleDeleteModeIndex');
+
+                if (isDeleteModeActiveIndex) {
+                    deleteIcons.forEach(icon => {
+                        icon.style.display = 'flex';
+                    });
+                    toggleBtn.innerHTML = '<i data-feather="x" style="color: #6c757d;"></i>';
+                    toggleBtn.title = '취소';
+                } else {
+                    deleteIcons.forEach(icon => {
+                        icon.style.display = 'none';
+                    });
+                    toggleBtn.innerHTML = '<i data-feather="trash-2" style="color: #dc3545;"></i>';
+                    toggleBtn.title = '도구 삭제';
+                }
+
+                // Feather icons 다시 초기화
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                }
+            }
+
+            // 워크스페이스에서 도구 삭제 (index용)
+            function deleteToolFromWorkspaceIndex(toolId) {
+                const workspaceId = document.getElementById('workspace-select-inline')?.value;
+
+                if (!workspaceId) {
+                    alert('워크스페이스를 선택해주세요.');
+                    return;
+                }
+
+                if (!confirm('이 도구를 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                fetch(`/api/workspace/${workspaceId}/tool/${toolId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('삭제 실패');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert('도구가 삭제되었습니다.');
+                    // 워크스페이스 새로고침
+                    const selectElement = document.getElementById('workspace-select-inline');
+                    if (selectElement) {
+                        changeWorkspace(selectElement);
+                    }
+                    // 삭제 모드 해제
+                    isDeleteModeActiveIndex = true;
+                    toggleDeleteModeIndex();
+                })
+                .catch(error => {
+                    console.error('도구 삭제 실패:', error);
+                    alert('도구 삭제에 실패했습니다.');
+                });
             }
         </script>
 
@@ -871,17 +1040,35 @@
                 1: '글',
                 2: '그림',
                 3: '음악/음성',
-                4: '코딩 및 개발',
+                4: '코딩/개발',
                 5: '영상',
                 6: '검색',
-                7: '교육, 학습'
+                7: '교육/학습'
             };
 
             // Add Tool 모달 열기
             function showAddToolModal() {
-                const modal = new bootstrap.Modal(document.getElementById('addToolModal'));
-                modal.show();
-                loadTools();
+                console.log('=== showAddToolModal 시작 (index) ===');
+                console.log('isNewWorkspaceModeIndex:', isNewWorkspaceModeIndex);
+
+                const modalElement = document.getElementById('addToolModal');
+                console.log('모달 요소:', modalElement);
+
+                if (!modalElement) {
+                    console.error('모달 요소를 찾을 수 없음!');
+                    return;
+                }
+
+                try {
+                    const modal = new bootstrap.Modal(modalElement);
+                    console.log('모달 생성 완료');
+                    modal.show();
+                    console.log('모달 show 호출 완료');
+                    loadTools();
+                    console.log('도구 목록 로딩 시작');
+                } catch (error) {
+                    console.error('모달 열기 실패:', error);
+                }
             }
 
             // 도구 목록 로드
@@ -923,27 +1110,33 @@
                             categoryTools.forEach(tool => {
                                 const toolCol = document.createElement('div');
                                 toolCol.className = 'col-4';
-                                
+
                                 const card = document.createElement('div');
                                 card.className = 'card text-center';
                                 card.style.cssText = 'cursor: pointer; border: 1px solid #dee2e6; border-radius: 0.75rem; padding: 0.5rem; height: 100%;';
-                                card.onclick = () => selectTool(tool.toolId, tool.toolName);
-                                
+
+                                // addEventListener를 사용하여 이벤트 핸들러 추가
+                                card.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    selectTool(tool.toolId, tool.toolName);
+                                });
+
                                 const cardBody = document.createElement('div');
                                 cardBody.className = 'card-body p-2';
-                                
+
                                 const img = document.createElement('img');
                                 img.src = `/assets/img/logo_img/${encodeURIComponent(tool.toolName)}.png`;
                                 img.alt = `${tool.toolName} Logo`;
                                 img.className = 'img-fluid mb-2';
                                 img.style.cssText = 'max-width: 60px; max-height: 60px; object-fit: contain;';
                                 img.onerror = function() { this.src = '/assets/img/logo_img/default.png'; };
-                                
+
                                 const toolNameDiv = document.createElement('div');
                                 toolNameDiv.className = 'toolname';
                                 toolNameDiv.style.cssText = 'font-size: 0.75rem; font-weight: 500; color: #333;';
                                 toolNameDiv.textContent = tool.toolName;
-                                
+
                                 cardBody.appendChild(img);
                                 cardBody.appendChild(toolNameDiv);
                                 card.appendChild(cardBody);
@@ -962,39 +1155,135 @@
 
             // 도구 선택
             function selectTool(toolId, toolName) {
-                const workspaceId = document.getElementById('workspace-select-inline')?.value || 1;
-                
+                // 새 워크스페이스 모드인 경우
+                if (isNewWorkspaceModeIndex) {
+                    const titleElement = document.getElementById('workspace-title-index');
+                    let workspaceName = titleElement ? titleElement.textContent.trim() : '';
+
+                    // 워크스페이스가 아직 생성되지 않았으면 생성
+                    if (!newWorkspaceIdIndex) {
+                        // 이름 확인
+                        if (!workspaceName || workspaceName === '새 워크스페이스' || workspaceName === 'Workspace') {
+                            workspaceName = prompt('워크스페이스 이름을 입력해주세요:', '');
+                            if (!workspaceName || !workspaceName.trim()) {
+                                return;
+                            }
+                            workspaceName = workspaceName.trim();
+                            if (titleElement) {
+                                titleElement.textContent = workspaceName;
+                                titleElement.contentEditable = 'false';
+                                titleElement.style.border = 'none';
+                            }
+                        }
+
+                        // 워크스페이스 생성
+                        fetch('/api/workspace', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ workspaceName: workspaceName, userId: 1 })
+                        })
+                        .then(response => response.json())
+                        .then(workspace => {
+                            newWorkspaceIdIndex = workspace.workspace_id;
+
+                            // 워크스페이스 선택 드롭다운 업데이트
+                            const selectElement = document.getElementById('workspace-select-inline');
+                            if (selectElement) {
+                                const option = document.createElement('option');
+                                option.value = newWorkspaceIdIndex;
+                                option.text = workspaceName;
+                                option.selected = true;
+                                selectElement.appendChild(option);
+                            }
+
+                            // 도구 추가
+                            addToolToWorkspaceIndex(toolId, toolName);
+                        })
+                        .catch(error => {
+                            console.error('에러:', error);
+                            alert('워크스페이스 생성 실패');
+                        });
+                    } else {
+                        // 이미 생성된 워크스페이스에 도구 추가
+                        addToolToWorkspaceIndex(toolId, toolName);
+                    }
+                    return;
+                }
+
+                // 기존 워크스페이스에 도구 추가
+                const workspaceId = document.getElementById('workspace-select-inline')?.value;
+
                 if (!workspaceId) {
                     alert('워크스페이스를 먼저 선택해주세요.');
                     return;
                 }
 
-                // API 호출하여 도구 추가
                 fetch(`/api/workspace/${workspaceId}/add-tool/${toolId}`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(() => {
+                    alert(`${toolName}이(가) 추가되었습니다.`);
+                    bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
+                    changeWorkspace(document.getElementById('workspace-select-inline'));
+                })
+                .catch(error => {
+                    console.error('에러:', error);
+                    alert('실패했습니다.');
+                });
+            }
+
+            // 현재 워크스페이스에 도구 추가 (새 워크스페이스 모드용 - index)
+            function addToolToWorkspaceIndex(toolId, toolName) {
+                fetch(`/api/workspace/${newWorkspaceIdIndex}/add-tool/${toolId}`, {
                     method: 'POST'
                 })
                 .then(response => {
                     if (!response.ok) {
-                        return response.text().then(text => { throw new Error(text); });
+                        throw new Error('서버 응답 오류: ' + response.status);
                     }
                     return response.json();
                 })
                 .then(data => {
-                    alert(`${toolName}이(가) 워크스페이스에 추가되었습니다.`);
-                    bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
-                    // 워크스페이스 새로고침
-                    const selectElement = document.getElementById('workspace-select-inline');
-                    if (selectElement) {
-                        changeWorkspace(selectElement);
+                    alert(`${toolName}이(가) 추가되었습니다.`);
+
+                    // 도구 목록에 추가
+                    const toolsContainer = document.querySelector('#workspace-zone .row.g-3');
+                    if (toolsContainer) {
+                        const addToolBtn = toolsContainer.querySelector('.col-auto:last-child');
+
+                        const newToolHtml = `
+                            <div class="col-auto tool-item" data-tool-id="${toolId}">
+                                <div class="d-flex flex-column align-items-center position-relative">
+                                    <div class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                            <img src="/assets/img/logo_img/${toolName}.png" alt="${toolName} Logo" class="workspace-logo">
+                                        </div>
+                                    </div>
+                                    <div class="tool-delete-icon" style="position: absolute; top: -8px; right: -8px; width: 28px; height: 28px; border-radius: 50%; background: #dc3545; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;"
+                                         onclick="deleteToolFromWorkspace(${toolId})">
+                                        <i data-feather="x" style="width: 18px; height: 18px; color: white; stroke-width: 3;"></i>
+                                    </div>
+                                    <div class="toolname">${toolName}</div>
+                                </div>
+                            </div>
+                        `;
+
+                        if (addToolBtn) {
+                            addToolBtn.insertAdjacentHTML('beforebegin', newToolHtml);
+                        }
+
+                        if (typeof feather !== 'undefined') {
+                            feather.replace();
+                        }
                     }
+
+                    // 모달 닫기
+                    bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
                 })
                 .catch(error => {
-                    console.error('도구 추가 실패:', error);
-                    if (error.message.includes('already exists')) {
-                        alert(`${toolName}은(는) 이미 워크스페이스에 추가되어 있습니다.`);
-                    } else {
-                        alert('도구 추가에 실패했습니다: ' + error.message);
-                    }
+                    console.error('에러:', error);
+                    alert('도구 추가 실패');
                 });
             }
         </script>

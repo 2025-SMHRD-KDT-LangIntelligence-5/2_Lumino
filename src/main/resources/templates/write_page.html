@@ -342,6 +342,12 @@
                   padding-left: 1.8rem;
                 }
 
+                /* 10) 메인 콘텐츠가 사이드바와 겹치지 않도록 여백 확보 */
+                #layoutSidenav #layoutSidenav_content {
+                  padding-left: 15rem !important;
+                  margin-left: 0 !important;
+                }
+
 
             /* ========== A-VERSE Section Base (Lavender Glass) ========== */
                 .az-section {
@@ -488,6 +494,75 @@
                 .ws-edit-btn:hover { color: #7c6cff; }
                 .ws-delete-btn:hover { color: #ff5a5a; }
 
+            /* 워크스페이스 카드 크기 조정 */
+                #workspaceDisplayArea .card-body {
+                  max-width: 100%;
+                  overflow-x: auto;
+                  overflow-y: hidden;
+                }
+
+                /* 워크스페이스 카드 내부 작은 스크롤바 */
+                #workspaceDisplayArea .card-body::-webkit-scrollbar {
+                  height: 6px;
+                }
+                #workspaceDisplayArea .card-body::-webkit-scrollbar-track {
+                  background: rgba(200, 200, 220, 0.1);
+                  border-radius: 10px;
+                }
+                #workspaceDisplayArea .card-body::-webkit-scrollbar-thumb {
+                  background: linear-gradient(90deg, #b39aff, #8da6ff);
+                  border-radius: 10px;
+                }
+                #workspaceDisplayArea .card-body::-webkit-scrollbar-thumb:hover {
+                  background: linear-gradient(90deg, #9c8cff, #7d96ff);
+                }
+
+            /* 워크스페이스 카드 로고 전용 스타일 */
+               .workspace-logo {
+                 width: 100%;
+                 height: auto;            /* 비율 자동 유지 */
+                 object-fit: contain;     /* 상자 안에 맞게 축소 */
+                 display: block;
+                 border-radius: 12px;     /* 부드러운 모서리 (원하면 0으로 변경) */
+                 background-color: transparent;
+                 transition: transform 0.25s ease;
+               }
+
+               .workspace-logo:hover {
+                 transform: scale(1.05);  /* 살짝 커지게 */
+               }
+
+            /* ===== 라벨(툴 이름) ===== */
+                .toolname{
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6px;
+
+                  background: rgba(255, 255, 255, 0.88);
+                  color: #1a1a1a;
+                  font-weight: 600;
+                  font-size: 0.92rem;
+                  letter-spacing: 0.2px;
+
+                  padding: 8px 18px;
+                  border-radius: 999px;
+                  border: 1px solid rgba(75, 46, 230, 0.08);
+                  box-shadow: 0 2px 6px rgba(75,46,230,0.06);
+                  transition: all 0.25s ease;
+                  margin: 0;
+                  margin-top: 0.5rem; /* 상단 마진 추가 */
+                }
+
+                /* 라벨 앞 포인트 점 */
+                .toolname::before{
+                  content: "•";
+                  color: #7d6aff;
+                  font-size: 1.15rem;
+                  line-height: 1;
+                  margin-right: 3px;
+                }
+
         </style>
 
         <!-- 공통 스크립트 라이브러리 -->
@@ -501,6 +576,7 @@
             <!-- 왼쪽 사이드바 (Fragment) -->
             <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
+            <div id="layoutSidenav_content">
                 <main>
                     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
                         <div class="container-fluid px-4">
@@ -547,53 +623,47 @@
                                         <div>
                                             <h5 class="mb-0">My Workspace</h5>
                                             <div class="small text-muted">추천글에 넣을 WorkSpace 불러오기</div>
-                            </div>
+                                        </div>
                                         <button class="btn btn-sm btn-secondary" type="button" id="loadWorkspaceBtn">
                                             <i class="me-1" data-feather="folder-plus"></i>
                                             불러오기
                                         </button>
                                     </div>
-                                    <div class="card-body" id="workspaceDisplayArea" style="display: none;">
-                                        <div class="d-flex align-items-center justify-content-between mb-3">
-                                            <label class="small text-muted me-2" for="workspace-select-write">Workspace</label>
-                                            <select class="form-select form-select-sm" id="workspace-select-write" style="min-width: 160px;">
-                                                <option value="workspace-marketing.html">Marketing</option>
-                                                <option value="workspace-engineering.html" selected>Engineering</option>
-                                                <option value="workspace-design.html">Design</option>
-                                            </select>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-model-runner.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="cpu"></i>
-                                                        <div>Model Runner</div>
+                                    <!-- 불러오기 버튼 클릭 시 표시되는 영역 -->
+                                    <div id="workspaceDisplayArea" style="display: none;">
+                                        <!-- category.html과 동일한 카드 구조 -->
+                                        <div class="card mt-4" style="margin: 1rem;">
+                                            <div class="card-header d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="icon-stack bg-secondary-soft text-secondary me-3"><i data-feather="cpu"></i></div>
+                                                    <div>
+                                                        <h5 class="mb-0" id="workspace-title-write"
+                                                            contenteditable="false"
+                                                            style="cursor: text; padding: 4px 8px; border-radius: 4px; min-width: 120px;"
+                                                            onblur="saveWorkspaceNameWrite(this)">Workspace</h5>
                                                     </div>
-                                                </a>
+                                                </div>
+                                                <div class="d-flex flex-column align-items-end gap-2">
+                                                    <button type="button" class="btn btn-sm btn-transparent-dark" id="toggleDeleteModeWrite"
+                                                            onclick="toggleDeleteModeWrite()"
+                                                            title="도구 삭제">
+                                                        <i data-feather="trash-2" style="color: #dc3545;"></i>
+                                                    </button>
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="small text-muted me-2" for="workspace-select-write">Workspace</label>
+                                                        <select class="form-select form-select-sm" id="workspace-select-write" style="min-width:160px;" onchange="changeWorkspaceInWrite(this)">
+                                                            <option value="">워크스페이스 선택</option>
+                                                            <option value="new">새 워크스페이스 생성</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-chat-assistant.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="message-circle"></i>
-                                                        <div>Chat Assistant</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-image-gen.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="image"></i>
-                                                        <div>Image Gen</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-4 col-md-3 col-xl-2">
-                                                <a class="card lift lift-sm text-center h-100" style="border-radius: 1rem;" href="tool-speech.html">
-                                                    <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; aspect-ratio: 1 / 1;">
-                                                        <i class="mb-2" data-feather="mic"></i>
-                                                        <div>Speech</div>
-                                                    </div>
-                                                </a>
+
+                                            <div class="card-body" style="overflow-x: auto; overflow-y: hidden;">
+                                                <div class="row g-3 justify-content-start flex-nowrap" id="workspaceToolsContainer">
+                                                    <!-- 워크스페이스 도구들이 JavaScript로 동적으로 추가됩니다 -->
+                                                    <!-- category.html과 동일한 col-auto 구조로 생성됨 -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -604,7 +674,7 @@
                         <div class="row justify-content-center mt-4 mb-4">
                             <div class="col-lg-8">
                                 <div class="text-center" style="max-width: 250px; margin: 0 auto;">
-                                    <button class="fw-500 btn btn-secondary">작성완료</button>
+                                    <button class="fw-500 btn btn-secondary" type="button" onclick="submitPost()">작성완료</button>
                                 </div>
                             </div>
                         </div>
@@ -621,13 +691,570 @@
                 </footer>
             </div>
         </div>
-        <!-- 공통 스크립트 -->
-        <th:block th:replace="~{fragments/scripts :: common-scripts}"></th:block>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
         <script src="https://unpkg.com/easymde/dist/easymde.min.js" crossorigin="anonymous"></script>
         <script src="js/markdown.js"></script>
 
-        <!-- 사이드바 자동 펼치기 -->
-        <th:block th:replace="~{fragments/scripts :: sidebar-auto-expand}"></th:block>
-    
+        <script>
+            // 페이지 로드 후 카테고리와 설정을 자동으로 펼치기
+             document.addEventListener('DOMContentLoaded', function () {
+               [
+                 ['#collapseDashboards', 'a.nav-link[data-bs-target="#collapseDashboards"]'],
+                 ['#collapseUtilities', 'a.nav-link[data-bs-target="#collapseUtilities"]']
+               ].forEach(([panelSel, triggerSel]) => {
+                 const panel   = document.querySelector(panelSel);
+                 const trigger = document.querySelector(triggerSel);
+                 if (panel){
+                   panel.classList.add('show'); // Bootstrap collapse 강제 오픈
+                   panel.style.height = 'auto';
+                 }
+                 if (trigger){
+                   trigger.removeAttribute('data-bs-toggle'); // 토글 비활성화
+                   trigger.setAttribute('aria-expanded','true');
+                 }
+               });
+             });
+
+            // Workspace Load Button Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const loadWorkspaceBtn = document.getElementById('loadWorkspaceBtn');
+                const workspaceDisplayArea = document.getElementById('workspaceDisplayArea');
+                const workspaceSelect = document.getElementById('workspace-select-write');
+
+                if (loadWorkspaceBtn && workspaceDisplayArea) {
+                    loadWorkspaceBtn.addEventListener('click', function() {
+                        if (workspaceDisplayArea.style.display === 'none') {
+                            // 워크스페이스 목록 불러오기
+                            loadWorkspaceList();
+                            workspaceDisplayArea.style.display = 'block';
+                            // Reinitialize feather icons for the newly displayed content
+                            if (typeof feather !== 'undefined') {
+                                feather.replace();
+                            }
+                        } else {
+                            workspaceDisplayArea.style.display = 'none';
+                        }
+                    });
+                }
+            });
+
+            // 워크스페이스 목록 불러오기
+            function loadWorkspaceList() {
+                fetch('/api/workspaces/all')
+                    .then(response => response.json())
+                    .then(workspaces => {
+                        const workspaceSelect = document.getElementById('workspace-select-write');
+                        if (workspaceSelect) {
+                            // 기존 옵션 초기화 (기본 옵션들 유지)
+                            workspaceSelect.innerHTML = '<option value="">워크스페이스 선택</option><option value="new">새 워크스페이스 생성</option>';
+
+                            // 워크스페이스 목록 추가
+                            workspaces.forEach(workspace => {
+                                const option = document.createElement('option');
+                                option.value = workspace.workspace_id;
+                                option.textContent = workspace.workspace_name;
+                                workspaceSelect.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('워크스페이스 목록 로드 실패:', error);
+                        alert('워크스페이스 목록을 불러오는데 실패했습니다.');
+                    });
+            }
+
+            // 워크스페이스 선택 변경 시 도구 목록 업데이트
+            function changeWorkspaceInWrite(selectElement) {
+                const workspaceId = selectElement.value;
+                const toolsContainer = document.getElementById('workspaceToolsContainer');
+                const titleElement = document.getElementById('workspace-title-write');
+
+                if (!workspaceId) {
+                    // 선택 해제 시 빈 상태로 표시
+                    if (toolsContainer) {
+                        toolsContainer.innerHTML = '';
+                    }
+                    if (titleElement) {
+                        titleElement.textContent = 'Workspace';
+                    }
+                    return;
+                }
+
+                // "새 워크스페이스 생성" 선택 시
+                if (workspaceId === 'new') {
+                    if (titleElement) {
+                        titleElement.textContent = '새 워크스페이스';
+                        titleElement.contentEditable = 'true';
+                        titleElement.style.border = '1px solid #dee2e6';
+                        titleElement.focus();
+
+                        // 텍스트 전체 선택
+                        const range = document.createRange();
+                        range.selectNodeContents(titleElement);
+                        const sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                    if (toolsContainer) {
+                        // Add Tool 버튼만 표시
+                        toolsContainer.innerHTML = `
+                            <div class="col-auto">
+                                <div class="d-flex flex-column align-items-center">
+                                    <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" href="#" onclick="event.preventDefault(); showAddToolModal();">
+                                        <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                            <i class="mb-2" data-feather="plus"></i>
+                                            <div>Add Tool</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        // Feather icons 초기화
+                        if (typeof feather !== 'undefined') {
+                            feather.replace();
+                        }
+                    }
+                    return;
+                }
+
+                // 기존 워크스페이스 선택 시 - AJAX로 워크스페이스 정보 가져오기
+                fetch('/api/workspace/' + workspaceId)
+                    .then(response => response.json())
+                    .then(data => {
+                        // 제목 업데이트 및 편집 비활성화
+                        if (titleElement) {
+                            titleElement.textContent = data.workspaceName;
+                            titleElement.contentEditable = 'false';
+                            titleElement.style.border = 'none';
+                        }
+
+                        // 도구 목록 업데이트 - category.html의 구조를 완전히 동일하게!
+                        if (toolsContainer && data.tools) {
+                            toolsContainer.innerHTML = '';
+
+                            // 각 도구를 category.html과 완전히 동일한 col-auto 구조로 표시
+                            data.tools.forEach(tool => {
+                                const toolHtml = `
+                                    <div class="col-auto tool-item-write" data-tool-id="${tool.toolId}">
+                                        <div class="d-flex flex-column align-items-center position-relative">
+                                            <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px;" href="#">
+                                                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                    <img src="/assets/img/logo_img/${tool.toolName}.png"
+                                                         alt="${tool.toolName} Logo"
+                                                         class="workspace-logo"
+                                                         onerror="console.error('워크스페이스 이미지 로드 실패:', this.src); this.onerror=null; this.src='/assets/img/logo_img/default.png';">
+                                                </div>
+                                            </a>
+                                            <div class="tool-delete-icon-write" style="position: absolute; top: -8px; right: -8px; width: 28px; height: 28px; border-radius: 50%; background: #dc3545; display: none; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;"
+                                                 onclick="deleteToolFromWorkspaceWrite(${tool.toolId})">
+                                                <i data-feather="x" style="width: 18px; height: 18px; color: white; stroke-width: 3;"></i>
+                                            </div>
+                                            <div class="toolname">${tool.toolName}</div>
+                                        </div>
+                                    </div>
+                                `;
+                                toolsContainer.innerHTML += toolHtml;
+                            });
+
+                            // Add Tool 버튼도 추가 (category.html과 동일)
+                            const addToolHtml = `
+                                <div class="col-auto">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <a class="card lift lift-sm text-center rounded-4" style="border-radius: 1.5rem; aspect-ratio: 1 / 1; display: block; text-decoration: none; width: 130px; max-width: 130px; height: 130px; cursor: pointer;" href="#" onclick="event.preventDefault(); showAddToolModal();">
+                                            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="width: 100%; height: 100%; padding: 0.5rem;">
+                                                <i class="mb-2" data-feather="plus"></i>
+                                                <div>Add Tool</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                            toolsContainer.innerHTML += addToolHtml;
+
+                            // Feather icons 다시 초기화
+                            if (typeof feather !== 'undefined') {
+                                feather.replace();
+                            }
+
+                            // 삭제 모드가 활성화되어 있으면 삭제 아이콘 표시
+                            if (isDeleteModeActiveWrite) {
+                                const deleteIcons = document.querySelectorAll('.tool-delete-icon-write');
+                                deleteIcons.forEach(icon => {
+                                    icon.style.display = 'flex';
+                                });
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('워크스페이스 로드 실패:', error);
+                        alert('워크스페이스를 불러오는데 실패했습니다.');
+                    });
+            }
+
+            // 워크스페이스 이름 저장 (write_page용)
+            function saveWorkspaceNameWrite(element) {
+                const newName = element.textContent.trim();
+                if (!newName) {
+                    alert('워크스페이스 이름을 입력해주세요.');
+                    element.textContent = '새 워크스페이스';
+                    return;
+                }
+
+                element.contentEditable = 'false';
+                element.style.border = 'none';
+            }
+
+            // 삭제 모드 토글 (write_page용)
+            let isDeleteModeActiveWrite = false;
+
+            function toggleDeleteModeWrite() {
+                isDeleteModeActiveWrite = !isDeleteModeActiveWrite;
+                const deleteIcons = document.querySelectorAll('.tool-delete-icon-write');
+                const toggleBtn = document.getElementById('toggleDeleteModeWrite');
+
+                if (isDeleteModeActiveWrite) {
+                    deleteIcons.forEach(icon => {
+                        icon.style.display = 'flex';
+                    });
+                    toggleBtn.innerHTML = '<i data-feather="x" style="color: #6c757d;"></i>';
+                    toggleBtn.title = '취소';
+                } else {
+                    deleteIcons.forEach(icon => {
+                        icon.style.display = 'none';
+                    });
+                    toggleBtn.innerHTML = '<i data-feather="trash-2" style="color: #dc3545;"></i>';
+                    toggleBtn.title = '도구 삭제';
+                }
+
+                // Feather icons 다시 초기화
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                }
+            }
+
+            // 워크스페이스에서 도구 삭제 (write_page용)
+            function deleteToolFromWorkspaceWrite(toolId) {
+                const workspaceId = document.getElementById('workspace-select-write')?.value;
+
+                if (!workspaceId || workspaceId === 'new' || workspaceId === '') {
+                    alert('워크스페이스를 선택해주세요.');
+                    return;
+                }
+
+                if (!confirm('이 도구를 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                fetch(`/api/workspace/${workspaceId}/tool/${toolId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('삭제 실패');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert('도구가 삭제되었습니다.');
+                    // 워크스페이스 새로고침
+                    const selectElement = document.getElementById('workspace-select-write');
+                    if (selectElement) {
+                        changeWorkspaceInWrite(selectElement);
+                    }
+                    // 삭제 모드 해제
+                    isDeleteModeActiveWrite = true;
+                    toggleDeleteModeWrite();
+                })
+                .catch(error => {
+                    console.error('도구 삭제 실패:', error);
+                    alert('도구 삭제에 실패했습니다.');
+                });
+            }
+        </script>
+
+        <!-- Add Tool Modal -->
+        <div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="addToolModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="max-width: 600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToolModalLabel">도구 추가</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                        <div id="toolsContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 카테고리 이름 매핑
+            const categoryNamesWrite = {
+                1: '글',
+                2: '그림',
+                3: '음악/음성',
+                4: '코딩/개발',
+                5: '영상',
+                6: '검색',
+                7: '교육/학습'
+            };
+
+            // Add Tool 모달 열기
+            function showAddToolModal() {
+                const modal = new bootstrap.Modal(document.getElementById('addToolModal'));
+                modal.show();
+                loadToolsForWriteModal();
+            }
+
+            // 도구 목록 로드
+            function loadToolsForWriteModal() {
+                fetch('/api/tools/all')
+                    .then(response => response.json())
+                    .then(tools => {
+                        const container = document.getElementById('toolsContainer');
+                        container.innerHTML = '';
+
+                        // 카테고리별로 그룹화
+                        const toolsByCategory = {};
+                        tools.forEach(tool => {
+                            const categoryId = tool.categoryId || 0;
+                            if (!toolsByCategory[categoryId]) {
+                                toolsByCategory[categoryId] = [];
+                            }
+                            toolsByCategory[categoryId].push(tool);
+                        });
+
+                        // 카테고리별로 표시
+                        Object.keys(toolsByCategory).sort().forEach(categoryId => {
+                            const categoryTools = toolsByCategory[categoryId];
+                            const categoryName = categoryNamesWrite[categoryId] || '기타';
+
+                            // 카테고리 헤더
+                            const categoryHeader = document.createElement('div');
+                            categoryHeader.className = 'mb-3 mt-4 d-flex align-items-center';
+                            categoryHeader.innerHTML = `
+                                <h6 class="fw-bold text-secondary mb-0 me-3">${categoryName}</h6>
+                                <div style="flex: 1; height: 2px; background: linear-gradient(90deg, #9c8cff, #a7b7ff); border-radius: 1px;"></div>
+                            `;
+                            container.appendChild(categoryHeader);
+
+                            // 도구 그리드 (가로 3줄)
+                            const toolsGrid = document.createElement('div');
+                            toolsGrid.className = 'row g-2 mb-4';
+
+                            categoryTools.forEach(tool => {
+                                const toolCol = document.createElement('div');
+                                toolCol.className = 'col-4';
+
+                                const card = document.createElement('div');
+                                card.className = 'card text-center';
+                                card.style.cssText = 'cursor: pointer; border: 1px solid #dee2e6; border-radius: 0.75rem; padding: 0.5rem; height: 100%;';
+
+                                // addEventListener를 사용하여 이벤트 핸들러 추가
+                                card.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    selectToolForWrite(tool.toolId, tool.toolName);
+                                });
+
+                                const cardBody = document.createElement('div');
+                                cardBody.className = 'card-body p-2';
+
+                                const img = document.createElement('img');
+                                img.src = `/assets/img/logo_img/${encodeURIComponent(tool.toolName)}.png`;
+                                img.alt = `${tool.toolName} Logo`;
+                                img.className = 'img-fluid mb-2';
+                                img.style.cssText = 'max-width: 60px; max-height: 60px; object-fit: contain;';
+                                img.onerror = function() { this.src = '/assets/img/logo_img/default.png'; };
+
+                                const toolNameDiv = document.createElement('div');
+                                toolNameDiv.className = 'toolname';
+                                toolNameDiv.style.cssText = 'font-size: 0.75rem; font-weight: 500; color: #333;';
+                                toolNameDiv.textContent = tool.toolName;
+
+                                cardBody.appendChild(img);
+                                cardBody.appendChild(toolNameDiv);
+                                card.appendChild(cardBody);
+                                toolCol.appendChild(card);
+                                toolsGrid.appendChild(toolCol);
+                            });
+
+                            container.appendChild(toolsGrid);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('도구 로드 실패:', error);
+                        document.getElementById('toolsContainer').innerHTML = '<p class="text-danger">도구를 불러오는데 실패했습니다.</p>';
+                    });
+            }
+
+            // 도구 선택
+            function selectToolForWrite(toolId, toolName) {
+                const workspaceSelect = document.getElementById('workspace-select-write');
+                const workspaceId = workspaceSelect?.value;
+
+                // 새 워크스페이스 생성 모드인 경우
+                if (workspaceId === 'new') {
+                    const titleElement = document.getElementById('workspace-title-write');
+                    let workspaceName = titleElement ? titleElement.textContent.trim() : '';
+
+                    // 이름이 비어있거나 기본값이면 사용자에게 입력 요청
+                    if (!workspaceName || workspaceName === '새 워크스페이스' || workspaceName === 'Workspace') {
+                        const userInput = prompt('워크스페이스 이름을 입력해주세요:', '');
+                        if (!userInput || !userInput.trim()) {
+                            alert('워크스페이스 이름이 필요합니다.');
+                            return;
+                        }
+                        workspaceName = userInput.trim();
+
+                        // 타이틀 업데이트
+                        if (titleElement) {
+                            titleElement.textContent = workspaceName;
+                        }
+                    }
+
+                    // 워크스페이스 생성 후 도구 추가
+                    fetch('/api/workspace', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            workspaceName: workspaceName,
+                            userId: 1
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(workspaceData => {
+                        console.log('워크스페이스 생성 성공:', workspaceData);
+
+                        if (titleElement) {
+                            titleElement.contentEditable = 'false';
+                            titleElement.style.border = 'none';
+                        }
+
+                        // 도구 추가
+                        return fetch(`/api/workspace/${workspaceData.workspaceId}/add-tool/${toolId}`, {
+                            method: 'POST'
+                        });
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.text().then(text => { throw new Error(text); });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        alert(`워크스페이스가 생성되고 ${toolName}이(가) 추가되었습니다.`);
+                        bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
+                        // 워크스페이스 목록 새로고침
+                        loadWorkspaceList();
+                    })
+                    .catch(error => {
+                        console.error('워크스페이스 생성 또는 도구 추가 실패:', error);
+                        alert('워크스페이스 생성 또는 도구 추가에 실패했습니다.');
+                    });
+                    return;
+                }
+
+                // 워크스페이스가 선택되지 않은 경우
+                if (!workspaceId || workspaceId === '') {
+                    alert('워크스페이스를 먼저 선택해주세요.');
+                    return;
+                }
+
+                // API 호출하여 도구 추가
+                fetch(`/api/workspace/${workspaceId}/add-tool/${toolId}`, {
+                    method: 'POST'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(`${toolName}이(가) 워크스페이스에 추가되었습니다.`);
+                    bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();
+                    // 워크스페이스 새로고침
+                    const selectElement = document.getElementById('workspace-select-write');
+                    if (selectElement) {
+                        changeWorkspaceInWrite(selectElement);
+                    }
+                })
+                .catch(error => {
+                    console.error('도구 추가 실패:', error);
+                    if (error.message.includes('already exists')) {
+                        alert(`${toolName}은(는) 이미 워크스페이스에 추가되어 있습니다.`);
+                    } else {
+                        alert('도구 추가에 실패했습니다: ' + error.message);
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            // 게시물 제출 함수
+            function submitPost() {
+                // 제목과 내용 가져오기
+                const title = document.getElementById('postTitleInput').value.trim();
+                const content = window.easyMDE ? window.easyMDE.value() : document.getElementById('postEditor').value;
+                const workspaceId = document.getElementById('workspace-select-write')?.value;
+
+                // 유효성 검사
+                if (!title) {
+                    alert('제목을 입력해주세요.');
+                    return;
+                }
+
+                if (!content || content.trim() === '') {
+                    alert('내용을 입력해주세요.');
+                    return;
+                }
+
+                if (!workspaceId || workspaceId === '' || workspaceId === 'new') {
+                    alert('워크스페이스를 선택해주세요.');
+                    return;
+                }
+
+                // 게시물 데이터 생성
+                const postData = {
+                    title: title,
+                    content: content,
+                    workspaceId: parseInt(workspaceId),
+                    author: '익명', // 실제로는 로그인한 사용자 정보를 사용
+                    profileImg: '/assets/img/illustrations/profiles/luminosang.png'
+                };
+
+                console.log('게시물 저장 요청:', postData);
+
+                // API 호출
+                fetch('/api/community/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('게시물 저장 성공:', data);
+                    alert('게시물이 성공적으로 등록되었습니다!');
+                    // 커뮤니티 페이지로 이동
+                    window.location.href = '/community_page';
+                })
+                .catch(error => {
+                    console.error('게시물 저장 실패:', error);
+                    alert('게시물 등록에 실패했습니다: ' + error.message);
+                });
+            }
+        </script>
+
         </body>
 </html>
