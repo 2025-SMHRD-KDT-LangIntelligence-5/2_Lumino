@@ -1,22 +1,50 @@
 package com.smhrd.boot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-@AllArgsConstructor // 전체 파라미터가 들어가는 생성자
-@Getter // 필드에 접근할 수 있는 메서드
-@Setter // 필드 값 수정 or 초기화 메서드
-@Entity // JPA 사용시 꼭 추가해줘야 하는 *필수* 어노테이션 -> Movie 클래스 형태로 테이블을 생성
-@Table(name="chat_contents") // 생성되는 테이블의 이름 지정(생략하면 클래스 이름과 동일하게 생성)
-//@Table(name="chat_sessions")
-//@OneToMany
+import java.time.LocalDateTime;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name="chat_contents")
 public class Chatbot {
-    @Id // 기본키
 
-    private Integer chat_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long chat_id;
 
+    @Column
+    private Long chat_session_id;  // 기존 세션 ID (NULL 허용)
+
+    @Column
+    private Long chatter;  // 채팅 참여자 ID (NULL 허용)
+
+    @Column(nullable = false, length = 100)
+    private String user_id;  // 사용자 ID
+
+    @Column(nullable = false, length = 100)
+    private String session_id;  // 대화 세션 ID
+
+    @Column(nullable = false, length = 10)
+    private String role;  // 'user' 또는 'assistant'
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String content;  // 메시지 내용
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime created_at;  // 생성 시간
+
+    // 생성자 - 편의성을 위해 추가
+    public Chatbot(String user_id, String session_id, String role, String content) {
+        this.user_id = user_id;
+        this.session_id = session_id;
+        this.role = role;
+        this.content = content;
+    }
 }

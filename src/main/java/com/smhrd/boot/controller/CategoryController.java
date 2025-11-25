@@ -33,13 +33,13 @@ public class CategoryController {
         // 카테고리 타입별 정보 매핑
         java.util.Map<String, Object[]> categoryInfo = java.util.Map.of(
             "all", new Object[]{"전체", null},
-            "text", new Object[]{"글", 1},
-            "image", new Object[]{"그림", 2},
-            "audio", new Object[]{"음악/음성", 3},
-            "coding", new Object[]{"코딩 및 개발", 4},
-            "video", new Object[]{"영상", 5},
+            "text", new Object[]{"글 생성", 1},
+            "image", new Object[]{"이미지 생성", 2},
+            "audio", new Object[]{"음악/음성 생성", 3},
+            "coding", new Object[]{"코딩/개발", 4},
+            "video", new Object[]{"영상 생성", 5},
             "search", new Object[]{"검색", 6},
-            "education", new Object[]{"교육, 학습", 7}
+            "education", new Object[]{"교육/학습", 7}
         );
 
         // 카테고리 정보 가져오기
@@ -72,13 +72,6 @@ public class CategoryController {
         model.addAttribute("defaultWorkspace", defaultWorkspace);
 
         return "category";
-    }
-
-    // API: 특정 워크스페이스의 도구 정보 조회
-    @GetMapping("/api/workspace/{id}")
-    @ResponseBody
-    public WorkspaceWithToolsDTO getWorkspaceTools(@PathVariable("id") Integer workspaceId) {
-        return workspaceService.getWorkspaceWithTools(workspaceId);
     }
 
     // 디버깅: 실제 데이터베이스 도구 이름 확인

@@ -554,7 +554,7 @@
                                     </div>
                                 </div>
 
-                                    <div class="card-body" style="overflow-x: auto; overflow-y: hidden; max-height: 200px;">
+                                    <div class="card-body" style="overflow-x: auto; overflow-y: hidden;">
                                         <div class="row g-3 justify-content-start flex-nowrap">
 
                                             <!-- 워크스페이스 도구 목록 -->
@@ -1375,7 +1375,8 @@
                         })
                         .then(workspace => {
                             console.log('워크스페이스 생성 완료:', workspace);
-                            newWorkspaceId = workspace.workspace_id;
+                            // workspace_id 또는 workspaceId 둘 다 체크
+                            newWorkspaceId = workspace.workspace_id || workspace.workspaceId;
                             console.log('newWorkspaceId 설정됨:', newWorkspaceId);
 
                             // 워크스페이스 선택 드롭다운 업데이트
@@ -1415,7 +1416,12 @@
                 fetch(`/api/workspace/${workspaceId}/add-tool/${toolId}`, {
                     method: 'POST'
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('서버 응답 오류: ' + response.status);
+                    }
+                    return response.json();
+                })
                 .then(() => {
                     alert(`${toolName}이(가) 추가되었습니다.`);
                     bootstrap.Modal.getInstance(document.getElementById('addToolModal')).hide();

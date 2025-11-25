@@ -1134,8 +1134,21 @@
                             titleElement.style.border = 'none';
                         }
 
+                        // 워크스페이스 ID 가져오기 (workspace_id 또는 workspaceId)
+                        const newWorkspaceId = workspaceData.workspace_id || workspaceData.workspaceId;
+                        console.log('새 워크스페이스 ID:', newWorkspaceId);
+
+                        // 워크스페이스 select에 추가하고 선택
+                        if (workspaceSelect) {
+                            const newOption = document.createElement('option');
+                            newOption.value = newWorkspaceId;
+                            newOption.text = workspaceName;
+                            newOption.selected = true;
+                            workspaceSelect.appendChild(newOption);
+                        }
+
                         // 도구 추가
-                        return fetch(`/api/workspace/${workspaceData.workspaceId}/add-tool/${toolId}`, {
+                        return fetch(`/api/workspace/${newWorkspaceId}/add-tool/${toolId}`, {
                             method: 'POST'
                         });
                     })
@@ -1223,7 +1236,7 @@
                     title: title,
                     content: content,
                     workspaceId: parseInt(workspaceId),
-                    author: '익명', // 실제로는 로그인한 사용자 정보를 사용
+                    author: 'lumino',
                     profileImg: '/assets/img/illustrations/profiles/luminosang.png'
                 };
 

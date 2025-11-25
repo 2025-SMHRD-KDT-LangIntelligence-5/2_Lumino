@@ -316,17 +316,15 @@
             // 타이핑 인디케이터 표시
             showTypingIndicator();
 
-            const FASTAPI_API_URL = 'http://127.0.0.1:5000/chat';
-
-try {
-    // 서버에 메시지 전송
-    const response = await fetch(FASTAPI_API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: message })
-    });
+            try {
+                // 서버에 메시지 전송
+                const response = await fetch('/api/chatbot/message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
 
                 const data = await response.json();
 

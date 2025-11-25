@@ -166,6 +166,19 @@ public class WorkspaceService {
     }
 
     /**
+     * 새 워크스페이스 생성 (이름만으로 생성)
+     * @param workspaceName 워크스페이스 이름
+     * @param userId 사용자 ID (현재는 사용 안 함, 추후 확장용)
+     * @return 생성된 Workspace
+     */
+    @Transactional
+    public Workspace createWorkspace(String workspaceName, Integer userId) {
+        Workspace workspace = new Workspace();
+        workspace.setWorkspace_name(workspaceName);
+        return workspaceRepository.save(workspace);
+    }
+
+    /**
      * 워크스페이스 전체 저장 (workspace_name과 tool_name 배열을 받아서 저장)
      * @param workspaceName 워크스페이스 이름
      * @param toolNames 도구 이름 배열
@@ -235,5 +248,56 @@ public class WorkspaceService {
 
         // 3. 워크스페이스 삭제
         workspaceRepository.deleteById(workspaceId);
+    }
+
+    /**
+     * 워크스페이스에서 특정 도구 삭제
+     * @param workspaceId 워크스페이스 ID
+     * @param toolId 삭제할 도구 ID
+     */
+    @Transactional
+    public void removeToolFromWorkspace(Integer workspaceId, Integer toolId) {
+        // workspace_items 테이블에서 해당 항목 찾기
+        List<WorkspaceItem> items = workspaceItemRepository.findByWorkspaceId(workspaceId);
+
+        for (WorkspaceItem item : items) {
+            if (item.getToolId().equals(toolId)) {
+                workspaceItemRepository.delete(item);
+                return;
+            }
+        }
+
+        throw new RuntimeException("해당 도구를 찾을 수 없습니다.");
+    }
+
+    /**
+     * 커뮤니티 워크스페이스를 내 워크스페이스로 복사
+     * @param sourceWorkspaceId 복사할 원본 워크스페이스 ID
+     * @param userId 사용자 ID (실제로는 로그인한 사용자)
+     * @return 생성된 새 워크스페이스
+     */
+    @Transactional
+    public Workspace copyWorkspaceFromCommunity(Integer sourceWorkspaceId, Integer userId) {
+        // 원본 워크스페이스 조회
+        Workspace sourceWorkspace = workspaceRepository.findById(sourceWorkspaceId)
+                .orElseThrow(() -> new RuntimeException("워크스페이스를 찾을 수 없습니다."));
+
+        // 새 워크스페이스 생성
+        Workspace newWorkspace = new Workspace();
+        newWorkspace.setWorkspace_name(sourceWorkspace.getWorkspace_name() + " (복사본)");
+        Workspace savedWorkspace = workspaceRepository.save(newWorkspace);
+
+        // 원본 워크스페이스의 도구들 조회
+        List<WorkspaceItem> sourceItems = workspaceItemRepository.findByWorkspaceId(sourceWorkspaceId);
+
+        // 도구들을 새 워크스페이스에 복사
+        for (WorkspaceItem sourceItem : sourceItems) {
+            WorkspaceItem newItem = new WorkspaceItem();
+            newItem.setWorkspaceId(savedWorkspace.getWorkspace_id());
+            newItem.setToolId(sourceItem.getToolId());
+            workspaceItemRepository.save(newItem);
+        }
+
+        return savedWorkspace;
     }
 }

@@ -14,8 +14,8 @@ public interface CompareRepository extends JpaRepository<Compare, Integer> {
     @Query("SELECT t FROM Compare t WHERE t.toolName LIKE CONCAT('%', :keyword, '%')")
     List<Compare> findByToolNameContaining(@Param("keyword") String keyword);
 
-    // tool_name으로 정확히 일치하는 도구 조회
-    @Query("SELECT t FROM Compare t WHERE t.toolName = :toolName")
+    // tool_name으로 정확히 일치하는 도구 조회 (첫 번째 결과만 반환)
+    @Query(value = "SELECT * FROM tools WHERE tool_name = :toolName ORDER BY tool_id ASC LIMIT 1", nativeQuery = true)
     Compare findByToolName(@Param("toolName") String toolName);
 
     // 랜덤으로 15개 도구 조회

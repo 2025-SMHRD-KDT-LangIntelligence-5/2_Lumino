@@ -67,6 +67,30 @@ public class WorkspaceController {
     }
 
     /**
+     * 새 워크스페이스 생성 (이름만으로 생성)
+     * @param request Map 형태로 workspaceName, userId 받기
+     * @return 생성된 Workspace
+     */
+    @PostMapping("/api/workspace")
+    @ResponseBody
+    public ResponseEntity<?> createWorkspace(@RequestBody java.util.Map<String, Object> request) {
+        try {
+            String workspaceName = (String) request.get("workspaceName");
+            Integer userId = (Integer) request.get("userId");
+
+            if (workspaceName == null || workspaceName.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("워크스페이스 이름은 필수입니다.");
+            }
+
+            Workspace workspace = workspaceService.createWorkspace(workspaceName, userId);
+            return ResponseEntity.ok(workspace);
+        } catch (Exception e) {
+            log.error("워크스페이스 생성 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("워크스페이스 생성에 실패했습니다: " + e.getMessage());
+        }
+    }
+
+    /**
      * 워크스페이스 전체 저장 (workspace_name과 tool_name 배열을 받아서 저장)
      * @param request SaveWorkspaceRequest (workspaceName, toolNames)
      * @return 생성된 Workspace
@@ -123,6 +147,55 @@ public class WorkspaceController {
         } catch (Exception e) {
             log.error("워크스페이스 삭제 중 오류 발생: ", e);
             return ResponseEntity.badRequest().body("워크스페이스 삭제에 실패했습니다: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 모든 워크스페이스 목록 조회
+     * @return 워크스페이스 리스트
+     */
+    @GetMapping("/api/workspaces/all")
+    @ResponseBody
+    public ResponseEntity<List<Workspace>> getAllWorkspaces() {
+        List<Workspace> workspaces = workspaceService.getAllWorkspaces();
+        return ResponseEntity.ok(workspaces);
+    }
+
+    /**
+     * 특정 워크스페이스의 상세 정보와 도구 목록 조회
+     * @param workspaceId 워크스페이스 ID
+     * @return WorkspaceWithToolsDTO
+     */
+    @GetMapping("/api/workspace/{workspaceId}")
+    @ResponseBody
+    public ResponseEntity<?> getWorkspaceWithTools(@PathVariable Integer workspaceId) {
+        try {
+            com.smhrd.boot.dto.WorkspaceWithToolsDTO workspace = workspaceService.getWorkspaceWithTools(workspaceId);
+            if (workspace == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(workspace);
+        } catch (Exception e) {
+            log.error("워크스페이스 조회 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("워크스페이스 조회에 실패했습니다: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 워크스페이스에서 도구 삭제
+     * @param workspaceId 워크스페이스 ID
+     * @param toolId 삭제할 도구 ID
+     * @return 성공 여부
+     */
+    @DeleteMapping("/api/workspace/{workspaceId}/tool/{toolId}")
+    @ResponseBody
+    public ResponseEntity<?> removeToolFromWorkspace(@PathVariable Integer workspaceId, @PathVariable Integer toolId) {
+        try {
+            workspaceService.removeToolFromWorkspace(workspaceId, toolId);
+            return ResponseEntity.ok().body("도구가 성공적으로 삭제되었습니다.");
+        } catch (Exception e) {
+            log.error("도구 삭제 중 오류 발생: ", e);
+            return ResponseEntity.badRequest().body("도구 삭제에 실패했습니다: " + e.getMessage());
         }
     }
 

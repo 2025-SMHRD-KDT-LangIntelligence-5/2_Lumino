@@ -469,7 +469,7 @@
                                         <div class="d-flex justify-content-end">
                                             <div class="input-group" style="max-width: 400px;">
                                                 <input type="text" id="communitySearch" class="form-control" placeholder="게시물 검색..." />
-                                                <button class="btn btn-primary" type="button" id="searchBtn">
+                                                <button class="btn btn-outline-secondary" type="button" id="searchBtn">
                                                     <i data-feather="search"></i>
                                                 </button>
                                             </div>
@@ -506,7 +506,7 @@
                                     </div>
                                     <div class="card-body">
                                         <!-- 게시물 내용 (Markdown 렌더링) -->
-                                        <div th:utext="${post.content}" style="white-space: pre-wrap;">내용</div>
+                                        <div th:utext="${post.content}" style="white-space: pre-wrap; text-align: center;">내용</div>
 
                                         <!-- 워크스페이스 표시 -->
                                         <section class="az-section workspace-zone" th:if="${workspaceMap.containsKey(post.postIdx)}">
