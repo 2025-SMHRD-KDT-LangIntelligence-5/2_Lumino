@@ -186,23 +186,23 @@
 
 * 문제1<br>
  문제점 설명 : 챗봇 기능을 구현하는 build.gradle에 챗봇 의존성을 추가했는데 SpringAI 문제로 계속 빌드 실패 문제<br>
- 해결방안 : IntelliJ 내부에서 SpringAI를 사용하여 챗봇에 FastAPI를 연결하려고 했으나 복잡성과 효율성 문제로 Python으로 FastAPI를 연결하여 해결함.
+ 해결방안 : IntelliJ 내부에서 SpringAI를 사용하여 챗봇에 FastAPI를 연결하려고 했으나 복잡성과 효율성 문제로 Python으로 FastAPI를 연결하여 해결함
 
 * 문제2<br>
  문제점 설명 : PowerShell이 보안을 이유로 Activate.ps1(가상환경 활성화 스크립트) 스크립트 실행을 막고 있어서 오류 <br>
- 해결방안 :  PC 보안에 영향 없게 현재 PowerShell 세션에만 적용.
+ 해결방안 :  PC 보안에 영향 없게 현재 PowerShell 세션에만 적용
 
 * 문제3<br>
  문제점 설명 :  Python이 주피터 매직( !pip )을 읽어들이지 못하는 오류 <br>
- 해결방안 :  chat_api.py 파일 안의 주피터 매직을 전부 제거.
+ 해결방안 :  chat_api.py 파일 안의 주피터 매직을 전부 제거
 
 * 문제4<br>
  문제점 설명 :  문제 <br>
- 해결방안 :  적용.
+ 해결방안 :  적용
 
 * 문제5<br>
  문제점 설명 :  문제 <br>
- 해결방안 :  수정.
+ 해결방안 :  수정
  
 
 
