@@ -132,8 +132,8 @@
 ## 🖥 화면 구성
 
 ### 로그인/회원가입
-![로그인](https://github.com/user-attachments/assets/f8655d8a-7481-4092-b555-de7d57901912)
-![회원가입](https://github.com/user-attachments/assets/aa857c16-f692-43e0-b378-7ef494d02de0)
+<img width="317" height="379" alt="로그인" src="https://github.com/user-attachments/assets/f8655d8a-7481-4092-b555-de7d57901912" />
+<img width="482" height="420" alt="회원가입" src="https://github.com/user-attachments/assets/aa857c16-f692-43e0-b378-7ef494d02de0" />
 
 
 ### 메인/주웠어요/캘린더
