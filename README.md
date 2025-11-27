@@ -153,10 +153,11 @@
 
 
 ### 커뮤니티
-<img width="350" height="434" alt="스크린샷 2025-10-11 165033" src="https://github.com/user-attachments/assets/4d5e372a-07fc-4b88-a744-aed58cb9d1bd"/>
+![커뮤니티](https://github.com/user-attachments/assets/5a09b620-c5e7-43b1-a86d-b58bced22c4d)
+![커뮤니티 글쓰기](https://github.com/user-attachments/assets/b6130a46-b964-429a-aa59-4a5b4731ade3)
 
 ### 마이페이지
-<img width="350" height="434" alt="스크린샷 2025-10-11 165033" src="https://github.com/user-attachments/assets/4d5e372a-07fc-4b88-a744-aed58cb9d1bd"/>
+![마이페이지](https://github.com/user-attachments/assets/0f584804-6f26-452e-b593-f104551963ad)
 
 <br>
 
@@ -176,7 +177,7 @@
   </tr>
   <tr>
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>서버 도메인과 IntelliJ 작업 동기화<br>로컬로 Moba Xterm 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Gradle, DBeaver, File Zilla, Moba Xterm, Power Shell, Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>서버 도메인과 IntelliJ 작업 동기화<br>로컬로 Moba Xterm 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Gradle, DBeaver, File Zilla, Moba Xterm, Power Shell, Venv, Uvicorn, Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Moba Xterm, Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
