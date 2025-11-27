@@ -175,10 +175,10 @@
     <td align="center"><strong>김수빈</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>페이지별 CSS 수정<br>서버도메인과 IntelliJ 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>페이지별 CSS 수정<br>1<br>2<br>3<br>5<br>Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>서버 도메인과 IntelliJ 작업 동기화<br>로컬로 Moba Xterm 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Gradle, DBeaver, File Zilla, Moba Xterm, Power Shell, Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Moba Xterm, Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
 </table>
 
