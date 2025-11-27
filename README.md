@@ -106,19 +106,26 @@
 <br>
 
 ## 📌 SW유스케이스
-
+<img width="519" height="220" alt="회원가입" src="https://github.com/user-attachments/assets/b3bb2a5d-9567-4aab-9db1-aeda2d57d2c1" />
+<img width="411" height="419" alt="메인화면" src="https://github.com/user-attachments/assets/98e5590a-0733-49be-bc3a-10e4ed415928" />
+<img width="387" height="333" alt="네비게이션 바" src="https://github.com/user-attachments/assets/cd426c22-cdbb-4684-8a72-d648ab10e2d8" />
+<img width="454" height="240" alt="검색창" src="https://github.com/user-attachments/assets/14d66a61-5ed9-49a7-8d4c-c8f96effeb1e" />
+<img width="474" height="215" alt="챗봇" src="https://github.com/user-attachments/assets/d935d770-25f2-4911-8e07-ef8f091cdc2c" />
+<img width="566" height="229" alt="카테고리" src="https://github.com/user-attachments/assets/c65f5c99-dcf8-424d-8980-ec6d2d92de77" />
+<img width="482" height="196" alt="AI 비교" src="https://github.com/user-attachments/assets/fb6cd7d1-a595-4f99-b0f0-198cfc3d7984" />
+<img width="434" height="215" alt="커뮤니티" src="https://github.com/user-attachments/assets/efed20d7-04b6-48b7-ad23-d18a523abd50" />
+<img width="482" height="217" alt="My Work Space" src="https://github.com/user-attachments/assets/a33de84c-f2ef-46f1-a40f-1d76d27e788d" />
+<img width="474" height="217" alt="My Page" src="https://github.com/user-attachments/assets/38061947-0a3a-4024-9aec-0b14b7df5f66" />
 
 <br>
 
 ## 📌 서비스 흐름도
-<img width="1286" height="702" alt="서비스흐름도" src="https://github.com/user-attachments/assets/4a9a317c-0538-4f1e-904c-ae0ce3447e46" />
-
+![서비스 흐름도](https://github.com/user-attachments/assets/906871b7-629f-4eef-9752-108ad23427b4)
 
 <br>
 
 ## 📌 ER다이어그램
 ![루미노 er다이어그램](https://github.com/user-attachments/assets/44df8bc8-8677-4c08-baf9-93816df51bc7)
-
 
 <br>
 
@@ -172,20 +179,20 @@
  해결방안 : IntelliJ 내부에서 SpringAI를 사용하여 챗봇에 FastAPI를 연결하려고 했으나 복잡성과 효율성 문제로 Python으로 FastAPI를 연결하여 해결함.
 
 * 문제2<br>
- 문제점 설명 : list.jsp에 일기장 목록을 5개씩 불러오는데 테이블에 불러와지지 않는 문제 <br>
- 해결방안 : eclipse.edu 개발환경 Spring Boot에서 JSTL 3.0.0 버전의 라이브러리를 불러오는데 기존에 쓰던 JSTL 1.2 버전 jakarta 호환성 문제로 list.jsp 파일의 taglib 지시자의 uri를 java.sun.com/jsp/jstl/core 에서 jakarta.tags.core 로 변경하여 해결함.
+ 문제점 설명 : 문제 <br>
+ 해결방안 :  해결함.
 
 * 문제3<br>
- 문제점 설명 : join.jsp에 birthdate 컬럼이 매칭 오류 <br>
- 해결방안 : MainController.java에서 join 메서드에 @RequestMapping을 사용하여 @PostMapping이 중복되어 @GetMapping과 @PostMapping으로 나눠서 정의해서 해결함.
+ 문제점 설명 :  오류 <br>
+ 해결방안 :  해결함.
 
 * 문제4<br>
- 문제점 설명 : 캘린더 라이브러리를 불러왔는데 세부 조정이 적용되지 않는 문제 <br>
- 해결방안 : css 명시도를 찾아보고 순서를 확인한 뒤 캘린더가 아닌 body 선택자를 활용해 적용.
+ 문제점 설명 :  문제 <br>
+ 해결방안 :  적용.
 
 * 문제5<br>
- 문제점 설명 : DB에 저장된 데이터가 지정한 곳에 출력되지 않는 문제 <br>
- 해결방안 : MainController.java 파일에서 model 명을 “pickedText”로 지정해두었는데 jsp 파일에서는 pick이라고 작성해서 불러오지 못한 것을 확인해 pickedText.pick이라고 수정.
+ 문제점 설명 :  문제 <br>
+ 해결방안 :  수정.
  
 
 
