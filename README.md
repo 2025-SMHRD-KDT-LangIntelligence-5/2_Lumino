@@ -136,18 +136,27 @@
 <img width="482" height="420" alt="회원가입" src="https://github.com/user-attachments/assets/aa857c16-f692-43e0-b378-7ef494d02de0" />
 
 
-### 메인/주웠어요/캘린더
-<img width="350" height="430" alt="스크린샷 2025-10-11 164135" src="https://github.com/user-attachments/assets/ebaa9b95-dbe6-45d6-a5da-84ee869ca751"/>
-<img width="353" height="430" alt="스크린샷 2025-10-11 170024" src="https://github.com/user-attachments/assets/77bb78ca-8a2e-4e4e-8fe7-390934f5b810"/>
+### 메인
+![메인1](https://github.com/user-attachments/assets/6bc78b3a-7a97-49b4-9985-3b395fbd5908)
+![메인2](https://github.com/user-attachments/assets/928f8246-9a98-49df-b318-e936dfe18db3)
 
-### 자존감일기장/버리고가세요/일기장리스트
-<img width="350" height="450" alt="스크린샷 2025-10-11 164542" src="https://github.com/user-attachments/assets/9cce3fd2-d753-4a19-a704-add0c177c7a3"/>
-<img width="328" height="400" alt="스크린샷 2025-10-11 171433" src="https://github.com/user-attachments/assets/54b716b2-4dd1-4b96-8b37-6cd74fe3c11f"/>
-<img width="350" height="434" alt="스크린샷 2025-10-11 164603" src="https://github.com/user-attachments/assets/0a43c21f-5d75-40a5-8738-142fb734749a"/>
+### 카테고리
+![카테고리 전체 1](https://github.com/user-attachments/assets/f70fe60e-ce2b-49f2-9c1e-cc03d58acf88)
+![카테고리 전체 2](https://github.com/user-attachments/assets/fabf1811-6a6e-445a-995e-78f29d558b14)
+![카테고리 글](https://github.com/user-attachments/assets/d6f3dc03-9a41-4e7e-820f-64c2f55e7e26)
+![카테고리 그림](https://github.com/user-attachments/assets/a67bdd5f-7f08-4584-abae-166788ed6683)
+![카테고리 음악](https://github.com/user-attachments/assets/767d9518-3320-46c4-88ab-130a50c48adb)
+![카테고리 코딩](https://github.com/user-attachments/assets/331500ed-d31e-482c-a3b1-eddee6f0fb30)
+![카테고리 영상](https://github.com/user-attachments/assets/07255927-5758-4cfb-9b45-8d334644409c)
+![카테고리 검색](https://github.com/user-attachments/assets/cbe2d2a7-5e91-4e9d-a575-cb0fcff831f7)
+![카테고리 교육](https://github.com/user-attachments/assets/eb582966-cf62-4f95-bcd9-f0b14493d6d3)
 
-### 콩이존
+
+### 커뮤니티
 <img width="350" height="434" alt="스크린샷 2025-10-11 165033" src="https://github.com/user-attachments/assets/4d5e372a-07fc-4b88-a744-aed58cb9d1bd"/>
 
+### 마이페이지
+<img width="350" height="434" alt="스크린샷 2025-10-11 165033" src="https://github.com/user-attachments/assets/4d5e372a-07fc-4b88-a744-aed58cb9d1bd"/>
 
 <br>
 
