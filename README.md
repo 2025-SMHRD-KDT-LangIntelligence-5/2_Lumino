@@ -150,6 +150,8 @@
 ![카테고리 검색](https://github.com/user-attachments/assets/cbe2d2a7-5e91-4e9d-a575-cb0fcff831f7)
 ![카테고리 교육](https://github.com/user-attachments/assets/eb582966-cf62-4f95-bcd9-f0b14493d6d3)
 
+### 비교
+![비교 페이지](https://github.com/user-attachments/assets/f707dc5a-cbc4-424e-92af-be09d7e30be2)
 
 ### 커뮤니티
 ![커뮤니티](https://github.com/user-attachments/assets/5a09b620-c5e7-43b1-a86d-b58bced22c4d)
