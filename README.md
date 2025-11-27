@@ -132,8 +132,9 @@
 ## 🖥 화면 구성
 
 ### 로그인/회원가입
-<img width="350" height="430" alt="스크린샷 2025-10-11 163425" src="https://github.com/user-attachments/assets/a7dd60ae-aa5a-43f1-a1d1-1bfb686f7d34"/>
-<img width="350" height="430" alt="스크린샷 2025-10-11 163504" src="https://github.com/user-attachments/assets/72f77da2-3958-492d-a1a0-3547a22c6c2d"/>
+![로그인](https://github.com/user-attachments/assets/f8655d8a-7481-4092-b555-de7d57901912)
+![회원가입](https://github.com/user-attachments/assets/aa857c16-f692-43e0-b378-7ef494d02de0)
+
 
 ### 메인/주웠어요/캘린더
 <img width="350" height="430" alt="스크린샷 2025-10-11 164135" src="https://github.com/user-attachments/assets/ebaa9b95-dbe6-45d6-a5da-84ee869ca751"/>
