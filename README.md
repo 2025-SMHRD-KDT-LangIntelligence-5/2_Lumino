@@ -2,7 +2,8 @@
 실전프로젝트 <Lumino>
 
 # 📎 Averse (팀명: Lumino)
-<img width="1886" height="900" alt="averse 플랫폼" src="https://github.com/user-attachments/assets/e0e32fac-5272-41e4-a92b-b0239a4601a0" />
+![Averse 플랫폼](https://github.com/user-attachments/assets/ad817e00-aabf-4c4e-959a-5f7444f6de16)
+
 
 
 
