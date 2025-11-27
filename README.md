@@ -106,14 +106,14 @@
 <br>
 
 ## 📌 SW유스케이스
-<img width="519" height="220" alt="회원가입" src="https://github.com/user-attachments/assets/b3bb2a5d-9567-4aab-9db1-aeda2d57d2c1" />
-<img width="454" height="240" alt="검색창" src="https://github.com/user-attachments/assets/14d66a61-5ed9-49a7-8d4c-c8f96effeb1e" />
-<img width="411" height="419" alt="메인화면" src="https://github.com/user-attachments/assets/98e5590a-0733-49be-bc3a-10e4ed415928" />
-<img width="387" height="333" alt="네비게이션 바" src="https://github.com/user-attachments/assets/cd426c22-cdbb-4684-8a72-d648ab10e2d8" />
-<img width="474" height="215" alt="챗봇" src="https://github.com/user-attachments/assets/d935d770-25f2-4911-8e07-ef8f091cdc2c" />
-<img width="566" height="229" alt="카테고리" src="https://github.com/user-attachments/assets/c65f5c99-dcf8-424d-8980-ec6d2d92de77" />
+<img width="482" height="240" alt="회원가입" src="https://github.com/user-attachments/assets/b3bb2a5d-9567-4aab-9db1-aeda2d57d2c1" />
+<img width="474" height="204" alt="검색창" src="https://github.com/user-attachments/assets/14d66a61-5ed9-49a7-8d4c-c8f96effeb1e" />
+<img width="482" height="408" alt="메인화면" src="https://github.com/user-attachments/assets/98e5590a-0733-49be-bc3a-10e4ed415928" />
+<img width="474" height="419" alt="네비게이션 바" src="https://github.com/user-attachments/assets/cd426c22-cdbb-4684-8a72-d648ab10e2d8" />
+<img width="482" height="192" alt="챗봇" src="https://github.com/user-attachments/assets/d935d770-25f2-4911-8e07-ef8f091cdc2c" />
+<img width="474" height="230" alt="카테고리" src="https://github.com/user-attachments/assets/c65f5c99-dcf8-424d-8980-ec6d2d92de77" />
 <img width="482" height="196" alt="AI 비교" src="https://github.com/user-attachments/assets/fb6cd7d1-a595-4f99-b0f0-198cfc3d7984" />
-<img width="434" height="215" alt="커뮤니티" src="https://github.com/user-attachments/assets/efed20d7-04b6-48b7-ad23-d18a523abd50" />
+<img width="474" height="196" alt="커뮤니티" src="https://github.com/user-attachments/assets/efed20d7-04b6-48b7-ad23-d18a523abd50" />
 <img width="482" height="217" alt="My Work Space" src="https://github.com/user-attachments/assets/a33de84c-f2ef-46f1-a40f-1d76d27e788d" />
 <img width="474" height="217" alt="My Page" src="https://github.com/user-attachments/assets/38061947-0a3a-4024-9aec-0b14b7df5f66" />
 
