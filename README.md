@@ -100,7 +100,8 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조) 예시 
-<img width="818" height="494" alt="시스템 아키텍쳐" src="https://github.com/user-attachments/assets/9db6714a-66da-4cc3-a1c6-fcddf913432d" />
+<img width="519" height="303" alt="시스템 아키텍쳐 최종" src="https://github.com/user-attachments/assets/32243f2e-b5a8-445e-9f8c-ffa7e98008a4" />
+
 
 <br>
 
