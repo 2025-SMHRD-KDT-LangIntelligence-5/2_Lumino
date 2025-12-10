@@ -180,7 +180,7 @@
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>서버 도메인과 IntelliJ 작업 동기화<br>로컬로 Moba Xterm 작업 동기화<br>챗봇 기능 생성 후 OpenAI ChatGPT의 "gpt-4o-mini" 모델연결 및 RAG설정<br>Python에서 FastAPI로 비동기 연결<br>Gradle, DBeaver, File Zilla, Moba Xterm, Power Shell, Venv, Uvicorn, Git hub, Polaris Office, Canva 사용</b></td>
     <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, Git hub, Polaris Office, Canva 사용</b></td>
-    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>1<br>2<br>3<br>4<br>Gradle, DBeaver, Moba Xterm, Git hub, Polaris Office, Canva 사용</b></td>
+    <td align="center"><b>DHTML을 이용한 웹페이지 수정<br>Mysql을 활용한 DB 구조 설계 및 구축<br>서비스 기능 구현<br>sprigboot기반 서비스 로직 구현 및 전체 서비스 흐름 제어<br>Gradle, DBeaver, Moba Xterm, Git hub, Polaris Office, Canva 사용</b></td>
   </tr>
 </table>
 
